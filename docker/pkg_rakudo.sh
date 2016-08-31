@@ -39,10 +39,11 @@ echo "Rakudo was succesfully compiled."
 
 # Packaging
 if [ ! -d /pkgs ]; then mkdir -p /pkgs; fi
+cd /
 fpm \
 --deb-no-default-config-files \
 --license "Artistic License 2.0" \
---description "Rakudo Perl 6, or simply Rakudo, is a compiler for the Perl 6 programming language" \
+--description "Rakudo is a compiler for the Perl 6 programming language" \
 -s dir \
 -t deb \
 -p /pkgs \
