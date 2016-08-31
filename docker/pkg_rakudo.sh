@@ -38,14 +38,14 @@ rm -rf /MoarVM* /nqp* /rakudo*
 echo "Rakudo was succesfully compiled."
 
 # Packaging
-if [ !-d /pkgs ]; then mkdir -p /pkgs; fi
+if [ ! -d /pkgs ]; then mkdir -p /pkgs; fi
 fpm \
 --deb-no-default-config-files \
 --license "Artistic License 2.0" \
 --description "Rakudo Perl 6, or simply Rakudo, is a compiler for the Perl 6 programming language" \
 -s dir \
 -t deb \
--p /var/tmp \
+-p /pkgs \
 -n perl6-rakudo-moarvm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
