@@ -1,0 +1,25 @@
+FROM ubuntu:xenial
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ Europe/Brussels
+ENV packages ruby-dev build-essential wget
+
+RUN set -xv ; \
+apt-get update && \
+apt-get dist-upgrade -y && \
+# Packages for compiling and pkg creation
+apt-get install -y ${packages} && \
+gem install fpm && \
+
+# Cleanup
+apt-get autoremove -y && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo* 
+
+COPY pkg_rakudo.sh /
+COPY install_zef_as_user.sh /
+COPY install_panda_as_user.sh /
+
+CMD '/pkg_rakudo.sh'
