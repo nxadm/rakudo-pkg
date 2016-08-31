@@ -1,0 +1,45 @@
+FROM nxadm/ubuntu16.04i386
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ Europe/Brussels
+#ENV packages ruby-dev ruby-dev:i386 build-essential build-essential:i386
+ENV packages ruby-dev build-essential wget
+ENV moarvm_url http://moarvm.org/releases/MoarVM-2016.08.tar.gz
+ENV nqp_url http://rakudo.org/downloads/nqp/nqp-2016.08.1.tar.gz
+ENV rakudo_url http://rakudo.org/downloads/rakudo/rakudo-2016.08.1.tar.gz
+ENV prefix /opt/rakudo
+
+COPY pkg_ubuntu.sh /
+COPY install_zef_as_user.sh /
+COPY install_panda_as_user.sh /
+
+RUN set -xv ; \
+# Prepare for crosscompiling
+dpkg --add-architecture i386 && \
+apt-get update && \
+apt-get dist-upgrade -y && \
+# Packages for compiling and pkg creation
+apt-get install -y ${packages} && \
+gem install fpm && \
+# Sources
+# TODO: get the source on a https connection
+# (see https://rt.perl.org/Ticket/Display.html?id=128423)
+for i in ${moarvm_url} ${nqp_url} ${rakudo_url}; do wget $i; done && \
+for i in *.tar.gz; do tar xvzf $i; done && \
+cd /MoarVM*; perl Configure.pl --prefix=${prefix} && make && \
+make install && \
+cd /nqp-*; perl Configure.pl --backends=moar --prefix=${prefix} && make && \
+make test && make install && \
+cd /rakudo-*; perl Configure.pl --backends=moar --prefix=${prefix} && make && \
+make test && make install && \
+mv /install_*.sh ${prefix}/bin/ && \
+
+# Cleanup
+apt-get autoremove -y && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo* 
+
+
+CMD '/pkg_ubuntu.sh'
