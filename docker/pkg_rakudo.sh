@@ -52,7 +52,7 @@ fpm \
 --license "Artistic License 2.0" \
 --description "Rakudo is a compiler for the Perl 6 programming language" \
 -s dir \
--t deb \
+-t $TARGET \
 -p /pkgs \
 -n perl6-rakudo-moarvm \
 -m "$MAINTAINER" \
