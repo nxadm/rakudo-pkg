@@ -1,0 +1,1 @@
+template_run_pkgrakudo.sh
