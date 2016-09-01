@@ -21,6 +21,13 @@ URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
 URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
 URL_RAKUDO=http://rakudo.org/downloads/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz
 PREFIX=/opt/rakudo
+if [ -f "/etc/debian_version" ]; then
+    TARGET=deb
+elif [ -f "/etc/redhat-release" ]; then 
+    TARGET="rpm"
+else
+    TARGET="UNKNOWN"
+fi
 
 # Download and compile sources
 # TODO: get the source on a https connection

@@ -12,7 +12,6 @@ apt-get dist-upgrade -y && \
 # Packages for compiling and pkg creation
 apt-get install -y ${packages} && \
 gem install fpm && \
-
 # Cleanup
 apt-get autoremove -y && \
 apt-get clean && \

@@ -1,0 +1,24 @@
+FROM centos:centos7
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV LANG=en_US.UTF-8 \
+    packages='ruby-devel git wget' \
+    pkggroup='Development Tools'
+
+RUN set -xv ; \
+sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \
+yum clean all && yum -y update && yum -y upgrade && \
+ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
+# Packages for compiling and pkg creation
+yum install -y $packages && yum groupinstall -y $pkggroup && \
+gem install fpm && \
+# Cleanup
+yum clean all && \
+rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
+localedef -i en_US -c -f UTF-8 en_US.UTF-8
+
+COPY pkg_rakudo.sh /
+COPY install_zef_as_user.sh /
+COPY install_panda_as_user.sh /
+
+CMD '/pkg_rakudo.sh'
