@@ -4,7 +4,7 @@ MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ Europe/Brussels
-ENV packages ruby-dev build-essential wget
+ENV packages ruby-dev build-essential wget lsb-release
 
 RUN set -xv ; \
 apt-get update && \

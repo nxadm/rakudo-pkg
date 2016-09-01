@@ -46,7 +46,10 @@ rm -rf /MoarVM* /nqp* /rakudo*
 echo "Rakudo was succesfully compiled."
 
 # Packaging
-if [ ! -d /pkgs ]; then mkdir -p /pkgs; fi
+OS=$(lsb_release -is)
+RELEASE=$(lsb_release -rs)
+PKGDIR="/pkgs/$OS/$RELEASE"
+if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
 cd /
 fpm \
 --deb-no-default-config-files \
@@ -54,7 +57,7 @@ fpm \
 --description "Rakudo is a compiler for the Perl 6 programming language" \
 -s dir \
 -t $TARGET \
--p /pkgs \
+-p $PKGDIR \
 -n perl6-rakudo-moarvm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
