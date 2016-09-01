@@ -11,12 +11,13 @@ ERROR=""
 [ -z "$VERSION_MOARVM" ] && ERROR+=$'VERSION_MOARVM not defined\n'
 [ -z "$VERSION_NQP"    ] && ERROR+=$'VERSION_NQP not defined\n'
 [ -z "$VERSION_RAKUDO" ] && ERROR+=$'VERSION_RAKUDO not defined\n'
-[ -z "$VERSION_PKG"    ] && ERROR+=$'VERSION_PKG not defined\n'
+[ -z "$REVISION"       ] && ERROR+=$'REVISION not defined\n'
 if [ ! -z "$ERROR" ]; then die "$ERROR"; fi
 
 MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 
 # Internal variables
+VERSION_PKG=$(perl -lwe "@part=split(/\D/, \"$VERSION_RAKUDO\"); printf('%d%02d%02d_%d', @part, $REVISION)")
 URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
 URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
 URL_RAKUDO=http://rakudo.org/downloads/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz
