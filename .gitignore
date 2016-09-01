@@ -19,5 +19,4 @@ nytprof.out
 *.bs
 /_eumm/
 *.sw*
-pkgs/*.deb
-pkgs/*.rpm
+pkgs/
