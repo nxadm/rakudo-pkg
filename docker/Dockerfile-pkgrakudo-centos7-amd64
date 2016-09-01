@@ -2,7 +2,7 @@ FROM centos:centos7
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
 ENV LANG=en_US.UTF-8 \
-    packages='ruby-devel git wget lsb-release-core' \
+    packages='ruby-devel git wget redhat-lsb-core' \
     pkggroup='Development Tools'
 
 RUN set -xv ; \
