@@ -12,6 +12,10 @@ In /opt/rakudo/bin you'll find two additional scripts to install Perl 6 module m
 install_panda_as_user.sh
 install_zef_as_user.sh
 ```
+
+If you just want to create native packages (using my images), just go to the
+bin directory and execute the run_*.sh commands. No need to generate images. See below (Supplied scripts).
+
 ## Creating packages from nxadm docker images in de Docker Hub
 The docker run command need 4 environment values (-e) in order to create a package:
 - the moarvm version (e.g. 2016.08)
