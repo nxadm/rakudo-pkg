@@ -42,6 +42,7 @@ make && make test && make install
 cd /rakudo-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
 mv /install_*.sh $PREFIX/bin
+cd /
 rm -rf /MoarVM* /nqp* /rakudo* 
 echo "Rakudo was succesfully compiled."
 
@@ -50,7 +51,6 @@ OS=$(lsb_release -is)
 RELEASE=$(lsb_release -rs)
 PKGDIR="/pkgs/$OS/$RELEASE"
 if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
-cd /
 fpm \
 --deb-no-default-config-files \
 --license "Artistic License 2.0" \
