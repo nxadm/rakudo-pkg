@@ -1,6 +1,7 @@
 # rakudo-pkg
 Create OS packages for Rakudo using Docker. Work in progress.
 
+## About the packages
 The packages are minimalistic by design: they don't run any pre/post scripts and all the files are installed in /opt/rakudo. You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc (or corresponding environment script for other shells):
 ```
 export PATH=/opt/rakudo/bin:$PATH
@@ -11,9 +12,57 @@ In /opt/rakudo/bin you'll find two additional scripts to install Perl 6 module m
 install_panda_as_user.sh
 install_zef_as_user.sh
 ```
+## Creating packages from nxadm docker images in de Docker Hub
+The docker run command need 4 environment values (-e) in order to create a package:
+- the moarvm version (e.g. 2016.08)
+- the nqp version (e.g. 2016.08.1)
+- the rakudo version (e.g. 2016.08.1)
+- the package revision (e.g. 01)
 
-Look in the bin of this repo for the docker commands to generate packages. At the moment packages for the following distributions can be created:
-- Ubuntu 16.04 amd64
-- Ubuntu 16.04 i386
+A full command looks like this:
+```
+docker run -ti --rm \
+-v $(pwd)/../pkgs:/pkgs \
+-e VERSION_MOARVM=$VERSION_MOARVM \
+-e VERSION_NQP=$VERSION_NQP \
+-e VERSION_RAKUDO=$VERSION_RAKUDO \
+-e REVISION=$REVISION \
+$IMAGE
+```
+-v provides an external volume were the packages will be created.
+-e are the versions and revision mentioned above.
+IMAGE is the image you want to use for the creation of packahes.
+At the moment packages the images can be used:
+- nxadm/pkgrakudo-ubuntu16.04-amd64
+- nxadm/pkgrakudo-ubuntu16.04-i386
+- nxadm/pkgrakudo-centos7-amd64
 
-More packages will follow.
+E.g:
+
+```
+docker run -ti --rm \
+-v $(pwd)/../pkgs:/pkgs \
+-e VERSION_MOARVM=2016.08 \
+-e VERSION_NQP=2016.08.1 \
+-e VERSION_RAKUDO=2016.08.1 \
+-e REVISION=01 \
+nxadm/pkgrakudo-ubuntu16.04-amd64
+```
+
+## Suplied scripts
+In bin you'll find easy wrapper scripts for the above commands, e.g.
+```
+./run_pkgrakudo-ubuntu16.04-amd64.sh 2016.08 2016.08.1 2016.08.1 01
+```
+
+There are also build scripts for recreating the images in case you prefer
+not to use my images on Docker Hub, e.g.:
+```
+./build_pkgrakudo-ubuntu16.04-amd64.sh
+```
+This will create an nxadm/pkgrakudo-ubuntu16.04-amd64 image locally. If you
+have a Docker ID, you can supply it:
+
+```
+./build_pkgrakudo-ubuntu16.04-amd64.sh your_docker_id
+```
