@@ -16,7 +16,7 @@ install_zef_as_user.sh
 If you just want to create native packages, just go to the bin directory and execute the run_*.sh commands. In this case there is no need to locally build the Docker images. See below (Supplied scripts).
 
 ## Creating packages from nxadm images (Docker Hub)
-The docker run command need 4 environment values (-e) in order to create a package:
+The docker run command needs 4 environment values (-e) in order to create a package:
 - the moarvm version (e.g. 2016.08)
 - the nqp version (e.g. 2016.08.1)
 - the rakudo version (e.g. 2016.08.1)
