@@ -13,10 +13,9 @@ install_panda_as_user.sh
 install_zef_as_user.sh
 ```
 
-If you just want to create native packages (using my images), just go to the
-bin directory and execute the run_*.sh commands. No need to generate images. See below (Supplied scripts).
+If you just want to create native packages, just go to the bin directory and execute the run_*.sh commands. In this case there is no need to locally build the Docker images. See below (Supplied scripts).
 
-## Creating packages from nxadm docker images in de Docker Hub
+## Creating packages from nxadm images (Docker Hub)
 The docker run command need 4 environment values (-e) in order to create a package:
 - the moarvm version (e.g. 2016.08)
 - the nqp version (e.g. 2016.08.1)
@@ -27,25 +26,6 @@ A full command looks like this:
 ```
 docker run -ti --rm \
 -v $(pwd)/../pkgs:/pkgs \
--e VERSION_MOARVM=$VERSION_MOARVM \
--e VERSION_NQP=$VERSION_NQP \
--e VERSION_RAKUDO=$VERSION_RAKUDO \
--e REVISION=$REVISION \
-$IMAGE
-```
--v provides an external volume were the packages will be created.
--e are the versions and revision mentioned above.
-IMAGE is the image you want to use for the creation of packahes.
-At the moment packages the images can be used:
-- nxadm/pkgrakudo-ubuntu16.04-amd64
-- nxadm/pkgrakudo-ubuntu16.04-i386
-- nxadm/pkgrakudo-centos7-amd64
-
-E.g:
-
-```
-docker run -ti --rm \
--v $(pwd)/../pkgs:/pkgs \
 -e VERSION_MOARVM=2016.08 \
 -e VERSION_NQP=2016.08.1 \
 -e VERSION_RAKUDO=2016.08.1 \
@@ -53,20 +33,33 @@ docker run -ti --rm \
 nxadm/pkgrakudo-ubuntu16.04-amd64
 ```
 
+-v provides an external volume were the packages will be created. Look in the pkgs directory for the generated native packages.
+-e are the versions and revision mentioned above.
+The last line sets the image you want to use for the creation of packages. At the moment packages the images can be used:
+- nxadm/pkgrakudo-ubuntu16.04-amd64
+- nxadm/pkgrakudo-ubuntu16.04-i386
+- nxadm/pkgrakudo-centos7-amd64
+
 ## Suplied scripts
 In bin you'll find easy wrapper scripts for the above commands, e.g.
 ```
 ./run_pkgrakudo-ubuntu16.04-amd64.sh 2016.08 2016.08.1 2016.08.1 01
+./run_pkgrakudo-ubuntu16.04-i386.sh 2016.08 2016.08.1 2016.08.1 01
+./run_pkgrakudo-centos7-amd64.sh 2016.08 2016.08.1 2016.08.1 01
 ```
 
-There are also build scripts for recreating the images in case you prefer
-not to use my images on Docker Hub, e.g.:
+There are also build scripts for recreating the images locally in case you prefer
+not to use the images on Docker Hub, e.g.:
 ```
 ./build_pkgrakudo-ubuntu16.04-amd64.sh
+./build_pkgrakudo-ubuntu16.04-i386.sh
+./build_pkgrakudo-centos7-amd64.sh
 ```
 This will create an nxadm/pkgrakudo-ubuntu16.04-amd64 image locally. If you
 have a Docker ID, you can supply it:
 
 ```
 ./build_pkgrakudo-ubuntu16.04-amd64.sh your_docker_id
+./build_pkgrakudo-ubuntu16.04-i386.sh your_docker_id
+./build_pkgrakudo-centos7-amd64.sh your_docker_id
 ```
