@@ -31,4 +31,4 @@ docker run -ti --rm \
 -e VERSION_NQP=$VERSION_NQP \
 -e VERSION_RAKUDO=$VERSION_RAKUDO \
 -e REVISION=$REVISION \
-nxadm/$IMAGE
+rakudo/$IMAGE
