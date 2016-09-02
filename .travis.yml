@@ -1,6 +1,4 @@
 language: perl
-perl:
-    - '5.24.0'
 env:
     global:
         - MOARVM="2016.08"
