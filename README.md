@@ -18,8 +18,9 @@ install_zef_as_user.sh
 ```
 
 If you just want to create native packages, just go to the bin directory and
-execute the run_*.sh commands. In this case there is no need to locally build
-the Docker images. See below (Supplied scripts).
+execute the run_pkgrakudo.pl command. In this case there is no need to
+locally build the Docker images: you'll get is from the rakudo namespace on
+Docker Hub. See below (Supplied scripts).
 
 ## Creating packages with images on Docker Hub
 The docker run command needs 4 environment values (-e) in order to create a
