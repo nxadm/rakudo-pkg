@@ -2,15 +2,17 @@ language: perl
 perl:
     - '5.24.0'
 env:
-    - MOARVM="2016.08"
-    - NQP="2016.08.1"
-    - RAKUDO="2016.08.1"
-    - REVISION="01"
+    global:
+        - MOARVM="2016.08"
+        - NQP="2016.08.1"
+        - RAKUDO="2016.08.1"
+        - REVISION="01"
 sudo: required
 services:
     - docker
 #before_install:
 #    - docker commands here
+install: true
 script:
     - bin/build_pkgrakudo.pl -i nxadm -d ../docker/Dockerfile-pkgrakudo-centos-amd64-7
     - bin/build_pkgrakudo.pl -i nxadm -d ../docker/Dockerfile-pkgrakudo-ubuntu-amd64-16.04
