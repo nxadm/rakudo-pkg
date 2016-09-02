@@ -67,7 +67,7 @@ prefer not to use the images on Docker Hub, e.g.:
 ./build_pkgrakudo.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
 ```
 
-Both script accept and --id parameter in case you prefer to use your own
+Both script accept and ```--id``` parameter in case you prefer to use your own
 Docker ID.
 
 ## Contribute
