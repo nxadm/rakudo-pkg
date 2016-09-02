@@ -59,7 +59,7 @@ my @cmd = (
     '-e', "VERSION_NQP=$nqp",
     '-e', "VERSION_RAKUDO=$rakudo",
     '-e', "REVISION=$rev",
-    $image
+    lc($image)
 );
 exec(@cmd);
 
