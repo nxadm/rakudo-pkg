@@ -1,5 +1,6 @@
 #!/bin/bash
-# Image to be pushed to docker hub as a base image for Ubuntu 16.04 i386 packages
+# Image to be pushed to docker hub as a base image for Ubuntu 16.04 i386 
+# packages.
 # Use sudo if appropiate
 
 VERSION=$1
