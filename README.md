@@ -83,9 +83,10 @@ To add new packagin images, you'll need to:
     Dockerfile-pkgrakudo-<OS and Major Version>-arch, e.g:
     Dockerfile-pkgrakudo-centos7-amd64
 - add a symlink in bin to the templates files, e.g:
-    ```
-    ln -s template_build_pkgrudo.sh build_pkgrakudo-centos7-amd64.sh
-    ln -s template_run_pkgrudo.sh run_pkgrakudo-centos7-amd64.sh
-    ```
+```
+ln -s template_build_pkgrudo.sh build_pkgrakudo-centos7-amd64.sh
+ln -s template_run_pkgrudo.sh run_pkgrakudo-centos7-amd64.sh
+```
+
 My personal Docker Hub repo (nxadm/* ) is the transition repo for new images.
 Once feature complete, new images move to the rakudo/* Docker Hub namespace.
