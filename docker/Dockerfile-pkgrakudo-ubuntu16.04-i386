@@ -1,4 +1,4 @@
-FROM nxadm/ubuntu16.04-i386
+FROM nxadm/ubuntu-i386:16.04
 # This inherits from an image directly created (without changes) from:
 # http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04-core-i386.tar.gz
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
