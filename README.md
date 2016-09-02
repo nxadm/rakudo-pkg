@@ -77,7 +77,7 @@ not yet available on this repo.
 To add new packaging images, you'll need to:
 - start from an existing Dockerfile in bin.
 - the dockerfile should be named as:
-    Dockerfile-pkgrakudo-<os>-<arch>-<version>, e.g:
+    ```Dockerfile-pkgrakudo-<os>-<arch>-<version>```, e.g:
     Dockerfile-pkgrakudo-centos-amd64-7
 - add support for the new platform on .travis.yml (Travis CI)
 
