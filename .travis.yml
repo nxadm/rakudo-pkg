@@ -8,14 +8,10 @@ env:
 sudo: required
 services:
     - docker
-#before_install:
-#    - docker commands here
 install: true
 script:
-    - bin/build_pkgrakudo.pl -i nxadm -d ../docker/Dockerfile-pkgrakudo-centos-amd64-7
-    - bin/build_pkgrakudo.pl -i nxadm -d ../docker/Dockerfile-pkgrakudo-ubuntu-amd64-16.04
-    - bin/build_pkgrakudo.pl -i nxadm -d ../docker/Dockerfile-pkgrakudo-centos-i386-16.04
-    - bin/run_pkgrakudo.pl -i nxadm -a amd64 -o centos -v 7 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
-    - bin/run_pkgrakudo.pl -i nxadm -a amd64 -o ubuntu -v 16.04 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
-    - bin/run_pkgrakudo.pl -i nxadm -a i386 -o ubuntu -v 16.04 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
+    - set -e
+    - bin/build_pkgrakudo.pl -i nxadm -d docker/Dockerfile-pkgrakudo-centos-amd64-7 && bin/run_pkgrakudo.pl -i nxadm -a amd64 -o centos -v 7 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
+    - bin/build_pkgrakudo.pl -i nxadm -d docker/Dockerfile-pkgrakudo-ubuntu-amd64-16.04 && bin/run_pkgrakudo.pl -i nxadm -a amd64 -o ubuntu -v 16.04 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
+    - bin/build_pkgrakudo.pl -i nxadm -d docker/Dockerfile-pkgrakudo-centos-i386-16.04 && bin/run_pkgrakudo.pl -i nxadm -a i386 -o ubuntu -v 16.04 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION
 
