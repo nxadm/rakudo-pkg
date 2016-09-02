@@ -1,4 +1,6 @@
 FROM nxadm/ubuntu16.04-i386
+# This inherits from an image directly created (without changes) from:
+# http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04-core-i386.tar.gz
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
 ENV LANG C.UTF-8
@@ -16,7 +18,7 @@ gem install fpm && \
 # Cleanup
 apt-get autoremove -y && \
 apt-get clean && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo* 
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo.sh /
 COPY install_zef_as_user.sh /
