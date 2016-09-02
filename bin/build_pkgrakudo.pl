@@ -7,7 +7,7 @@
 use warnings;
 use strict;
 use feature 'say';
-use File::Basename qw/dirname/;
+use File::Basename qw/basename dirname/;
 use Getopt::Long;
 
 ### Variables ###
@@ -25,36 +25,36 @@ GetOptions(
     'help|h'         => \$help,
 ) or die("Error in command line arguments\n");
 
-help() if ($help || !$file || @ARGV);
+help() and exit(0) if ($help || !$file || @ARGV);
 
-if ($file =~ /^Dockerfile-(pkgrakudo-(?:.+?-){2})(.+)$/) {
-	$image = $1;
+my $basename = basename($file);
+if (-f $file && $basename =~ /^Dockerfile-(pkgrakudo-(?:.+?-){2})(.+)$/) {
+	($image, $release) = ($1, $2);
 	chop $image;
-	$release = $2;
-	$root    = dirname($file);
+	$root = dirname($file);
 } else {
 	say "Dockerfile name is invalid.";
 	exit 1;
 }
 
 ### Build ###
-my @cmd = qw@docker build -f $file -t $id/$image:$release $root@ ;
-
-exec();
-
+my @cmd = qq@docker build -f $file -t $id/$image:$release $root@ ;
+exec(@cmd);
 
 ### Subroutines ###
 sub help {
 	say <<"EOM";
 $0:
-Create $format_image docker images.
+Create $format_image docker images, version $VERSION.
 Run with sudo if necessary.
-Version $VERSION.
+
 Usage:
 -d|--dockerfile:
 	Docker file for the OS, arch & release.
 	Format :$format_df.
 	The directory of the dockerfile is used as the docker root.
+-i|--id:
+    Docker ID (default: rakudo)
 -h|--help:
 	This help message.
 EOM

@@ -37,7 +37,7 @@ docker run -ti --rm \
 -e VERSION_NQP=2016.08.1 \
 -e VERSION_RAKUDO=2016.08.1 \
 -e REVISION=01 \
-rakudo/pkgrakudo-ubuntu16.04-amd64
+rakudo/pkgrakudo-ubuntu-amd64:16.04
 ```
 
 -v provides an external volume were the packages will be created. Look in the
@@ -45,33 +45,27 @@ pkgs directory for the generated native packages.
 -e are the versions and revision mentioned above.
 The last line sets the image you want to use for the creation of packages.
 At the moment, the following packaging images are available:
-- rakudo/pkgrakudo-ubuntu16.04-amd64
-- rakudo/pkgrakudo-ubuntu16.04-i386
-- rakudo/pkgrakudo-centos7-amd64
+- rakudo/pkgrakudo-ubuntu-amd64:16.04
+- rakudo/pkgrakudo-ubuntu-i386:16.04
+- rakudo/pkgrakudo-centos-amd64:7
 
 ## Suplied scripts
-In bin you'll find easy wrapper scripts for the above commands, e.g.
+In bin you'll find a wrapper scripts for the above commands, e.g.
 ```
-./run_pkgrakudo-ubuntu16.04-amd64.sh 2016.08 2016.08.1 2016.08.1 01
-./run_pkgrakudo-ubuntu16.04-i386.sh 2016.08 2016.08.1 2016.08.1 01
-./run_pkgrakudo-centos7-amd64.sh 2016.08 2016.08.1 2016.08.1 01
+./run_pkgrakudo.pl -h
+./run_pkgrakudo --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
+--nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01
 ```
 
-There are also build scripts for recreating the images locally in case you
+There are also a build script for recreating the images locally in case you
 prefer not to use the images on Docker Hub, e.g.:
 ```
-./build_pkgrakudo-ubuntu16.04-amd64.sh
-./build_pkgrakudo-ubuntu16.04-i386.sh
-./build_pkgrakudo-centos7-amd64.sh
+./build_pkgrakudo.pl -h
+./build_pkgrakudo.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
 ```
-This will create an nxadm/pkgrakudo-ubuntu16.04-amd64 image locallyi, by
-default under the rakudo docker id. If you have a Docker ID, you can supply it:
 
-```
-./build_pkgrakudo-ubuntu16.04-amd64.sh your_docker_id
-./build_pkgrakudo-ubuntu16.04-i386.sh your_docker_id
-./build_pkgrakudo-centos7-amd64.sh your_docker_id
-```
+Both script accept and --id parameter in case you prefer to use your own
+Docker ID.
 
 ## Contribute
 PRs are always welcome! Please add support for your favorite OS packages if
@@ -80,12 +74,9 @@ not yet available on this repo.
 To add new packagin images, you'll need to:
 - start from an existing Dockerfile in bin.
 - the dockerfile should be named as:
-    Dockerfile-pkgrakudo-<OS and Major Version>-arch, e.g:
-    Dockerfile-pkgrakudo-centos7-amd64
-- add a symlink in bin to the templates files, e.g:
-```
-ln -s template_build_pkgrudo.sh build_pkgrakudo-centos7-amd64.sh
-ln -s template_run_pkgrudo.sh run_pkgrakudo-centos7-amd64.sh
-```
+    Dockerfile-pkgrakudo-<os>-<arch>-<version>, e.g:
+    Dockerfile-pkgrakudo-centos-amd64-7
 
-My personal Docker Hub repo (https://hub.docker.com/r/nxadm/) is the transition repo for new images. Once feature complete, new images move to the (https://hub.docker.com/r/rakudo/) Docker Hub namespace.
+My personal Docker Hub repo (https://hub.docker.com/r/nxadm/) is the
+transition repo for new images. Once feature complete, new images move to the
+(https://hub.docker.com/r/rakudo/) Docker Hub namespace.
