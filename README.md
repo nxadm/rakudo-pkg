@@ -1,5 +1,5 @@
 # rakudo-pkg
-Create OS packages for Rakudo using Docker.
+Create OS packages for Rakudo Perl 6 using Docker.
 
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 
