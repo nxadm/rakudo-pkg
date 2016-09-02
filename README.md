@@ -1,6 +1,8 @@
 # rakudo-pkg
 Create OS packages for Rakudo using Docker. Work in progress.
 
+[![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
+
 ## About the packages
 The packages are minimalistic by design: they don't run any pre/post scripts
 and all the files are installed in /opt/rakudo. You'll have to add
