@@ -60,7 +60,7 @@ In bin you'll find a wrapper scripts for the above commands, e.g.
 --nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01
 ```
 
-There are also a build script for recreating the images locally in case you
+There is also a build script for recreating the images locally in case you
 prefer not to use the images on Docker Hub, e.g.:
 ```
 ./build_pkgrakudo.pl -h
