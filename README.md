@@ -88,5 +88,4 @@ ln -s template_build_pkgrudo.sh build_pkgrakudo-centos7-amd64.sh
 ln -s template_run_pkgrudo.sh run_pkgrakudo-centos7-amd64.sh
 ```
 
-My personal Docker Hub repo (nxadm/* ) is the transition repo for new images.
-Once feature complete, new images move to the rakudo/* Docker Hub namespace.
+My personal Docker Hub repo (nxadm/* at https://hub.docker.com/r/nxadm/) is the transition repo for new images. Once feature complete, new images move to the (rakudo/* at https://hub.docker.com/r/rakudo/) Docker Hub namespace.
