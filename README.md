@@ -77,6 +77,7 @@ To add new packagin images, you'll need to:
 - the dockerfile should be named as:
     Dockerfile-pkgrakudo-<os>-<arch>-<version>, e.g:
     Dockerfile-pkgrakudo-centos-amd64-7
+- add support for the new platform on .travis.yml (Travis CI)
 
 My personal Docker Hub repo (https://hub.docker.com/r/nxadm/) is the
 transition repo for new images. Once feature complete, new images move to the
