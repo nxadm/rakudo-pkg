@@ -20,8 +20,8 @@ my $id = 'rakudo'; # default
 ### CLI ###
 my $help;
 GetOptions(
-	'dockerfile|d=s' => \$file,
-	'id|i=s'         => \$id,
+    'dockerfile|d=s' => \$file,
+    'id|i=s'         => \$id,
     'help|h'         => \$help,
 ) or die("Error in command line arguments\n");
 
@@ -29,12 +29,12 @@ help() and exit(0) if ($help || !$file || @ARGV);
 
 my $basename = basename($file);
 if (-f $file && $basename =~ /^Dockerfile-(pkgrakudo-(?:.+?-){2})(.+)$/) {
-	($image, $release) = ($1, $2);
-	chop $image;
-	$root = dirname($file);
+    ($image, $release) = ($1, $2);
+    chop $image;
+    $root = dirname($file);
 } else {
-	say "Dockerfile name is invalid.";
-	exit 1;
+    say "Dockerfile name is invalid.";
+    exit 1;
 }
 
 ### Build ###
@@ -43,19 +43,19 @@ exec(@cmd);
 
 ### Subroutines ###
 sub help {
-	say <<"EOM";
+    say <<"EOM";
 $0:
 Create $format_image docker images, version $VERSION.
 Run with sudo if necessary.
 
 Usage:
 -d|--dockerfile:
-	Docker file for the OS, arch & release.
-	Format :$format_df.
-	The directory of the dockerfile is used as the docker root.
+    Docker file for the OS, arch & release.
+    Format :$format_df.
+    The directory of the dockerfile is used as the docker root.
 -i|--id:
     Docker ID (default: rakudo)
 -h|--help:
-	This help message.
+    This help message.
 EOM
 }
