@@ -74,7 +74,7 @@ Docker ID.
 PRs are always welcome! Please add support for your favorite OS packages if
 not yet available on this repo.
 
-To add new packagin images, you'll need to:
+To add new packaging images, you'll need to:
 - start from an existing Dockerfile in bin.
 - the dockerfile should be named as:
     Dockerfile-pkgrakudo-<os>-<arch>-<version>, e.g:
