@@ -1,12 +1,11 @@
+language: perl
+perl:
+    - '5.24.0'
 env:
     - MOARVM="2016.08"
     - NQP="2016.08.1"
     - RAKUDO="2016.08.1"
     - REVISION="01"
-language: perl
-  - perl -V
-perl:
-    - '5.24.0'
 sudo: required
 services:
     - docker
