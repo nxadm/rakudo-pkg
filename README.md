@@ -53,7 +53,7 @@ At the moment, the following packaging images are available:
 - rakudo/pkgrakudo-centos-amd64:7
 
 ## Suplied scripts
-In bin you'll find a wrapper scripts for the above commands, e.g.
+In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
 ./run_pkgrakudo.pl -h
 ./run_pkgrakudo --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
