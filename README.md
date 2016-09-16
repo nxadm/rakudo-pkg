@@ -3,6 +3,10 @@ Create OS packages for Rakudo Perl 6 using Docker.
 
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 
+**If you're an end-user looking for native Rakudo Linux packages, you'll find them here: https://github.com/nxadm/rakudo-pkg/releases**
+
+**See the "About the packages" info below for more information**
+
 ## About the packages
 The packages are minimalistic by design: they don't run any pre/post scripts
 and all the files are installed in /opt/rakudo. You'll have to add
