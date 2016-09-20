@@ -71,7 +71,7 @@ fpm \
 /opt/rakudo
 
 # Test it by installing it
-$INSTALL $PKGDIR/perl6-rakudo-moarvm-*.$TARGET
+$INSTALL $PKGDIR/perl6-rakudo-moarvm_*.$TARGET
 
 # Run it
 /opt/rakudo/bin/perl6 -v
