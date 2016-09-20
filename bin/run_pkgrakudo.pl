@@ -7,7 +7,8 @@
 use warnings;
 use strict;
 use feature 'say';
-use Cwd qw/abs_path/;
+use Cwd qw(abs_path);
+use File::Basename qw(dirname);
 use Getopt::Long;
 
 ### Variables ###
@@ -51,10 +52,10 @@ exit(1) if $error;
 
 ### Run ###
 my $image = "$id/pkgrakudo-$os-$arch:$version";
-my $pkg_dir = abs_path($0) . '/../pkgs';
+chdir(dirname(abs_path($0))) or die($!);
 my @cmd = (
     'docker', 'run', '-ti', '--rm',
-    '-v', "pkgs:/pkgs",
+    '-v', 'pkgs:/pkgs',
     '-e', "VERSION_MOARVM=$moar",
     '-e', "VERSION_NQP=$nqp",
     '-e', "VERSION_RAKUDO=$rakudo",

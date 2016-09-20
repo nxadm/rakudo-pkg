@@ -28,10 +28,13 @@ URL_RAKUDO=http://rakudo.org/downloads/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz
 PREFIX=/opt/rakudo
 if [ -f "/etc/debian_version" ]; then
     TARGET=deb
+    INSTALL="dpkg -i"
 elif [ -f "/etc/redhat-release" ]; then 
     TARGET="rpm"
+    INSTALL="rpm -Uvh"
 else
-    TARGET="UNKNOWN"
+    echo "OS not yet supported."
+    exit 1
 fi
 
 # Download and compile sources
@@ -66,4 +69,10 @@ fpm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
 /opt/rakudo
+
+# Test it by installing it
+$INSTALL $PKGDIR/perl6-rakudo-moarvm-*.$TARGET
+
+# Run it
+/opt/rakudo/bin/perl6 -v
 
