@@ -17,7 +17,11 @@ if [ ! -z "$ERROR" ]; then die "$ERROR"; fi
 MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 
 # Internal variables
-VERSION_PKG=$(perl -lwe "@part=split(/\D/, \"$VERSION_RAKUDO\"); printf('%d%02d%02d_%d', @part, $REVISION)")
+VERSION_PKG=$(\
+    perl -lwe "@parts=split(/\D/, \"$VERSION_RAKUDO\"); \
+               push @parts, 0 if @parts == 2;
+               printf('%04d%02d%02d_%02d', @parts, $REVISION)"\
+)
 URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
 URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
 URL_RAKUDO=http://rakudo.org/downloads/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz
