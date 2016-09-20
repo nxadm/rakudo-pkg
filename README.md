@@ -25,7 +25,7 @@ install_zef_as_user.sh
 
 If you just want to create native packages, just go to the bin directory and
 execute the run_pkgrakudo.pl command. In this case there is no need to
-locally build the Docker images: you'll automatically retrieve the image from 
+locally build the Docker images: you'll automatically retrieve the image from
 the rakudo namespace on Docker Hub. See below (Supplied scripts).
 
 ## Creating packages with images on Docker Hub
@@ -39,7 +39,7 @@ package:
 A full command looks like this:
 ```
 docker run -ti --rm \
--v $(pwd)/../pkgs:/pkgs \
+-v <directory for the packages>:/staging \
 -e VERSION_MOARVM=2016.08 \
 -e VERSION_NQP=2016.08.1 \
 -e VERSION_RAKUDO=2016.08.1 \
@@ -48,7 +48,7 @@ rakudo/pkgrakudo-ubuntu-amd64:16.04
 ```
 
 -v provides an external volume were the packages will be created. Look in the
-pkgs directory for the generated native packages.
+staging directory for the generated native packages.
 -e are the versions and revision mentioned above.
 The last line sets the image you want to use for the creation of packages.
 At the moment, the following packaging images are available:
@@ -79,7 +79,7 @@ PRs are always welcome! Please add support for your favorite OS packages if
 not yet available on this repo.
 
 To add new packaging images, you'll need to:
-- start from an existing Dockerfile in the docker directory (this is the docker 
+- start from an existing Dockerfile in the docker directory (this is the docker
 root for all the images).
 - the dockerfile should be named as:
     ```Dockerfile-pkgrakudo-<os>-<arch>-<version>```, e.g:
