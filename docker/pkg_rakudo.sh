@@ -20,7 +20,7 @@ MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 VERSION_PKG=$(\
     perl -lwe "@parts=split(/\D/, \"$VERSION_RAKUDO\"); \
                push @parts, 0 if @parts == 2;
-               printf('%04d%02d%02d_%02d', @parts, $REVISION)"\
+               printf('%04d%02d%02d-%02d', @parts, $REVISION)"\
 )
 URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
 URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
