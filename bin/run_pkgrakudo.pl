@@ -55,7 +55,7 @@ my $image = "$id/pkgrakudo-$os-$arch:$version";
 chdir(dirname(abs_path($0))) or die($!);
 my @cmd = (
     'docker', 'run', '-ti', '--rm',
-    '-v', 'pkgs:/pkgs',
+    '-v', 'staging:/staging',
     '-e', "VERSION_MOARVM=$moar",
     '-e', "VERSION_NQP=$nqp",
     '-e', "VERSION_RAKUDO=$rakudo",

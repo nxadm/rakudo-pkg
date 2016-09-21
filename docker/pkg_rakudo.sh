@@ -56,7 +56,7 @@ echo "Rakudo was succesfully compiled."
 # Packaging
 OS=$(lsb_release -is)
 RELEASE=$(lsb_release -rs)
-PKGDIR="/staging/$OS/$RELEASE"
+PKGDIR="/staging/$OS/$RELEASE/build_$(date '+%Y%m%d_%H%M%S')"
 if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
 fpm \
 --deb-no-default-config-files \
