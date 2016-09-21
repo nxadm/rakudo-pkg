@@ -7,13 +7,13 @@ ENV LANG=en_US.UTF-8 \
 
 RUN set -xv ; \
 sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \
-yum clean all && yum -y update && yum -y upgrade && \
+yum -q clean all && yum -q -y update && yum -q -y upgrade && \
 ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 # Packages for compiling and pkg creation
-yum install -y $packages && yum groupinstall -y $pkggroup && \
+yum -q install -y $packages && yum -q groupinstall -y $pkggroup && \
 gem install fpm && \
 # Cleanup
-yum clean all && \
+yum -q clean all && \
 rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
 localedef -i en_US -c -f UTF-8 en_US.UTF-8
 

@@ -41,7 +41,7 @@ fi
 # TODO: get the source on a https connection
 # (see https://rt.perl.org/Ticket/Display.html?id=128423)
 for i in $URL_MOARVM $URL_NQP $URL_RAKUDO; do wget $i; done 
-for i in *.tar.gz; do tar xvzf $i; done
+for i in *.tar.gz; do tar xzf $i; done
 cd /MoarVM*; perl Configure.pl --prefix=$PREFIX
 make && make install
 cd /nqp-*; perl Configure.pl --backends=moar --prefix=$PREFIX
