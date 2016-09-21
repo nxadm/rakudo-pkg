@@ -1,10 +1,10 @@
 language: perl
 env:
     global:
-        - MOARVM="2016.08"
-        - NQP="2016.08.1"
-        - RAKUDO="2016.08.1"
-        - REVISION="01"
+        - MOARVM="2016.09"
+        - NQP="2016.09"
+        - RAKUDO="2016.09"
+        - REVISION="09"
 sudo: required
 services:
     - docker

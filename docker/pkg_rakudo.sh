@@ -68,7 +68,7 @@ fpm \
 -n perl6-rakudo-moarvm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
--i $REVISION \
+--iteration $REVISION \
 /opt/rakudo
 
 # Test it by installing it
