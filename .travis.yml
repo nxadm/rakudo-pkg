@@ -4,7 +4,7 @@ env:
         - MOARVM="2016.09"
         - NQP="2016.09"
         - RAKUDO="2016.09"
-        - REVISION="09"
+        - REVISION="01"
 sudo: required
 services:
     - docker
