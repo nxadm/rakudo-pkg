@@ -38,7 +38,7 @@ if (-f $file && $basename =~ /^Dockerfile-(pkgrakudo-(?:.+?-){2})(.+)$/) {
 }
 
 ### Build ###
-my @cmd = qq@docker build -f $file -t $id/$image:$release $root@ ;
+my @cmd = qq@docker build --no-cache -f $file -t $id/$image:$release $root@ ;
 exec(@cmd);
 
 ### Subroutines ###

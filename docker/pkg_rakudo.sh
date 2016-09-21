@@ -20,7 +20,7 @@ MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 VERSION_PKG=$(\
     perl -lwe "@parts=split(/\D/, \"$VERSION_RAKUDO\"); \
                push @parts, 0 if @parts == 2;
-               printf('%04d%02d%02d-%02d', @parts, $REVISION)"\
+               printf('%04d%02d%02d', @parts)"\
 )
 URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
 URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
@@ -68,10 +68,11 @@ fpm \
 -n perl6-rakudo-moarvm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
+-i $REVISION \
 /opt/rakudo
 
 # Test it by installing it
-$INSTALL $PKGDIR/perl6-rakudo-moarvm_*.$TARGET
+$INSTALL $PKGDIR/perl6-rakudo-moarvm-*.$TARGET
 
 # Run it
 /opt/rakudo/bin/perl6 -v
