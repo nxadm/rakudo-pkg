@@ -61,7 +61,7 @@ In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
 ./run_pkgrakudo.pl -h
 ./run_pkgrakudo --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
---nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01
+--nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
 
 There is also a build script for recreating the images locally in case you
