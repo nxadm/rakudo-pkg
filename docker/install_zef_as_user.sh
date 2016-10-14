@@ -6,7 +6,7 @@
 cd /var/tmp
 git clone https://github.com/ugexe/zef.git
 cd zef
-perl6 -Ilib bin/zef install .
+/opt/rakudo/bin/perl6 -Ilib bin/zef install .
 rm -rf /var/tmp/zef
 
 exit 0
