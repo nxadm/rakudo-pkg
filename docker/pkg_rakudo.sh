@@ -80,6 +80,6 @@ $INSTALL $PKGDIR/perl6-rakudo-moarvm*.$TARGET
 
 # sha1sum
 cd $PKGDIR
-for i in *.${TARGET}; do sha1sum $i $i.sha1; done
+for i in *.${TARGET}; do sha1sum $i > $i.sha1; done
 cat *.sha1
 
