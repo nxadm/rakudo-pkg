@@ -66,7 +66,7 @@ fpm \
 -s dir \
 -t $TARGET \
 -p $PKGDIR \
--n perl6-rakudo-moarvm-${OS}${RELEASE}\
+-n perl6-rakudo-moarvm-${OS}${RELEASE} \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
 --iteration $REVISION \
