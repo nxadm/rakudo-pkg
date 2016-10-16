@@ -56,7 +56,8 @@ echo "Rakudo was succesfully compiled."
 # Packaging
 OS=$(lsb_release -is)
 RELEASE=$(lsb_release -rs)
-PKGDIR="/staging/$OS/$RELEASE/build_$(date '+%Y%m%d_%H%M%S')"
+BUILDDATE=$(date '+%Y%m%d_%H%M%S')
+PKGDIR="/staging/build_${BUILDDATE}"
 if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
 fpm \
 --deb-no-default-config-files \
@@ -65,7 +66,7 @@ fpm \
 -s dir \
 -t $TARGET \
 -p $PKGDIR \
--n perl6-rakudo-moarvm \
+-n perl6-rakudo-moarvm-${OS}${RELEASE}\
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
 --iteration $REVISION \
@@ -76,4 +77,9 @@ $INSTALL $PKGDIR/perl6-rakudo-moarvm*.$TARGET
 
 # Run it
 /opt/rakudo/bin/perl6 -v
+
+# sha1sum
+cd $PKGDIR
+for i in *.${TARGET}; do sha1sum $i $i.sha1; done
+cat *.sha1
 
