@@ -12,6 +12,6 @@ rm -rf /var/tmp/zef_$USER
 
 echo "zef has been installed to ~/.perl6/bin."
 echo "Add /opt/rakudo/bin and ~/.perl6/bin to your PATH, e.g.:"
-echo "echo 'export PATH=/opt/rakudo/bin:~/.perl6/bin:$PATH' >> ~/.bash_profile"
+echo "echo 'export PATH=/opt/rakudo/bin:~/.perl6/bin:\$PATH' >> ~/.bash_profile"
 
 exit 0
