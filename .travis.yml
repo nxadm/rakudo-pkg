@@ -1,9 +1,9 @@
 language: perl
 env:
     global:
-        - MOARVM="2016.11"
-        - NQP="2016.11"
-        - RAKUDO="2016.11"
+        - MOARVM="2017.01"
+        - NQP="2017.01"
+        - RAKUDO="2017.01"
         - REVISION="01"
 sudo: required
 services:
