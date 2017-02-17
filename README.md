@@ -21,7 +21,7 @@ In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 
 manager:
 ```
 install_zef_as_user.sh: install it in ~/.perl6
-install_zef_as_root.sh: install it in /opt/rakudo as root
+install_zef_as_root.sh: install it in /opt/rakudo as root (use sudo)
 ```
 You'll need to add the bin directories to your PATH (as the scripts will print).
 
