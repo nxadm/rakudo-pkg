@@ -22,9 +22,10 @@ VERSION_PKG=$(\
                push @parts, 0 if @parts == 2;
                printf('%04d%02d%02d', @parts)"\
 )
-URL_MOARVM=http://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz
-URL_NQP=http://rakudo.org/downloads/nqp/nqp-${VERSION_NQP}.tar.gz
-URL_RAKUDO=http://rakudo.org/downloads/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz
+URL_BASE="https://rakudo.perl6.org/downloads"               
+URL_NQP="${URL_BASE}/nqp/nqp-${VERSION_NQP}.tar.gz"
+URL_RAKUDO="${URL_BASE}/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz"
+URL_MOARVM="https://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz"
 PREFIX=/opt/rakudo
 if [ -f "/etc/debian_version" ]; then
     TARGET=deb
