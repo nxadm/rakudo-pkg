@@ -16,14 +16,20 @@ environment script for other shells):
 ```
 export PATH=/opt/rakudo/bin:$PATH
 ```
-
-In /opt/rakudo/bin you'll find two additional scripts to install Perl 6 module
-managers (both have similar functionalities):
+## Install the Zef Module Manager and modules
+In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 module
+manager:
 ```
-install_panda_as_user.sh
-install_zef_as_user.sh
+install_zef_as_user.sh: install it in ~/.perl6
+install_zef_as_user.sh: install it in /opt/rakudo as root
 ```
+You'll need to add the bin directories to your PATH (as the scripts will print).
 
+You can also install all the modules of the Rakudo::Star distribution by typing:
+```
+zef install Task::Star
+```
+## Creating packages locally
 If you just want to create native packages, just go to the bin directory and
 execute the run_pkgrakudo.pl command. In this case there is no need to
 locally build the Docker images: you'll automatically retrieve the image from
