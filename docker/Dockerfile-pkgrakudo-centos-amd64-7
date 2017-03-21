@@ -7,7 +7,7 @@ ENV LANG=en_US.UTF-8 \
 
 RUN set -xv ; \
 sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \
-yum -q clean all && yum -q -y update && yum -q -y upgrade && \
+yum -q -y upgrade && \
 ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 # Packages for compiling and pkg creation
 yum -q install -y $packages && yum -q groupinstall -y $pkggroup && \

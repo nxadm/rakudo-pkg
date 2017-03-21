@@ -1,0 +1,23 @@
+FROM fedora:25
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV \
+LANG=en_US.UTF-8 \
+packages='ruby rubygems ruby-devel git wget redhat-lsb-core redhat-rpm-config perl-ExtUtils-Command' \
+pkggroup='Development Tools'
+
+RUN set -xv ; \
+timedatectl set-timezone Europe/Brussels && \
+dnf -q -y upgrade && \
+ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
+# Packages for compiling and pkg creation
+dnf -q install -y $packages && dnf -q groupinstall -y "$pkggroup" && \
+gem install fpm && \
+# Cleanup
+dnf -q clean all
+
+COPY pkg_rakudo.sh /
+COPY install_zef_as_user.sh /
+COPY install_zef_as_root.sh /
+
+CMD '/pkg_rakudo.sh'
