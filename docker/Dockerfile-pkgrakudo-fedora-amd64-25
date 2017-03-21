@@ -3,7 +3,7 @@ MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
 ENV \
 LANG=en_US.UTF-8 \
-packages='ruby rubygems ruby-devel git wget redhat-lsb-core redhat-rpm-config perl-core' \
+packages='ruby rubygems ruby-devel git wget redhat-lsb-core redhat-rpm-config perl-core rpm-build' \
 pkggroup='Development Tools'
 
 RUN set -xv ; \
