@@ -67,7 +67,7 @@ At the moment, the following packaging images are available:
 In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
 ./run_pkgrakudo.pl -h
-./run_pkgrakudo --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
+./run_pkgrakudo.pl --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
 --nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
 
