@@ -3,11 +3,10 @@ MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
 ENV \
 LANG=en_US.UTF-8 \
-packages='ruby rubygems ruby-devel git wget redhat-lsb-core redhat-rpm-config perl-ExtUtils-Command' \
+packages='ruby rubygems ruby-devel git wget redhat-lsb-core redhat-rpm-config perl-core' \
 pkggroup='Development Tools'
 
 RUN set -xv ; \
-timedatectl set-timezone Europe/Brussels && \
 dnf -q -y upgrade && \
 ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 # Packages for compiling and pkg creation
