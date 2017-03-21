@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Create packages with a docker image.
 # Run with sudo if necessary.
-# See run_pkgrakudo.pl -h for parameters.
+# See pkg_rakudo.pl -h for parameters.
 # https://github.com/nxadm/rakudo-pkg
 
 use warnings;

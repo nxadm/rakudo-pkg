@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Create pkgrakudo-<os>-<arch>:<os_release> docker images.
 # Run with sudo if necessary.
-# See build_pkgrakudo.pl -h for parameters.
+# See create_container.pl -h for parameters.
 # https://github.com/nxadm/rakudo-pkg
 
 use warnings;

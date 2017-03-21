@@ -31,7 +31,7 @@ zef install Task::Star
 ```
 ## Creating packages locally
 If you just want to create native packages, just go to the bin directory and
-execute the run_pkgrakudo.pl command. In this case there is no need to
+execute the pkg_rakudo.pl command. In this case there is no need to
 locally build the Docker images: you'll automatically retrieve the image from
 the rakudo namespace on Docker Hub. See below (Supplied scripts).
 
@@ -66,16 +66,16 @@ At the moment, the following packaging images are available:
 ## Suplied scripts
 In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
-./run_pkgrakudo.pl -h
-./run_pkgrakudo.pl --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
+./pkg_rakudo.pl -h
+./pkg_rakudo.pl --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
 --nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
 
 There is also a build script for recreating the images locally in case you
 prefer not to use the images on Docker Hub, e.g.:
 ```
-./build_pkgrakudo.pl -h
-./build_pkgrakudo.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
+./create_container.pl -h
+./create_container.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
 ```
 
 Both script accept and '--id' parameter in case you prefer to use your own
