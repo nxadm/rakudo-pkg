@@ -16,4 +16,5 @@ script:
     - bin/create_container.pl -i nxadm -d docker/Dockerfile-pkgrakudo-ubuntu-i386-16.04 && bin/pkg_rakudo.pl -i nxadm -a i386 -o ubuntu -v 16.04 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
     - bin/create_container.pl -i nxadm -d docker/Dockerfile-pkgrakudo-ubuntu-amd64-16.10 && bin/pkg_rakudo.pl -i nxadm -a amd64 -o ubuntu -v 16.10 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
     - bin/create_container.pl -i nxadm -d docker/Dockerfile-pkgrakudo-ubuntu-i386-16.10 && bin/pkg_rakudo.pl -i nxadm -a i386 -o ubuntu -v 16.10 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
+    - bin/create_container.pl -i nxadm -d docker/Dockerfile-pkgrakudo-fedora-amd64-25 && bin/pkg_rakudo.pl -i nxadm -a amd64 -o fedora -v 25 -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
 
