@@ -59,9 +59,15 @@ staging directory for the generated native packages.
 -e are the versions and revision mentioned above.
 The last line sets the image you want to use for the creation of packages.
 At the moment, the following packaging images are available:
+- rakudo/pkgrakudo-centos-amd64:7
+- rakudo/pkgrakudo-debian-amd64:8
+- rakudo/pkgrakudo-fedora-amd64:25
 - rakudo/pkgrakudo-ubuntu-amd64:16.04
 - rakudo/pkgrakudo-ubuntu-i386:16.04
-- rakudo/pkgrakudo-centos-amd64:7
+- rakudo/pkgrakudo-ubuntu-amd64:16.10
+- rakudo/pkgrakudo-ubuntu-i386:16.10
+
+Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
 ## Suplied scripts
 In bin you'll find a wrapper script for the above docker run command, e.g.
