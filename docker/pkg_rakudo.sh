@@ -71,7 +71,7 @@ fpm \
 -m "$MAINTAINER" \
 -v $VERSION_PKG \
 --iteration $REVISION \
---url "https://perl6.org"
+--url "https://perl6.org" \
 /opt/rakudo
 
 # Test it by installing it
