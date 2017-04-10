@@ -67,6 +67,8 @@ At the moment, the following packaging images are available:
 - rakudo/pkgrakudo-ubuntu-i386:16.04
 - rakudo/pkgrakudo-ubuntu-amd64:16.10
 - rakudo/pkgrakudo-ubuntu-i386:16.10
+- rakudo/pkgrakudo-ubuntu-amd64:17.04
+- rakudo/pkgrakudo-ubuntu-i386:17.04
 
 Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
