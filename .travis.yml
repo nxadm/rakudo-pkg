@@ -23,4 +23,4 @@ services:
     - docker
 install: true
 script:
-    - set -xv; export DFILE="docker/Dockerfile-pkgrakudo-$OS-$ARCH-$VERSION"; if [ -f $DFILE ]; then bin/create_container.pl -d $DFILE && bin/pkg_rakudo.pl -a $ARCH -o $OS -v $VERSION -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp; else true; fi
+    - set -xv; export DFILE="docker/Dockerfile-pkgrakudo-${OS}-${ARCH}-${VERSION}"; if [ -f $DFILE ]; then bin/create_container.pl -d $DFILE && bin/pkg_rakudo.pl -a $ARCH -o $OS -v $VERSION -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp; else true; fi
