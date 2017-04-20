@@ -1,4 +1,3 @@
-language: perl
 env:
   global:
     - MOARVM="2017.04"
