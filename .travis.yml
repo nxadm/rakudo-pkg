@@ -1,26 +1,24 @@
 language: perl
 env:
-    global:
-        - MOARVM="2017.04"
-        - NQP="2017.04"
-        - RAKUDO="2017.04.2"
-        - REVISION="01"
-    matrix:
-        - OS=centos
-        - OS=debian
-        - OS=fedora
-        - OS=ubuntu
-        - ARCH=amd64
-        - ARCH=i386
-        - VERSION=7  
-        - VERSION=8
-        - VERSION=25  
-        - VERSION=16.04 
-        - VERSION=16.10 
-        - VERSION=17.04 
+  global:
+    - MOARVM="2017.04"
+    - NQP="2017.04"
+    - RAKUDO="2017.04.2"
+    - REVISION="01"
+  matrix:
+    - OS=centos ARCH=amd64 VERSION=7  
+    - OS=debian ARCH=amd64 VERSION=8  
+    - OS=fedora ARCH=amd64 VERSION=25  
+    - OS=ubuntu ARCH=amd64 VERSION=16.04
+    - OS=ubuntu ARCH=amd64 VERSION=17.04
+    - OS=ubuntu ARCH=amd64 VERSION=16.10
+    - OS=ubuntu ARCH=i386 VERSION=16.04
+    - OS=ubuntu ARCH=i386 VERSION=17.04
+    - OS=ubuntu ARCH=i386 VERSION=16.10
 sudo: required
 services:
-    - docker
+  - docker
 install: true
 script:
-    - set -xv; export DFILE="docker/Dockerfile-pkgrakudo-${OS}-${ARCH}-${VERSION}"; if [ -f $DFILE ]; then bin/create_container.pl -d $DFILE && bin/pkg_rakudo.pl -a $ARCH -o $OS -v $VERSION -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp; else true; fi
+  - bin/create_container.pl -d docker/Dockerfile-pkgrakudo-${OS}-${ARCH}-${VERSION}
+  - bin/pkg_rakudo.pl -a $ARCH -o $OS -v $VERSION -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
