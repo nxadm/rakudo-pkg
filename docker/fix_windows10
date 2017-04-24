@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+# Make libmoar.so work on Windows 10.
+# You need to run as root.
+
+cd /opt/rakudo/lib
+sudo apt-get install execstack
+sudo cp libmoar.so libmoar.so-backup
+sudo execstack -c libmoar.so
+echo "libmoar.so adapted for Windows 10".
+
+exit 0

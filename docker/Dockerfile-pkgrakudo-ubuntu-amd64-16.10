@@ -17,8 +17,8 @@ apt-get -qq autoremove -y && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
-COPY pkg_rakudo.sh /
-COPY install_zef_as_user.sh /
-COPY install_zef_as_root.sh /
+COPY pkg_rakudo /
+COPY install_zef_as_user /
+COPY install_zef_as_root /
 
-CMD '/pkg_rakudo.sh'
+CMD '/pkg_rakudo'

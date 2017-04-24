@@ -17,8 +17,8 @@ yum -q clean all && \
 rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
 localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-COPY pkg_rakudo.sh /
-COPY install_zef_as_user.sh /
-COPY install_zef_as_root.sh /
+COPY pkg_rakudo /
+COPY install_zef_as_user /
+COPY install_zef_as_root /
 
-CMD '/pkg_rakudo.sh'
+CMD '/pkg_rakudo'
