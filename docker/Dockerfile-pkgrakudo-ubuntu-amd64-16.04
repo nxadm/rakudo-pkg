@@ -20,6 +20,6 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 COPY pkg_rakudo /
 COPY install_zef_as_user /
 COPY install_zef_as_root /
-COPY fix_windows_10 /
+COPY fix_windows10 /
 
 CMD '/pkg_rakudo'
