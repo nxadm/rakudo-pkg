@@ -49,7 +49,8 @@ cd /nqp-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
 cd /rakudo-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
-mv /install_*.sh $PREFIX/bin
+mv /install_zef_* $PREFIX/bin
+mv /fix_windows10 $PREFIX/bin
 cd /
 rm -rf /MoarVM* /nqp* /rakudo* 
 echo "Rakudo was succesfully compiled."
