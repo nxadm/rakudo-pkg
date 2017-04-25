@@ -21,9 +21,17 @@ export PATH=/opt/rakudo/bin:$PATH
 In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 module
 manager:
 ```
-install_zef_as_user.sh: install it in ~/.perl6
-install_zef_as_root.sh: install it in /opt/rakudo as root (use sudo)
+install_zef_as_user: install it in ~/.perl6
+install_zef_as_root: install it in /opt/rakudo as root (use sudo)
 ```
+
+If you're using the Windows Subsystem for Linux (aka Ubuntu on Windows 10), you
+need to strip the moarvm library of (unused) functionalities that Windows does
+not implement yet. The script is only present on the Ubuntu 16.04 packages:
+```
+/opt/rakudo/bin/fix_windows10
+```
+
 You'll need to add the bin directories to your PATH (as the scripts will print).
 
 You can also install all the modules of the Rakudo::Star distribution by typing:
