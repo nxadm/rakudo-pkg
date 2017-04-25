@@ -4,7 +4,7 @@ env:
     - MOARVM="2017.03"
     - NQP="2017.03"
     - RAKUDO="2017.03"
-    - REVISION="01"
+    - REVISION="03"
   matrix:
     - OS=centos ARCH=amd64 VERSION=7  
     - OS=debian ARCH=amd64 VERSION=8  
