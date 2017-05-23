@@ -34,10 +34,6 @@ not implement yet. The script is only present on the Ubuntu 16.04 packages:
 
 You'll need to add the bin directories to your PATH (as the scripts will print).
 
-You can also install all the modules of the Rakudo::Star distribution by typing:
-```
-zef install Task::Star
-```
 ## Creating packages locally
 If you just want to create native packages, just go to the bin directory and
 execute the pkg_rakudo.pl command. In this case there is no need to
