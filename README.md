@@ -66,6 +66,7 @@ The last line sets the image you want to use for the creation of packages.
 At the moment, the following packaging images are available:
 - rakudo/pkgrakudo-centos-amd64:7
 - rakudo/pkgrakudo-debian-amd64:8
+- rakudo/pkgrakudo-debian-amd64:9
 - rakudo/pkgrakudo-fedora-amd64:25
 - rakudo/pkgrakudo-ubuntu-amd64:16.04
 - rakudo/pkgrakudo-ubuntu-i386:16.04
