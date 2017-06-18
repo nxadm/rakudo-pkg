@@ -1,10 +1,10 @@
 language: perl
 env:
   global:
-    - MOARVM="2017.04"
-    - NQP="2017.04"
-    - RAKUDO="2017.04"
-    - REVISION="04"
+    - MOARVM="2017.06"
+    - NQP="2017.06"
+    - RAKUDO="2017.06"
+    - REVISION="01"
   matrix:
     - OS=centos ARCH=amd64 VERSION=7  
     - OS=debian ARCH=amd64 VERSION=8  
