@@ -3,6 +3,7 @@ Create OS packages for Rakudo Perl 6 using Docker.
 
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 [![Github All Releases](https://img.shields.io/github/downloads/nxadm/rakudo-pkg/total.svg?maxAge=2592000)](https://github.com/nxadm/rakudo-pkg/releases)
+<br>
 **If you're an end-user looking for native Rakudo Linux packages, you'll find them in the releases tab: https://github.com/nxadm/rakudo-pkg/releases**.
 
 **In constrast with Rakudo Star for Linux, these are compiled Rakudo Perl 6 Linux packages (directly installable by the user). The packages are small by design and don't provide any pre-installed modules (e.g. for containers). However, a script is included to install zef (Perl 6 module package manager).**
