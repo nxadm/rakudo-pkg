@@ -1,7 +1,7 @@
 language: perl
 env:
   global:
-    - MOARVM="2017.08"
+    - MOARVM="2017.08.1"
     - NQP="2017.08"
     - RAKUDO="2017.08"
     - REVISION="01"
