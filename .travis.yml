@@ -1,9 +1,9 @@
 language: perl
 env:
   global:
-    - MOARVM="2017.07"
-    - NQP="2017.07"
-    - RAKUDO="2017.07"
+    - MOARVM="2017.08"
+    - NQP="2017.08"
+    - RAKUDO="2017.08"
     - REVISION="01"
   matrix:
     - OS=centos ARCH=amd64 VERSION=7
