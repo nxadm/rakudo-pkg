@@ -1,0 +1,24 @@
+FROM ubuntu:artful
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ Europe/Brussels
+ENV packages ruby-dev build-essential wget lsb-release
+
+RUN set -xv ; \
+apt-get -qq update && \
+apt-get -qq dist-upgrade -y && \
+# Packages for compiling and pkg creation
+apt-get -qq install -y ${packages} && \
+gem install fpm && \
+# Cleanup
+apt-get -qq autoremove -y && \
+apt-get -qq clean && \
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+
+COPY pkg_rakudo /
+COPY install_zef_as_user /
+COPY install_zef_as_root /
+
+CMD '/pkg_rakudo'
