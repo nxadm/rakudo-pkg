@@ -11,7 +11,7 @@ use File::Basename qw/basename dirname/;
 use Getopt::Long;
 
 ### Variables ###
-our $VERSION = '0.1';
+our $VERSION = '0.1.0';
 my $format_df    = 'Dockerfile-pkgrakudo-<os>-<arch>-<release>';
 my $format_image = 'pkgrakudo-<os>-<arch>:<release>';
 my ($file, $root, $release, $image);
