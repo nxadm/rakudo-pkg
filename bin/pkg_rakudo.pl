@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # Create packages with a docker image.
 # Run with sudo if necessary.
 # See pkg_rakudo.pl -h for parameters.
@@ -12,13 +12,14 @@ use File::Basename qw(dirname);
 use Getopt::Long;
 
 ### Variables ###
-our $VERSION = '0.1';
-my $id = 'rakudo'; # default
+our $VERSION = '0.2.0';
+my  $id      = 'rakudo'; # default
+my  $arch    = 'amd64';  # default
 
 ### CLI ###
 help() and exit(0) unless (@ARGV);
 my @required = qw/arch os os-version moar nqp rakudo pkg-rev dir/;
-my ($arch, $os, $version, $moar, $nqp, $rakudo, $rev, $dir, $help, $error);
+my ($os, $version, $moar, $nqp, $rakudo, $rev, $dir, $help, $error);
 GetOptions(
     'arch|a=s'       => \$arch,
     'os|o=s'         => \$os,
@@ -36,10 +37,7 @@ help() and exit(0) if ($help || @ARGV);
 my %dispatch = (
     help         => sub { help() && exit(0) if defined $help},
     dir          => sub { missing_mandatory('dir') unless defined $dir },
-    arch         => sub { missing_mandatory('arch') unless defined $arch },
     os           => sub { missing_mandatory('os') unless defined $os },
-    moar         => sub { missing_mandatory('moar') unless defined $moar },
-    nqp          => sub { missing_mandatory('nqp') unless defined $nqp },
     rakudo       => sub { missing_mandatory('rakudo') unless defined $rakudo },
     'os-version' =>
         sub { missing_mandatory('os-version') unless defined $version },
@@ -51,6 +49,9 @@ for my $k (keys %dispatch) {
     &{ $dispatch{$k} };
 }
 exit(1) if $error;
+
+$nqp  = $rakudo unless defined $nqp;
+$moar = $rakudo unless defined $moar;
 
 ### Run ###
 my $image = "$id/pkgrakudo-$os-$arch:$version";
@@ -76,15 +77,15 @@ Run with sudo if necessary.
 
 Usage:
 -a|--arch:
-    CPU architecture (mandatory).
+    CPU architecture (mandatory): amd64 (default) or i386 (Ubuntu only).
 -o|--os:
     Operating System (mandatory).
 -v|--os-version:
     Operating System release (mandatory).
 -m|--moar:
-    Version of MoarVM to build (mandatory).
+    Version of MoarVM to build (defaults to the version of rakudo).
 -n|--nqp:
-    Version of NQP to build (mandatory).
+    Version of NQP to build (defaults the to version of rakudo).
 -r|--rakudo:
     Version of Rakudo to build (mandatory).
 -p|--pkg-rev:
