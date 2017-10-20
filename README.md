@@ -1,22 +1,40 @@
 # rakudo-pkg
-Create OS packages for Rakudo Perl 6 using Docker.
+
+rakudo-pkg is a framework for easily creating OS-native packages for Rakudo
+Perl 6. Because Docker containers are used, all the packages can created on
+any recent Linux envrionment.
 
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 <br>
-**If you're an end-user looking for native Rakudo Linux packages, you'll find them in the releases tab: https://github.com/nxadm/rakudo-pkg/releases**.
+**If you're an end-user looking for native Rakudo Linux packages (debs and
+rpms), you'll find them in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
 
-**In constrast with Rakudo Star for Linux, these are compiled Rakudo Perl 6 Linux packages (directly installable by the user). The packages are small by design and don't provide any pre-installed modules (e.g. for containers). However, a script is included to install zef (Perl 6 module package manager).**
+The difference with [Rakudo Star for Linux](https://github.com/rakudo/star) is
+that that distribution does not provide pre-compiled packages (it compiles
+Rakudo at install time) and that it contains a selection of modules. The objective
+of our packages it to be are small by design (e.g. usable in Docker) and thus
+they don't provide any pre-installed modules. A script is included
+to install zefi, the Perl 6 module package manager.
 
-**See the "About the packages" info below for more information**
+At the moment the following packages are provided:
+- Centos (amd64): 7
+- Debian (amd64): 8, 9
+- Fedora (amd64): 25, 26
+- Ubuntu (amd64): 16.04, 16.10 (EOL), 17.04, 17.10
+- Ubuntu (i386) : 16.04, 16.10 (EOL), 17.04, 17.10
+  Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
+**
 
 ## About the packages
 The packages are minimalistic by design: they don't run any pre/post scripts
-and all the files are installed in /opt/rakudo. You'll have to add
-/opt/rakudo/bin to your PATH. Add this to your .bashrc (or corresponding
-environment script for other shells):
+and all the files are installed in /opt/rakudo.
+
+You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
+(or corresponding environment script for other shells):
 ```
 export PATH=/opt/rakudo/bin:$PATH
 ```
+
 ## Install the Zef Module Manager and modules
 In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 module
 manager:
@@ -74,6 +92,8 @@ At the moment, the following packaging images are available:
 - rakudo/pkgrakudo-ubuntu-i386:16.10
 - rakudo/pkgrakudo-ubuntu-amd64:17.04
 - rakudo/pkgrakudo-ubuntu-i386:17.04
+- rakudo/pkgrakudo-ubuntu-amd64:17.10
+- rakudo/pkgrakudo-ubuntu-i386:17.10
 
 Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
@@ -81,8 +101,7 @@ Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
 ./pkg_rakudo.pl -h
-./pkg_rakudo.pl --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
---nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
+./pkg_rakudo.pl --os ubuntu --os-version 16.04 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
 --arch defaults to amd64 while --moar and --nqp defaults to the version
 supplied for --rakudo.
