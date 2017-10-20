@@ -101,8 +101,7 @@ Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 In bin you'll find a wrapper script for the above docker run command, e.g.
 ```
 ./pkg_rakudo.pl -h
-./pkg_rakudo.pl --arch amd64 --os ubuntu --os-version 16.04 --moar 2016.08
---nqp 2016.08.1 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
+./pkg_rakudo.pl --os ubuntu --os-version 16.04 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
 --arch defaults to amd64 while --moar and --nqp defaults to the version
 supplied for --rakudo.
