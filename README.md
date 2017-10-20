@@ -31,6 +31,7 @@ and all the files are installed in /opt/rakudo.
 
 You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
 (or corresponding environment script for other shells):
+
 ```
 export PATH=/opt/rakudo/bin:$PATH
 ```
@@ -38,6 +39,7 @@ export PATH=/opt/rakudo/bin:$PATH
 ## Install the Zef Module Manager and modules
 In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 module
 manager:
+
 ```
 install_zef_as_user: install it in ~/.perl6
 install_zef_as_root: install it in /opt/rakudo as root (use sudo)
@@ -46,6 +48,7 @@ install_zef_as_root: install it in /opt/rakudo as root (use sudo)
 If you're using the Windows Subsystem for Linux (aka Ubuntu on Windows 10), you
 need to strip the moarvm library of (unused) functionalities that Windows does
 not implement yet. The script is only present on the Ubuntu 16.04 packages:
+
 ```
 /opt/rakudo/bin/fix_windows10
 ```
@@ -67,6 +70,7 @@ package:
 - the package revision (e.g. 01)
 
 A full command looks like this:
+
 ```
 docker run -ti --rm \
 -v <directory for the packages>:/staging \
@@ -99,15 +103,18 @@ Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
 ## Suplied scripts
 In bin you'll find a wrapper script for the above docker run command, e.g.
+
 ```
 ./pkg_rakudo.pl -h
 ./pkg_rakudo.pl --os ubuntu --os-version 16.04 --rakudo 2016.08.1 --pkg-rev 01 --dir /var/tmp
 ```
+
 --arch defaults to amd64 while --moar and --nqp defaults to the version
 supplied for --rakudo.
 
 There is also a build script for recreating the images locally in case you
 prefer not to use the images on Docker Hub, e.g.:
+
 ```
 ./create_container.pl -h
 ./create_container.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
