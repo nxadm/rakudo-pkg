@@ -73,3 +73,5 @@ the wrapper scripts supplied in bin.
 ./pkg_rakudo.pl -h
 ./pkg_rakudo.pl --os ubuntu --os-version 16.04 --rakudo 2016.07 --pkg-rev 01 --dir /var/tmp
 ```
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md).
