@@ -8,13 +8,16 @@ any recent Linux envrionment.
 <br>
 **If you're an end-user looking for native Rakudo Linux packages (debs and
 rpms), you'll find them in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
-
 The difference with [Rakudo Star for Linux](https://github.com/rakudo/star) is
 that that distribution does not provide pre-compiled packages (it compiles
 Rakudo at install time) and that it contains a selection of modules. The objective
-of our packages it to be are small by design (e.g. usable in Docker) and thus
+of our packages it to be small by design (e.g. usable in Docker). In consequence,
 they don't provide any pre-installed modules. A script is included
-to install zefi, the Perl 6 module package manager.
+to install zef, the Perl 6 module package manager.**
+
+## About the packages
+The packages are minimalistic by design: they don't run any pre/post scripts
+and all the files are installed in /opt/rakudo.
 
 At the moment the following packages are provided:
 - Centos (amd64): 7
@@ -23,11 +26,6 @@ At the moment the following packages are provided:
 - Ubuntu (amd64): 16.04, 16.10 (EOL), 17.04, 17.10
 - Ubuntu (i386) : 16.04, 16.10 (EOL), 17.04, 17.10
   Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
-**
-
-## About the packages
-The packages are minimalistic by design: they don't run any pre/post scripts
-and all the files are installed in /opt/rakudo.
 
 You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
 (or corresponding environment script for other shells):
