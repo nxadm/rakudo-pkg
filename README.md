@@ -25,7 +25,7 @@ At the moment the following packages are provided:
 - Debian (amd64): 8, 9
 - Fedora (amd64): 25, 26
 - Ubuntu (amd64): 16.04, 16.10 (EOL), 17.04, 17.10
-- Ubuntu (i386) : 16.04, 16.10 (EOL), 17.04, 17.10
+- Ubuntu (i386) : 16.04, 16.10 (EOL), 17.04, 17.10<br>
   Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
 You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
