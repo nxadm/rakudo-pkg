@@ -1,7 +1,5 @@
 #!/bin/bash
-# Image to be pushed to docker hub as a base image for Ubuntu 16.04 i386 
-# packages.
-# Use sudo if appropiate
+# Create Ubuntu i386 Docker base images. Use sudo if appropiate.
 set -euo pipefail
 VERSION=$@
 if [ -z "$VERSION" ]; then
