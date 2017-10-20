@@ -9,8 +9,6 @@ root for all the images).
 - the dockerfile should be named as
 Dockerfile-pkgrakudo-\<os\>-\<arch\>-\<version\>, e.g:
 Dockerfile-pkgrakudo-centos-amd64-7
-- the docker/pkg_rakudo.sh script is a short and straight-forward script run
+- the docker/pkg_rakudo script is a short and straight-forward script run
 by all containers. This script must stay generic and valid on all the target OSes it runs.
 - add support for the new platform on .travis.yml (Travis CI)
-
-New images are uploaded to the (https://hub.docker.com/r/rakudo/) Docker Hub namespace.
