@@ -1,5 +1,6 @@
 #!/usr/bin/env perl6
 
+my $version  = '0.2.0';
 my $base-url = 'http://cdimage.ubuntu.com/ubuntu-base/releases/';
 
 sub MAIN($release) {
@@ -15,6 +16,7 @@ sub MAIN($release) {
 
 sub USAGE {
     say qq:to/END/;
+    docker-img-ubuntu386, version $version.
     Create an Ubuntu i386 Docker base images.
     Docker, curl and gunzip are needed. Use sudo if appropiate.
     
