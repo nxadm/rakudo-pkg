@@ -95,8 +95,8 @@ the wrapper scripts supplied in bin.
 ### Create an image for the desired distribution:
 
 ```
-./create_container.pl -h
-./create_container.pl --dockerfile ../docker/Dockerfile-ubuntu-amd64-16.04
+bin/create-img.p6 <docker-file>
+bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
 ```
 
 ### Create a package:
