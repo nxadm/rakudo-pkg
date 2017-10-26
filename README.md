@@ -58,7 +58,7 @@ At the moment the following packages are provided:
 - Ubuntu 17.10 i386:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
-  <br>Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
+  <br>Beware that 32-bit rakudo binaries (i386) are not JIT enabled (upstream).
 
 You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
 (or corresponding environment script for other shells):
