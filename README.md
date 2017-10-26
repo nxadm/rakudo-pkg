@@ -3,30 +3,62 @@
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 <br>
 
+**If you're an end-user looking for native Rakudo Linux packages (debs and
+rpms), you can use the direct links to the latest package for your Operating
+System [below](#about-the-packages) or get the full listing in the
+[releases tab](https://github.com/nxadm/rakudo-pkg/releases).**
+
 rakudo-pkg is a framework for easily creating OS-native packages for Rakudo
 Perl 6. Because Docker containers are used, all the packages can created on
 any recent Linux envrionment.
 
-If you're an end-user looking for native Rakudo Linux packages (debs and
-rpms), you'll find them in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
-The difference with [Rakudo Star for Linux](https://github.com/rakudo/star) is
-that that distribution does not provide pre-compiled packages (it compiles
-Rakudo at install time) and that it contains a selection of modules. The objective
-of our packages it to be small by design (e.g. usable in Docker). In consequence,
-they don't provide any pre-installed modules. A script is included
-to install zef, the Perl 6 module package manager.
+The main difference with [Rakudo Star for Linux](https://github.com/rakudo/star)
+is that rakudo-pkg provides pre-compiled packages of the Rakudo runtime only.
+Rakudo Star is a collection of Rakudo and popular modules, both compiled at
+locally at installation time. The objective of our approach is to create small
+self-contained, native OS packages that can be used on user's computers,
+servers and --very importantly-- containers. A script is included to install
+zef, the Perl 6 module package manager.
 
 ## About the packages
 The packages are minimalistic by design: they don't run any pre/post scripts
 and all the files are installed in /opt/rakudo.
 
 At the moment the following packages are provided:
-- Centos (amd64): 7
-- Debian (amd64): 8, 9
-- Fedora (amd64): 25, 26
-- Ubuntu (amd64): 16.04, 16.10 (EOL), 17.04, 17.10
-- Ubuntu (i386) : 16.04, 16.10 (EOL), 17.04, 17.10<br>
-  Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
+- Centos 7 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
+- Debian 8 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
+- Debian 9 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
+- Fedora 25 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=25&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=25&arch=amd64)).
+- Fedora 26 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
+- Ubuntu 16.04 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
+- Ubuntu 17.04 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.04&arch=amd64)).
+- Ubuntu 17.10 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=amd64)).
+- Ubuntu 16.04 i386:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
+- Ubuntu 17.04 i386:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.04&arch=i386)).
+- Ubuntu 17.10 i386:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
+  <br>Beware that 32-bit rakudo binaries are not JIT enabled (upstream).
 
 You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
 (or corresponding environment script for other shells):
