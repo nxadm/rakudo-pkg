@@ -1,6 +1,4 @@
 #!/usr/bin/env perl6
-# Create Ubuntu i386 Docker base images. Use sudo if appropiate.
-# curl, gunzip and docker are needed.
 
 my $base-url = 'http://cdimage.ubuntu.com/ubuntu-base/releases/';
 
@@ -16,6 +14,13 @@ sub MAIN($release) {
 }
 
 sub USAGE {
-    say "Usage:\n  $*PROGRAM-NAME <release>\n";
-    say "A list of releases can be fout at $base-url.";
+    say qq:to/END/;
+    Create an Ubuntu i386 Docker base images.
+    Docker, curl and gunzip are needed. Use sudo if appropiate.
+    
+    Usage:
+      $*PROGRAM-NAME <release>
+    
+    A list of releases can be fout at $base-url.
+    END
 }
