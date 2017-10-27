@@ -9,9 +9,10 @@ System [below](#about-the-packages) or get the full listing in the
 [releases tab](https://github.com/nxadm/rakudo-pkg/releases).**
 
 rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/) for
-end users. At the same time it's a framework for easily creating OS-native
-packages for Rakudo Perl 6. Because Docker containers are used, all the
-packages can created on any recent Linux environment.
+end users. At the same time it's a framework that allows end-users and system
+administrators to create their own OS-native Rakudo Perl 6 packages in case
+they prefer not to use the precompiled binaries. Because Docker containers are
+used, all the packages can created on any recent Linux environment.
 
 The main difference with [Rakudo Star for Linux](https://github.com/rakudo/star)
 is that rakudo-pkg provides pre-compiled packages of the Rakudo runtime only.
