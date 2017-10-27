@@ -26,5 +26,5 @@ services:
 install: true
 script:
   - sudo dpkg -i ci/travis/*.deb 
-  - bin/create-img.p6 docker/Dockerfile-pkgrakudo-${OS}-${ARCH}-${VERSION}
+  - bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION}
   - bin/create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION
