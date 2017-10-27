@@ -1,0 +1,27 @@
+# This build is on hold because an upstream bug resulting in bad packages:
+# https://github.com/jordansissel/fpm/issues/1227
+FROM alpine:3.6
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+
+ENV LANG C.UTF-8
+ENV TZ Europe/Brussels
+ENV packages bash build-base ca-certificates git libc-dev linux-headers openssl perl perl-utils ruby wget zlib gzip tar
+ENV packages_tmp libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata
+
+RUN set -xv ; \
+apk update && apk upgrade && \
+# Packages for compiling and pkg creation
+apk add --no-cache ${packages} ${packages_tmp} && \
+update-ca-certificates && \
+cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
+echo "${TZ}" > /etc/timezone && \
+gem install fpm json && \
+# Cleanup
+apk del ${packages_tmp} && \
+rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
+
+COPY pkg_rakudo /
+COPY install_zef_as_user /
+COPY install_zef_as_root /
+
+CMD '/pkg_rakudo'
