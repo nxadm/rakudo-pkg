@@ -27,6 +27,7 @@ sub MAIN(
         say "Package and checksum created in $dir.";
     } else {
         note "Package creation failed.";
+        exit 1;
     }
 }
 
