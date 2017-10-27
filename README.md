@@ -28,7 +28,7 @@ zef, the Perl 6 module package manager.
 The packages are minimalistic by design: they don't run any pre/post scripts
 and all the files are installed in /opt/rakudo.
 
-At the moment the following packages are provided (also available in the ([releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+At the moment the following packages are provided (also available in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
