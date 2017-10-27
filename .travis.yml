@@ -1,9 +1,9 @@
 language: generic
 env:
   global:
-    - RAKUDO_VERSION="2017.09"
-    - NQP_VERSION="2017.09"
-    - MOARVM_VERSION="2017.09.1"
+    - RAKUDO_VERSION="2017.10"
+    - NQP_VERSION="2017.10"
+    - MOARVM_VERSION="2017.10"
     - REVISION="01"
     - PATH=/opt/rakudo/bin:$PATH
   matrix:
