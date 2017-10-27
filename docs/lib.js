@@ -24,13 +24,13 @@ lib.release = (function ($, m) {
         console.log(asset);
         window.location.href = asset.browser_download_url;
 
-        //$("#content").html(
-        //    "If you are not redirected automatically, " +
-        //    "follow the <a href='" + asset.browser_download_url +
-        //    "'>link</a></a>");
+        $("#content").html(
+            "If you are not redirected automatically, " +
+            "follow the <a href='" + asset.browser_download_url +
+            "'>link</a></a>");
         
         // Allow wget and curl to discover the URL   
-        $("#content").html(asset.browser_download_url);
+        // $("#content").html(asset.browser_download_url);
     }
 
     function get_latest_release(repo, os, version, arch, type) {
