@@ -2,7 +2,7 @@
 
 ### Variables ###
 my $version        = '0.2.0';
-my $id             = 'pkg-rakudo';
+my $id             = 'rakudo-pkg';
 my %*SUB-MAIN-OPTS = :named-anywhere; #allow free order of cli args
 
 ### Functions ###
@@ -29,7 +29,7 @@ sub MAIN($docker-file!) {
 sub USAGE {
     say qq:to/END/;
     create-image.p6, version $version.
-    Create docker images used by pkg-rakudo. Use sudo if appropiate.
+    Create docker images used by rakudo-pkg. Use sudo if appropiate.
     
     Usage:
       $*PROGRAM-NAME <docker-file>

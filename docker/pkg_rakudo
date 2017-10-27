@@ -8,9 +8,9 @@ function die {
 
 # Variables supplied by docker run
 ERROR=""
-[ -z "$VERSION_MOARVM" ] && ERROR+=$'VERSION_MOARVM not defined\n'
-[ -z "$VERSION_NQP"    ] && ERROR+=$'VERSION_NQP not defined\n'
-[ -z "$VERSION_RAKUDO" ] && ERROR+=$'VERSION_RAKUDO not defined\n'
+[ -z "$MOARVM_VERSION" ] && ERROR+=$'MOARVM_VERSION not defined\n'
+[ -z "$NQP_VERSION"    ] && ERROR+=$'NQP_VERSION not defined\n'
+[ -z "$RAKUDO_VERSION" ] && ERROR+=$'RAKUDO_VERSION not defined\n'
 [ -z "$REVISION"       ] && ERROR+=$'REVISION not defined\n'
 if [ ! -z "$ERROR" ]; then die "$ERROR"; fi
 
@@ -18,14 +18,14 @@ MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 
 # Internal variables
 VERSION_PKG=$(\
-    perl -lwe "@parts=split(/\D/, \"$VERSION_RAKUDO\"); \
+    perl -lwe "@parts=split(/\D/, \"$RAKUDO_VERSION\"); \
                push @parts, 0 if @parts == 2;
                printf('%04d%02d%02d', @parts)"\
 )
 URL_BASE="https://rakudo.perl6.org/downloads"               
-URL_NQP="${URL_BASE}/nqp/nqp-${VERSION_NQP}.tar.gz"
-URL_RAKUDO="${URL_BASE}/rakudo/rakudo-${VERSION_RAKUDO}.tar.gz"
-URL_MOARVM="https://moarvm.org/releases/MoarVM-${VERSION_MOARVM}.tar.gz"
+URL_NQP="${URL_BASE}/nqp/nqp-${NQP_VERSION}.tar.gz"
+URL_RAKUDO="${URL_BASE}/rakudo/rakudo-${RAKUDO_VERSION}.tar.gz"
+URL_MOARVM="https://moarvm.org/releases/MoarVM-${MOARVM_VERSION}.tar.gz"
 PREFIX=/opt/rakudo
 if [ -f "/etc/debian_version" ]; then
     TARGET=deb

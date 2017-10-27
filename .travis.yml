@@ -1,9 +1,8 @@
-language: perl
 env:
   global:
-    - MOARVM="2017.09.1"
-    - NQP="2017.09"
-    - RAKUDO="2017.09"
+    - RAKUDO_VERSION="2017.09"
+    - NQP_VERSION="2017.09"
+    - MOARVM_VERSION="2017.09.1"
     - REVISION="01"
   matrix:
     - OS=centos ARCH=amd64 VERSION=7
@@ -11,6 +10,7 @@ env:
     - OS=debian ARCH=amd64 VERSION=9
     - OS=fedora ARCH=amd64 VERSION=25
     - OS=fedora ARCH=amd64 VERSION=26
+    - OS=ubuntu ARCH=amd64 VERSION=14.04
     - OS=ubuntu ARCH=amd64 VERSION=16.04
     - OS=ubuntu ARCH=amd64 VERSION=17.04
     - OS=ubuntu ARCH=amd64 VERSION=17.10
@@ -23,5 +23,6 @@ services:
   - docker
 install: true
 script:
+  - dpkg -i ci/travis/*.deb 
   - bin/create-img.p6 docker/Dockerfile-pkgrakudo-${OS}-${ARCH}-${VERSION}
-  - bin/pkg_rakudo.pl -a $ARCH -o $OS -v $VERSION -m $MOARVM -n $NQP -r $RAKUDO -p $REVISION -d /var/tmp
+  - bin/create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION

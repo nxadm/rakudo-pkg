@@ -102,8 +102,9 @@ bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
 ### Create a package:
 
 ```
-./pkg_rakudo.pl -h
-./pkg_rakudo.pl --os ubuntu --os-version 16.04 --rakudo 2016.07 --pkg-rev 01 --dir /var/tmp
+./create-pkg.p6 <docker image> --rakudo-version=<version>
+./create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
 ```
+
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
