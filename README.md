@@ -16,10 +16,12 @@ used, all the packages can created on any recent Linux environment.
 
 The main difference with [Rakudo Star for Linux](https://github.com/rakudo/star)
 is that rakudo-pkg provides pre-compiled packages of the Rakudo runtime only.
-Rakudo Star is a collection of Rakudo and popular modules, both compiled at
-locally at installation time. The objective of our approach is to create small
-self-contained, native OS packages that can be used on user's computers,
-servers and --very importantly-- containers. A script is included to install
+Rakudo Star is a collection of Rakudo and popular modules, both compiled
+locally at installation time.
+
+The objective of our approach is to create small self-contained, native OS
+packages that can be used on user's computers, servers and
+--very importantly-- containers. A script is included to install
 zef, the Perl 6 module package manager.
 
 ## About the packages
