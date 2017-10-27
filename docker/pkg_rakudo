@@ -75,7 +75,7 @@ fpm \
 
 # Add OS info to filename
 cd $PKGDIR
-mv *.$TARGET $(ls -1 *.$TARGET |perl -lwp -e 's/(rakudo)/$1-$OS-$RELEASE/')
+mv *.$TARGET $(ls -1 *.$TARGET |perl -lwp -e "s/rakudo/rakudo-$OS-$RELEASE/")
 PKG=$(ls -1 *.$TARGET)
 sha1sum $PKG > $PKG.sha1
 
