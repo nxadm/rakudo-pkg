@@ -23,6 +23,7 @@ sub MAIN($docker-file!) {
         say "Image $img created.";
     } else {
         note "Image creation failed.";
+	exit 1;
     }
 }
 
