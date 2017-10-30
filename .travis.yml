@@ -6,7 +6,6 @@ env:
     - MOARVM_VERSION="2017.10"
     - REVISION="01"
     - PATH=/opt/rakudo/bin:$PATH
-    - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10/rakudo-Ubuntu14.04_20171000-01_amd64.deb"
   matrix:
     - OS=centos ARCH=amd64 VERSION=7
     - OS=debian ARCH=amd64 VERSION=8
@@ -24,7 +23,8 @@ env:
 sudo: required
 services:
   - docker
-install: wget $RAKUDO_DEB && sudo dpkg -i *.deb
+install: true
 script:
+  - sudo dpkg -i ci/travis/*.deb 
   - bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION}
   - bin/create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION
