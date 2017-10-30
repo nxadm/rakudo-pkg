@@ -11,6 +11,9 @@ sub MAIN($release) {
     my $exit-code = shell $cmd;
     if $exit-code == 0 {
         say 'Docker image imported (run "docker images").';
+    } else {
+	note 'Failure creating the base image.';
+	exit 1;
     }
 }
 
