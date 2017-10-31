@@ -36,8 +36,8 @@ lib.release = (function ($, m) {
     function get_latest_release(repo, os, version, arch, type) {
         $.getJSON(repo).done(function (json) {
             var assets = json.assets;
-            // rakudo-CentOS7.4.1708-20171000-01.x86_64.rpm
-            // rakudo-Ubuntu17.04_20171000-01_i386.deb
+            // rakudo-pkg-CentOS7.4.1708-20171000-01.x86_64.rpm
+            // rakudo-pkg-Ubuntu17.04_20171000-01_i386.deb
             var regex_pkgs = new RegExp(".*" + os + version + ".*" + arch + ".*", "i");
             var regex_sha  = new RegExp(".*\.sha1$");
 
