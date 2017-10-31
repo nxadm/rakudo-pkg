@@ -9,24 +9,21 @@ System [below](#about-the-packages) or get the full listing in the
 [releases tab](https://github.com/nxadm/rakudo-pkg/releases).**
 
 rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/) for
-end users. At the same time it's a framework that allows end-users and system
+end users. It is also a framework that allows end-users and system
 administrators to create their own OS-native Rakudo Perl 6 packages in case
 they prefer not to use the precompiled binaries. Because Docker containers are
 used, all the packages can created on any recent Linux environment.
 
 The main difference with [Rakudo Star for Linux](https://github.com/rakudo/star)
-is that rakudo-pkg provides pre-compiled packages of the Rakudo runtime only.
-Rakudo Star is a collection of Rakudo and popular modules, both compiled
-locally at installation time.
-
-The objective of our approach is to create small self-contained, native OS
-packages that can be used on user's computers, servers and
---very importantly-- containers. A script is included to install
-zef, the Perl 6 module package manager.
+is that rakudo-pkg only provides pre-compiled packages of the Rakudo runtime
+only and the Zef module manager need for installing additional modules. The
+objective of our approach is to create small self-contained (no dependencies,
+install only to one directory), native OS packages that can be used on
+user's computers, servers and --very importantly-- containers. Rakudo Star's
+approach is different as it is a distribution supplying a collection of
+popular modules.
 
 ## About the packages
-The packages are minimalistic by design: they don't run any pre/post scripts
-and all the files are installed in /opt/rakudo.
 
 At the moment the following packages are provided (also available in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Centos 7 amd64:
@@ -68,23 +65,25 @@ At the moment the following packages are provided (also available in the [releas
 
   Beware that 32-bit rakudo binaries (i386) are not JIT enabled (upstream).
 
-You'll have to add /opt/rakudo/bin to your PATH. Add this to your .bashrc
-(or corresponding environment script for other shells):
+**You'll have to add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH.
+Add this to your .profile, .bash_profile or the corresponding environment
+script for other shells)**:
 
 ```
-export PATH=/opt/rakudo/bin:$PATH
+PATH=~/bin/.perl6:/opt/rakudo-pkg/bin
+export PATH
 ```
 
-## Install the Zef Module Manager and modules
-In /opt/rakudo/bin you'll find two additional scripts to install the Zef Perl 6 module
-manager:
+## Install the Zef Module Manager as a non-root user
+The installation supplies a working Zef *root* installation
+(/opt/rakudo-pkg/bin/zef). For regulars users, Rakudo takes a different
+approach to many other languages (including Perl 5) as it installs modules in
+the home diretory. A script is supplied to install zef as a user, so you can
+choose to use the local or the global zef setup to install modules:
 
 ```
-install_zef_as_user: install it in ~/.perl6
-install_zef_as_root: install it in /opt/rakudo as root (use sudo)
+install_zef_as_user: install Zef as ~/.perl6/bin/zef
 ```
-
-You'll need to add the bin directories to your PATH (as the scripts will print).
 
 ## Support for the Windows Subsystem for Linux
 If you're using the Windows Subsystem for Linux (aka Ubuntu on Windows 10), you
@@ -92,7 +91,7 @@ need to strip the moarvm library of (unused) functionalities that Windows does
 not implement yet. The script is only present on the Ubuntu 16.04 packages:
 
 ```
-/opt/rakudo/bin/fix_windows10
+/opt/rakudo-pkg/bin/fix_windows10
 ```
 
 ## Building your own packages
