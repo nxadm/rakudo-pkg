@@ -4,7 +4,7 @@ env:
   - RAKUDO_VERSION="2017.10"
   - NQP_VERSION="2017.10"
   - MOARVM_VERSION="2017.10"
-  - REVISION="01"
+  - REVISION="02"
   - PATH=/opt/rakudo/bin:$PATH
   - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10/rakudo-Ubuntu14.04_20171000-01_amd64.deb"
   matrix:
