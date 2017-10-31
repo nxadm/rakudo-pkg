@@ -5,7 +5,7 @@ ENV \
 LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
-pkgs='build-essential git lsb-release ruby ruby-dev wget'
+pkgs='build-essential git lsb-release ruby ruby-dev wget' \
 pkgs_tmp='ruby-dev'
 
 RUN set -xv ; \
