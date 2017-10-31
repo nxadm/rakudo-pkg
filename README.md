@@ -8,7 +8,7 @@ follow upstream closely, so packages are built for every Rakudo release. Most
 of the time, they should arrive on the same day the Rakudo sources are released.
 
 For those users (and System Administrator) that prefer to build their own
-Rakudo packages, rakudo-pkg can be used as a build framework. Because Docker 
+Rakudo packages, rakudo-pkg can be used as a build framework. Because Docker
 containers are used when creating native Linux packages, any platform running
 Docker can be used a host, including MacOS and Windows machines.
 
@@ -16,7 +16,7 @@ rakudo-pkg aims to provide small self-contained (no dependencies, no files
 outside /opt/rakudo-pkg), pre-compiled native OS packages that can be used on
 user's computers, servers and --very importantly-- containers. Therefor, only
 Rakudo and the Zef package manager are provided. The builds are done in the
-open: the packages are created and automatically uploaded by 
+open: the packages are created and automatically uploaded by
 [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) from the code in this
 repository. Feel free to inspect the build and contribute enhancements.
 
@@ -71,6 +71,10 @@ script for other shells)**:
 PATH=~/bin/.perl6:/opt/rakudo-pkg/bin
 export PATH
 ```
+
+**If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
+Windows 10), use the Ubuntu 16.04 package (or the 14.04 one if running an
+older release) and run /opt/rakudo/bin/fix_windows10 after the installation.**
 
 **Older releases (before 2017.10-02) were installed into /opt/rakudo instead of
 /opt/rakudo-bin. Adapt the PATH instructions accordingly.**
@@ -131,13 +135,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## What is the difference with Rakudo Star?
 
-[Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a 
-distribution for end-users worth exploring.  
+[Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
+distribution for end-users worth exploring.
 
-It has a different use case in mind. While we concentrate on releasing 
-minimalistic, self-contained packages for every Rakudo release, Rakudo Star 
+It has a different use case in mind. While we concentrate on releasing
+minimalistic, self-contained packages for every Rakudo release, Rakudo Star
 has a quarterly release model for the compiler and a wide selection of
-third pary modules. On Linux, it uses the development tool 
-[rakudobrew](https://github.com/tadzik/rakudobrew) to locally compile the 
-Rakudo compiler and a collection of third party modules. 
+third pary modules. On Linux, it uses the development tool
+[rakudobrew](https://github.com/tadzik/rakudobrew) to locally compile the
+Rakudo compiler and a collection of third party modules.
 
