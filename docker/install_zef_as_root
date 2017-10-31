@@ -8,12 +8,12 @@ rm -rf /var/tmp/zef_root
 git clone https://github.com/ugexe/zef.git zef_root
 cd zef_root
 /opt/rakudo/bin/perl6 -Ilib bin/zef --install-to=perl install .
-rm -f /opt/rakudo/bin/zef
-ln -s /opt/rakudo/share/perl6/bin/zef /opt/rakudo/bin/zef
+rm -f /opt/rakudo-pkg/bin/zef
+ln -s /opt/rakudo-pkg/share/perl6/bin/zef /opt/rakudo/bin/zef
 rm -rf /var/tmp/zef_root
 
-echo "zef has been installed to /opt/rakudo/bin."
-echo "Add /opt/rakudo/bin to your PATH, e.g.:"
-echo "echo 'export PATH=/opt/rakudo/bin:\$PATH' >> /root/.profile"
+echo "zef has been installed to /opt/rakudo-pkg/bin."
+echo "Add /opt/rakudo-pkg/bin to your PATH, e.g.:"
+echo "echo 'export PATH=/opt/rakudo-pkg/bin:\$PATH' >> /root/.profile"
 
 exit 0
