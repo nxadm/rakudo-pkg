@@ -5,7 +5,7 @@ ENV \
 LANG='en_US.UTF-8' \
 pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel wget' \
 pkggroup='Development Tools' \
-pkgs_tmp='ruby-devel rubygems'
+pkgs_tmp='ruby-devel'
 
 RUN set -xv ; \
 dnf -q -y upgrade && \
