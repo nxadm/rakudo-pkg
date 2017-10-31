@@ -26,5 +26,4 @@ services:
   - docker
 install: wget $RAKUDO_DEB && sudo dpkg -i *.deb
 script:
-  - bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION} && \
-    bin/create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION --rev=$REVISION
+  - cd bin && ./create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION} && ./create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION --rev=$REVISION
