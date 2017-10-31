@@ -74,6 +74,7 @@ cd $PKGDIR
 mv *.$TARGET $(ls -1 *.$TARGET |perl -lwp -e "s/rakudo-pkg/rakudo-pkg-$OS$RELEASE/")
 PKG=$(ls -1 *.$TARGET)
 sha1sum $PKG > $PKG.sha1
+cat $PKG.sha1
 
 # Test it by installing it
 $INSTALL $PKG
