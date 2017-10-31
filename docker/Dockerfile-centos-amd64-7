@@ -19,6 +19,5 @@ localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
 COPY pkg_rakudo /
 COPY install_zef_as_user /
-COPY install_zef_as_root /
 
 CMD '/pkg_rakudo'

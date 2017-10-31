@@ -22,6 +22,5 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo /
 COPY install_zef_as_user /
-COPY install_zef_as_root /
 
 CMD '/pkg_rakudo'

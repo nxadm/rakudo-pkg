@@ -17,6 +17,5 @@ dnf -q clean all
 
 COPY pkg_rakudo /
 COPY install_zef_as_user /
-COPY install_zef_as_root /
 
 CMD '/pkg_rakudo'

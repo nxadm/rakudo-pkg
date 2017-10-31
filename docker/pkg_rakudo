@@ -80,3 +80,13 @@ $INSTALL $PKG
 # Run it
 $PREFIX/bin/perl6 -v
 
+# Install zef as root
+cd /var/tmp
+git clone https://github.com/ugexe/zef.git
+cd zef
+$PREFIX/bin/perl6 -Ilib bin/zef --install-to=perl install .
+rm -f $PREFIX/bin/zef
+ln -s $PREFIX/share/perl6/bin/zef $PREFIX/bin/zef
+rm -rf /var/tmp/zef
+
+exit 0
