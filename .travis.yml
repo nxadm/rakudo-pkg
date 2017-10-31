@@ -1,29 +1,43 @@
 language: generic
 env:
   global:
-    - RAKUDO_VERSION="2017.10"
-    - NQP_VERSION="2017.10"
-    - MOARVM_VERSION="2017.10"
-    - REVISION="01"
-    - PATH=/opt/rakudo/bin:$PATH
-    - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10/rakudo-Ubuntu14.04_20171000-01_amd64.deb"
+  - RAKUDO_VERSION="2017.10"
+  - NQP_VERSION="2017.10"
+  - MOARVM_VERSION="2017.10"
+  - REVISION="01"
+  - PATH=/opt/rakudo/bin:$PATH
+  - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10/rakudo-Ubuntu14.04_20171000-01_amd64.deb"
   matrix:
-    - OS=centos ARCH=amd64 VERSION=7
-    - OS=debian ARCH=amd64 VERSION=8
-    - OS=debian ARCH=amd64 VERSION=9
-    - OS=fedora ARCH=amd64 VERSION=25
-    - OS=fedora ARCH=amd64 VERSION=26
-    - OS=ubuntu ARCH=amd64 VERSION=14.04
-    - OS=ubuntu ARCH=amd64 VERSION=16.04
-    - OS=ubuntu ARCH=amd64 VERSION=17.04
-    - OS=ubuntu ARCH=amd64 VERSION=17.10
-    - OS=ubuntu ARCH=amd64 VERSION=14.04
-    - OS=ubuntu ARCH=i386 VERSION=16.04
-    - OS=ubuntu ARCH=i386 VERSION=17.04
-    - OS=ubuntu ARCH=i386 VERSION=17.10
+  - OS=centos ARCH=amd64 VERSION=7
+  - OS=debian ARCH=amd64 VERSION=8
+  - OS=debian ARCH=amd64 VERSION=9
+  - OS=fedora ARCH=amd64 VERSION=25
+  - OS=fedora ARCH=amd64 VERSION=26
+  - OS=ubuntu ARCH=amd64 VERSION=14.04
+  - OS=ubuntu ARCH=amd64 VERSION=16.04
+  - OS=ubuntu ARCH=amd64 VERSION=17.04
+  - OS=ubuntu ARCH=amd64 VERSION=17.10
+  - OS=ubuntu ARCH=amd64 VERSION=14.04
+  - OS=ubuntu ARCH=i386 VERSION=16.04
+  - OS=ubuntu ARCH=i386 VERSION=17.04
+  - OS=ubuntu ARCH=i386 VERSION=17.10
 sudo: required
 services:
-  - docker
+- docker
 install: wget $RAKUDO_DEB && sudo dpkg -i *.deb
 script:
-  - bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION} && bin/create-pkg.p6 rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION --moarvm-version=$MOARVM_VERSION --rev=$REVISION
+- bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION} && bin/create-pkg.p6
+  rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION
+  --moarvm-version=$MOARVM_VERSION --rev=$REVISION
+deploy:
+  provider: releases
+  api_key:
+    secure: kZZIX3JLoAowpJgQXUheKMquNtnPUNa18SFQQSYaQe3OjaBLzJGuI/Dv+eju3dZA9HWXVVfAl/EBYmx0YRyIa8XPoKL+hxbl29sdcP7wNi4OJsIcYr2dY7dcPY2T1RIWCd2cU7CXbJ1IquDN67asWEBxbpwpZluYDd9odx2JMeMAf2XX+VQjFxwK92hGrpLMdtzNstSiZvYn7inBTOU8nrBxQVccd7ec9ZsF8PUjohazUzpCHYvHgZOPHQZY1UgOD1KlrUmPtUToakDOnXyysZBvC3YBq833eqBXIlaoCELnFdzOnwIQzewxYgXrz4JQQhUmXPIvmylM0MoNp1MnkANs68oECBLvOB8kxOglIYWBad6GtaR5pkLhh3bPwc6fwqZZQMoqlncesKDPtHvmtQmWpWFxbwYsOFgFDcc3jW8DV233EbpubrREbrYFq83Ahc0aYx+GpNWFZ71jlXcErZ7tB/KltHWoCjLPq1dxCIFiq/AOLylK9meo/AQF+RXAb5+3fkd32X5xyRQejYfdhGxZ/c6QkV4C3BAIypJ76Hi0MfePuylMTe4P59nkT98j6ef3d8MtPHIM8DdBww6erseteKCaS0fZaf3e3YBhG9TJYLTHri4o/StCnqTMyiANEcsNoQB3oFC3z5Q76jYHocKo5g+z/6/ooeipn03hKsA=
+  file_glob: true
+  file: "/var/tmp/rakudo-pkg/*"
+  skip_cleanup: true
+  on:
+    tags: true
+  branches:
+    only:
+      - /^v\d+\.\d+((\.\d+)|*(\.\d+-\d+))*$/
