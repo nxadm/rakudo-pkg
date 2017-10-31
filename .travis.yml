@@ -37,6 +37,7 @@ deploy:
   file: "/var/tmp/rakudo-pkg/*"
   skip_cleanup: true
   on:
+    repo: nxadm/rakudo-pkg
     tags: true
   branches:
     only:
