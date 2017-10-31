@@ -3,7 +3,7 @@
 # Perl6 Module Management (https://github.com/ugexe/zef)
 # You need Git in order to install and use Zef.
 
-PREFIX=/opt/rakudo-bin
+PREFIX=/opt/rakudo-pkg
 cd /var/tmp
 rm -rf /var/tmp/zef_$USER
 git clone https://github.com/ugexe/zef.git zef_$USER
