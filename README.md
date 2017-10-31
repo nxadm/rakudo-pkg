@@ -107,15 +107,26 @@ the wrapper scripts supplied in bin.
 ### Create an image for the desired distribution:
 
 ```
+bin/create-img.p6
 bin/create-img.p6 <docker-file>
 bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
+```
+
+If you want to build an Ubuntu i386 package, you need to create a base image
+first (distributions do not provide them):
+
+```
+bin/create-baseimg.p6
+bin/create-baseimg.p6 <Ubuntu release>
+bin/create-baseimg.p6 17.10
 ```
 
 ### Create a package:
 
 ```
-./create-pkg.p6 <docker image> --rakudo-version=<version>
-./create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
+bin/create-pkg.p6
+bin/create-pkg.p6 <docker image> --rakudo-version=<version>
+bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
 ```
 
 ## Contributing
