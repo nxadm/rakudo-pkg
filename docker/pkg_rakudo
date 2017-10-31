@@ -45,11 +45,20 @@ cd /nqp-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
 cd /rakudo-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
-mv /install_zef_* $PREFIX/bin
+mv /install_zef_as_user $PREFIX/bin
 if [ -f "/fix_windows10" ]; then mv /fix_windows10 $PREFIX/bin; fi
 cd /
 rm -rf /MoarVM* /nqp* /rakudo* 
 echo "Rakudo was succesfully compiled."
+
+# Install zef as root
+cd /var/tmp
+git clone https://github.com/ugexe/zef.git
+cd zef
+$PREFIX/bin/perl6 -Ilib bin/zef --install-to=perl install .
+rm -f $PREFIX/bin/zef
+ln -s $PREFIX/share/perl6/bin/zef $PREFIX/bin/zef
+rm -rf /var/tmp/zef
 
 # Packaging
 OS=$(lsb_release -is)
@@ -81,14 +90,5 @@ $INSTALL $PKG
 
 # Run it
 $PREFIX/bin/perl6 -v
-
-# Install zef as root
-cd /var/tmp
-git clone https://github.com/ugexe/zef.git
-cd zef
-$PREFIX/bin/perl6 -Ilib bin/zef --install-to=perl install .
-rm -f $PREFIX/bin/zef
-ln -s $PREFIX/share/perl6/bin/zef $PREFIX/bin/zef
-rm -rf /var/tmp/zef
 
 exit 0
