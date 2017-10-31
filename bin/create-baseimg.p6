@@ -1,13 +1,14 @@
 #!/usr/bin/env perl6
 
 my $version  = '0.2.0';
+my $id       = 'rakudo-pkg';
 my $base-url = 'http://cdimage.ubuntu.com/ubuntu-base/releases/';
 
 sub MAIN($release) {
     my $file-url = $base-url ~ $release ~
         '/release/ubuntu-base-' ~ $release ~ '-base-i386.tar.gz';
     my $cmd = 'curl ' ~ $file-url ~
-        '| gunzip | docker import - nxadm/ubuntu-i386:' ~ $release;
+        '| gunzip | docker import - ' ~ $id ~ '/ubuntu-i386:' ~ $release;
     my $exit-code = shell $cmd;
     if $exit-code == 0 {
         say 'Docker image imported (run "docker images").';
