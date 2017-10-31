@@ -15,10 +15,11 @@ Docker can be used a host, including MacOS and Windows machines.
 rakudo-pkg aims to provide small self-contained (no dependencies, no files
 outside /opt/rakudo-pkg), pre-compiled native OS packages that can be used on
 user's computers, servers and --very importantly-- containers. Therefor, only
-Rakudo and the Zef package manager are provided. This is the main difference 
-with [Rakudo Star for Linux](https://github.com/rakudo/star), posioned as a
-quarterly distribution based on rakudobrew with a collection of 
-pre-selected third party modules.
+Rakudo and the Zef package manager are provided. This is one of the differences
+with [Rakudo Star for Linux](https://github.com/rakudo/star), a distribution 
+for end-users worth exploring. This quarterly distribution uses the 
+development tool [rakudobrew](https://github.com/tadzik/rakudobrew) to locally
+compile the Rakudo compiler and a collection of third party modules.
 
 ## About the packages
 
