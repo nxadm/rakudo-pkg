@@ -25,7 +25,8 @@ popular modules.
 
 ## About the packages
 
-At the moment the following packages are provided (also available in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+The name for the package-manager is "rakudo-pkg". At the moment the following
+packages are provided (also available in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
