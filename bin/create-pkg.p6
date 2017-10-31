@@ -7,8 +7,8 @@ my %*SUB-MAIN-OPTS = :named-anywhere; #allow free order of cli args
 
 ### Functions ###
 sub MAIN(
-    $img!, :$rakudo-version!, 
-    :$nqp-version = $rakudo-version, :$moarvm-version = $rakudo-version, 
+    $img!, :$rakudo-version!,
+    :$nqp-version = $rakudo-version, :$moarvm-version = $rakudo-version,
     :$rev = '01', :$dir = '/var/tmp/rakudo-pkg'
 ) {
 
@@ -21,7 +21,7 @@ sub MAIN(
         '-e', "REVISION=$rev",
         $img
     );
-    say "Creating the rakudo package...";            
+    say "Creating the rakudo package...";
     my $exit_code = run(@cmd);
     if $exit_code == 0 {
         say "Package and checksum created in $dir.";
@@ -35,12 +35,11 @@ sub USAGE {
     say qq:to/END/;
     create-pkg.p6, version $version.
     Create Rakudo packages with pkg-rakudo. Use sudo if appropiate.
-    
+
     Usage:
       $*PROGRAM-NAME <docker image> --rakudo-version=<version>
         [--nqp-version=<version> --moarvm-version=<version>
          --rev=<revision> --dir=<directory> ]
-
       --nqp- and --moarvm-version default to the value of rakudo-version,
       --rev to 01 and --dir to /var/tmp/pkg-rakudo.
 

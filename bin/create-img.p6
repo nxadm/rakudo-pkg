@@ -17,13 +17,13 @@ sub MAIN($docker-file!) {
     my $root = $docker-file.IO.dirname;
     my @cmd  = ('docker', 'build', '--no-cache',
                 '-f', $docker-file, '-t', $img, $root);
-    say "Creating the image...";            
+    say "Creating the image...";
     my $exit_code = run(@cmd);
     if $exit_code == 0 {
         say "Image $img created.";
     } else {
         note "Image creation failed.";
-	exit 1;
+        exit 1;
     }
 }
 
@@ -31,7 +31,7 @@ sub USAGE {
     say qq:to/END/;
     create-image.p6, version $version.
     Create docker images used by rakudo-pkg. Use sudo if appropiate.
-    
+
     Usage:
       $*PROGRAM-NAME <docker-file>
 
