@@ -17,16 +17,11 @@ if [ ! -z "$ERROR" ]; then die "$ERROR"; fi
 MAINTAINER=${MAINTAINER:-"Claudio Ramirez <pub.claudio@gmail.com>"}
 
 # Internal variables
-VERSION_PKG=$(\
-    perl -lwe "@parts=split(/\D/, \"$RAKUDO_VERSION\"); \
-               push @parts, 0 if @parts == 2;
-               printf('%04d%02d%02d', @parts)"\
-)
 URL_BASE="https://rakudo.perl6.org/downloads"               
 URL_NQP="${URL_BASE}/nqp/nqp-${NQP_VERSION}.tar.gz"
 URL_RAKUDO="${URL_BASE}/rakudo/rakudo-${RAKUDO_VERSION}.tar.gz"
 URL_MOARVM="https://moarvm.org/releases/MoarVM-${MOARVM_VERSION}.tar.gz"
-PREFIX=/opt/rakudo
+PREFIX=/opt/rakudo-pkg
 if [ -f "/etc/debian_version" ]; then
     TARGET=deb
     INSTALL="dpkg -i"
@@ -68,10 +63,10 @@ fpm \
 -p $PKGDIR \
 -n rakudo-pkg \
 -m "$MAINTAINER" \
--v $VERSION_PKG \
+-v $RAKUDO_VERSION \
 --iteration $REVISION \
 --url "https://perl6.org" \
-/opt/rakudo
+$PREFIX
 
 # Add OS info to filename
 cd $PKGDIR
@@ -83,5 +78,5 @@ sha1sum $PKG > $PKG.sha1
 $INSTALL $PKG
 
 # Run it
-/opt/rakudo/bin/perl6 -v
+$PREFIX/bin/perl6 -v
 
