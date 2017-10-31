@@ -1,14 +1,9 @@
 # Contribute
 
-PRs are always welcome! Please add support for your favorite OS packages if
-not yet available on this repo.
+PRs or issues are always welcome!
 
-To add new packaging images, you'll need to:
-- start from an existing Dockerfile in the docker directory (this is the docker
-root for all the images).
-- the dockerfile should be named as
-Dockerfile-pkgrakudo-\<os\>-\<arch\>-\<version\>, e.g:
-Dockerfile-pkgrakudo-centos-amd64-7
-- the docker/pkg_rakudo script is a short and straight-forward script run
-by all containers. This script must stay generic and valid on all the target OSes it runs.
-- add support for the new platform on .travis.yml (Travis CI)
+If your favorite distribution is not yet supported, you can add it yourself:
+- start from an existing and possibly related Dockerfile in the docker directory (this is the docker context) and name is as Dockerfile-\<os\>-\<arch\>-\<version\>, e.g: Dockerfile-centos-amd64-7.
+- all the packages built by a docker container run the same docker/pkg_rakudo
+script. It should stay as generic as possible and valid on all the target OS'es it run (Travis is a big help here). 
+- add support for the new platform on .travis.yml (Travis CI).
