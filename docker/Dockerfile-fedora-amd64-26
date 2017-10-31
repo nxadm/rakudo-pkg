@@ -11,7 +11,8 @@ RUN set -xv ; \
 dnf -q -y upgrade && \
 ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 # Packages for compiling and pkg creation
-dnf -q install -y ${pkgs} && dnf -q groupinstall -y "${pkggroup}" && \
+dnf -q install -y ${pkgs} ${pkgs_tmp} && \
+dnf -q groupinstall -y "${pkggroup}" && \
 gem install fpm && \
 # Cleanup
 dnf -q remove -y ${pkgs_tmp} && dnf -q clean all

@@ -14,7 +14,7 @@ RUN set -xv ; \
 apt-get -qq update && \
 apt-get -qq dist-upgrade -y && \
 # Packages for compiling and pkg creation
-apt-get -qq install -y ${pkgs} && \
+apt-get -qq install -y ${pkgs} ${pkgs_tmp} && \
 gem install fpm && \
 # Cleanup
 apt-get remove -y --purge ${pkgs_tmp} && \
