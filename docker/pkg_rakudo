@@ -47,7 +47,6 @@ cd /rakudo-*; perl Configure.pl --backends=moar --prefix=$PREFIX
 make && make test && make install
 mv /install_zef_as_user $PREFIX/bin
 if [ -f "/fix_windows10" ]; then mv /fix_windows10 $PREFIX/bin; fi
-cd /
 rm -rf /MoarVM* /nqp* /rakudo* 
 echo "Rakudo was succesfully compiled."
 
@@ -61,6 +60,7 @@ ln -s $PREFIX/share/perl6/bin/zef $PREFIX/bin/zef
 rm -rf /var/tmp/zef
 
 # Packaging
+cd /
 OS=$(lsb_release -is)
 RELEASE=$(lsb_release -rs)
 if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
