@@ -24,4 +24,4 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 COPY pkg_rakudo /
 COPY install_zef_as_user /
 
-ENTRYPOINT [ '/pkg_rakudo' ]
+ENTRYPOINT [ "/pkg_rakudo" ]

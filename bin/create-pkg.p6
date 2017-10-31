@@ -22,6 +22,7 @@ sub MAIN(
         $img
     );
     say "Creating the rakudo package...";
+    say (@cmd);
     my $exit_code = run(@cmd);
     if $exit_code == 0 {
         say "Package and checksum created in $dir.";

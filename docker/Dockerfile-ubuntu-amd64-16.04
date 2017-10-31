@@ -23,4 +23,4 @@ COPY pkg_rakudo /
 COPY install_zef_as_user /
 COPY fix_windows10 /
 
-ENTRYPOINT [ '/pkg_rakudo' ]
+ENTRYPOINT [ "/pkg_rakudo" ]

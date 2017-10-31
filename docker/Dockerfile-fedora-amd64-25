@@ -20,4 +20,4 @@ dnf -q remove -y ${pkgs_tmp} && dnf -q clean all
 COPY pkg_rakudo /
 COPY install_zef_as_user /
 
-ENTRYPOINT [ '/pkg_rakudo' ]
+ENTRYPOINT [ "/pkg_rakudo" ]
