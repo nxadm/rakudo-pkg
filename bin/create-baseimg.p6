@@ -1,10 +1,10 @@
 #!/usr/bin/env perl6
 
-my $version  = '0.2.0';
-my $id       = 'rakudo-pkg';
-my $base-url = 'http://cdimage.ubuntu.com/ubuntu-base/releases/';
+my $version        = '0.3.0';
+my $base-url       = 'http://cdimage.ubuntu.com/ubuntu-base/releases/';
+my %*SUB-MAIN-OPTS = :named-anywhere; #allow free order of cli args
 
-sub MAIN($release) {
+sub MAIN($release, :$id = 'nxadm' ) {
     my $file-url = $base-url ~ $release ~
         '/release/ubuntu-base-' ~ $release ~ '-base-i386.tar.gz';
     my $cmd = 'curl ' ~ $file-url ~
