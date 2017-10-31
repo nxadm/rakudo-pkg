@@ -74,6 +74,9 @@ PATH=~/bin/.perl6:/opt/rakudo-pkg/bin
 export PATH
 ```
 
+**Older releases (before 2017.10-02) installed into /opt/rakudo instead of
+/opt/rakudo-bin. Adapt the PATH instructions accordingly.**
+
 ## Install the Zef Module Manager as a non-root user
 The installation supplies a working Zef *root* installation
 (/opt/rakudo-pkg/bin/zef). For regulars users, Rakudo takes a different
