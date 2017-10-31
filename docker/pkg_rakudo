@@ -1,6 +1,8 @@
 #!/bin/bash -e
 set -xv
 
+PKGDIR="/staging"
+
 # Functions
 function die { 
     echo "$1"
@@ -52,8 +54,6 @@ echo "Rakudo was succesfully compiled."
 # Packaging
 OS=$(lsb_release -is)
 RELEASE=$(lsb_release -rs)
-BUILDDATE=$(date '+%Y%m%d_%H%M%S')
-PKGDIR="/staging/build_${BUILDDATE}"
 if [ ! -d "$PKGDIR" ]; then mkdir -p "$PKGDIR"; fi
 fpm \
 --deb-no-default-config-files \
