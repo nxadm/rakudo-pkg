@@ -1,8 +1,7 @@
 FROM ubuntu:trusty
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
-ENV \
-LANG='C.UTF-8' \
+ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby wget' \

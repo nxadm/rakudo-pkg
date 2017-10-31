@@ -1,8 +1,7 @@
 FROM fedora:26
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
-ENV \
-LANG='en_US.UTF-8' \
+ENV LANG='en_US.UTF-8' \
 pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel wget' \
 pkggroup='Development Tools' \
 pkgs_tmp='ruby-devel'

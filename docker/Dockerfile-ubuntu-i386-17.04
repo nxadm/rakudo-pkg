@@ -3,8 +3,7 @@ FROM nxadm/ubuntu-i386:17.04
 # http://cdimage.ubuntu.com/ubuntu-base/releases/17.04/release/ubuntu-base-17.04-core-i386.tar.gz
 MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 
-ENV \
-LANG='C.UTF-8' \
+ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby wget' \
