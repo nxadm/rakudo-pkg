@@ -41,4 +41,4 @@ deploy:
     tags: true
   branches:
     only:
-      - /^v\d+\.\d+((\.\d+)|*(\.\d+-\d+))*$/
+      - /^v\d+\.\d+$/
