@@ -3,30 +3,27 @@
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 <br>
 
-**If you're an end-user looking for native Rakudo Linux packages (debs and
-rpms), you can use the direct links to the latest package for your Operating
-System [below](#about-the-packages) or get the full listing in the
-[releases tab](https://github.com/nxadm/rakudo-pkg/releases).**
+rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/). We
+follow upstream closely, so packages are built for every Rakudo release. Most
+of the time, they should arrive on the same day the Rakudo sources are released.
 
-rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/) for
-end users. It is also a framework that allows end-users and system
-administrators to create their own OS-native Rakudo Perl 6 packages in case
-they prefer not to use the precompiled binaries. Because Docker containers are
-used, all the packages can created on any recent Linux environment.
+For those users (and System Administrator) that prefer to build their own
+Rakudo packages, rakudo-pkg can be used as a build framework. Because Docker 
+containers are used when creating native Linux packages, any platform running
+Docker can be used a host, including MacOS and Windows machines.
 
-The main difference with [Rakudo Star for Linux](https://github.com/rakudo/star)
-is that rakudo-pkg only provides pre-compiled packages of the Rakudo runtime
-only and the Zef module manager need for installing additional modules. The
-objective of our approach is to create small self-contained (no dependencies,
-install only to one directory), native OS packages that can be used on
-user's computers, servers and --very importantly-- containers. Rakudo Star's
-approach is different as it is a distribution supplying a collection of
-popular modules.
+rakudo-pkg aims to provide small self-contained (no dependencies, no files
+outside /opt/rakudo-pkg), pre-compiled native OS packages that can be used on
+user's computers, servers and --very importantly-- containers. Therefor, only
+Rakudo and the Zef package manager are provided. This is the main difference 
+with [Rakudo Star for Linux](https://github.com/rakudo/star), posioned as a
+quarterly distribution based on rakudobrew with a collection of 
+pre-selected third party modules.
 
 ## About the packages
 
 The name for the package-manager is "rakudo-pkg". At the moment the following
-packages are provided (also available in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+packages are provided (see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
