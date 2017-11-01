@@ -16,15 +16,15 @@ rakudo-pkg aims to provide small self-contained (no dependencies, no files
 outside /opt/rakudo-pkg), pre-compiled native OS packages that can be used on
 user's computers, servers and --very importantly-- containers. Therefor, only
 Rakudo and the Zef package manager are provided. From a security point of view,
-we like to create the builds in the open: the packages are created and 
-automatically uploaded by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) 
-from the code in this repository. Feel free to inspect the build and contribute 
+we like to create the builds in the open: the packages are created and
+automatically uploaded by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg)
+from the code in this repository. Feel free to inspect the build and contribute
 enhancements.
 
 ## About the packages
 
 "rakudo-pkg" is the name used for the Rakudo installation by the package-manager
-in the Linux distributions. At the moment the following packages are provided 
+in the Linux distributions. At the moment the following packages are provided
 (see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
@@ -77,7 +77,7 @@ export PATH
 *: **If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
 Windows 10), use the Ubuntu 16.04 package (or the 14.04 one if running an
 older release) and run /opt/rakudo/bin/fix_windows10 after the installation.
-The script is needed to strip the moarvm library of (unused) functionalities 
+The script is needed to strip the moarvm library of (unused) functionalities
 that Windows does not implement yet.**
 
 **Older releases (before 2017.10-02) were installed into /opt/rakudo instead of
@@ -87,8 +87,8 @@ that Windows does not implement yet.**
 The installation supplies a working Zef *global* installation
 (/opt/rakudo-pkg/bin/zef). Rakudo, however, takes a different
 approach to many other languages (including Perl 5): modules are by default
-installed the home diretory of the user. A script is supplied to install 
-zef as a user, so you can choose to use the local or the global zef setup 
+installed the home diretory of the user. A script is supplied to install
+zef as a user, so you can choose to use the local or the global zef setup
 to install modules:
 
 ```
@@ -133,12 +133,34 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ## What is the difference with Rakudo Star?
 
 [Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
-distribution for end-users worth exploring. It has a very different 
+distribution for end-users worth exploring. It has a very different
 use case in mind than rakudo-pkg, however.
 
-While we concentrate on releasing minimalistic, self-contained packages 
+While we concentrate on releasing minimalistic, self-contained packages
 for every Rakudo release, Rakudo Star does release quarterly and it
-includes a wide selection of third pary modules. On Linux, it uses 
-the development tool [rakudobrew](https://github.com/tadzik/rakudobrew) 
+includes a wide selection of third pary modules. On Linux, it uses
+the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
 to locally compile the Rakudo compiler and the modules.
 
+## What about the packages provided by the Operating System?
+
+Our packages do not interfere with the packages included in Linux
+distributions and can be installed at the same time. Distribution packages
+that integrate with the Operating System are often a good choice.  That said,
+Perl 6 reached language stability very recently. Packages that date from
+sources before December 2015 should be considered beta (Rakudo is a lot
+slower and some features where removed or added in the language). Perl 6 and
+Rakudo are evolving very fast, getting better and faster. So, often you'll
+need a recent release to use these features.
+
+This is the state of Rakudo packaged by the distribrution themselves:
+
+- centos7:      -
+- fedora25:     2017.08
+- fedora26:     2017.08
+- debian8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- debian9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
+- ubuntu 14.04: 2013.12 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- ubuntu 16.04: 2015.11 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- ubuntu 17.04: 2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
+- ubuntu 17.10: 2017.06
