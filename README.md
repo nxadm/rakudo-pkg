@@ -101,7 +101,7 @@ If you prefer to build your own packages instead of the ones offered in the
 [releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use
 the wrapper scripts supplied in bin.
 
-### Create an image for the desired distribution:
+### Create a build image for the desired distribution:
 
 ```
 bin/create-img.p6
@@ -138,8 +138,7 @@ use case in mind than rakudo-pkg, however.
 
 While we concentrate on releasing minimalistic, self-contained packages 
 for every Rakudo release, Rakudo Star does release quarterly and it
-includes the compiler and a wide selection of third pary modules. 
-On Linux, it uses the development tool 
-[rakudobrew](https://github.com/tadzik/rakudobrew) to locally compile the
-Rakudo compiler and the modules.
+includes a wide selection of third pary modules. On Linux, it uses 
+the development tool [rakudobrew](https://github.com/tadzik/rakudobrew) 
+to locally compile the Rakudo compiler and the modules.
 
