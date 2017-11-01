@@ -10,8 +10,8 @@
 * [Install the Zef Module Manager as a non-root user](#install-the-zef-module-manager-as-a-non-root-user)
 * [Building your own packages](#building-your-own-packages)
 * [Contributing](#contributing)
-* [What is the difference with Rakudo Star?](#what-is-the-difference-with-rakudo-star)
-* [What about the packages provided by the Operating System?](#what-about-the-packages-provided-by-the-operating-system)
+* [What about Rakudo Star?](#what-about-rakudo-star)
+* [What about packages provided by Operating Systems?](#what-about-packages-provided-by-operating-systems)
 
 ## Introduction
 rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/). We
@@ -141,7 +141,7 @@ bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarv
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## What is the difference with Rakudo Star?
+## What about Rakudo Star?
 
 [Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
 distribution for end-users worth exploring. It has a very different
@@ -153,7 +153,7 @@ includes a wide selection of third pary modules. On Linux, it uses
 the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
 to locally compile the Rakudo compiler and the modules.
 
-## What about the packages provided by the Operating System?
+## What about packages provided by Operating Systems?
 
 Our packages do not interfere with the packages included in Linux
 distributions and can be installed at the same time. Distribution packages
