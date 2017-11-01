@@ -6,7 +6,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [About the packages](#about-the-packages)
+* [About the packages (and links to downloads)](#about-the-packages-and-links-to-downloads)
 * [Install the Zef Module Manager as a non-root user](#install-the-zef-module-manager-as-a-non-root-user)
 * [Building your own packages](#building-your-own-packages)
 * [Contributing](#contributing)
@@ -32,7 +32,7 @@ automatically uploaded by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg)
 from the code in this repository. Feel free to inspect the build and contribute
 enhancements.
 
-## About the packages
+## About the packages (and links to downloads)
 
 "rakudo-pkg" is the name used for the Rakudo installation by the package-manager
 in the Linux distributions. At the moment the following packages are provided
