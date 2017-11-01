@@ -3,6 +3,17 @@
 [![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
 <br>
 
+## Table of Contents
+
+* [Introduction](#introduction)
+* [About the packages](#about-the-packages)
+* [Install the Zef Module Manager as a non-root user](#install-the-zef-module-manager-as-a-non-root-user)
+* [Building your own packages](#building-your-own-packages)
+* [Contributing](#contributing)
+* [What is the difference with Rakudo Star?](#what-is-the-difference-with-rakudo-star)
+* [What about the packages provided by the Operating System?](#what-about-the-packages-provided-by-the-operating-system)
+
+## Introduction
 rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/). We
 follow upstream closely, so packages are built for every Rakudo release. Most
 of the time, they should arrive on the same day the Rakudo sources are released.
