@@ -20,7 +20,7 @@ sub MAIN(
         '-e', "NQP_VERSION=$nqp-version",
         '-e', "MOARVM_VERSION=$moarvm-version",
         '-e', "REVISION=$rev",
-        '-e', "MAINTAINER=$maintainer",
+        '-e', "MAINTAINER=\"$maintainer\"",
         $img
     );
     say "Creating the rakudo package...";
