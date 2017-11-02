@@ -160,6 +160,7 @@ sub pkg_fpm {
         '--url', 'https://perl6.org',
         $install_root
     );
+    say "@cmd";
     system(@cmd) == 0 or return 0;
     # Add OS info to filename
     chdir($pkg_dir_tmp) or die($!);
