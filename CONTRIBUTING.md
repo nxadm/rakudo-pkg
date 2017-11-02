@@ -3,7 +3,9 @@
 PRs or issues are always welcome!
 
 If your favorite distribution is not yet supported, you can add it yourself:
-- start from an existing and possibly related Dockerfile in the docker directory (this is the docker context) and name is as Dockerfile-\<os\>-\<arch\>-\<version\>, e.g: Dockerfile-centos-amd64-7.
-- all the packages built by a docker container run the same docker/pkg_rakudo
-script. It should stay as generic as possible and valid on all the target OS'es it run (Travis is a big help here). 
+- start from an existing and possibly related Dockerfile in the docker
+directory (this is the docker context) and name is as
+_Dockerfile-\<os\>-\<arch\>-\<version\>_, e.g: _Dockerfile-centos-amd64-7_.
+- add support to the distribution in _docker/pkg_rakudo.pl_. This script is
+run inside the different containers and should be generic.
 - add support for the new platform on .travis.yml (Travis CI).
