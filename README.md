@@ -87,12 +87,12 @@ export PATH
 
 *: **If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
 Windows 10), use the Ubuntu 16.04 package (or the 14.04 one if running an
-older release) and run /opt/rakudo/bin/fix_windows10 after the installation.
-The script is needed to strip the moarvm library of (unused) functionalities
-that Windows does not implement yet.**
+older release) and run /opt/rakudo-pkg/bin/fix-windows10 after the
+installation. The script is needed to strip the moarvm library of (unused)
+functionalities that Windows does not implement yet.**
 
 **Older releases (before 2017.10-02) were installed into /opt/rakudo instead of
-/opt/rakudo-bin. Adapt the PATH instructions accordingly.**
+/opt/rakudo-pkg. Adapt the PATH instructions accordingly.**
 
 ## Install the Zef Module Manager as a non-root user
 The installation supplies a working Zef *global* installation
