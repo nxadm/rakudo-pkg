@@ -19,6 +19,6 @@ apt-get -qq autoremove -y && apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo.pl /
-COPY install_zef_as_user /
+COPY install-zef-as-user.p6 /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]

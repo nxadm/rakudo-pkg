@@ -20,6 +20,6 @@ rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
 localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
 COPY pkg_rakudo.pl /
-COPY install_zef_as_user /
+COPY install-zef-as-user.p6 /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]

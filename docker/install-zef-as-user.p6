@@ -1,47 +1,41 @@
-#!/bin/bash -e
-
-# Perl6 Module Management (https://github.com/ugexe/zef)
-# You need Git in order to install and use Zef.
-
-cd /var/tmp
-rm -rf /var/tmp/zef_$USER
-git clone https://github.com/ugexe/zef.git zef_$USER
-cd zef_$USER
-$PREFIX/bin/perl6 -Ilib bin/zef --install-to=home install .
-rm -rf /var/tmp/zef_$USER
-
-echo "zef has been installed to ~/.perl6/bin."
-echo "Add ~/.perl6/bin and $PREFIX/bin to your PATH, e.g.:"
-echo "echo 'export PATH=~/.perl6/bin:i$PREFIX/bin:\$PATH' >> ~/.bash_profile"
-
-exit 0
 #!/opt/rakudo-pkg/bin/perl6
+# Perl6 Module Management (https://github.com/ugexe/zef)
+# You need Git in your path in order to install and use Zef.
 
-my $version        = '0.4.0';
+my $version = '0.4.0';
+my $repo    = 'https://github.com/ugexe/zef.git';
 
-sub MAIN() {
-    my $file-url = $base-url ~ $release ~
-        '/release/ubuntu-base-' ~ $release ~ '-base-i386.tar.gz';
-    my $cmd = 'curl ' ~ $file-url ~
-        '| gunzip | docker import - ' ~ $id ~ '/ubuntu-i386:' ~ $release;
-    my $exit-code = shell $cmd;
-    if $exit-code == 0 {
-        say 'Docker image imported (run "docker images").';
-    } else {
-        note 'Failure creating the base image.';
-        exit 1;
-    }
+say "Installing zef for user %*ENV<USER>...";
+my $tmp_dir =
+    $*TMPDIR ~ IO::Path.new($*TMPDIR).SPEC.dir-sep ~ 'rakudo-pkg_' ~ rand;
+my @cmd  = ('git', 'clone', '--depth=1', $repo, $tmp_dir);
+my $proc = run(@cmd);
+if $proc.exitcode != 0 {
+    note "Cloning $repo failed. Failing out...";
+    note 'Is "git" in your PATH?';
+    exit 1;
+}
+my $cwd = $*CWD;
+chdir($tmp_dir) or die($!);
+@cmd =
+    (~$*EXECUTABLE, '-Ilib', 'bin/zef',
+    '--install-to=home', 'install', '.');
+$proc = run(@cmd);
+if $proc.exitcode != 0 {
+    note 'Installing Zef failed. Failing out...';
+    exit 1;
+}
+chdir($cwd) or warn($!);
+
+if $*DISTRO.is-win {
+    run('deltree', $tmp_dir, '/s', '/q') or warn($!)
+} else {
+    run('rm', '-rf', $tmp_dir) or warn($!)
 }
 
-sub USAGE {
-    say qq:to/END/;
-    docker-img-ubuntu386, version $version.
-    Create an Ubuntu i386 Docker base images.
-    Docker, curl and gunzip are needed. Use sudo if appropiate.
+say qq:to/END/;
+zef has been installed to ~/.perl6/bin.
+Add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH, e.g.:"
+echo 'export PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:\$PATH' >> ~/.bash_profile
+END
 
-    Usage:
-      $*PROGRAM-NAME <release>
-
-    A list of releases can be fout at $base-url.
-    END
-}
