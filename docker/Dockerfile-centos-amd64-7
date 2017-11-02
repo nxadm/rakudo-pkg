@@ -19,7 +19,7 @@ yum -q remove -y ${pkgs_tmp} && yum -q clean all && \
 rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
 localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-COPY pkg_rakudo /
+COPY pkg_rakudo.pl /
 COPY install_zef_as_user /
 
-ENTRYPOINT [ "/pkg_rakudo" ]
+ENTRYPOINT [ "/pkg_rakudo.pl" ]

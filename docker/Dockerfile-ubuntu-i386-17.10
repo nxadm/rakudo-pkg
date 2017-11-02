@@ -20,7 +20,7 @@ apt-get remove -y --purge ${pkgs_tmp} && \
 apt-get -qq autoremove -y && apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
-COPY pkg_rakudo /
+COPY pkg_rakudo.pl /
 COPY install_zef_as_user /
 
-ENTRYPOINT [ "/pkg_rakudo" ]
+ENTRYPOINT [ "/pkg_rakudo.pl" ]

@@ -6,7 +6,7 @@ MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
 ENV \
 LANG='C.UTF-8' \
 TZ='Europe/Brussels' \
-pkgs='bash build-base ca-certificates git libc-dev linux-headers openssl perl perl-utils ruby wget zlib gzip tar git' \
+pkgs='build-base ca-certificates git libc-dev linux-headers openssl perl perl-utils ruby wget zlib gzip tar git' \
 pkg_tmp='libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata'
 
 RUN set -xv ; \
@@ -21,7 +21,7 @@ gem install fpm json && \
 apk del ${pkg_tmp} && \
 rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
 
-COPY pkg_rakudo /
+COPY pkg_rakudo.pl /
 COPY install_zef_as_user /
 
-ENTRYPOINT [ "/pkg_rakudo" ]
+ENTRYPOINT [ "/pkg_rakudo.pl" ]
