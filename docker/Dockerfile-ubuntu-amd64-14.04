@@ -20,6 +20,6 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user.p6 /
-COPY fix_windows10 /
+COPY fix-windows10 /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]
