@@ -42,7 +42,7 @@ my $revision   = $ENV{REVISION};
 ### Download & compile Rakudo ###
 for my $soft ('moarvm', 'nqp', 'rakudo') {
     $urls{$soft} =~ s/__VERSION__/$versions{$soft}/; # create the download URLs
-    #build($soft) or exit 1;
+    build($soft) or exit 1;
 }
 say "Rakudo was succesfully compiled.";
 
