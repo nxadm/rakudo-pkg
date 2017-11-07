@@ -133,6 +133,7 @@ sub check_env {
 sub checksum {
     chdir($pkg_dir) or die($!);
     my $sum = `sha1sum $pkg_name`;
+    say "Package checksum: $sum";
     open(my $fh, '>', $pkg_name . '.sha1') or die($!);
     print $fh $sum;
     close($fh) or die($!);
