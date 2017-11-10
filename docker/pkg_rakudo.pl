@@ -26,6 +26,7 @@ my %distro_info = (
     Ubuntu => { format => 'deb', cmd => ['dpkg', '-i'                     ] },
 );
 my ($pkg_name, $os, $os_release) = ('','',''); # to be filled at runtime
+my $arch = 'native';
 
 ### Check required environment ###
 check_env(
@@ -53,6 +54,7 @@ install_global_zef() or exit 1;
 ### Get OS information ###
 if (-f '/etc/alpine-release') {
     $os = 'Alpine';
+    $arch = 'x86_64';
     open(my $fh, '<', '/etc/alpine-release') or die($!);
     local $/; # slurp mode
     $os_release = <$fh>;
@@ -171,7 +173,7 @@ sub pkg_fpm {
         '--version', $versions{rakudo},
         '--iteration', $revision,
         '--url', 'https://perl6.org',
-        '--architecture', 'native',
+        '--architecture', $arch,
         $install_root
     );
     say "@cmd";
