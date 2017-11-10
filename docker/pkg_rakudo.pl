@@ -150,6 +150,7 @@ sub install_global_zef {
         '--install-to=perl', 'install', '.');
     symlink("$install_root/share/perl6/bin/zef", "$install_root/bin/zef")
         or die($!);
+    chdir('/') or die($!);
     remove_tree('/var/tmp/zef') or warn($!);
     return 1;
 }
