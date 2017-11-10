@@ -37,6 +37,9 @@ enhancements.
 "rakudo-pkg" is the name used for the Rakudo installation by the package-manager
 in the Linux distributions. At the moment the following packages are provided
 (see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+- Alpine 3.6 amd64:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=amd64)).
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
@@ -75,6 +78,22 @@ in the Linux distributions. At the moment the following packages are provided
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
 
   Beware that 32-bit rakudo binaries (i386) are not JIT enabled (upstream).
+
+**You can install the package with the regular package manager of your
+distribution.**
+
+Debian and Ubuntu:
+```
+$ sudo dpkg -i *.deb
+```
+Centos and Fedora:
+```
+$ sudo rpm -Uvh *rpm
+```
+Alpine:
+```
+$ sudo apk add --allow-untrusted *.apk
+```
 
 **You'll have to add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH.
 Add this to your .profile, .bash_profile or the corresponding environment
