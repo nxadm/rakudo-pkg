@@ -150,6 +150,7 @@ sub install_global_zef {
     chdir('zef') or die($!);
     @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
         '--install-to=perl', 'install', '.');
+    system(@cmd) == 0 or return 0;
     symlink("$install_root/share/perl6/bin/zef", "$install_root/bin/zef")
         or die($!);
     chdir('/') or die($!);
