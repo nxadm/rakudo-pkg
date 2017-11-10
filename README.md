@@ -184,13 +184,13 @@ Rakudo are evolving very fast, getting better and faster. So, often you'll
 need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribrution themselves:
-
-- centos7:      -
-- fedora25:     2017.08
-- fedora26:     2017.08
-- debian8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- debian9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- ubuntu 14.04: 2013.12 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- ubuntu 16.04: 2015.11 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- ubuntu 17.04: 2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- ubuntu 17.10: 2017.06
+- Alpine 3.6:    -
+- Centos 7:      -
+- Fedora 25:     2017.08
+- Fedora 26:     2017.08
+- Debian 8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Debian 9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
+- Ubuntu 14.04: 2013.12 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Ubuntu 16.04: 2015.11 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Ubuntu 17.04: 2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
+- Ubuntu 17.10: 2017.06
