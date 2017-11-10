@@ -8,6 +8,7 @@ use File::Path qw/remove_tree/;
 ### Variables ###
 my $install_root = '/opt/rakudo-pkg';
 my $pkg_dir      = '/staging';
+my $zef_repo     = "https://github.com/ugexe/zef.git"
 my %urls         = ( # templates for now
     rakudo =>
         'https://rakudo.perl6.org/downloads/rakudo/rakudo-__VERSION__.tar.gz',
@@ -46,13 +47,15 @@ for my $soft ('moarvm', 'nqp', 'rakudo') {
 }
 say "Rakudo was succesfully compiled.";
 
+### Instal zef as a test ###
+install_global_zef() or exit 1;
+
 ### Get OS information ###
 if (-f '/etc/alpine-release') {
     $os = 'Alpine';
     open(my $fh, '<', '/etc/alpine-release') or die($!);
-    $/ = undef;
+    local $/; # slurp mode
     $os_release = <$fh>;
-    $os_release =~ s/^(\d+\.\d+)/$1/; # Ignore dot releases
     close $fh;
 } else {
     $os         = `lsb_release -is`;
@@ -60,19 +63,14 @@ if (-f '/etc/alpine-release') {
 }
 chomp $os;
 chomp $os_release;
-$os_release =~ s/^(\d+\.\d+).+/$1/; # Short OS release (7.2.1234 -> 7.2)
+$os_release =~ s/^(\d+\.\d+).+/$1/s; # Short OS release (7.2.1234 -> 7.2)
 
 ### Package ###
 move('/install-zef-as-user.p6', "$install_root/bin/") or die($!);
 if (-f '/fix_windows10') { # WSL fix
     move('/fix_windows10', "$install_root/bin/") or die($!);
 }
-
-if ($os eq 'alpine') {
-    pkg_alpine() or exit 1;
-} else {
-    pkg_fpm() or exit 1;
-}
+pkg_fpm() or exit 1;
 say "Rakudo was succesfully packaged.";
 
 ### Create checksum ###
@@ -83,6 +81,7 @@ say "Rakudo package was succesfully checksummed.";
 my @cmd = ( @{ $distro_info{$os}{cmd} }, $pkg_dir . '/' . $pkg_name);
 system(@cmd) == 0 or die($!);
 system($install_root . '/bin/perl6', '-v') == 0 or die($!);
+
 
 exit 0;
 
@@ -141,8 +140,19 @@ sub checksum {
     return 1;
 }
 
-
-sub pkg_alpine { return 0; }
+sub install_global_zef {
+    # Install zef as root
+    chdir('/var/tmp') or die($!);
+    my @cmd = ('git', 'clone', $zef_repo);
+    system(@cmd) == 0 or return 0;
+    chdir('zef') or die($!);
+    @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
+        '--install-to=perl', 'install', '.');
+    symlink("$install_root/share/perl6/bin/zef", "$install_root/bin/zef")
+        or die($!)
+    remove_tree('/var/tmp/zef') or warn($!);
+    return 1;
+}
 
 sub pkg_fpm {
     my $pkg_dir_tmp = $pkg_dir . rand();
@@ -152,14 +162,15 @@ sub pkg_fpm {
         '--deb-no-default-config-files',
         '--license', 'Artistic License 2.0',
         '--description', 'Rakudo Perl 6 runtime',
-        '-s', 'dir',
-        '-t', $distro_info{$os}{format},
-        '-p', $pkg_dir_tmp,
-        '-n', 'rakudo-pkg',
-        '-m', $maintainer,
-        '-v', $versions{rakudo},
+        '--input-type', 'dir',
+        '--output-type', $distro_info{$os}{format},
+        '--package', $pkg_dir_tmp,
+        '--name', 'rakudo-pkg',
+        '--maintainer', $maintainer,
+        '--version', $versions{rakudo},
         '--iteration', $revision,
         '--url', 'https://perl6.org',
+        '--architecture', 'native',
         $install_root
     );
     say "@cmd";
