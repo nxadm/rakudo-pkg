@@ -5,7 +5,7 @@
 # apk from https://githum.com/nxadm/rakudo-pkg.
 FROM alpine:3.6
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
-ENV rakudo='https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10-02/rakudo-pkg-Alpine3.6_2017.10-02_x86_64.apk'
+ENV rakudo='https://github.com/nxadm/rakudo-pkg/releases/download/v2017.10-02/rakudo-pkg-Alpine3.6_2017.10-01_x86_64.apk'
 ENV LANG='C.UTF-8'
 ENV TZ='Europe/Brussels'
 ENV pkgs='build-base ca-certificates git openssl readline wget'
@@ -19,7 +19,7 @@ update-ca-certificates && \
 cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
 echo "${TZ}" > /etc/timezone && \
 wget ${rakudo} && apk add --allow-untrusted *.apk && rm -rf *.apk && \
-/opt/rakudo-pkg/bin/zef install Readline && \
+zef install Readline && \
 # Cleanup
 apk del ${pkg_tmp} && \
 rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
