@@ -76,6 +76,22 @@ in the Linux distributions. At the moment the following packages are provided
 
   Beware that 32-bit rakudo binaries (i386) are not JIT enabled (upstream).
 
+**You can install the package with the regular package manager of your
+distribution.**
+
+Debian and Ubuntu:
+```
+$ sudo dpkg -i *.deb
+```
+Centos and Fedora:
+```
+$ sudo rpm -Uvh *rpm
+```
+Alpine:
+```
+$ sudo apk add --allow-untrusted *.apk
+```
+
 **You'll have to add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH.
 Add this to your .profile, .bash_profile or the corresponding environment
 script for other shells)**:
