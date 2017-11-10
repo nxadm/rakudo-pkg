@@ -8,7 +8,7 @@ use File::Path qw/remove_tree/;
 ### Variables ###
 my $install_root = '/opt/rakudo-pkg';
 my $pkg_dir      = '/staging';
-my $zef_repo     = "https://github.com/ugexe/zef.git"
+my $zef_repo     = "https://github.com/ugexe/zef.git";
 my %urls         = ( # templates for now
     rakudo =>
         'https://rakudo.perl6.org/downloads/rakudo/rakudo-__VERSION__.tar.gz',
