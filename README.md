@@ -37,6 +37,9 @@ enhancements.
 "rakudo-pkg" is the name used for the Rakudo installation by the package-manager
 in the Linux distributions. At the moment the following packages are provided
 (see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+- Alpine 3.6 amd64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=amd64)).
 - Centos 7 amd64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
