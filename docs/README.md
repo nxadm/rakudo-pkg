@@ -55,6 +55,9 @@ in the Linux distributions. At the moment the following packages are provided
 - Fedora 26 x86_64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
+- Fedora 27 x86_64:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=amd64)).
 - Ubuntu 14.04 amd64*:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=14.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=14.04&arch=amd64)).
@@ -176,7 +179,7 @@ to locally compile the Rakudo compiler and the modules.
 
 Our packages do not interfere with the packages included in Linux
 distributions and can be installed at the same time. Distribution packages
-that integrate with the Operating System are often a good choice.  That said,
+that integrate with the Operating System are often a good choice. That said,
 Perl 6 reached language stability very recently. Packages that date from
 sources before December 2015 should be considered beta (Rakudo is a lot
 slower and some features where removed or added in the language). Perl 6 and
@@ -188,6 +191,7 @@ This is the state of Rakudo packaged by the distribrution themselves:
 - Centos 7:      -
 - Fedora 25:     2017.08
 - Fedora 26:     2017.08
+- Fedora 27:     2017.08
 - Debian 8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
 - Ubuntu 14.04: 2013.12 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
