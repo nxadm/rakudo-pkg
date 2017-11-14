@@ -14,6 +14,7 @@ env:
   - OS=debian ARCH=amd64 VERSION=9
   - OS=fedora ARCH=amd64 VERSION=25
   - OS=fedora ARCH=amd64 VERSION=26
+  - OS=fedora ARCH=amd64 VERSION=27
   - OS=ubuntu ARCH=amd64 VERSION=14.04
   - OS=ubuntu ARCH=amd64 VERSION=16.04
   - OS=ubuntu ARCH=amd64 VERSION=17.04
