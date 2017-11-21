@@ -65,7 +65,7 @@ if (-f '/etc/alpine-release') {
 }
 chomp $os;
 chomp $os_release;
-$os_release =~ s/^(\d+\.\d+).+/$1/s; # Short OS release (7.2.1234 -> 7.2)
+$os_release =~ s/^(\d+\.\d+).+?/$1/s; # Short OS release (7.2.1234 -> 7.2)
 
 ### Package ###
 move('/install-zef-as-user.p6', "$install_root/bin/") or die($!);
