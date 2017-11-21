@@ -65,7 +65,7 @@ if (-f '/etc/alpine-release') {
 }
 chomp $os;
 chomp $os_release;
-if ($os eq 'CentOS') {
+if ($os eq 'CentOS' or $os eq 'Alpine') {
     $os_release =~ s/^(\d+\.\d+).+/$1/; # Short OS release (7.2.1234 -> 7.2)
 }
 
