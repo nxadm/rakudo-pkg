@@ -1,0 +1,4 @@
+/opt/rakudo-pkg/bin/zef --install-to=home install zef
+echo "Don't forget to add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH,"
+echo "e.g.:"
+echo 'export PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:\$PATH' >> ~/.bash_profile

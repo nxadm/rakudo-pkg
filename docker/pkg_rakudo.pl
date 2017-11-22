@@ -70,7 +70,7 @@ if ($os eq 'CentOS' or $os eq 'Alpine') {
 }
 
 ### Package ###
-move('/install-zef-as-user.p6', "$install_root/bin/") or die($!);
+move('/install-zef-as-user', "$install_root/bin/") or die($!);
 if (-f '/fix_windows10') { # WSL fix
     move('/fix_windows10', "$install_root/bin/") or die($!);
 }

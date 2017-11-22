@@ -17,6 +17,6 @@ gem install fpm && \
 dnf -q remove -y ${pkgs_tmp} && dnf -q clean all
 
 COPY pkg_rakudo.pl /
-COPY install-zef-as-user.p6 /
+COPY install-zef-as-user /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]

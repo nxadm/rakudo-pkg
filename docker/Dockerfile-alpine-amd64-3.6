@@ -25,6 +25,6 @@ apk del ${pkg_tmp} && \
 rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo.pl /
-COPY install-zef-as-user.p6 /
+COPY install-zef-as-user /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]
