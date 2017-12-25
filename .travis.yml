@@ -1,9 +1,9 @@
 language: generic
 env:
   global:
-  - RAKUDO_VERSION="2017.11"
-  - NQP_VERSION="2017.11"
-  - MOARVM_VERSION="2017.11"
+  - RAKUDO_VERSION="2017.12"
+  - NQP_VERSION="2017.12"
+  - MOARVM_VERSION="2017.12"
   - REVISION="01"
   - PATH=/opt/rakudo-pkg/bin:$PATH
   - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.11/rakudo-pkg-Ubuntu14.04_2017.11-01_amd64.deb"
