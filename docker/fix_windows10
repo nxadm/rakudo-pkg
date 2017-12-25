@@ -2,7 +2,7 @@
 
 # Make libmoar.so work on Windows 10.
 
-cd /opt/rakudo/lib
+cd /opt/rakudo-pkg/lib
 sudo apt-get install execstack
 sudo cp libmoar.so libmoar.so-backup
 sudo execstack -c libmoar.so
