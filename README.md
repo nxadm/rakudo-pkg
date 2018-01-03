@@ -120,7 +120,7 @@ functionalities that Windows does not implement yet.**
 The installation supplies a working Zef *global* installation
 (/opt/rakudo-pkg/bin/zef). Rakudo, however, takes a different
 approach to many other languages (including Perl 5): modules are by default
-installed the home diretory of the user. A script is supplied to install
+installed the home directory of the user. A script is supplied to install
 zef as a user, so you can choose to use the local or the global zef setup
 to install modules:
 
@@ -171,7 +171,7 @@ use case in mind than rakudo-pkg, however.
 
 While we concentrate on releasing minimalistic, self-contained packages
 for every Rakudo release, Rakudo Star does release quarterly and it
-includes a wide selection of third pary modules. On Linux, it uses
+includes a wide selection of third party modules. On Linux, it uses
 the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
 to locally compile the Rakudo compiler and the modules.
 
@@ -186,7 +186,7 @@ slower and some features where removed or added in the language). Perl 6 and
 Rakudo are evolving very fast, getting better and faster. So, often you'll
 need a recent release to use these features.
 
-This is the state of Rakudo packaged by the distribrution themselves:
+This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.6:    -
 - Centos 7:      -
 - Fedora 25:     2017.08
