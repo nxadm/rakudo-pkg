@@ -27,6 +27,6 @@ sub USAGE {
     Usage:
       $*PROGRAM-NAME <release>
 
-    A list of releases can be fout at $base-url.
+    A list of releases can be found at $base-url.
     END
 }
