@@ -1,0 +1,30 @@
+FROM alpine:3.7
+MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+# This build is on hold because an upstream bug resulting in bad pkgs:
+# https://github.com/jordansissel/fpm/issues/1227
+
+ENV LANG='C.UTF-8'
+ENV TZ='Europe/Brussels'
+ENV pkgs='build-base ca-certificates git libc-dev linux-headers openssl perl perl-utils ruby wget zlib gzip tar git'
+ENV pkg_tmp='libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata'
+
+RUN set -xv ; \
+apk update && apk upgrade && \
+# pkgs for compiling and pkg creation
+apk add --no-cache ${pkgs} ${pkg_tmp} && \
+update-ca-certificates && \
+cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
+echo "${TZ}" > /etc/timezone && \
+gem install fpm json && \
+# Workaround bug https://github.com/jordansissel/fpm/issues/1227
+perl -pi -e \
+'s/^\s+(full_record_path\s+=\s+add_paxstring\(full_record_path\))/#$1/' \
+/usr/lib/ruby/gems/2.4.0/gems/fpm-1.9.3/lib/fpm/package/apk.rb && \
+# Cleanup
+apk del ${pkg_tmp} && \
+rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
+
+COPY pkg_rakudo.pl /
+COPY install-zef-as-user /
+
+ENTRYPOINT [ "/pkg_rakudo.pl" ]
