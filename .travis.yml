@@ -9,6 +9,7 @@ env:
   - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.11/rakudo-pkg-Ubuntu14.04_2017.11-01_amd64.deb"
   matrix:
   - OS=alpine ARCH=amd64 VERSION=3.6
+  - OS=alpine ARCH=amd64 VERSION=3.7
   - OS=centos ARCH=amd64 VERSION=7
   - OS=debian ARCH=amd64 VERSION=8
   - OS=debian ARCH=amd64 VERSION=9
