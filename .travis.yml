@@ -1,9 +1,9 @@
 language: generic
 env:
   global:
-  - RAKUDO_VERSION="2017.11"
-  - NQP_VERSION="2017.11"
-  - MOARVM_VERSION="2017.11"
+  - RAKUDO_VERSION="2017.12"
+  - NQP_VERSION="2017.12"
+  - MOARVM_VERSION="2017.12.1"
   - REVISION="01"
   - PATH=/opt/rakudo-pkg/bin:$PATH
   - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2017.11/rakudo-pkg-Ubuntu14.04_2017.11-01_amd64.deb"
@@ -18,11 +18,9 @@ env:
   - OS=fedora ARCH=amd64 VERSION=27
   - OS=ubuntu ARCH=amd64 VERSION=14.04
   - OS=ubuntu ARCH=amd64 VERSION=16.04
-  - OS=ubuntu ARCH=amd64 VERSION=17.04
   - OS=ubuntu ARCH=amd64 VERSION=17.10
   - OS=ubuntu ARCH=amd64 VERSION=14.04
   - OS=ubuntu ARCH=i386 VERSION=16.04
-  - OS=ubuntu ARCH=i386 VERSION=17.04
   - OS=ubuntu ARCH=i386 VERSION=17.10
 sudo: required
 services:
