@@ -19,11 +19,12 @@ my %urls         = ( # templates for now
 );
 my %distro_info = (
     # distro => [ pkg format, install command ]
-    Alpine => { format => 'apk', cmd => ['apk', 'add', '--allow-untrusted'] },
-    CentOS => { format => 'rpm', cmd => ['rpm', '-Uvh'                    ] },
-    Debian => { format => 'deb', cmd => ['dpkg', '-i'                     ] },
-    Fedora => { format => 'rpm', cmd => ['rpm', '-Uvh'                    ] },
-    Ubuntu => { format => 'deb', cmd => ['dpkg', '-i'                     ] },
+    Alpine   => { format=>'apk', cmd => ['apk', 'add', '--allow-untrusted'] },
+    CentOS   => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    Debian   => { format=>'deb', cmd => ['dpkg', '-i'                     ] },
+    Fedora   => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    openSUSE => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    Ubuntu   => { format=>'deb', cmd => ['dpkg', '-i'                     ] },
 );
 my ($pkg_name, $os, $os_release) = ('','',''); # to be filled at runtime
 my $arch = 'native';
@@ -61,6 +62,7 @@ if (-f '/etc/alpine-release') {
     close $fh;
 } else {
     $os         = `lsb_release -is`;
+    $os         =~ s/^(\w+)\s+\w+$/$1/;
     $os_release = `lsb_release -rs`;
 }
 chomp $os;
