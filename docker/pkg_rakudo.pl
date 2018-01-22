@@ -71,7 +71,7 @@ chomp $os_release;
 if ($os eq 'CentOS' or $os eq 'Alpine') {
     $os_release =~ s/^(\d+\.\d+).+/$1/; # Short OS release (7.2.1234 -> 7.2)
 } elsif ($os eq 'openSUSE') {
-    $fpm = '/usr/bin/fpm';
+    $fpm = '/usr/lib64/ruby/gems/2.1.0/gems/fpm-1.9.3/bin/fpm';
 }
 
 ### Package ###
