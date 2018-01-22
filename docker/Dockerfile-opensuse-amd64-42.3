@@ -1,6 +1,7 @@
 FROM opensuse:42.3
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='en_US.UTF-8' \
+    PATH="/usr/bin:${PATH}" \
     pkgs='git gcc lsb5-core make rpm-build ruby wget' \
     pkgs_tmp='ruby-devel'
 
