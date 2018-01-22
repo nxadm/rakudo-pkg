@@ -9,7 +9,6 @@ RUN set -xv ; \
     zypper update -y && \
     zypper install --replacefiles -y ${pkgs} ${pkgs_tmp} && \
     ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
-    dnf -q groupinstall -y "${pkggroup}" && \
     gem install fpm && \
     zypper remove -y --clean-deps ${pkgs_tmp}
 
