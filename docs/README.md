@@ -125,7 +125,7 @@ zef as a user, so you can choose to use the local or the global zef setup
 to install modules:
 
 ```
-install_zef_as_user: install Zef as ~/.perl6/bin/zef
+install-zef-as-user: install Zef as ~/.perl6/bin/zef
 ```
 
 ## Building your own packages
