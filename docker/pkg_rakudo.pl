@@ -8,6 +8,7 @@ use File::Path qw/remove_tree/;
 ### Variables ###
 my $install_root = '/opt/rakudo-pkg';
 my $pkg_dir      = '/staging';
+my $fpm          = 'fpm';
 my $zef_repo     = "https://github.com/ugexe/zef.git";
 my %urls         = ( # templates for now
     rakudo =>
@@ -19,11 +20,12 @@ my %urls         = ( # templates for now
 );
 my %distro_info = (
     # distro => [ pkg format, install command ]
-    Alpine => { format => 'apk', cmd => ['apk', 'add', '--allow-untrusted'] },
-    CentOS => { format => 'rpm', cmd => ['rpm', '-Uvh'                    ] },
-    Debian => { format => 'deb', cmd => ['dpkg', '-i'                     ] },
-    Fedora => { format => 'rpm', cmd => ['rpm', '-Uvh'                    ] },
-    Ubuntu => { format => 'deb', cmd => ['dpkg', '-i'                     ] },
+    Alpine   => { format=>'apk', cmd => ['apk', 'add', '--allow-untrusted'] },
+    CentOS   => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    Debian   => { format=>'deb', cmd => ['dpkg', '-i'                     ] },
+    Fedora   => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    openSUSE => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
+    Ubuntu   => { format=>'deb', cmd => ['dpkg', '-i'                     ] },
 );
 my ($pkg_name, $os, $os_release) = ('','',''); # to be filled at runtime
 my $arch = 'native';
@@ -61,12 +63,15 @@ if (-f '/etc/alpine-release') {
     close $fh;
 } else {
     $os         = `lsb_release -is`;
+    $os         =~ s/^(\w+)\s+\w+$/$1/;
     $os_release = `lsb_release -rs`;
 }
 chomp $os;
 chomp $os_release;
 if ($os eq 'CentOS' or $os eq 'Alpine') {
     $os_release =~ s/^(\d+\.\d+).+/$1/; # Short OS release (7.2.1234 -> 7.2)
+} elsif ($os eq 'openSUSE') {
+    $fpm = '/usr/lib64/ruby/gems/2.1.0/gems/fpm-1.9.3/bin/fpm';
 }
 
 ### Package ###
@@ -164,7 +169,7 @@ sub pkg_fpm {
     my $pkg_dir_tmp = $pkg_dir . rand();
     mkdir($pkg_dir_tmp) or die($!);
     my @cmd = (
-        'fpm',
+        $fpm,
         '--deb-no-default-config-files',
         '--license', 'Artistic License 2.0',
         '--description', 'Rakudo Perl 6 runtime',
