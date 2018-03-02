@@ -189,6 +189,7 @@ need a recent release to use these features.
 This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.6:    -
 - Alpine 3.7:    -
+- Alpine edge: 2018.02 (.1 for rakudo) in testing/{moarvm, nqp, rakudo, zef}
 - Centos 7:      -
 - Debian 8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
