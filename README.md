@@ -127,6 +127,22 @@ to install modules:
 ```
 install-zef-as-user # install Zef as ~/.perl6/bin/zef
 ```
+## Add perl6/rakudo to your `.travis.yml` file
+
+Since this is going to be downloaded in the install phase, you don't
+need to specify a language; by default, it will install Ruby. *Don't*
+specify `perl6` since this will download and build perl6 from
+sources. A valid `.travis.yml` would include:
+
+```
+dist: trusty
+sudo: required
+before_install:
+  - wget -O /tmp/perl6.deb https://github.com/nxadm/rakudo-pkg/releases/download/v2018.02.1/rakudo-pkg-Ubuntu14.04_2018.02.1-01_amd64.deb  && sudo dpkg -i /tmp/perl6.deb && export PATH=$PATH:/.perl6/bin:/opt/rakudo-pkg/bin && install-zef-as-user  && zef install .
+```
+
+Instead of that version, you can install another, or the latest. After
+this line, you should do `zef test .` or whatever else you need to test your package. 
 
 ## Building your own packages
 
