@@ -91,7 +91,7 @@ $ sudo dpkg -i *.deb
 ```
 Centos and Fedora:
 ```
-$ sudo rpm -Uvh *rpm
+$ sudo rpm -Uvh *.rpm
 ```
 Alpine:
 ```
@@ -142,7 +142,7 @@ before_install:
 ```
 
 Instead of that version, you can install another, or the latest. After
-this line, you should do `zef test .` or whatever else you need to test your package. 
+this line, you should do `zef test .` or whatever else you need to test your package.
 
 ## Building your own packages
 
