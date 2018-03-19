@@ -6,7 +6,7 @@ env:
   - MOARVM_VERSION="2018.03"
   - REVISION="01"
   - PATH=/opt/rakudo-pkg/bin:$PATH
-  - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2018.01/rakudo-pkg-Ubuntu14.04_2018.02.1-01_amd64.deb"
+  - RAKUDO_DEB="https://github.com/nxadm/rakudo-pkg/releases/download/v2018.02.1/rakudo-pkg-Ubuntu14.04_2018.02.1-01_amd64.deb"
   matrix:
   - OS=alpine   ARCH=amd64 VERSION=3.6
   - OS=alpine   ARCH=amd64 VERSION=3.7
@@ -43,4 +43,4 @@ deploy:
     tags: true
   branches:
     only:
-      - /^v\d+\.\d+$/
+      - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
