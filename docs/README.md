@@ -52,9 +52,6 @@ in the Linux distributions. At the moment the following packages are provided
 - Debian 9 amd64:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
-- Fedora 25 x86_64:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=25&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=25&arch=amd64)).
 - Fedora 26 x86_64:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
@@ -208,7 +205,6 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Centos 7:      -
 - Debian 8:      2014.07 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (use with care, pre breaking [IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- Fedora 25:     2017.08
 - Fedora 26:     2017.08
 - Fedora 27:     2017.08
 - openSUSE 42.3: -
