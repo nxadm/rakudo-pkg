@@ -31,17 +31,17 @@ script:
 - bin/create-img.p6 docker/Dockerfile-${OS}-${ARCH}-${VERSION} && bin/create-pkg.p6
   rakudo-pkg/$OS-$ARCH:$VERSION --rakudo-version=$RAKUDO_VERSION --nqp-version=$NQP_VERSION
   --moarvm-version=$MOARVM_VERSION --rev=$REVISION
+before_deploy:
+- git config --local user.name "brian d foy"
+- git config --local user.email "brian.d.foy@gmail.com"
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"deploy:
 deploy:
   provider: releases
-  prerelease: true
   api_key:
-    secure: kZZIX3JLoAowpJgQXUheKMquNtnPUNa18SFQQSYaQe3OjaBLzJGuI/Dv+eju3dZA9HWXVVfAl/EBYmx0YRyIa8XPoKL+hxbl29sdcP7wNi4OJsIcYr2dY7dcPY2T1RIWCd2cU7CXbJ1IquDN67asWEBxbpwpZluYDd9odx2JMeMAf2XX+VQjFxwK92hGrpLMdtzNstSiZvYn7inBTOU8nrBxQVccd7ec9ZsF8PUjohazUzpCHYvHgZOPHQZY1UgOD1KlrUmPtUToakDOnXyysZBvC3YBq833eqBXIlaoCELnFdzOnwIQzewxYgXrz4JQQhUmXPIvmylM0MoNp1MnkANs68oECBLvOB8kxOglIYWBad6GtaR5pkLhh3bPwc6fwqZZQMoqlncesKDPtHvmtQmWpWFxbwYsOFgFDcc3jW8DV233EbpubrREbrYFq83Ahc0aYx+GpNWFZ71jlXcErZ7tB/KltHWoCjLPq1dxCIFiq/AOLylK9meo/AQF+RXAb5+3fkd32X5xyRQejYfdhGxZ/c6QkV4C3BAIypJ76Hi0MfePuylMTe4P59nkT98j6ef3d8MtPHIM8DdBww6erseteKCaS0fZaf3e3YBhG9TJYLTHri4o/StCnqTMyiANEcsNoQB3oFC3z5Q76jYHocKo5g+z/6/ooeipn03hKsA=
+    secure: WermANxkGI2hlcU4gSJ+W8DbLgeR5OBxn9QtoH5TebgPNRVDXhgTCM7n1wQllZBtALIgU0EPUHHOCMORrZ+PJBqVIAVABR4ScHFDaunzMibdG0oboXTay9MMu9JxurdBYgll6sm5ozZPXeX+5FlMyWAyrOWL+fvrPk716Gll2ex/0ddgcSjn1G3J/C7T3OBv59Pgl/Amavtev0sRldvCmLpXChDkULWRDWsTDq5cmJaJbQqQKA/zTXvgW5jnBSTl59OdcM73qlIqK/hY9ESibDQYVAeYhXNI8RPu/bA40gunh2dW/gZPrptyw8yGUoHD4fE3SE+wAX9ymwN9/TPNYjBO3Hi1HJ92okWzcOK9nIVyLB02lRX4KvCekcWeOqnQZ5Y5u41ZunFxMijDiNH6c+y5Umwj5EjCWWi5w+u0QBfd9UPRQ95xG6IhWfpo1VF/+7jkcyT6knku7EGThIELlSSbd3kA5N6PdywD4BcaPhlwy9RRryudx3JUJ2I1Y2b6xqVnUaJM4pPNqcB9hhXVTwLpYQL/CoG0A0fGmwSJEpriYTM9nFG7cG9JVBdQFoY9Yqs3LZdZ97WOLQj9YzeUpCbp1y0ucVrra9n729ekt6Wb2OLL4SYBn2cA/224TicNpjrdWqlcM386EDjnEw28rUNDyG5oEOffTKK4ePSKgV4=
   file_glob: true
-  file: "/var/tmp/rakudo-pkg/*"
+  file: '"/var/tmp/rakudo-pkg/*"'
   skip_cleanup: true
   on:
-    repo: nxadm/rakudo-pkg
+    repo: briandfoy/rakudo-pkg
     tags: true
-  branches:
-    only:
-      - /^v\d+\.\d+$/
