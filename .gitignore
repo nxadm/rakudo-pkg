@@ -21,3 +21,4 @@ nytprof.out
 *.sw*
 pkgs/
 _*
+.precomp
