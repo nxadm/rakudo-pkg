@@ -100,7 +100,7 @@ Add this to your .profile, .bash_profile or the corresponding environment
 script for other shells)**:
 
 ```
-PATH=$PATH:~/.perl6/bin:/opt/rakudo-pkg/bin
+PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:$PATH
 export PATH
 ```
 
