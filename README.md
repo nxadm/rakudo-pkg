@@ -14,17 +14,17 @@
 * [What about packages provided by Operating Systems?](#what-about-packages-provided-by-operating-systems)
 
 ## Introduction
-rakudo-pkg offers native packages of [Rakudo Perl 6](https://perl6.org/). We
-follow upstream closely, so packages are built for every Rakudo release. Most
+`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/). We
+follow upstream closely, so they are built for every Rakudo release. Most
 of the time, they should arrive on the same day the Rakudo sources are released.
 
 For those users (and System Administrators) that prefer to build their own
-Rakudo packages, rakudo-pkg can be used as a build framework. Because Docker
+Rakudo packages, `rakudo-pkg` can be used as a build framework. Because Docker
 containers are used when creating native Linux packages, any platform running
 Docker can be used a host, including MacOS and Windows machines.
 
-rakudo-pkg aims to provide small self-contained (no dependencies, no files
-outside /opt/rakudo-pkg), pre-compiled native OS packages that can be used on
+`rakudo-pkg` aims to provide small self-contained (no dependencies, no files
+outside `/opt/rakudo-pkg`), pre-compiled native OS packages that can be used on
 user's computers, servers and --very importantly-- containers. Therefor, only
 Rakudo and the Zef package manager are provided. From a security point of view,
 we like to create the builds in the open: the packages are created and
@@ -34,7 +34,7 @@ enhancements.
 
 ## About the packages (and links to downloads)
 
-"rakudo-pkg" is the name used for the Rakudo installation by the package-manager
+"`rakudo-pkg`" is the name used for the Rakudo installation by the package-manager
 in the Linux distributions. At the moment the following packages are provided
 (see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 - Alpine 3.6 x86_64:
@@ -95,8 +95,8 @@ Alpine:
 $ sudo apk add --allow-untrusted *.apk
 ```
 
-**You'll have to add ~/.perl6/bin and /opt/rakudo-pkg/bin to your PATH.
-Add this to your .profile, .bash_profile or the corresponding environment
+**You'll have to add `~/.perl6/bin` and `/opt/rakudo-pkg/bin` to your `PATH`.
+Add this to your `.profile`, `.bash_profile or` the corresponding environment
 script for other shells)**:
 
 ```
@@ -106,7 +106,7 @@ export PATH
 
 *: **If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
 Windows 10), use the Ubuntu 16.04 package (or the 14.04 one if running an
-older release) and run /opt/rakudo-pkg/bin/fix_windows10 after the
+older release) and run `/opt/rakudo-pkg/bin/fix_windows10` after the
 installation. The script is needed to strip the moarvm library of (unused)
 functionalities that Windows does not implement yet.**
 
@@ -115,7 +115,7 @@ functionalities that Windows does not implement yet.**
 
 ## Install the Zef Module Manager as a non-root user
 The installation supplies a working Zef *global* installation
-(/opt/rakudo-pkg/bin/zef). Rakudo, however, takes a different
+(`/opt/rakudo-pkg/bin/zef`). Rakudo, however, takes a different
 approach to many other languages (including Perl 5): modules are by default
 installed the home directory of the user. A script is supplied to install
 zef as a user, so you can choose to use the local or the global zef setup
@@ -124,9 +124,11 @@ to install modules:
 ```
 install-zef-as-user # install Zef as ~/.perl6/bin/zef
 ```
-## Add perl6/rakudo to your `.travis.yml` file
+## Add perl6/rakudo to your `.travis.yml` file 
 
-Since this is going to be downloaded in the install phase, you don't
+This file is used for configuring continuous integration
+using [Travis](https://travis-ci.org) and other CI systems. Since this
+package is going to be downloaded in the install phase, you don't
 need to specify a language; by default, it will install Ruby. *Don't*
 specify `perl6` since this will download and build perl6 from
 sources. A valid `.travis.yml` would include:
@@ -180,7 +182,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
 distribution for end-users worth exploring. It has a very different
-use case in mind than rakudo-pkg, however.
+use case in mind than `rakudo-pkg`, however.
 
 While we concentrate on releasing minimalistic, self-contained packages
 for every Rakudo release, Rakudo Star does release quarterly and it
