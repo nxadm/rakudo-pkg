@@ -149,7 +149,7 @@ Replace {distribution} by:
 - artful in Ubuntu 17.10.
 
 To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
-with these contents:
+(e.g. as ```/etc/yum.repositories.d/rakudo-pkg.repo```) with these contents:
 
 ```
 [rakudo-pkg]
