@@ -155,7 +155,7 @@ with these contents:
 [rakudo-pkg]
 name=rakudo-pkg
 baseurl=https://dl.bintray.com/nxadm/rakudo-pkg-rpms/{os}/{release}/x86_64
-gpgcheck=1
+gpgcheck=0
 enabled=1
 ```
 
