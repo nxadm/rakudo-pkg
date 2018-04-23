@@ -45,7 +45,7 @@ deploy:
     branches:
       only:
         - bintray
-        - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
+        #- /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
   dry_run: true
 after_deploy:
   - if [ $OS == 'debian' ] || [ $OS == 'ubuntu' ]; then cd /var/tmp/rakudo-pkg; export FILE=`ls -1`; curl -T $FILE -unxadm:$BINTRAY_API "https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${REVISION}/pool/main/r/rakudo-pkg/$FILE;deb_distribution=$CODENAME;deb_component=main;deb_architecture=$ARCH;publish=1"; fi
