@@ -41,7 +41,8 @@ deploy:
   skip_cleanup: true
   on:
     repo: nxadm/rakudo-pkg
-    tags: true
+    tags: false
+#    tags: true
 #  branches:
 #    only:
 #      - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
