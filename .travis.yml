@@ -11,17 +11,17 @@ env:
   - OS=alpine   ARCH=amd64 VERSION=3.6
   - OS=alpine   ARCH=amd64 VERSION=3.7
   - OS=centos   ARCH=amd64 VERSION=7
-  - OS=debian   ARCH=amd64 VERSION=8
-  - OS=debian   ARCH=amd64 VERSION=9
+  - OS=debian   ARCH=amd64 VERSION=8 CODENAME=jessie
+  - OS=debian   ARCH=amd64 VERSION=9 CODENAME=stretch
   - OS=fedora   ARCH=amd64 VERSION=26
   - OS=fedora   ARCH=amd64 VERSION=27
   - OS=opensuse ARCH=amd64 VERSION=42.3
-  - OS=ubuntu   ARCH=amd64 VERSION=14.04
-  - OS=ubuntu   ARCH=amd64 VERSION=16.04
-  - OS=ubuntu   ARCH=amd64 VERSION=17.10
-  - OS=ubuntu   ARCH=amd64 VERSION=14.04
-  - OS=ubuntu   ARCH=i386 VERSION=16.04
-  - OS=ubuntu   ARCH=i386 VERSION=17.10
+  - OS=ubuntu   ARCH=amd64 VERSION=14.04 CODENAME=trusty
+  - OS=ubuntu   ARCH=amd64 VERSION=16.04 CODENAME=xenial
+  - OS=ubuntu   ARCH=amd64 VERSION=17.10 CODENAME=artful
+  - OS=ubuntu   ARCH=amd64 VERSION=14.04 CODENAME=trusty
+  - OS=ubuntu   ARCH=i386 VERSION=16.04 CODENAME=xenial
+  - OS=ubuntu   ARCH=i386 VERSION=17.10 CODENAME=artful
 sudo: required
 services:
 - docker
@@ -41,6 +41,9 @@ deploy:
   on:
     repo: nxadm/rakudo-pkg
     tags: true
-  branches:
-    only:
-      - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
+#  branches:
+#    only:
+#      - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
+  dry_run: true
+after_deploy:
+  - if [ $OS == 'debian' ] || [ $OS == 'ubuntu' ]; then cd /var/tmp/rakudo-pkg; export FILE=`ls -1`; curl -T $FILE -unxadm:$BINTRAYAPI "https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${REVISION}/pool/main/r/rakudo-pkg/$FILE;deb_distribution=$CODENAME;deb_component=main;deb_architecture=$ARCH;publish=1"; fi
