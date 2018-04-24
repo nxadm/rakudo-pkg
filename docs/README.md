@@ -6,135 +6,56 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [About the packages (and links to downloads)](#about-the-packages-and-links-to-downloads)
 * [OS Repositories](#os-repositories)
-* [Install the Zef Module Manager as a non-root user](#install-the-zef-module-manager-as-a-non-root-user)
-* [Building your own packages](#building-your-own-packages)
+* [Direct Downloads](#direct-downloads)
+* [Set the PATH](#path)
+* [Install the Zef Module Manager as a Non-root User](#zef-as-user)
+* [Windows Subsystem for Linux](#wsl)
+* [Using rakudo-pkg on Travis](#travis)
+* [Building Your Own Packages](#building-your-own-packages)
 * [Contributing](#contributing)
-* [What about Rakudo Star?](#what-about-rakudo-star)
-* [What about packages provided by Operating Systems?](#what-about-packages-provided-by-operating-systems)
+* [Other Rakudo Distributions](#other-distributions)
 
 ## Introduction
-`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/). We
-follow upstream closely, so they are built for every Rakudo release. Most
-of the time, they should arrive on the same day the Rakudo sources are released.
 
-For those users (and System Administrators) that prefer to build their own
-Rakudo packages, `rakudo-pkg` can be used as a build framework. Because Docker
-containers are used when creating native Linux packages, any platform running
-Docker can be used a host, including MacOS and Windows machines.
+`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/) that
+closely follow upstream development. Most of the time, the packages will be
+released on the same day as the Rakudo sources. At the moment, packages are
+provided for Alpine, CentOS, Debian, Fedora, openSUSE and Ubuntu. Feel free to
+[contribute](#contributin) or
+[request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
 `rakudo-pkg` aims to provide small self-contained (no dependencies, no files
-outside `/opt/rakudo-pkg`), pre-compiled native OS packages that can be used on
-user's computers, servers and --very importantly-- containers. Therefor, only
-Rakudo and the Zef package manager are provided. From a security point of view,
-we like to create the builds in the open: the packages are created and
-automatically uploaded by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg)
-from the code in this repository. Feel free to inspect the build and contribute
-enhancements.
+outside `/opt/rakudo-pkg`), pre-compiled native OS packages that can be used
+on user's computers, servers and --very importantly-- containers. Therefor,
+only the Rakudo compiler and the
+[Zef package manager](https://github.com/ugexe/zef) are provided. Third
+party modules can be easily installed if desired.
 
-## About the packages (and links to downloads)
+From a security point of view, we like to create the builds in the open: the
+packages are created, checksummed and automatically uploaded from the code in
+this repositoryto by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) to
+[Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
+[Bintray Repositories](https://bintray.com/nxadm/).
 
-Native package repositories are available for CentOS, Debian, Fedora, openSUSE
-and Ubuntu. See [below](#os-repositories).
+For those users, or rather System Administrators, that prefer to build their
+own Rakudo packages, `rakudo-pkg` can be used as a build framework. Because
+Docker containers are used when creating native Linux packages, any platform
+running Docker can be used a host, including Linux, MacOS and Windows machines.
 
-"`rakudo-pkg`" is the name used for the Rakudo installation by the package-manager
-in the Linux distributions. At the moment the following packages are provided
-(see the full listing in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
-- Alpine 3.6 x86_64:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=amd64)).
-- Alpine 3.7 x86_64:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=amd64)).
-- CentOS 7 x86_64:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
-- Debian 8 amd64:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
-- Debian 9 amd64:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
-- Fedora 26 x86_64:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
-- Fedora 27 x86_64:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=amd64)).
-- openSUSE 42.3 x86_64:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
-- Ubuntu 14.04 amd64*:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=14.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=14.04&arch=amd64)).
-- Ubuntu 16.04 amd64*:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
-- Ubuntu 17.10 amd64:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=amd64)).
-- Ubuntu 16.04 i386*:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
-- Ubuntu 17.10 i386:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
-
-  Beware that 32-bit rakudo binaries (i386) are not JIT enabled (upstream).
-
-**You can install the package with the regular package manager of your
-distribution.**
-
-Debian and Ubuntu:
-```
-$ sudo dpkg -i *.deb
-```
-CentOS and Fedora:
-```
-$ sudo rpm -Uvh *.rpm
-```
-Alpine:
-```
-$ sudo apk add --allow-untrusted *.apk
-```
-
-**You'll have to add `~/.perl6/bin` and `/opt/rakudo-pkg/bin` to your `PATH`.
-Add this to your `.profile`, `.bash_profile or` the corresponding environment
-script for other shells)**:
-
-```
-PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:$PATH
-export PATH
-```
-
-*: **If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
-Windows 10), use the Ubuntu 16.04 package (or the 14.04 one if running an
-older release) and run `/opt/rakudo-pkg/bin/fix_windows10` after the
-installation. The script is needed to strip the moarvm library of (unused)
-functionalities that Windows does not implement yet.**
-
-**Older releases (before 2017.10-02) were installed into /opt/rakudo instead of
-/opt/rakudo-pkg. Adapt the PATH instructions accordingly.**
-
-## Install the Zef Module Manager as a non-root user
-The installation supplies a working Zef *global* installation
-(`/opt/rakudo-pkg/bin/zef`). Rakudo, however, takes a different
-approach to many other languages (including Perl 5): modules are by default
-installed the home directory of the user. A script is supplied to install
-zef as a user, so you can choose to use the local or the global zef setup
-to install modules:
-
-```
-install-zef-as-user # install Zef as ~/.perl6/bin/zef
-```
 
 ## OS Repositories
 
-You still need to adjust the PATH and optionally install zef as a user, as
-explained above.
+The easiest way to install the Rakudo on Debian, Centos, Fedora, openSUSE and
+Ubuntu is by using the `rakudo-pkg` repositories. For Alpine, see
+[Direct Downloads](#direct-downloads).
 
-To use the repos on Debian and Ubuntu, you need to add the applicable sources:
+**You still need to [adjust the PATH](#path) and optionally
+[install zef as a user](#zef-as-user).**
+
+Repositories:
+
+- To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
@@ -142,14 +63,14 @@ $ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main | s
 ```
 
 Replace {distribution} by:
-- jessie in Debian 8.
-- stretch in Debian 9.
-- trusty in Ubuntu 14.04.
-- xenial in Ubuntu 16.04.
-- artful in Ubuntu 17.10.
+- `jessie` in Debian 8.
+- `stretch` in Debian 9.
+- `trusty` in Ubuntu 14.04.
+- `xenial` in Ubuntu 16.04.
+- `artful` in Ubuntu 17.10.
 
-To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
-(e.g. as ```/etc/yum.repositories.d/rakudo-pkg.repo```) with these contents:
+- To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
+(e.g. as `/etc/yum.repositories.d/rakudo-pkg.repo`) with these contents:
 
 ```
 [rakudo-pkg]
@@ -160,25 +81,136 @@ enabled=1
 ```
 
 Replace {os} and {release} by:
-- centos and 7 for CentOS 7.
-- fedora and 26 for Fedora 26.
-- fedora and 27 for Fedora 27.
-- opensuse and 42.3 for openSUSE 42.3.
+- `centos` and `7` for CentOS 7.
+- `fedora` and `26` for Fedora 26.
+- `fedora` and `27` for Fedora 27.
+- `opensuse` and `42.3` for openSUSE 42.3.
 
-## Add perl6/rakudo to your `.travis.yml` file
 
-This file is used for configuring continuous integration
-using [Travis](https://travis-ci.org) and other CI systems. Since this
+## Direct Downloads
+
+**You still need to [adjust the PATH](#path) and optionally
+[install zef as a user](#zef-as-user).**
+
+Most modern computer have a *64-bit* Operating System, so regular users should
+use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
+images on some cloud providers. **32-bit Rakudo is not JIT enabled (upstream)
+and as a result a lot slower.**
+
+
+At the moment the following packages are provided (see the full listing
+including older versions in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
+
+- Alpine 3.6 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=amd64)).
+- Alpine 3.7 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=amd64)).
+- CentOS 7 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
+- Debian 8 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
+- Debian 9 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
+- Fedora 26 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
+- Fedora 27 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=amd64)).
+- openSUSE 42.3 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
+- Ubuntu 14.04 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=14.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=14.04&arch=amd64)).
+- Ubuntu 16.04 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
+- Ubuntu 17.10 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=amd64)).
+- Ubuntu 16.04 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
+- Ubuntu 17.10 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
+
+
+You can install these package with the regular package manager of your
+distribution:
+
+- Alpine:
+```
+$ sudo apk add --allow-untrusted *.apk
+```
+
+- Debian and Ubuntu:
+
+```
+$ sudo dpkg -i *.deb
+```
+
+- CentOS and Fedora:
+
+```
+$ sudo rpm -Uvh *.rpm
+```
+
+## Set the PATH
+
+You'll have to add the `rakudo-pkg` bin directories to your `PATH`.
+Add this to your `.profile`, `.bash_profile or` the corresponding environment
+script for other shells):
+
+```
+PATH=~/.perl6/bin:/opt/rakudo-pkg/share/perl6/site/bin:/opt/rakudo-pkg/bin:$PATH
+export PATH
+```
+
+## Install the Zef Module Manager as a Non-root User
+
+The installation supplies a working *global* Zef installation
+(`/opt/rakudo-pkg/bin/zef`). However, Rakudo takes a different
+approach to many other languages (including Perl 5): modules are by default
+installed the home directory of the user. A script is supplied to install
+zef as a user. Zef will be installed to `~/.perl6/bin/zef` and modules will
+reside in `~/.perl6`:
+
+```bash
+/opt/rakudo-pkg/bin/install-zef-as-user
+```
+
+## Windows Subsystem for Linux
+
+If you're using the Windows Subsystem for Linux (aka Bash or Ubuntu on
+Windows 10), use the repository or package for the installed Linux
+distribution. You'll need to strip the moarvm library of (unused) kernel
+functionalities that Windows does not implement yet:
+
+```bash
+$ sudo /opt/rakudo-pkg/bin/fix_windows10
+```
+
+## Using rakudo-pkg on Travis
+
+You can use rakudo-pkg to speed-up the continuous integration of your Perl 6
+module on [Travis](https://travis-ci.org) and other CI systems. Since this
 package is going to be downloaded in the install phase, you don't
-need to specify a language; by default, it will install Ruby. *Don't*
+need to specify a language (by default, it will install Ruby). *Don't*
 specify `perl6` since this will download and build perl6 from
-sources. A valid `.travis.yml` would include:
+source. A valid `.travis.yml` would include:
 
 ```
 dist: trusty
 sudo: required
 before_install:
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61 && echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main | sudo tee -a /etc/apt/sources.list && export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
+  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61 && echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs trusty main | sudo tee -a /etc/apt/sources.list && export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
 ```
 
 After this line, you should do `zef install . && zef test .` or whatever else you need to test your package.
@@ -189,48 +221,38 @@ If you prefer to build your own packages instead of the ones offered in the
 [releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use
 the wrapper scripts supplied in bin.
 
-### Create a build image for the desired distribution:
+### Create a Build Image for the Desired distribution:
 
-```
-bin/create-img.p6
-bin/create-img.p6 <docker-file>
-bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
+```bash
+$ bin/create-img.p6
+$ bin/create-img.p6 <docker-file>
+$ bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
 ```
 
 Distributions do not provide i386 images by default. The Ubuntu Dockerfiles
 use the nxadm/ubuntu-i386:<version> base images. If you want to build your
 own locally, you can use the supplied script:
 
-```
-bin/create-baseimg.p6
-bin/create-baseimg.p6 <Ubuntu release>
-bin/create-baseimg.p6 17.10
+```bash
+$ bin/create-baseimg.p6
+$ bin/create-baseimg.p6 <Ubuntu release>
+$ bin/create-baseimg.p6 17.10
 ```
 
-### Create a package:
+### Create a Package:
 
-```
-bin/create-pkg.p6
-bin/create-pkg.p6 <docker image> --rakudo-version=<version>
-bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
+```bash
+$ bin/create-pkg.p6
+$ bin/create-pkg.p6 <docker image> --rakudo-version=<version>
+$ bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
 ```
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## What about Rakudo Star?
+## Other Rakudo Distributions
 
-[Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
-distribution for end-users worth exploring. It has a very different
-use case in mind than `rakudo-pkg`, however.
-
-While we concentrate on releasing minimalistic, self-contained packages
-for every Rakudo release, Rakudo Star does release quarterly and it
-includes a wide selection of third party modules. On Linux, it uses
-the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
-to locally compile the Rakudo compiler and the modules.
-
-## What about packages provided by Operating Systems?
+### What about packages provided by Operating Systems?
 
 Our packages do not interfere with the packages included in Linux
 distributions and can be installed at the same time. Distribution packages
@@ -253,3 +275,16 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Ubuntu 14.04: 2013.12 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 16.04: 2015.11 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 17.10: 2017.06
+
+## What about Rakudo Star?
+
+[Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
+distribution for end-users worth exploring. It has a very different
+use case in mind than `rakudo-pkg`, however.
+
+While we concentrate on releasing minimalistic, self-contained packages
+for every Rakudo release, Rakudo Star does release quarterly and it
+includes a wide selection of third party modules. On Linux, it uses
+the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
+to locally compile the Rakudo compiler and the modules.
+
