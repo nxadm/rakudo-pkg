@@ -1,11 +1,25 @@
 #!/bin/bash -e
 
 # Make libmoar.so work on Windows 10.
+# https://github.com/nxadm/rakudo-pkg
+
+if [ -f "/etc/debian_version" ]; then
+    sudo apt-get install execstack
+    elif [ -f "/etc/centos-release"]; then
+        sudo yum install prelink
+    elif [ -f "/etc/fedora-release"]; then
+        sudo yum install execstack
+    elif [ -f "/etc/SuSE-release"]; then
+        sudo yzpper install execstack
+    else
+        echo "Distribution not supported."
+        exit 1
+fi
 
 cd /opt/rakudo-pkg/lib
-sudo apt-get install execstack
 sudo cp libmoar.so libmoar.so-backup
+echo "/opt/rakudo-pkg/lib/libmoar.so backupped to libmoar.so-backup"
 sudo execstack -c libmoar.so
-echo "libmoar.so adapted for Windows 10".
+echo "libmoar.so stripped for Windows 10".
 
 exit 0
