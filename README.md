@@ -8,13 +8,13 @@
 * [Introduction](#introduction)
 * [OS Repositories](#os-repositories)
 * [Direct Downloads](#direct-downloads)
-* [Set the PATH](#set-path)
-* [Install the Zef Module Manager as a Non-root User](#zef-as-user)
-* [Windows Subsystem for Linux](#wsl)
-* [Using rakudo-pkg on Travis](#travis)
+* [Set the PATH](#set-the-path)
+* [Zef Module Manager as a Regular User](#zef-module-manager-as-a-regular-user)
+* [Windows Subsystem for Linux](#windows-subsystem-for-linux)
+* [Using rakudo-pkg on Travis](#using-rakudo-pkg-on-travis)
 * [Building Your Own Packages](#building-your-own-packages)
 * [Contributing](#contributing)
-* [Other Rakudo Distributions](#other-distributions)
+* [Other Rakudo Distributions](#other-rakudo-distributions)
 
 ## Introduction
 
@@ -173,7 +173,7 @@ PATH=~/.perl6/bin:/opt/rakudo-pkg/share/perl6/site/bin:/opt/rakudo-pkg/bin:$PATH
 export PATH
 ```
 
-## Install the Zef Module Manager as a Non-root User
+## Zef Module Manager as a Regular User
 
 The installation supplies a working *global* Zef installation
 (`/opt/rakudo-pkg/bin/zef`). However, Rakudo takes a different
