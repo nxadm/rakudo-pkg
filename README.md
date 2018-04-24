@@ -209,11 +209,18 @@ source. A valid `.travis.yml` would include:
 ```
 dist: trusty
 sudo: required
+env:
+  global:
+    - export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
 before_install:
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61 && echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs trusty main | sudo tee -a /etc/apt/sources.list && export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
+  - set -e
+  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
+  - echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs trusty main | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
-After this line, you should do `zef install . && zef test .` or whatever else you need to test your package.
+After this line, you should do `zef install . && zef test .` or whatever else you need to test your package. In case you need an specific version, older
+versions are kept in the repository.
 
 ## Building your Own Packages
 
