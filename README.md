@@ -22,7 +22,7 @@
 closely follow upstream development. Most of the time, the packages will be
 released on the same day as the Rakudo sources. At the moment, packages are
 provided for Alpine, CentOS, Debian, Fedora, openSUSE and Ubuntu. Feel free to
-[contribute](#contributin) or
+[contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
 `rakudo-pkg` aims to provide small self-contained (no dependencies, no files
@@ -50,8 +50,8 @@ The easiest way to install the Rakudo on Debian, Centos, Fedora, openSUSE and
 Ubuntu is by using the `rakudo-pkg` repositories. For Alpine, see
 [Direct Downloads](#direct-downloads).
 
-**You still need to [adjust the PATH](#path) and optionally
-[install zef as a user](#zef-as-user).**
+**You still need to [adjust the PATH](#set-the-path) and optionally
+[install zef as a user](#zef-module-manager-as-a-regular-user).**
 
 Repositories:
 
@@ -89,8 +89,8 @@ Replace {os} and {release} by:
 
 ## Direct Downloads
 
-**You still need to [adjust the PATH](#path) and optionally
-[install zef as a user](#zef-as-user).**
+**You still need to [adjust the PATH](#set-the-path) and optionally
+[install zef as a user](#zef-module-manager-as-a-regular-user).**
 
 Most modern computer have a *64-bit* Operating System, so regular users should
 use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
@@ -215,7 +215,7 @@ before_install:
 
 After this line, you should do `zef install . && zef test .` or whatever else you need to test your package.
 
-## Building your own packages
+## Building your Own Packages
 
 If you prefer to build your own packages instead of the ones offered in the
 [releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use
