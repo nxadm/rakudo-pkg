@@ -8,7 +8,7 @@
 * [Introduction](#introduction)
 * [OS Repositories](#os-repositories)
 * [Direct Downloads](#direct-downloads)
-* [Set the PATH](#path)
+* [Set the PATH](#set-path)
 * [Install the Zef Module Manager as a Non-root User](#zef-as-user)
 * [Windows Subsystem for Linux](#wsl)
 * [Using rakudo-pkg on Travis](#travis)
