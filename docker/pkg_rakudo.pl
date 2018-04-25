@@ -27,13 +27,12 @@ my %distro_info = (
     openSUSE => { format=>'rpm', cmd => ['rpm', '-Uvh'                    ] },
     Ubuntu   => { format=>'deb', cmd => ['dpkg', '-i'                     ] },
 );
-my ($pkg_name, $os, $os_release) = ('','',''); # to be filled at runtime
-my $arch = 'native';
+my $pkg_name = ''; # to be filled at runtime
 
 ### Check required environment ###
 check_env(
     'RAKUDO_VERSION', 'NQP_VERSION', 'MOARVM_VERSION',
-    'MAINTAINER', 'REVISION'
+    'MAINTAINER', 'REVISION', 'ARCH', 'OS', 'RELEASE'
 ) or exit 1;
 my %versions = (
     rakudo => $ENV{RAKUDO_VERSION},
@@ -42,6 +41,13 @@ my %versions = (
 );
 my $maintainer = $ENV{MAINTAINER};
 my $revision   = $ENV{REVISION};
+my $os         = $ENV{OS};
+my $os_release = $ENV{RELEASE};
+my $arch       = $ENV{ARCH};
+$arch = 'native' if $os ne 'Alpine';
+if ($os eq 'openSUSE') {
+    $fpm = '/usr/lib64/ruby/gems/2.1.0/gems/fpm-1.9.3/bin/fpm';
+}
 
 ### Download & compile Rakudo ###
 for my $soft ('moarvm', 'nqp', 'rakudo') {
@@ -52,27 +58,6 @@ say "Rakudo was succesfully compiled.";
 
 ### Instal zef as a test ###
 install_global_zef() or exit 1;
-
-### Get OS information ###
-if (-f '/etc/alpine-release') {
-    $os = 'Alpine';
-    $arch = 'x86_64';
-    open(my $fh, '<', '/etc/alpine-release') or die($!);
-    local $/; # slurp mode
-    $os_release = <$fh>;
-    close $fh;
-} else {
-    $os         = `lsb_release -is`;
-    $os         =~ s/^(\w+)\s+\w+$/$1/;
-    $os_release = `lsb_release -rs`;
-}
-chomp $os;
-chomp $os_release;
-if ($os eq 'CentOS' or $os eq 'Alpine') {
-    $os_release =~ s/^(\d+\.\d+).+/$1/; # Short OS release (7.2.1234 -> 7.2)
-} elsif ($os eq 'openSUSE') {
-    $fpm = '/usr/lib64/ruby/gems/2.1.0/gems/fpm-1.9.3/bin/fpm';
-}
 
 ### Package ###
 move('/install-zef-as-user', "$install_root/bin/") or die($!);
