@@ -300,14 +300,12 @@ This is the state of Rakudo packaged by the distribution themselves:
 ### What about Rakudo Star?
 
 [Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
-distribution for end-users worth exploring. It has a very different
-use case in mind than `rakudo-pkg`, however.
-
-While we concentrate on releasing minimalistic, self-contained packages
-for every Rakudo release, Rakudo Star does release quarterly and it
-includes a wide selection of third party modules. On Linux, it uses
-the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
-to locally compile the Rakudo compiler and the modules.
+distribution for end-users worth exploring. It has a very different use case
+in mind than `rakudo-pkg`, however. While we concentrate on releasing
+minimalistic, self-contained packages for every Rakudo release (monthly),
+Rakudo Star releases quarterly and it includes a wide selection of third party
+modules. On Linux, it does not provide binaries. Instead it locally compiles
+the Rakudo compiler and the third party modules.
 
 ## Contributing
 
