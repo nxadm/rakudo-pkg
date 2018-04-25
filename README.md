@@ -166,7 +166,14 @@ $ sudo rpm -Uvh *.rpm
 
 In order to run perl6 by typing `perl6` instead of the full path
 `/opt/rakudo-pkg/bin/perl6` you'll have to add the `rakudo-pkg` bin
-directories to your `PATH`:
+directories to your `PATH`. A script is supplied to do this automatically for
+you. Run it as your regular user:
+
+```bash
+$ /opt/rakudo-pkg/bin/add-perl6-to-path
+```
+
+Alternatively, you can change the PATH manually:
 
 - For bourne derivated shells (like bash), add this to your `.profile`,
 `.bash_profile or` the corresponding environment init script for your shell:

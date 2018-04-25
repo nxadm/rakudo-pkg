@@ -164,13 +164,31 @@ $ sudo rpm -Uvh *.rpm
 
 ## Set the PATH
 
-You'll have to add the `rakudo-pkg` bin directories to your `PATH`.
-Add this to your `.profile`, `.bash_profile or` the corresponding environment
-script for other shells):
+In order to run perl6 by typing `perl6` instead of the full path
+`/opt/rakudo-pkg/bin/perl6` you'll have to add the `rakudo-pkg` bin
+directories to your `PATH`. A script is supplied to do this automatically for
+you. Run it as your regular user:
 
+```bash
+$ /opt/rakudo-pkg/bin/add-perl6-to-path
 ```
-PATH=~/.perl6/bin:/opt/rakudo-pkg/share/perl6/site/bin:/opt/rakudo-pkg/bin:$PATH
+
+Alternatively, you can change the PATH manually:
+
+- For bourne derivated shells (like bash), add this to your `.profile`,
+`.bash_profile or` the corresponding environment init script for your shell:
+
+```bash
+PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH
 export PATH
+```
+
+- For zsh, add this to ~/.zshenv or ~/.zprofile, depending on your
+distribution:
+
+```zsh
+typeset -U path
+path=(~/.perl6/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])
 ```
 
 ## Zef Module Manager as a Regular User
