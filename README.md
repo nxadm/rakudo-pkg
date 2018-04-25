@@ -34,14 +34,14 @@ party modules can be easily installed if desired.
 
 From a security point of view, we like to create the builds in the open: the
 packages are created, checksummed and automatically uploaded from the code in
-this repositoryto by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) to
+this repository by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) to
 [Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
 [Bintray Repositories](https://bintray.com/nxadm/).
 
 For those users, or rather System Administrators, that prefer to build their
 own Rakudo packages, `rakudo-pkg` can be used as a build framework. Because
 Docker containers are used when creating native Linux packages, any platform
-running Docker can be used a host, including Linux, MacOS and Windows machines.
+running Docker can be used as a host, including Linux, MacOS and Windows machines.
 
 
 ## OS Repositories
@@ -173,10 +173,11 @@ you. Run it as your regular user:
 $ /opt/rakudo-pkg/bin/add-perl6-to-path
 ```
 
-Alternatively, you can change the PATH manually:
+Alternatively, you can change the PATH manually. (Be aware that environment
+files start with a '.' and are hidden by convention on graphical file browsers:
 
 - For bourne derivated shells (like bash), add this to your `.profile`,
-`.bash_profile or` the corresponding environment init script for your shell:
+`.bash_profile` or the corresponding environment init script for your shell:
 
 ```bash
 PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH
