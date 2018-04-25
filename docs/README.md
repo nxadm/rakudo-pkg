@@ -13,8 +13,8 @@
 * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
 * [Using rakudo-pkg on Travis](#using-rakudo-pkg-on-travis)
 * [Building Your Own Packages](#building-your-own-packages)
-* [Contributing](#contributing)
 * [Other Rakudo Distributions](#other-rakudo-distributions)
+* [Contributing](#contributing)
 
 ## Introduction
 
@@ -271,9 +271,6 @@ $ bin/create-pkg.p6 <docker image> --rakudo-version=<version>
 $ bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
 ```
 
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## Other Rakudo Distributions
 
 ### What about packages provided by Operating Systems?
@@ -311,4 +308,9 @@ for every Rakudo release, Rakudo Star does release quarterly and it
 includes a wide selection of third party modules. On Linux, it uses
 the development tool [rakudobrew](https://github.com/tadzik/rakudobrew)
 to locally compile the Rakudo compiler and the modules.
+
+## Contributing
+
+Issues (bugs and ideas) and PRs are always welcome. See
+[CONTRIBUTING.md](CONTRIBUTING.md).
 

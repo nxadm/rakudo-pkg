@@ -1,6 +1,6 @@
 # Contribute
 
-PRs or issues are always welcome!
+Issues (bugs and ideas) and PRs are always welcome!
 
 If your favorite distribution is not yet supported, you can add it yourself:
 - start from an existing and possibly related Dockerfile in the docker
