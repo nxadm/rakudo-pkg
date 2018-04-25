@@ -1,7 +1,7 @@
 FROM nxadm/ubuntu-i386:17.10
 # This inherits from an image directly created (without changes) from:
 # http://cdimage.ubuntu.com/ubuntu-base/releases/17.10/release/ubuntu-base-17.10-core-i386.tar.gz
-MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \

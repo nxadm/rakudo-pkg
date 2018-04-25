@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \

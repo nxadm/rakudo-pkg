@@ -1,5 +1,5 @@
 FROM centos:centos7
-MAINTAINER Claudio Ramirez <pub.claudio@gmail.com>
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
 pkgs='git perl-autodie perl-Digest-SHA redhat-lsb-core wget' \
