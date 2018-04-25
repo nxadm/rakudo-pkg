@@ -103,13 +103,13 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 
 - Alpine 3.6, 64-bit:
 [apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=amd64)).
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=x86_64)).
 - Alpine 3.7, 64-bit:
 [apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=amd64)).
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
 - CentOS 7, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=amd64)).
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=x86_64)).
 - Debian 8, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
@@ -118,10 +118,10 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
 - Fedora 26, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=amd64)).
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=x86_64)).
 - Fedora 27, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=amd64)).
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=x86_64)).
 - openSUSE 42.3, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
