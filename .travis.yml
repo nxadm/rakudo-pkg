@@ -27,7 +27,7 @@ services:
 install: set -e
 script:
   - docker pull nxadm/rakudo-pkg:$TAG
-  - docker run -ti --rm -e RAKUDO_VERSION=$RAKUDO_URL -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e REVISION:$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
+  - docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_URL -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e REVISION:$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
 deploy:
   provider: releases
   prerelease: true

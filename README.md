@@ -242,15 +242,22 @@ versions are kept in the repository.
 ## Building your Own Packages
 
 If you prefer to build your own packages instead of the ones offered in the
-[releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use
-the wrapper scripts supplied in bin.
+[releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use the
+images from the [DockerHub](https://hub.docker.com/r/nxadm/rakudo-pkg). The
+image name is `nxadm/rakudo-pkg` while where every
+[image tag](https://hub.docker.com/r/nxadm/rakudo-pkg/tags/) corresponds with
+an specific OS-Release-Architecture combination. Alternatively, you can build
+them with the Dockerfiles in the `docker` directory.
 
-### Create a Build Image for the Desired distribution:
+### Ubuntu 32-bit images
+
+Ubuntu does not release 32-bit base images. An script is supplied to build
+them from official sources.
 
 ```bash
-$ bin/create-img.p6
-$ bin/create-img.p6 <docker-file>
-$ bin/create-img.p6 docker/Dockerfile-ubuntu-amd64-16.04
+$ bin/create-baseimg.p6
+$ bin/create-baseimg.p6 <Ubuntu release>
+$ bin/create-baseimg.p6 17.10
 ```
 
 Distributions do not provide i386 images by default. The Ubuntu Dockerfiles
@@ -265,10 +272,10 @@ $ bin/create-baseimg.p6 17.10
 
 ### Create a Package:
 
+You need to supply the necessary environment variables to Docker:
+
 ```bash
-$ bin/create-pkg.p6
-$ bin/create-pkg.p6 <docker image> --rakudo-version=<version>
-$ bin/create-pkg.p6 rakudo-pkg/ubuntu-amd64:16.04 --rakudo-version=2017.09 --moarvm-version=2017.09.1
+$ docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_URL -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e REVISION:$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
 ```
 
 ## Other Rakudo Distributions
