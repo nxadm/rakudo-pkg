@@ -188,7 +188,6 @@ export PATH
 distribution:
 
 ```zsh
-typeset -U path
 path=(~/.perl6/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])
 ```
 
