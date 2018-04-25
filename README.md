@@ -297,7 +297,7 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Ubuntu 16.04: 2015.11 (avoid, pre [Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 17.10: 2017.06
 
-## What about Rakudo Star?
+### What about Rakudo Star?
 
 [Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
 distribution for end-users worth exploring. It has a very different
