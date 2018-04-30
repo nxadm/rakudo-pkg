@@ -81,10 +81,10 @@ enabled=1
 ```
 
 Replace {os} and {release} by:
-- `centos` and `7` for CentOS 7.
-- `fedora` and `26` for Fedora 26.
-- `fedora` and `27` for Fedora 27.
-- `opensuse` and `42.3` for openSUSE 42.3.
+- `CentOS` and `7` for CentOS 7.
+- `Fedora` and `26` for Fedora 26.
+- `Fedora` and `27` for Fedora 27.
+- `openSUSE` and `42.3` for openSUSE 42.3.
 
 
 ## Direct Downloads
