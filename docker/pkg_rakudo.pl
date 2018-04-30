@@ -150,8 +150,6 @@ sub install_global_zef {
 }
 
 sub pkg_fpm {
-    my $pkg_dir_tmp = $pkg_dir . rand();
-    mkdir($pkg_dir_tmp) or die($!);
     my @cmd = (
         $fpm,
         '--deb-no-default-config-files',
@@ -159,7 +157,7 @@ sub pkg_fpm {
         '--description', 'Rakudo Perl 6 runtime',
         '--input-type', 'dir',
         '--output-type', $distro_info{$os}{format},
-        '--package', $pkg_dir_tmp,
+        '--package', $pkg_dir,
         '--name', 'rakudo-pkg',
         '--maintainer', $maintainer,
         '--version', $versions{rakudo},
@@ -171,11 +169,10 @@ sub pkg_fpm {
     say "@cmd";
     system(@cmd) == 0 or return 0;
     # Add OS info to filename
-    chdir($pkg_dir_tmp) or die($!);
     my $old_name = glob('*.' . $distro_info{$os}{format});
     my $new_name = $old_name;
     $new_name =~ s/^(rakudo-pkg)/$1-${os}${os_release}/;
-    move($old_name, $pkg_dir . '/' . $new_name) or die($!);
+    move($old_name, $new_name) or die($!);
     $pkg_name = $new_name;
     chdir('/') or die($!);
     return 1;
