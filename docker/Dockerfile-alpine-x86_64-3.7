@@ -15,7 +15,7 @@ apk add --no-cache ${pkgs} ${pkg_tmp} && \
 update-ca-certificates && \
 cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
 echo "${TZ}" > /etc/timezone && \
-gem install fpm json && \
+gem install --no-doc --no-ri fpm json && \
 # Workaround bug https://github.com/jordansissel/fpm/issues/1227
 perl -pi -e \
 's/^\s+(full_record_path\s+=\s+add_paxstring\(full_record_path\))/#$1/' \

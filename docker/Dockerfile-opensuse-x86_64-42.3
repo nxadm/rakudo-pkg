@@ -10,7 +10,7 @@ RUN set -xv ; \
     zypper update -y && \
     zypper install --replacefiles -y ${pkgs} ${pkgs_tmp} && \
     ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
-    gem install fpm && \
+    gem install --no-doc --no-ri fpm && \
     zypper remove -y --clean-deps ${pkgs_tmp}
 
 COPY pkg_rakudo.pl /
