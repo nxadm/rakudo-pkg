@@ -7,8 +7,7 @@ ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby wget' \
-#  libssl1.0-dev needed otherwise gems segfaults
-pkgs_tmp='ruby-dev libssl1.0-dev'
+pkgs_tmp='ruby-dev'
 
 RUN set -xv ; \
 apt-get -qq update && \
