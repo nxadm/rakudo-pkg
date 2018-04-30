@@ -49,4 +49,4 @@ deploy:
         - /^v20\d{2}\.\d{2}(\.\d+)?-\d+$/
 after_deploy:
   - if [ $REPO == 'deb' ]; then cd /var/tmp/rakudo-pkg; export FILE=`ls -1 *.deb`; curl -T $FILE -unxadm:$BINTRAY_API "https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${REVISION}/pool/main/r/rakudo-pkg/$FILE;deb_distribution=$CODENAME;deb_component=main;deb_architecture=$ARCH;publish=1"; fi
-  - if [ $REPO == 'rpm' ]; then cd /var/tmp/rakudo-pkg; export FILE=`ls -1 *.rpm`; curl -T $FILE -unxadm:$BINTRAY_API "https://api.bintray.com/content/nxadm/rakudo-pkg-rpms/rakudo-pkg/${RAKUDO_VERSION}-${REVISION}/$OS/$VERSION/x86_64/$FILE;publish=1"; fi
+  - if [ $REPO == 'rpm' ]; then cd /var/tmp/rakudo-pkg; export FILE=`ls -1 *.rpm`; curl -T $FILE -unxadm:$BINTRAY_API "https://api.bintray.com/content/nxadm/rakudo-pkg-rpms/rakudo-pkg/${RAKUDO_VERSION}-${REVISION}/$OS/$RELEASE/x86_64/$FILE;publish=1"; fi
