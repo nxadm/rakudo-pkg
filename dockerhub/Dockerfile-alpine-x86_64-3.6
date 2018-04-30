@@ -14,6 +14,4 @@ RUN set -xv ; \
     wget $apk && apk add --allow-untrusted *.apk && rm -f *.apk \
     zef install Linenoise
 
-
-CMD [ "-v" ]
 ENTRYPOINT [ "perl6" ]
