@@ -1,9 +1,9 @@
 language: generic
 env:
   global:
-    - RAKUDO_VERSION="2018.03"
-    - NQP_VERSION="2018.03"
-    - MOARVM_VERSION="2018.03"
+    - RAKUDO_VERSION="2018.04.1"
+    - NQP_VERSION="2018.04.1
+    - MOARVM_VERSION="2018.04.1"
     - REVISION="01"
     - MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
     - LOCAL_BUILD=""
