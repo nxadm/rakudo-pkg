@@ -169,6 +169,7 @@ sub pkg_fpm {
     say "@cmd";
     system(@cmd) == 0 or return 0;
     # Add OS info to filename
+    chdir($pkg_dir) or die($!);
     my $old_name = glob('*.' . $distro_info{$os}{format});
     my $new_name = $old_name;
     $new_name =~ s/^(rakudo-pkg)/$1-${os}${os_release}/;
