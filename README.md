@@ -64,12 +64,12 @@ $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
 Replace {distribution} by:
-- `jessie` in Debian 8.
+- `jessie`  in Debian 8.
 - `stretch` in Debian 9.
-- `trusty` in Ubuntu 14.04.
-- `xenial` in Ubuntu 16.04.
-- `artful` in Ubuntu 17.10.
-- `bionic` in Ubuntu 18.04.
+- `trusty`  in Ubuntu 14.04.
+- `xenial`  in Ubuntu 16.04.
+- `artful`  in Ubuntu 17.10.
+- `bionic`  in Ubuntu 18.04.
 
 - To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
 (e.g. as `/etc/yum.repositories.d/rakudo-pkg.repo`) with these contents:
