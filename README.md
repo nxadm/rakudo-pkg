@@ -59,7 +59,8 @@ Repositories:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
-$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main | sudo tee -a /etc/apt/sources.list
+$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
+$ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
 Replace {distribution} by:
@@ -82,12 +83,16 @@ enabled=1
 ```
 
 Replace {os} and {release} by:
-- `CentOS` and `7` for CentOS 7.
-- `Fedora` and `26` for Fedora 26.
-- `Fedora` and `27` for Fedora 27.
-- `Fedora` and `28` for Fedora 28.
+- `CentOS`   and `7`    for CentOS 7.
+- `Fedora`   and `26`   for Fedora 26.
+- `Fedora`   and `27`   for Fedora 27.
+- `Fedora`   and `28`   for Fedora 28.
 - `openSUSE` and `42.3` for openSUSE 42.3.
 
+Install the package:
+- On CentOS:   ```$ sudo yum install rakudo-pkg```
+- On Fedora:   ```$ sudo dnf install rakudo-pkg```
+- On openSUSE: ```$ sudo zypper install rakudo-pkg```
 
 ## Direct Downloads
 
@@ -166,7 +171,7 @@ $ sudo apk add --allow-untrusted *.apk
 $ sudo dpkg -i *.deb
 ```
 
-- CentOS and Fedora:
+- CentOS, Fedora and openSUSE:
 
 ```
 $ sudo rpm -Uvh *.rpm
