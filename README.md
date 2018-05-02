@@ -53,9 +53,9 @@ repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 **You still need to [adjust the PATH](#set-the-path) and optionally
 [install zef as a user](#zef-module-manager-as-a-regular-user).**
 
-Repositories:
+### Debian and Ubuntu
 
-- To use the repos on Debian and Ubuntu, you need to add the applicable sources:
+To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
@@ -71,7 +71,9 @@ Replace {distribution} by:
 - `artful`  in Ubuntu 17.10.
 - `bionic`  in Ubuntu 18.04.
 
-- To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
+### Centos, Fedora and openSUSE
+
+To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
 (e.g. as `/etc/yum.repositories.d/rakudo-pkg.repo`) with these contents:
 
 ```
