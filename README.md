@@ -85,7 +85,7 @@ Replace {os} and {release} by:
 - `CentOS` and `7` for CentOS 7.
 - `Fedora` and `26` for Fedora 26.
 - `Fedora` and `27` for Fedora 27.
-- `Fedora` and `27` for Fedora 28.
+- `Fedora` and `28` for Fedora 28.
 - `openSUSE` and `42.3` for openSUSE 42.3.
 
 
