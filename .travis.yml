@@ -16,6 +16,7 @@ env:
     - TAG="debian-amd64-9" REPO=deb CODENAME=stretch ARCH=amd64 OS=Debian RELEASE=9
     - TAG="fedora-x86_64-26" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=26
     - TAG="fedora-x86_64-27" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=27
+    - TAG="fedora-x86_64-28" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=28
     - TAG="opensuse-x86_64-42.3" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="42.3"
     - TAG="ubuntu-amd64-14.04" REPO=deb CODENAME=trusty ARCH=amd64 OS=Ubuntu RELEASE="14.04"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial ARCH=amd64 OS=Ubuntu RELEASE="16.04"

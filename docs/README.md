@@ -53,23 +53,27 @@ repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 **You still need to [adjust the PATH](#set-the-path) and optionally
 [install zef as a user](#zef-module-manager-as-a-regular-user).**
 
-Repositories:
+### Debian and Ubuntu
 
-- To use the repos on Debian and Ubuntu, you need to add the applicable sources:
+To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
-$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main | sudo tee -a /etc/apt/sources.list
+$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
+$ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
 Replace {distribution} by:
-- `jessie` in Debian 8.
+- `jessie`  in Debian 8.
 - `stretch` in Debian 9.
-- `trusty` in Ubuntu 14.04.
-- `xenial` in Ubuntu 16.04.
-- `artful` in Ubuntu 17.10.
+- `trusty`  in Ubuntu 14.04.
+- `xenial`  in Ubuntu 16.04.
+- `artful`  in Ubuntu 17.10.
+- `bionic`  in Ubuntu 18.04.
 
-- To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
+### Centos, Fedora and openSUSE
+
+To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
 (e.g. as `/etc/yum.repositories.d/rakudo-pkg.repo`) with these contents:
 
 ```
@@ -81,11 +85,16 @@ enabled=1
 ```
 
 Replace {os} and {release} by:
-- `centos` and `7` for CentOS 7.
-- `fedora` and `26` for Fedora 26.
-- `fedora` and `27` for Fedora 27.
-- `opensuse` and `42.3` for openSUSE 42.3.
+- `CentOS`   and `7`    for CentOS 7.
+- `Fedora`   and `26`   for Fedora 26.
+- `Fedora`   and `27`   for Fedora 27.
+- `Fedora`   and `28`   for Fedora 28.
+- `openSUSE` and `42.3` for openSUSE 42.3.
 
+Install the package:
+- On CentOS:   ```$ sudo yum install rakudo-pkg```
+- On Fedora:   ```$ sudo dnf install rakudo-pkg```
+- On openSUSE: ```$ sudo zypper install rakudo-pkg```
 
 ## Direct Downloads
 
@@ -122,6 +131,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Fedora 27, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=x86_64)).
+- Fedora 28, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=28&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=28&arch=x86_64)).
 - openSUSE 42.3, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
@@ -134,12 +146,18 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Ubuntu 17.10, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=amd64)).
+- Ubuntu 18.04, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
 - Ubuntu 16.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
 - Ubuntu 17.10, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
+- Ubuntu 18.04, 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
 
 You can install these package with the regular package manager of your
 distribution:
@@ -155,7 +173,7 @@ $ sudo apk add --allow-untrusted *.apk
 $ sudo dpkg -i *.deb
 ```
 
-- CentOS and Fedora:
+- CentOS, Fedora and openSUSE:
 
 ```
 $ sudo rpm -Uvh *.rpm
@@ -249,7 +267,7 @@ image name is `nxadm/rakudo-pkg` while where every
 an specific OS-Release-Architecture combination. Alternatively, you can build
 them with the Dockerfiles in the `docker` directory.
 
-### Ubuntu 32-bit images
+### Ubuntu 32-bit base images
 
 Ubuntu does not release 32-bit base images. An script is supplied to build
 them from official sources.
@@ -257,17 +275,7 @@ them from official sources.
 ```bash
 $ bin/create-baseimg.p6
 $ bin/create-baseimg.p6 <Ubuntu release>
-$ bin/create-baseimg.p6 17.10
-```
-
-Distributions do not provide i386 images by default. The Ubuntu Dockerfiles
-use the nxadm/ubuntu-i386:<version> base images. If you want to build your
-own locally, you can use the supplied script:
-
-```bash
-$ bin/create-baseimg.p6
-$ bin/create-baseimg.p6 <Ubuntu release>
-$ bin/create-baseimg.p6 17.10
+$ bin/create-baseimg.p6 18.04
 ```
 
 ### Create a Package:
@@ -299,10 +307,12 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
 - Fedora 26:     2017.08
 - Fedora 27:     2017.08
+- Fedora 28:     2018.02.1
 - openSUSE 42.3: -
-- Ubuntu 14.04: 2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Ubuntu 16.04: 2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Ubuntu 17.10: 2017.06
+- Ubuntu 14.04:  2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Ubuntu 17.10:  2017.06
+- Ubuntu 18.04:  2018.03
 
 ### What about Rakudo Star?
 
