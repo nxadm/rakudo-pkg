@@ -59,17 +59,9 @@ To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
-$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs {distribution} main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
+$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
-
-Replace {distribution} by:
-- `jessie`  in Debian 8.
-- `stretch` in Debian 9.
-- `trusty`  in Ubuntu 14.04.
-- `xenial`  in Ubuntu 16.04.
-- `artful`  in Ubuntu 17.10.
-- `bionic`  in Ubuntu 18.04.
 
 ### Centos, Fedora and openSUSE
 
