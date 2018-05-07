@@ -238,20 +238,23 @@ You can use rakudo-pkg to speed-up the continuous integration of your Perl 6
 module on [Travis](https://travis-ci.org) and other CI systems. Since this
 package is going to be downloaded in the install phase, you don't
 need to specify a language (by default, it will install Ruby). *Don't*
-specify `perl6` since this will download and build perl6 from
-source. A valid `.travis.yml` would include:
+specify `perl6` since this will download and build perl6 from source. Note
+that rakudo-pkg does not exist for Precise Pangolin, so use trusty(default)
+or newer.
+
+A valid `.travis.yml` would include:
 
 ```
-dist: trusty
-sudo: required
 env:
   global:
     - export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
-before_install:
-  - set -e
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
-  - echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs trusty main | sudo tee -a /etc/apt/sources.list
-  - sudo apt-get update && sudo apt-get install rakudo-pkg
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main'
+        key_url: 'http://keyserver.ubuntu.com/pks/lookup?search=0x379CE192D401AB61&op=get'
+    packages:
+      - rakudo-pkg
 ```
 
 After this line, you should do `zef install . && zef test .` or whatever else you need to test your package. In case you need an specific version, older
