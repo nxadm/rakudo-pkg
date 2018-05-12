@@ -70,10 +70,11 @@ say "Rakudo was succesfully packaged.";
 checksum() or exit 1;
 say "Rakudo package was succesfully checksummed.";
 
-### Test by installing and running it ###
+### Test by installing and running perl6 and zef ###
 my @cmd = ( @{ $distro_info{$os}{cmd} }, $pkg_dir . '/' . $pkg_name);
 system(@cmd) == 0 or die($!);
 system($install_root . '/bin/perl6', '-v') == 0 or die($!);
+system($install_root . '/bin/zef')         == 0 or die($!);
 
 
 exit 0;
