@@ -73,8 +73,9 @@ say "Rakudo package was succesfully checksummed.";
 ### Test by installing and running perl6 and zef ###
 my @cmd = ( @{ $distro_info{$os}{cmd} }, $pkg_dir . '/' . $pkg_name);
 system(@cmd) == 0 or die($!);
-system($install_root . '/bin/perl6', '-v') == 0 or die($!);
-system($install_root . '/bin/zef')         == 0 or die($!);
+$EVV{PATH} = $install_root . '/bin:' . $ENV{PATH};
+system('perl6', '-v') == 0 or die($!);
+system('zef')         == 0 or die($!);
 
 
 exit 0;
