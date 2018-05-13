@@ -1,0 +1,30 @@
+FROM ubuntu:bionic
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
+
+ENV OS_RELEASE=bionic \
+    LANG='C.UTF-8' \
+    DEBIAN_FRONTEND='noninteractive' \
+    # Overwrite TZ this with your own timezone if needed:
+    # docker run -e TZ=<your timezone> ...
+    TZ='Europe/Brussels' \
+    pkgs_tmp='gnupg' \
+    pkgs='ca-certificates curl git libreadline7 tar unzip' \
+    KEY_SERVER="hkp://keyserver.ubuntu.com:80" \
+    KEY_ID=379CE192D401AB61 \
+    REPO="https://dl.bintray.com/nxadm/rakudo-pkg-debs" \
+    PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:${PATH}"
+
+RUN set -xv ; \
+    apt-get -qq update && apt-get -qq dist-upgrade -y && \
+    apt-get -qq install -y $pkgs_tmp $pkgs && \
+    apt-key adv --keyserver $KEY_SERVER --recv $KEY_ID && \
+    echo "deb $REPO $OS_RELEASE main" | \
+    tee -a /etc/apt/sources.list.d/rakudo-pkg.list && \
+    apt-get -qq update && apt-get -qq install -y rakudo-pkg && \
+    # This is a temporarely fork that works with Readline
+    zef install https://github.com/nxadm/perl6-readline.git && \
+    apt-get remove -qq --purge -y $pkgs_tmp && \
+    apt-get -qq autoremove -y && apt-get -qq clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENTRYPOINT [ "perl6" ]
