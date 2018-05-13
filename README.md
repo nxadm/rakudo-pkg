@@ -63,6 +63,9 @@ $ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs `lsb_release -cs` main"
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
+If you don't have `lsb_release` installed, you can use the OS codenae (e.g.,
+stretch, bionic, etc.) instead of the `lsb_release -cs` command.
+
 ### Centos and Fedora
 
 To use the repos on CentOS, Fedora and openSUSE, you need to a repofile:
@@ -71,9 +74,9 @@ To use the repos on CentOS, Fedora and openSUSE, you need to a repofile:
 $ echo -e "[rakudo-pkg]\nname=rakudo-pkg\nbaseurl=https://dl.bintray.com/nxadm/rakudo-pkg-rpms/`lsb_release -is`/`lsb_release -rs| cut -d. -f1`/x86_64\ngpgcheck=0\nenabled=1" | sudo tee -a /etc/yum.repos.d/rakudo-pkg.repo
 ```
 
-If you don't have `readhat-lsb-core` installed, you can use the correct OS
-name (e.g., CentOS, Fedora) instead of the `lsb_release -is` command and
-release (e.g. 7, 26, 27, 28) instead of the one with `-rs`.
+If you don't have `redhat-lsb-core` installed, you can use the OS name (e.g.,
+CentOS, Fedora) instead of the `lsb_release -is` command and release (e.g. 7,
+26, 27, 28) instead of the one with `-rs`.
 
 Install the package on CentOS:
 ```
@@ -96,7 +99,7 @@ $ sudo zypper install rakudo-pkg
 ```
 
 In case you don't have `lsb-release` installed, you can put the openSUSE
-version instead of the `lsb_release -rs` command.
+version (e.g. 42.3) instead of the `lsb_release -rs` command.
 
 ## Direct Downloads
 
