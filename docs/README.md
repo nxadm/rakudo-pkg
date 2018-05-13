@@ -59,34 +59,44 @@ To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
 ```bash
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 379CE192D401AB61
-$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
+$ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs `lsb_release -cs` main" | sudo tee -a /etc/apt/sources.list.d/rakudo-pkg.list
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
-### Centos, Fedora and openSUSE
+### Centos and Fedora
 
-To use the repos on CentOS, Fedora and openSUSE, you need to add a repofile
-(e.g. as `/etc/yum.repositories.d/rakudo-pkg.repo`) with these contents:
+To use the repos on CentOS, Fedora and openSUSE, you need to a repofile:
 
 ```
-[rakudo-pkg]
-name=rakudo-pkg
-baseurl=https://dl.bintray.com/nxadm/rakudo-pkg-rpms/{os}/{release}/x86_64
-gpgcheck=0
-enabled=1
+$ echo -e "[rakudo-pkg]\nname=rakudo-pkg\nbaseurl=https://dl.bintray.com/nxadm/rakudo-pkg-rpms/`lsb_release -is`/`lsb_release -rs| cut -d. -f1`/x86_64\ngpgcheck=0\nenabled=1" | sudo tee -a /etc/yum.repos.d/rakudo-pkg.repo
 ```
 
-Replace {os} and {release} by:
-- `CentOS`   and `7`    for CentOS 7.
-- `Fedora`   and `26`   for Fedora 26.
-- `Fedora`   and `27`   for Fedora 27.
-- `Fedora`   and `28`   for Fedora 28.
-- `openSUSE` and `42.3` for openSUSE 42.3.
+If you don't have `readhat-lsb-core` installed, you can use the correct OS
+name (e.g., CentOS, Fedora) instead of the `lsb_release -is` command and
+release (e.g. 7, 26, 27, 28) instead of the one with `-rs`.
 
-Install the package:
-- On CentOS:   ```$ sudo yum install rakudo-pkg```
-- On Fedora:   ```$ sudo dnf install rakudo-pkg```
-- On openSUSE: ```$ sudo zypper install rakudo-pkg```
+Install the package on CentOS:
+```
+$ sudo yum install rakudo-pkg
+```
+
+Install the package on Fedora:
+```
+$ sudo dnf install rakudo-pkg
+```
+
+### openSUSE
+
+To use the repos on openSUSE, you need to add a repo to zypper (accept the
+key):
+
+```
+$ sudo zypper ar -f https://dl.bintray.com/nxadm/rakudo-pkg-rpms/openSUSE/`lsb_release -rs`/x86_64 rakudo-pkg
+$ sudo zypper install rakudo-pkg
+```
+
+In case you don't have `lsb-release` installed, you can put the openSUSE
+version instead of the `lsb_release -rs` command.
 
 ## Direct Downloads
 
