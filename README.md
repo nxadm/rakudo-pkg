@@ -63,7 +63,7 @@ $ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs `lsb_release -cs` main"
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
-If you don't have `lsb_release` installed, you can use the OS codenae (e.g.,
+If you don't have `lsb_release` installed, you can use the OS codename (e.g.,
 stretch, bionic, etc.) instead of the `lsb_release -cs` command.
 
 ### Centos and Fedora
