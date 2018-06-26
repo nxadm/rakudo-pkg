@@ -310,7 +310,7 @@ need a recent release to use these features.
 This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.6:    -
 - Alpine 3.7:    -
-- Arch:          2018.05 (in the AUR)
+- Arch:          2018.06 (in the AUR)
 - CentOS 7:      -
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
