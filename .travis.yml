@@ -20,10 +20,8 @@ env:
     - TAG="opensuse-x86_64-42.3" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="42.3"
     - TAG="ubuntu-amd64-14.04" REPO=deb CODENAME=trusty ARCH=amd64 OS=Ubuntu RELEASE="14.04"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial ARCH=amd64 OS=Ubuntu RELEASE="16.04"
-    - TAG="ubuntu-amd64-17.10" REPO=deb CODENAME=artful ARCH=amd64 OS=Ubuntu RELEASE="17.10"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic ARCH=amd64 OS=Ubuntu RELEASE="18.04"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial ARCH=i386 OS=Ubuntu" RELEASE="16.04"
-    - TAG="ubuntu-i386-17.10" REPO=deb CODENAME=artful ARCH=i386 OS=Ubuntu RELEASE="17.10"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic ARCH=i386 OS=Ubuntu RELEASE="18.04"
 sudo: required
 services:

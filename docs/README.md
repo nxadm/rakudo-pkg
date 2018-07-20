@@ -63,7 +63,7 @@ $ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs `lsb_release -cs` main"
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
-If you don't have `lsb_release` installed, you can use the OS codenae (e.g.,
+If you don't have `lsb_release` installed, you can use the OS codename (e.g.,
 stretch, bionic, etc.) instead of the `lsb_release -cs` command.
 
 ### Centos and Fedora
@@ -148,18 +148,12 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Ubuntu 16.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
-- Ubuntu 17.10, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=amd64)).
 - Ubuntu 18.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
 - Ubuntu 16.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
-- Ubuntu 17.10, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=17.10&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=17.10&arch=i386)).
 - Ubuntu 18.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
@@ -310,6 +304,7 @@ need a recent release to use these features.
 This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.6:    -
 - Alpine 3.7:    -
+- Arch:          2018.06 (in the AUR)
 - CentOS 7:      -
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
@@ -319,7 +314,6 @@ This is the state of Rakudo packaged by the distribution themselves:
 - openSUSE 42.3: -
 - Ubuntu 14.04:  2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Ubuntu 17.10:  2017.06
 - Ubuntu 18.04:  2018.03
 
 ### What about Rakudo Star?
