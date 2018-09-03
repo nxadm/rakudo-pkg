@@ -11,6 +11,7 @@ env:
   matrix:
     - TAG="alpine-x86_64-3.6" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.6"
     - TAG="alpine-x86_64-3.7" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.7"
+    - TAG="alpine-x86_64-3.8" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.8"
     - TAG="centos-x86_64-7" REPO=rpm ARCH=x86_64" OS=CentOS RELEASE=7
     - TAG="debian-amd64-8" REPO=deb CODENAME=jessie ARCH=amd64 OS=Debian RELEASE=8
     - TAG="debian-amd64-9" REPO=deb CODENAME=stretch ARCH=amd64 OS=Debian RELEASE=9
@@ -18,6 +19,7 @@ env:
     - TAG="fedora-x86_64-27" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=27
     - TAG="fedora-x86_64-28" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=28
     - TAG="opensuse-x86_64-42.3" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="42.3"
+    - TAG="opensuse-x86_64-15.0" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.0"
     - TAG="ubuntu-amd64-14.04" REPO=deb CODENAME=trusty ARCH=amd64 OS=Ubuntu RELEASE="14.04"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara ARCH=amd64 OS=Ubuntu RELEASE="18.04"
