@@ -121,6 +121,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Alpine 3.7, 64-bit:
 [apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
+- Alpine 3.8, 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.8&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.8&arch=x86_64)).
 - CentOS 7, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=x86_64)).
@@ -142,6 +145,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - openSUSE 42.3, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
+- openSUSE 15.0, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.0&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.0&arch=x86_64)).
 - Ubuntu 14.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=14.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=14.04&arch=amd64)).
@@ -304,6 +310,7 @@ need a recent release to use these features.
 This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.6:    -
 - Alpine 3.7:    -
+- Alpine 3.7:    -
 - Arch:          2018.06 (in the AUR)
 - CentOS 7:      -
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
@@ -312,6 +319,7 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Fedora 27:     2017.08
 - Fedora 28:     2018.02.1
 - openSUSE 42.3: -
+- openSUSE 15.0: -
 - Ubuntu 14.04:  2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Ubuntu 18.04:  2018.03
