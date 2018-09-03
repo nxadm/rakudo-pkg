@@ -16,7 +16,7 @@ RUN set -xv ; \
     update-ca-certificates && \
     cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
     echo "${TZ}" > /etc/timezone && \
-    gem install --no-doc --no-ri fpm json && \
+    gem install --no-doc --no-ri fpm json etc && \
     # Workaround bug https://github.com/jordansissel/fpm/issues/1227
     APKCODE=`ls -1 $to_patch` && \
     perl -pi -e \
