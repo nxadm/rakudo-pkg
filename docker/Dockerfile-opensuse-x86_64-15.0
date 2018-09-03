@@ -2,7 +2,7 @@ FROM opensuse/leap:15.0
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-    pkgs='git gcc lsb5-core make rpm-build ruby wget' \
+    pkgs='git gcc lsb-release make rpm-build ruby wget' \
     pkgs_tmp='ruby-devel'
 
 RUN set -xv ; \
