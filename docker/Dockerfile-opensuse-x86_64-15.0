@@ -1,4 +1,4 @@
-FROM opensuse:15.0
+FROM opensuse/leap:15.0
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
