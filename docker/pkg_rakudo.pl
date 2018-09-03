@@ -46,7 +46,7 @@ my $os_release = $ENV{RELEASE};
 my $arch       = $ENV{ARCH};
 $arch = 'native' if $os ne 'Alpine';
 if ($os eq 'openSUSE') {
-    $fpm =  `ls -1 /usr/lib64/ruby/gems/2.1.0/gems/fpm-*/bin/fpm`;
+    $fpm =  `ls -1 /usr/lib64/ruby/gems/2.*/gems/fpm-*/bin/fpm`;
     chomp $fpm;
 }
 
