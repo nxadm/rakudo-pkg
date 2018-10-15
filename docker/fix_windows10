@@ -10,7 +10,7 @@ if [ -f "/etc/debian_version" ]; then
     elif [ -f "/etc/fedora-release"]; then
         sudo yum install execstack
     elif [ -f "/etc/SuSE-release"]; then
-        sudo yzpper install execstack
+        sudo zypper install execstack
     else
         echo "Distribution not supported."
         exit 1
