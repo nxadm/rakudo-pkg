@@ -167,7 +167,7 @@ sub pkg_fpm {
         '--iteration', $revision,
         '--url', 'https://perl6.org',
         '--architecture', $arch,
-        $install_root
+        $install_root, '/etc/profile.d/rakudo-pkg.sh'
     );
     say "@cmd";
     system(@cmd) == 0 or return 0;
