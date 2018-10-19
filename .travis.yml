@@ -23,6 +23,7 @@ env:
     - TAG="ubuntu-amd64-14.04" REPO=deb CODENAME=trusty ARCH=amd64 OS=Ubuntu RELEASE="14.04"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara ARCH=amd64 OS=Ubuntu RELEASE="18.04"
+    - TAG="ubuntu-amd64-18.10" REPO=deb CODENAME=cosmic ARCH=amd64 OS=Ubuntu RELEASE="18.10"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu" RELEASE="16.04"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara ARCH=i386 OS=Ubuntu RELEASE="18.04"
 sudo: required
