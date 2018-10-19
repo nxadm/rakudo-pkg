@@ -26,7 +26,7 @@ env:
     - TAG="ubuntu-amd64-18.10" REPO=deb CODENAME=cosmic ARCH=amd64 OS=Ubuntu RELEASE="18.10"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu" RELEASE="16.04"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara ARCH=i386 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=cosmic,tara ARCH=i386 OS=Ubuntu RELEASE="18.10"
+    - TAG="ubuntu-i386-18.10" REPO=deb CODENAME=cosmic,tara ARCH=i386 OS=Ubuntu RELEASE="18.10"
 sudo: required
 services:
   - docker
