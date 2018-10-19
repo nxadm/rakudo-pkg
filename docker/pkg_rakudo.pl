@@ -76,6 +76,7 @@ my @cmd = ( @{ $distro_info{$os}{cmd} }, $pkg_dir . '/' . $pkg_name);
 system(@cmd) == 0 or die($!);
 $ENV{PATH} = $install_root . '/bin:' . $ENV{PATH};
 system('perl6', '-v') == 0 or die($!);
+system('cat', '/etc/profile.d/rakudo-pkg.sh') == 0 or die($!);
 system('zef')         == 0 or die($!);
 
 

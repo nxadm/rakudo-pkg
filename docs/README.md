@@ -50,8 +50,7 @@ The easiest way to install the Rakudo (starting from release 2018.04.1) on
 Debian, Centos, Fedora, openSUSE and Ubuntu is by using the `rakudo-pkg`
 repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 
-**You still need to [adjust the PATH](#set-the-path) and optionally
-[install zef as a user](#zef-module-manager-as-a-regular-user).**
+**Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
 
 ### Debian and Ubuntu
 
@@ -103,8 +102,7 @@ version (e.g. 42.3) instead of the `lsb_release -rs` command.
 
 ## Direct Downloads
 
-**You still need to [adjust the PATH](#set-the-path) and optionally
-[install zef as a user](#zef-module-manager-as-a-regular-user).**
+**Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
 
 Most modern computer have a *64-bit* Operating System, so regular users should
 use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
@@ -186,16 +184,18 @@ $ sudo rpm -Uvh *.rpm
 
 ## Set the PATH
 
-In order to run perl6 by typing `perl6` instead of the full path
-`/opt/rakudo-pkg/bin/perl6` you'll have to add the `rakudo-pkg` bin
-directories to your `PATH`. A script is supplied to do this automatically for
-you. Run it as your regular user:
+The path is set by setting a rakudo-pkg.sh profile file in /etc/profile.d. If
+perl 6 in in your path (type `perl6 -v`) you can stop reading this section
+and enjoy perl6.
+
+Alternatively, a script is supplied to do this automatically for you. Run it
+as your regular user:
 
 ```bash
 $ /opt/rakudo-pkg/bin/add-perl6-to-path
 ```
 
-Alternatively, you can change the PATH manually. (Be aware that environment
+If you prefer, you can change the PATH manually. Be aware that environment
 files start with a '.' and are hidden by convention on graphical file browsers:
 
 - For bourne derivated shells (like bash), add this to your `.profile`,
