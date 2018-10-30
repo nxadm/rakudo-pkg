@@ -140,6 +140,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Fedora 28, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=28&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=28&arch=x86_64)).
+- Fedora 29, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=29&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=29&arch=x86_64)).
 - openSUSE 42.3, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
@@ -321,9 +324,9 @@ This is the state of Rakudo packaged by the distribution themselves:
 - CentOS 7:      -
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- Fedora 26:     2017.08
 - Fedora 27:     2017.08
-- Fedora 28:     2018.02.1
+- Fedora 28:     2018.02
+- Fedora 29:     2018.05-2
 - openSUSE 42.3: -
 - openSUSE 15.0: -
 - Ubuntu 14.04:  2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
