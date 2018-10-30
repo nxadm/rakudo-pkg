@@ -15,7 +15,6 @@ env:
     - TAG="centos-x86_64-7" REPO=rpm ARCH=x86_64" OS=CentOS RELEASE=7
     - TAG="debian-amd64-8" REPO=deb CODENAME=jessie ARCH=amd64 OS=Debian RELEASE=8
     - TAG="debian-amd64-9" REPO=deb CODENAME=stretch,cindy ARCH=amd64 OS=Debian RELEASE=9
-    - TAG="fedora-x86_64-26" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=26
     - TAG="fedora-x86_64-27" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=27
     - TAG="fedora-x86_64-28" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=28
     - TAG="fedora-x86_64-29" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=28
