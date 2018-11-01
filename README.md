@@ -259,6 +259,7 @@ or newer.
 A valid `.travis.yml` would include:
 
 ```
+language: generic
 env:
   global:
     - export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
