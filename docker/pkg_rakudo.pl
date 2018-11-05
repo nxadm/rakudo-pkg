@@ -65,6 +65,7 @@ move('/install-zef-as-user', "$install_root/bin/") or die($!);
 move('/fix_windows10', "$install_root/bin/") or die($!);
 move('/add-perl6-to-path', "$install_root/bin/") or die($!);
 symlink("$install_root/bin/perl6", "$install_root/bin/rakudo") or die($!);
+symlink("$install_root/bin/perl6", "$install_root/bin/raku") or die($!);
 pkg_fpm() or exit 1;
 say "Rakudo was succesfully packaged.";
 
