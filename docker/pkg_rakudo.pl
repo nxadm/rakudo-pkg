@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use feature 'say';
 use File::Copy;
-use File::Path qw/remove_tree/;
+use File::Path qw/remove_tree make_path/;
 
 ### Variables ###
 my $install_root = '/opt/rakudo-pkg';
@@ -66,6 +66,10 @@ move('/fix_windows10', "$install_root/bin/") or die($!);
 move('/add-perl6-to-path', "$install_root/bin/") or die($!);
 symlink("$install_root/bin/perl6", "$install_root/bin/rakudo") or die($!);
 symlink("$install_root/bin/perl6", "$install_root/bin/raku") or die($!);
+if ($distro_info{$os}{format} eq 'deb') {
+    make_path('/usr/share/doc/rakudo-pkg');
+    move('/copyright', '/usr/share/doc/rakudo-pkg/copyright') or die($!);
+}
 pkg_fpm() or exit 1;
 say "Rakudo was succesfully packaged.";
 
@@ -172,6 +176,9 @@ sub pkg_fpm {
         '--architecture', $arch,
         $install_root, '/etc/profile.d/rakudo-pkg.sh'
     );
+    if ($distro_info{$os}{format} eq 'deb') {
+        push @cmd, '/usr/share/doc/rakudo-pkg/copyright';
+    }
     say "@cmd";
     system(@cmd) == 0 or return 0;
     # Add OS info to filename

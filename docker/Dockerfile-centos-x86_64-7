@@ -24,5 +24,6 @@ COPY install-zef-as-user /
 COPY fix_windows10 /
 COPY add-perl6-to-path /
 COPY rakudo-pkg.sh /etc/profile.d/
+COPY copyright /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]
