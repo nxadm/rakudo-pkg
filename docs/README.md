@@ -18,11 +18,11 @@
 
 ## Introduction
 
-`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/) that
-closely follow upstream development. Most of the time, the packages will be
-released on the same day as the Rakudo sources. At the moment, packages are
-provided for Alpine, CentOS, Debian, Fedora, openSUSE and Ubuntu. Feel free to
-[contribute](#contributing) or
+`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/), 
+also known as Raku, that closely follow upstream development. Most of the time, 
+the packages will be released on the same day as the Rakudo sources. At the 
+moment, packages are provided for Alpine, CentOS, Debian, Fedora, openSUSE and 
+Ubuntu. Feel free to [contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
 `rakudo-pkg` aims to provide small self-contained (no dependencies, no files
