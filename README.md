@@ -18,10 +18,10 @@
 
 ## Introduction
 
-`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/), 
-also known as Raku, that closely follow upstream development. Most of the time, 
-the packages will be released on the same day as the Rakudo sources. At the 
-moment, packages are provided for Alpine, CentOS, Debian, Fedora, openSUSE and 
+`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/),
+also known as Raku, that closely follow upstream development. Most of the time,
+the packages will be released on the same day as the Rakudo sources. At the
+moment, packages are provided for Alpine, CentOS, Debian, Fedora, openSUSE and
 Ubuntu. Feel free to [contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
@@ -113,63 +113,66 @@ and as a result a lot slower.**
 At the moment the following packages are provided (see the full listing
 including older versions in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
 
-- Alpine 3.6, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.6&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.6&arch=x86_64)).
-- Alpine 3.7, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
+- Alpine 3.10, 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.10&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.10&arch=x86_64)).
+- Alpine 3.9, 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.9&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.9&arch=x86_64)).
 - Alpine 3.8, 64-bit:
 [apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.8&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.8&arch=x86_64)).
+- Alpine 3.7, 64-bit:
+[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
 - CentOS 7, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=x86_64)).
-- Debian 8, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
+- Debian 10, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=10&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=10&arch=amd64)).
 - Debian 9, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
-- Fedora 26, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=26&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=26&arch=x86_64)).
-- Fedora 27, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=27&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=27&arch=x86_64)).
-- Fedora 28, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=28&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=28&arch=x86_64)).
+- Debian 8, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
+- Fedora 30, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=30&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=30&arch=x86_64)).
 - Fedora 29, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=29&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=29&arch=x86_64)).
-- openSUSE 42.3, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=42.3&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=42.3&arch=x86_64)).
+- openSUSE 15.1, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.1&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.1&arch=x86_64)).
 - openSUSE 15.0, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.0&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.0&arch=x86_64)).
-- Ubuntu 14.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=14.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=14.04&arch=amd64)).
-- Ubuntu 16.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
-- Ubuntu 18.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
+- Ubuntu 19.04, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=amd64)).
 - Ubuntu 18.10, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.10&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.10&arch=amd64)).
-- Ubuntu 16.04, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
-- Ubuntu 18.04, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
+- Ubuntu 18.04, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
+- Ubuntu 16.04, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
+- Ubuntu 19.04, 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=i386)).
 - Ubuntu 18.10, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.10&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.10&arch=i386)).
+- Ubuntu 18.04, 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
+- Ubuntu 16.04, 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
 
 You can install these package with the regular package manager of your
 distribution:
@@ -318,22 +321,22 @@ Rakudo are evolving very fast, getting better and faster. So, often you'll
 need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribution themselves:
-- Alpine 3.6:    -
+- Alpine 3.10:   -
+- Alpine 3.9:    -
+- Alpine 3.8:    -
 - Alpine 3.7:    -
-- Alpine 3.7:    -
-- Arch:          2018.06 (in the AUR)
 - CentOS 7:      -
-- Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Debian 10:     2018.05
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- Fedora 27:     2017.08
-- Fedora 28:     2018.02
-- Fedora 29:     2018.05-2
-- openSUSE 42.3: -
+- Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Fedora 30:     2019.03
+- Fedora 29:     2018.05
+- openSUSE 15.1: 2019.03
 - openSUSE 15.0: -
-- Ubuntu 14.04:  2013.12 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Ubuntu 18.04:  2018.03
+- Ubuntu 19.04:  2018.12
 - Ubuntu 18.10:  2018.06
+- Ubuntu 18.04:  2018.03
+- Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 
 ### What about Rakudo Star?
 
