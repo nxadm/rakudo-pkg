@@ -9,14 +9,11 @@ use File::Path qw/remove_tree/;
 my $install_root = '/opt/rakudo-pkg';
 my $pkg_dir      = '/staging';
 my $fpm          = 'fpm';
-my $zef_repo     = "https://github.com/ugexe/zef.git";
-my %urls         = ( # templates for now
-    rakudo =>
-        'https://rakudo.perl6.org/downloads/rakudo/rakudo-__VERSION__.tar.gz',
-    nqp    =>
-        'https://rakudo.perl6.org/downloads/nqp/nqp-__VERSION__.tar.gz',
-    moarvm =>
-        "https://moarvm.org/releases/MoarVM-__VERSION__.tar.gz",
+my %repos = (
+    zef    => "https://github.com/ugexe/zef.git",
+    rakudo => "https://github.com/rakudo/rakudo.git",
+    nqp    => "https://github.com/perl6/nqp.git",
+    moarvm => "https://github.com/MoarVM/MoarVM.git",
 );
 my %distro_info = (
     # distro => [ pkg format, install command ]
@@ -51,8 +48,7 @@ if ($os eq 'openSUSE') {
 }
 
 ### Download & compile Rakudo ###
-for my $soft ('moarvm', 'nqp', 'rakudo') {
-    $urls{$soft} =~ s/__VERSION__/$versions{$soft}/; # create the download URLs
+for my $soft ('moarvm', 'nqp', 'rakudo') { #keep order
     build($soft) or exit 1;
 }
 say "Rakudo was succesfully compiled.";
@@ -89,10 +85,9 @@ sub build {
     my $soft = shift;
     mkdir $soft or die($!);
     # Download and unpack
-    system('wget', $urls{$soft}, '-O', $soft . '.tar.gz') == 0 or return 0;
-    system('tar', 'xzf', $soft . '.tar.gz', '-C', $soft, '--strip=1') == 0
-        or return 0;
-    unlink($soft . '.tar.gz') or warn($!);
+    system('git', 'clone', $repos{$soft}, $soft) == 0 or return 0;
+    chdir($soft) or die($!);
+    system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
     chdir($soft) or die($!);
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
@@ -142,7 +137,7 @@ sub checksum {
 sub install_global_zef {
     # Install zef as root
     chdir('/var/tmp') or die($!);
-    my @cmd = ('git', 'clone', $zef_repo);
+    my @cmd = ('git', 'clone', $repos{"zef"};
     system(@cmd) == 0 or return 0;
     chdir('zef') or die($!);
     @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
