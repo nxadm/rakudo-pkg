@@ -88,7 +88,8 @@ sub build {
     system('git', 'clone', $repos{$soft}, $soft) == 0 or return 0;
     chdir($soft) or die($!);
     system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
-    chdir($soft) or die($!);
+    system("ls -la"); # debug
+    chdir($soft) == 0 or return 0;
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
     my $skip_tests = 1;
