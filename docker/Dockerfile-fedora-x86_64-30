@@ -2,7 +2,7 @@ FROM fedora:30
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-    pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel wget' \
+    pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel' \
     pkggroup='Development Tools' \
     pkgs_tmp='ruby-devel'
 

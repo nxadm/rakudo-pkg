@@ -6,7 +6,7 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
-pkgs='build-essential git lsb-release ruby wget' \
+pkgs='build-essential git lsb-release ruby' \
 pkgs_tmp='ruby-dev'
 
 RUN set -xv ; \
