@@ -52,7 +52,7 @@ repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 
 **Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
 
-### Debian and Ubuntu
+### Debian, Ubuntu, LMDE and Mint
 
 To use the repos on Debian and Ubuntu, you need to add the applicable sources:
 
