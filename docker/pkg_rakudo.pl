@@ -137,7 +137,7 @@ sub checksum {
 sub install_global_zef {
     # Install zef as root
     chdir('/var/tmp') or die($!);
-    my @cmd = ('git', 'clone', $repos{"zef"};
+    my @cmd = ('git', 'clone', $repos{"zef"});
     system(@cmd) == 0 or return 0;
     chdir('zef') or die($!);
     @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
