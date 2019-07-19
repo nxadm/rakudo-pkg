@@ -152,9 +152,6 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Ubuntu 19.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=amd64)).
-- Ubuntu 18.10, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.10&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.10&arch=amd64)).
 - Ubuntu 18.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
@@ -164,9 +161,6 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Ubuntu 19.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=i386)).
-- Ubuntu 18.10, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.10&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.10&arch=i386)).
 - Ubuntu 18.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
@@ -334,7 +328,6 @@ This is the state of Rakudo packaged by the distribution themselves:
 - openSUSE 15.1: 2019.03
 - openSUSE 15.0: -
 - Ubuntu 19.04:  2018.12
-- Ubuntu 18.10:  2018.06
 - Ubuntu 18.04:  2018.03
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 
