@@ -23,11 +23,9 @@ env:
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=amd64 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-amd64-18.10" REPO=deb CODENAME=cosmic ARCH=amd64 OS=Ubuntu RELEASE="18.10"
     - TAG="ubuntu-amd64-19.04" REPO=deb CODENAME=disco ARCH=amd64 OS=Ubuntu RELEASE="19.04"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu" RELEASE="16.04"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=i386 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-i386-18.10" REPO=deb CODENAME=cosmic ARCH=i386 OS=Ubuntu RELEASE="18.10"
     - TAG="ubuntu-i386-19.04" REPO=deb CODENAME=disco ARCH=i386 OS=Ubuntu RELEASE="19.04"
 sudo: required
 services:
