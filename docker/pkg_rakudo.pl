@@ -28,13 +28,14 @@ my $pkg_name = ''; # to be filled at runtime
 
 ### Check required environment ###
 check_env(
-    'RAKUDO_VERSION', 'NQP_VERSION', 'MOARVM_VERSION',
+    'ZEF_VERSION', 'RAKUDO_VERSION', 'NQP_VERSION', 'MOARVM_VERSION',
     'MAINTAINER', 'REVISION', 'ARCH', 'OS', 'RELEASE'
 ) or exit 1;
 my %versions = (
     rakudo => $ENV{RAKUDO_VERSION},
     nqp    => $ENV{NQP_VERSION},
     moarvm => $ENV{MOARVM_VERSION},
+    zef    => $ENV{ZEF_VERSION},
 );
 my $maintainer = $ENV{MAINTAINER};
 my $revision   = $ENV{REVISION};
@@ -88,7 +89,6 @@ sub build {
     system('git', 'clone', $repos{$soft}, $soft) == 0 or return 0;
     chdir($soft) or die($!);
     system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
-    system("ls -la"); # debug
     chdir($soft) == 0 or return 0;
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
@@ -138,10 +138,10 @@ sub checksum {
 sub install_global_zef {
     # Install zef as root
     chdir('/var/tmp') or die($!);
-    my @cmd = ('git', 'clone', $repos{"zef"});
-    system(@cmd) == 0 or return 0;
+    system('git', 'clone', $repos{"zef"}) == 0 or return 0;
     chdir('zef') or die($!);
-    @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
+    system('git', 'checkout', "tags/" . $versions{zef}) == 0 or return 0;
+    my @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
         '--install-to=core', 'install', '.');
     system(@cmd) == 0 or return 0;
     symlink("$install_root/share/perl6/core/bin/zef", "$install_root/bin/zef")
