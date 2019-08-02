@@ -35,7 +35,7 @@ my %versions = (
     rakudo => $ENV{RAKUDO_VERSION},
     nqp    => $ENV{NQP_VERSION},
     moarvm => $ENV{MOARVM_VERSION},
-    zef    => "v" . $ENV{ZEF_VERSION},
+    zef    => $ENV{ZEF_VERSION},
 );
 my $maintainer = $ENV{MAINTAINER};
 my $revision   = $ENV{REVISION};
