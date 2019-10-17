@@ -152,6 +152,7 @@ sub install_global_zef {
 }
 
 sub pkg_fpm {
+    $ENV{PATH} = '/usr/local/bin:' . $ENV{PATH};
     my @cmd = (
         $fpm,
         '--deb-no-default-config-files',
