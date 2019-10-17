@@ -125,6 +125,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Alpine 3.7, 64-bit:
 [apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
+- CentOS 8, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=8&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=8&arch=x86_64)).
 - CentOS 7, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=x86_64)).
@@ -149,6 +152,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - openSUSE 15.0, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.0&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.0&arch=x86_64)).
+- Ubuntu 19.10, 64-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.10&arch=amd64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.10&arch=amd64)).
 - Ubuntu 19.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=amd64)).
@@ -158,6 +164,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Ubuntu 16.04, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
+- Ubuntu 19.10, 32-bit:
+[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.10&arch=i386)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.10&arch=i386)).
 - Ubuntu 19.04, 32-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=i386)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=i386)).
