@@ -2,9 +2,10 @@ FROM centos:centos8
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-pkgs='git perl-autodie perl-Digest-SHA redhat-lsb-core perl-ExtUtils-Command perl-IPC-Cmd' \
+pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core'  \
 pkggroup='Development Tools' \
-pkgs_tmp='ruby-devel'
+pkgs_tmp='ruby-devel' \
+LANG=C
 
 RUN set -xv ; \
 yum -q -y upgrade && \
