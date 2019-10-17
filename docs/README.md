@@ -18,11 +18,11 @@
 
 ## Introduction
 
-`rakudo-pkg` offers native packages of [Rakudo Perl 6](https://perl6.org/),
-also known as Raku, that closely follow upstream development. Most of the time,
-the packages will be released on the same day as the Rakudo sources. At the
-moment, packages are provided for Alpine, CentOS, Debian, Fedora, openSUSE and
-Ubuntu. Feel free to [contribute](#contributing) or
+`rakudo-pkg` offers native packages of [Rakudo compiler for Raku](https://raku.org/)
+(previously known as Perl 6) that closely follow upstream development. Most of
+the time, the packages will be released on the same day as the Rakudo sources.
+At the moment, packages are provided for Alpine, CentOS, Debian, Fedora,
+openSUSE and Ubuntu. Feel free to [contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
 `rakudo-pkg` aims to provide small self-contained (no dependencies, no files
@@ -191,14 +191,14 @@ $ sudo rpm -Uvh *.rpm
 ## Set the PATH
 
 The path is set by setting a rakudo-pkg.sh profile file in /etc/profile.d. If
-perl 6 in in your path (type `perl6 -v`) you can stop reading this section
-and enjoy perl6.
+raku/perl6 is in your path (type `raku -v`) you can stop reading this section
+and enjoy raku.
 
 Alternatively, a script is supplied to do this automatically for you. Run it
 as your regular user:
 
 ```bash
-$ /opt/rakudo-pkg/bin/add-perl6-to-path
+$ /opt/rakudo-pkg/bin/add-raku-to-path
 ```
 
 If you prefer, you can change the PATH manually. Be aware that environment
@@ -245,11 +245,11 @@ $ /opt/rakudo-pkg/bin/fix_windows10
 
 ## Using rakudo-pkg on Travis
 
-You can use rakudo-pkg to speed-up the continuous integration of your Perl 6
-module on [Travis](https://travis-ci.org) and other CI systems. Since this
+You can use rakudo-pkg to speed-up the continuous integration of your Raku
+modules on [Travis](https://travis-ci.org) and other CI systems. Since this
 package is going to be downloaded in the install phase, you don't
 need to specify a language (by default, it will install Ruby). *Don't*
-specify `perl6` since this will download and build perl6 from source. Note
+specify `perl6` since this will download and build it from source. Note
 that rakudo-pkg does not exist for Precise Pangolin, so use trusty(default)
 or newer.
 
@@ -308,17 +308,18 @@ $ docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_URL -e NQP_
 Our packages do not interfere with the packages included in Linux
 distributions and can be installed at the same time. Distribution packages
 that integrate with the Operating System are often a good choice. That said,
-Perl 6 reached language stability very recently. Packages that date from
-sources before December 2015 should be considered beta (Rakudo is a lot
-slower and some features where removed or added in the language). Perl 6 and
-Rakudo are evolving very fast, getting better and faster. So, often you'll
-need a recent release to use these features.
+Raku (previously Perl 6) reached language stability very recently. Packages
+that date from sources before December 2015 should be considered beta (Rakudo
+is a lot slower and some features where removed or added in the language).
+Raku and Rakudo are evolving very fast, getting better and faster. So, often
+you'll need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribution themselves:
 - Alpine 3.10:   -
 - Alpine 3.9:    -
 - Alpine 3.8:    -
 - Alpine 3.7:    -
+- CentOS 8:      -
 - CentOS 7:      -
 - Debian 10:     2018.05
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
@@ -327,6 +328,7 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Fedora 29:     2018.05
 - openSUSE 15.1: 2019.03
 - openSUSE 15.0: -
+- Ubuntu 19.10:  2018.12
 - Ubuntu 19.04:  2018.12
 - Ubuntu 18.04:  2018.03
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
