@@ -156,7 +156,7 @@ sub pkg_fpm {
         $fpm,
         '--deb-no-default-config-files',
         '--license', 'Artistic License 2.0',
-        '--description', 'Rakudo Perl 6 runtime',
+        '--description', 'Rakudo runtime (Raku)',
         '--input-type', 'dir',
         '--output-type', $distro_info{$os}{format},
         '--package', $pkg_dir,
@@ -164,7 +164,7 @@ sub pkg_fpm {
         '--maintainer', $maintainer,
         '--version', $versions{rakudo},
         '--iteration', $revision,
-        '--url', 'https://perl6.org',
+        '--url', 'https://raku.org',
         '--architecture', $arch,
         $install_root, '/etc/profile.d/rakudo-pkg.sh'
     );
