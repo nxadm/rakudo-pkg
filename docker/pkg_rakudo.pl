@@ -43,10 +43,6 @@ my $os         = $ENV{OS};
 my $os_release = $ENV{RELEASE};
 my $arch       = $ENV{ARCH};
 $arch = 'native' if $os ne 'Alpine';
-if ($os eq 'openSUSE') {
-    $fpm =  `ls -1 /usr/lib64/ruby/gems/2.*/gems/fpm-*/bin/fpm`;
-    chomp $fpm;
-}
 
 ### Download & compile Rakudo ###
 for my $soft ('moarvm', 'nqp', 'rakudo') { #keep order
@@ -152,7 +148,6 @@ sub install_global_zef {
 }
 
 sub pkg_fpm {
-    $ENV{PATH} = '/usr/local/bin:' . $ENV{PATH};
     my @cmd = (
         $fpm,
         '--deb-no-default-config-files',
