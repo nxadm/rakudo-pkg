@@ -16,7 +16,8 @@ yum -q groupinstall -y "${pkggroup}" && \
 gem install --no-doc --no-ri fpm && \
 ln -s /usr/local/bin/fpm /usr/bin/ && \
 # Cleanup
-yum -q remove -y ${pkgs_tmp} && yum -q clean all
+yum -q remove -y ${pkgs_tmp} && yum -q clean all &&
+/usr/bin/fpm -h
 
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
