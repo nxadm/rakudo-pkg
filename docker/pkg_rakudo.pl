@@ -8,7 +8,7 @@ use File::Path qw/remove_tree/;
 ### Variables ###
 my $install_root = '/opt/rakudo-pkg';
 my $pkg_dir      = '/staging';
-my $fpm          = 'fpm';
+my $fpm          = '/usr/bin/fpm';
 my %repos = (
     zef    => "https://github.com/ugexe/zef.git",
     rakudo => "https://github.com/rakudo/rakudo.git",
