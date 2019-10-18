@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:eoan
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='C.UTF-8' \
