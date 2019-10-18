@@ -23,7 +23,7 @@ localedef -i en_US -c -f UTF-8 en_US.UTF-8
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
 COPY fix_windows10 /
-COPY add-perl6-to-path /
+COPY add-rakudo-to-path /
 COPY rakudo-pkg.sh /etc/profile.d/
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]
