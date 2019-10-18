@@ -15,6 +15,7 @@ apt-get -qq dist-upgrade -y && \
 # Packages for compiling and pkg creation
 apt-get -qq install -y ${pkgs} ${pkgs_tmp} && \
 gem install --no-doc --no-ri --no-doc --no-ri fpm && \
+ln -s /usr/local/bin/fpn /usr/bin/ && \
 # Cleanup
 apt-get remove -y --purge ${pkgs_tmp} && \
 apt-get -qq autoremove -y && apt-get -qq clean && \
