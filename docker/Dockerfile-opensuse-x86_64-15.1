@@ -11,6 +11,8 @@ RUN set -xv ; \
     zypper install --replacefiles -y ${pkgs} ${pkgs_tmp} && \
     ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
     gem install --no-doc --no-ri fpm && \
+    FPM=`ls -1 /usr/lib64/ruby/gems/2.*/gems/fpm-*/bin/fpm` && \
+    ln -s $FPM /usr/bin/ && \
     zypper remove -y --clean-deps ${pkgs_tmp}
 
 COPY pkg_rakudo.pl /

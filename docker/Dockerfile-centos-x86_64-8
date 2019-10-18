@@ -1,13 +1,13 @@
-FROM centos:centos7
+FROM centos:centos8
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-pkgs='git perl-autodie perl-Digest-SHA redhat-lsb-core perl-IPC-Cmd' \
+pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core ruby'  \
 pkggroup='Development Tools' \
-pkgs_tmp='ruby-devel'
+pkgs_tmp='ruby-devel' \
+LANG=C
 
 RUN set -xv ; \
-sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \
 yum -q -y upgrade && \
 ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 # Packages for compiling and pkg creation
@@ -16,9 +16,7 @@ yum -q groupinstall -y "${pkggroup}" && \
 gem install --no-doc --no-ri fpm && \
 ln -s /usr/local/bin/fpm /usr/bin/ && \
 # Cleanup
-yum -q remove -y ${pkgs_tmp} && yum -q clean all && \
-rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* && \
-localedef -i en_US -c -f UTF-8 en_US.UTF-8
+yum -q remove -y ${pkgs_tmp} && yum -q clean all
 
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
