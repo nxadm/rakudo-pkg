@@ -2,7 +2,7 @@ FROM centos:centos8
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core'  \
+pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core ruby'  \
 pkggroup='Development Tools' \
 pkgs_tmp='ruby-devel' \
 LANG=C
