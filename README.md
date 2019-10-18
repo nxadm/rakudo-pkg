@@ -47,7 +47,7 @@ running Docker can be used as a host, including Linux, MacOS and Windows machine
 ## OS Repositories
 
 The easiest way to install the Rakudo (starting from release 2018.04.1) on
-Debian, Centos, Fedora, openSUSE and Ubuntu is by using the `rakudo-pkg`
+Debian, CentOS, Fedora, openSUSE and Ubuntu is by using the `rakudo-pkg`
 repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 
 **Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
