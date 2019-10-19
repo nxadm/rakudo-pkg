@@ -1,8 +1,5 @@
 # rakudo-pkg
 
-[![Build Status](https://travis-ci.org/nxadm/rakudo-pkg.svg?branch=master)](https://travis-ci.org/nxadm/rakudo-pkg)
-<br>
-
 ## Table of Contents
 
 * [Introduction](#introduction)
