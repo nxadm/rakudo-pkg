@@ -137,6 +137,9 @@ including older versions in the [releases tab](https://github.com/nxadm/rakudo-p
 - Debian 8, 64-bit:
 [deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
+- Fedora 31, 64-bit:
+[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=31&arch=x86_64)
+([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=31&arch=x86_64)).
 - Fedora 30, 64-bit:
 [rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=30&arch=x86_64)
 ([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=30&arch=x86_64)).
@@ -330,6 +333,7 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Debian 10:     2018.05
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Fedora 31:     2019.03
 - Fedora 30:     2019.03
 - Fedora 29:     2018.05
 - openSUSE 15.1: 2019.03
