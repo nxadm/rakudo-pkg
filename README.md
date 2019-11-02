@@ -207,7 +207,7 @@ Alternatively, a script is supplied to do this automatically for you. Run it
 as your regular user:
 
 ```bash
-$ /opt/rakudo-pkg/bin/add-raku-to-path
+$ /opt/rakudo-pkg/bin/add-rakudo-to-path
 ```
 
 If you prefer, you can change the PATH manually. Be aware that environment
