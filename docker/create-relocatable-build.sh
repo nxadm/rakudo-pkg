@@ -1,12 +1,12 @@
 #!/usr/bin/env bash -e
 
-RELEASE=$1
-ZEFVERSION=v$2
+RAKUDO_VERSION=$1
+ZEF_VERSION=v$2
 BITS=$3
 
 # Build Rakudo
 curl -sSL -o rakudo.tar.gz \
-https://github.com/rakudo/rakudo/releases/download/$RELEASE/rakudo-$RELEASE.tar.gz
+https://github.com/rakudo/rakudo/releases/download/$RAKUDO_VERSION/rakudo-$RAKUDO_VERSION.tar.gz
 tar -xzf rakudo.tar.gz
 cd rakudo* 
 perl Configure.pl --gen-moar --gen-nqp --backends=moar --relocatable
@@ -16,7 +16,7 @@ make install
 # Build Zef
 git clone https://github.com/ugexe/zef.git 
 cd zef
-git checkout tags/$ZEFVERSION
+git checkout tags/$ZEF_VERSION
 /rakudo-*/install/bin/perl6 -I. bin/zef install .
 
 # Create links and add scripts
@@ -30,7 +30,8 @@ cp /add-rakudo-to-path .
 
 # Package it in /mnt
 cd /rakudo*
-mv install rakudo-$RELEASE
-tar -czf /mnt/rakudo-$RELEASE-linux-64${BITS}.tar.gz rakudo-$RELEASE
+mv install rakudo-$RAKUDO_VERSION
+mkdir -p /staging
+tar -czf /staging/rakudo-$RAKUDO_VERSION-linux-64${BITS}.tar.gz rakudo-$RAKUDO_VERSION
 
 exit 0

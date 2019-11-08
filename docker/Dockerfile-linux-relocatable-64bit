@@ -1,8 +1,8 @@
 FROM centos:centos6
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
-ARG rakudo_release=2019.07.1
-ARG zef_release=0.8.2
+ARG RAKUDO_VERSION
+ARG ZEF_VERSION
 ENV LANG='en_US.UTF-8' \
 ENV pkgs='git perl perl-core gcc make'
 
@@ -14,4 +14,4 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
 RUN yum -q -y upgrade && yum -q install -y ${pkgs} && yum -q clean all
 RUN localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-ENTRYPOINT /create-relocatable-build.sh $rakudo_release $zef_release 64
+ENTRYPOINT /create-relocatable-build.sh $RAKUDO_VERSION $ZEF_VERSION 64
