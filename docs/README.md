@@ -249,7 +249,7 @@ distribution. You'll need to strip the moarvm library of (unused) kernel
 functionalities that Windows does not implement yet:
 
 ```bash
-$ /opt/rakudo-pkg/bin/fix_windows10
+$ /opt/rakudo-pkg/bin/fix-windows10
 ```
 
 ## Using rakudo-pkg on Travis

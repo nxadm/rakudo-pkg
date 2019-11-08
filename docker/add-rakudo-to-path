@@ -3,8 +3,12 @@
 # Add perl6 to your PATH.
 # https://github.com/nxadm/rakudo-pkg
 
-BOURNE='PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH; export PATH'
-ZSH='path=(~/.perl6/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])'
+HOMEBIN="~/.perl6/bin"
+BINDIR="$(dirname $0)"
+cd "$BINDIR/.."
+SITEBINDIR="$(pwd)/share/perl6/site/bin"
+BOURNE="PATH=$HOMEBIN:$BINDIR:$SITEBINDIR:$PATH; export PATH"
+ZSH="path=($HOMEBIN $BINDIR $SITEBINDIR \$path[@])"
 
 function add_to_path {
     CMD=$1
@@ -31,9 +35,9 @@ if [ -f "$HOME/.profile" ]; then
     else
         echo "Distribution not supported by this script."
         echo "Add these path manually to your PATH:"
-        echo "- ~/.perl6/bin"
-        echo "- /opt/rakudo-pkg/bin" 
-        echo "- /opt/rakudo-pkg/share/perl6/site/bin"
+        echo "$HOMEBIN"
+        echo "$BINDIR"
+        echo "$SITEBINDIR"
 fi
 
 exit 0

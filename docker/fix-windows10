@@ -16,9 +16,9 @@ if [ -f "/etc/debian_version" ]; then
         exit 1
 fi
 
-cd /opt/rakudo-pkg/lib
+cd "$(dirname $0)/../lib"
 sudo cp libmoar.so libmoar.so-backup
-echo "/opt/rakudo-pkg/lib/libmoar.so backupped to libmoar.so-backup"
+echo "ibmoar.so backupped to libmoar.so-backup"
 sudo execstack -c libmoar.so
 echo "libmoar.so stripped for Windows 10".
 
