@@ -22,7 +22,7 @@ git checkout tags/$ZEF_VERSION
 # Create links and add scripts
 cd /rakudo*/install/bin
 ln -s perl6 rakudo 
-ln -s perl6 rakudo
+ln -s perl6 raku
 ln -s ../share/perl6/site/bin/zef .
 cp /install-zef-as-user .
 cp /fix-windows10 .
