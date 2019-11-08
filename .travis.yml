@@ -40,7 +40,7 @@ install:
   - set -e
   - if [ -z "$LOCAL_BUILD" ]; then docker pull nxadm/rakudo-pkg:$TAG; else docker build -f docker/Dockerfile-$TAG -t nxadm/rakudo-pkg:$TAG docker; fi
 script:
-  - docker run -ti -v /var/tmp/rakudo-pkg:/staging -e ZEF_VERSION=$ZEF_VERSION -e RAKUDO_VERSION=$RAKUDO_VERSION -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e REVISION=$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER="$MAINTAINER" nxadm/rakudo-pkg:$TAG
+  - docker run -ti -v /var/tmp/rakudo-pkg:/staging -e ZEF_VERSION="$ZEF_VERSION" -e RAKUDO_VERSION="$RAKUDO_VERSION" -e NQP_VERSION="$NQP_VERSION" -e MOARVM_VERSION="$MOARVM_VERSION" -e REVISION="$REVISION" -e OS="$OS" -e RELEASE="$RELEASE" -e ARCH="$ARCH" -e MAINTAINER="$MAINTAINER" nxadm/rakudo-pkg:$TAG
 deploy:
   provider: releases
   prerelease: true
