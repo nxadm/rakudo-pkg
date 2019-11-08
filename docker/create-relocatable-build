@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 RAKUDO_VERSION=$1
-ZEF_VERSION=v$2
+ZEF_VERSION=$2
 BITS=$3
 
 # Build Rakudo
