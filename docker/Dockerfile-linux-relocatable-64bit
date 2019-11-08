@@ -12,7 +12,7 @@ COPY fix-windows10 /
 COPY add-rakudo-to-path /
 RUN ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
-RUN yum -q -y upgrade && yum -q install -y ${pkgs} && yum -q clean all
+RUN yum -y upgrade && yum install -y ${pkgs} && yum clean all
 RUN localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
 ENTRYPOINT /create-relocatable-build $RAKUDO_VERSION $ZEF_VERSION 64
