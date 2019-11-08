@@ -1,0 +1,20 @@
+FROM nxadm/ubuntu-i386:16.04
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
+
+ARG RAKUDO_VERSION
+ARG ZEF_VERSION
+ENV LANG='C.UTF-8'
+ENV DEBIAN_FRONTEND='noninteractive'
+ENV TZ='Europe/Brussels'
+ENV pkgs='git perl gcc make'
+
+COPY create-relocatable-build /
+COPY install-zef-as-user /
+COPY fix-windows10 /
+COPY add-rakudo-to-path /
+
+RUN apt-get update && apt-get -y dist-upgrade && \
+apt-get -y autoremoved && apt-get clean
+RUN apt-get -y install ${pkgs}
+
+ENTRYPOINT /create-relocatable-build $RAKUDO_VERSION $ZEF_VERSION 32
