@@ -20,7 +20,7 @@ git checkout tags/$ZEF_VERSION
 /rakudo-*/install/bin/perl6 -I. bin/zef install .
 
 # Create links and add scripts
-cd rakudo*/install/bin
+cd /rakudo*/install/bin
 ln -s perl6 rakudo 
 ln -s perl6 rakudo
 ln -s ../share/perl6/site/bin/zef .

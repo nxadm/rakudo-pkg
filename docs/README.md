@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
+* [Relocatable Builds](#relocatable-builds)
 * [OS Repositories](#os-repositories)
 * [Direct Downloads](#direct-downloads)
 * [Set the PATH](#set-the-path)
@@ -15,11 +16,15 @@
 
 ## Introduction
 
-`rakudo-pkg` offers native packages of [Rakudo compiler for Raku](https://raku.org/)
-(previously known as Perl 6) that closely follow upstream development. Most of
-the time, the packages will be released on the same day as the Rakudo sources.
-At the moment, packages are provided for Alpine, CentOS, Debian, Fedora,
-openSUSE and Ubuntu. Feel free to [contribute](#contributing) or
+`rakudo-pkg` offers native packages (OS packages and relocatable builds) of
+[Rakudo compiler for Raku](https://raku.org/) (previously known as Perl 6)
+that closely follow upstream development. Most of the time, the packages will
+be released on the same day as the Rakudo sources. At the moment, packages are
+provided for Alpine, CentOS, Debian, Fedora, openSUSE and Ubuntu. The
+relocatable builds (unpack and use) should works universally on all recent
+Linux distributions.
+
+Feel free to [contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
 
 `rakudo-pkg` aims to provide small self-contained (no dependencies, no files
@@ -38,13 +43,24 @@ this repository by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) to
 For those users, or rather System Administrators, that prefer to build their
 own Rakudo packages, `rakudo-pkg` can be used as a build framework. Because
 Docker containers are used when creating native Linux packages, any platform
-running Docker can be used as a host, including Linux, MacOS and Windows machines.
+running Docker can be used as a host, including Linux, MacOS and Windows
+machines.
+
+## Relocatable Builds
+
+Relocatable builds can be uncompressed and used right away, e.g. in your home
+directory. `rakudo-pkg` releases can be downloaded on
+[the bintray repo](https://api.bintray.com/content/nxadm/rakudo-pkg-relocatable/).
+
+The relocable builds work on 64-bit distributions with a glibc at the same
+level or newer than than Centos 6 (2.12). 32-bit relocable builds works from
+the release of Ubuntu 16.04 onwards (2.23).
 
 
 ## OS Repositories
 
-The easiest way to install the Rakudo (starting from release 2018.04.1) on
-Debian, CentOS, Fedora, openSUSE and Ubuntu is by using the `rakudo-pkg`
+The easiest way to install the Rakudo on Debian, CentOS, Fedora, openSUSE and
+Ubuntu (and their derivatives) is by using the `rakudo-pkg`
 repositories. For Alpine, see [Direct Downloads](#direct-downloads).
 
 **Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
