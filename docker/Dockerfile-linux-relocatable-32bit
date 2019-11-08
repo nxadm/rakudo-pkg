@@ -6,7 +6,7 @@ ARG ZEF_VERSION
 ENV LANG='C.UTF-8'
 ENV DEBIAN_FRONTEND='noninteractive'
 ENV TZ='Europe/Brussels'
-ENV pkgs='git perl gcc make'
+ENV pkgs='ca-certificates curl git perl gcc make'
 
 COPY create-relocatable-build /
 COPY install-zef-as-user /
