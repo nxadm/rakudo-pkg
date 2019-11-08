@@ -6,6 +6,7 @@ ARG ZEF_VERSION
 ENV LANG='en_US.UTF-8'
 ENV pkgs='git perl perl-core gcc make'
 
+COPY create-relocatable-build /
 COPY install-zef-as-user /
 COPY fix-windows10 /
 COPY add-rakudo-to-path /
@@ -14,4 +15,4 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
 RUN yum -q -y upgrade && yum -q install -y ${pkgs} && yum -q clean all
 RUN localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-ENTRYPOINT /create-relocatable-build.sh $RAKUDO_VERSION $ZEF_VERSION 64
+ENTRYPOINT /create-relocatable-build $RAKUDO_VERSION $ZEF_VERSION 64
