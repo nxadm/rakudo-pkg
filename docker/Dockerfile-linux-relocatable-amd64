@@ -14,4 +14,4 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
 RUN yum -q -y upgrade && yum -q install -y ${pkgs} && yum -q clean all
 RUN localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-ENTRYPOINT /create-relocatable-build.sh $rakudo_release $zef_release 
+ENTRYPOINT /create-relocatable-build.sh $rakudo_release $zef_release 64

@@ -2,6 +2,7 @@
 
 RELEASE=$1
 ZEFVERSION=v$2
+BITS=$3
 
 # Build Rakudo
 curl -sSL -o rakudo.tar.gz \
@@ -30,6 +31,6 @@ cp /add-rakudo-to-path .
 # Package it in /mnt
 cd /rakudo*
 mv install rakudo-$RELEASE
-tar -czf /mnt/rakudo-$RELEASE-linux-64bit.tar.gz rakudo-$RELEASE
+tar -czf /mnt/rakudo-$RELEASE-linux-64${BITS}.tar.gz rakudo-$RELEASE
 
 exit 0
