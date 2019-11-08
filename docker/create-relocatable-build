@@ -1,4 +1,4 @@
-#!/usr/bin/bash -e
+#!/bin/bash -e
 
 RAKUDO_VERSION=$1
 ZEF_VERSION=v$2
