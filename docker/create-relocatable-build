@@ -32,6 +32,10 @@ cp /add-rakudo-to-path .
 cd /rakudo*
 mv install rakudo-$RAKUDO_VERSION
 mkdir -p /staging
-tar -czf /staging/rakudo-$RAKUDO_VERSION-linux-64${BITS}.tar.gz rakudo-$RAKUDO_VERSION
+if [ "$BITS" == 64 ]; then
+    $VARSTRING=${BIT}bit
+    else $VARSTRING=${BIT}bit-nojit
+fi
+tar -czf /staging/rakudo-$RAKUDO_VERSION-linux-${VARSTRING}.tar.gz rakudo-$RAKUDO_VERSION
 
 exit 0
