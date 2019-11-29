@@ -17,13 +17,11 @@ make install
 git clone https://github.com/ugexe/zef.git 
 cd zef
 git checkout tags/$ZEF_VERSION
-/rakudo-*/install/bin/perl6 -I. bin/zef install .
+/rakudo-*/install/bin/raky -I. bin/zef install .
 
 # Create links and add scripts
 cd /rakudo*/install/bin
-ln -s perl6 rakudo 
-ln -s perl6 raku
-ln -s ../share/perl6/site/bin/zef .
+ln -s ../share/raku/site/bin/zef .
 cp /install-zef-as-user .
 cp /fix-windows10 .
 cp /add-rakudo-to-path .

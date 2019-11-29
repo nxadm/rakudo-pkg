@@ -57,8 +57,6 @@ install_global_zef() or exit 1;
 move('/install-zef-as-user', "$install_root/bin/") or die($!);
 move('/fix-windows10', "$install_root/bin/") or die($!);
 move('/add-rakudo-to-path', "$install_root/bin/") or die($!);
-symlink("$install_root/bin/perl6", "$install_root/bin/rakudo") or die($!);
-symlink("$install_root/bin/perl6", "$install_root/bin/raku") or die($!);
 pkg_fpm() or exit 1;
 say "Rakudo was succesfully packaged.";
 
@@ -66,11 +64,11 @@ say "Rakudo was succesfully packaged.";
 checksum() or exit 1;
 say "Rakudo package was succesfully checksummed.";
 
-### Test by installing and running perl6 and zef ###
+### Test by installing and running raku and zef ###
 my @cmd = ( @{ $distro_info{$os}{cmd} }, $pkg_dir . '/' . $pkg_name);
 system(@cmd) == 0 or die($!);
 $ENV{PATH} = $install_root . '/bin:' . $ENV{PATH};
-system('perl6', '-v') == 0 or die($!);
+system('raku', '-v') == 0 or die($!);
 system('cat', '/etc/profile.d/rakudo-pkg.sh') == 0 or die($!);
 system('zef')         == 0 or die($!);
 
@@ -137,10 +135,10 @@ sub install_global_zef {
     system('git', 'clone', $repos{"zef"}) == 0 or return 0;
     chdir('zef') or die($!);
     system('git', 'checkout', "tags/" . $versions{zef}) == 0 or return 0;
-    my @cmd = ("$install_root/bin/perl6", '-Ilib', 'bin/zef',
+    my @cmd = ("$install_root/bin/raku", '-Ilib', 'bin/zef',
         '--install-to=core', 'install', '.');
     system(@cmd) == 0 or return 0;
-    symlink("$install_root/share/perl6/core/bin/zef", "$install_root/bin/zef")
+    symlink("$install_root/share/raku/core/bin/zef", "$install_root/bin/zef")
         or die($!);
     chdir('/') or die($!);
     remove_tree('/var/tmp/zef') or warn($!);
