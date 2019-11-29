@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Add perl6 to your PATH.
+# Add raku to your PATH.
 # https://github.com/nxadm/rakudo-pkg
 
 HOMEBIN="~/.perl6/bin"

@@ -138,7 +138,7 @@ sub install_global_zef {
     my @cmd = ("$install_root/bin/raku", '-Ilib', 'bin/zef',
         '--install-to=core', 'install', '.');
     system(@cmd) == 0 or return 0;
-    symlink("$install_root/share/raku/core/bin/zef", "$install_root/bin/zef")
+    symlink("$install_root/share/perl6/core/bin/zef", "$install_root/bin/zef")
         or die($!);
     chdir('/') or die($!);
     remove_tree('/var/tmp/zef') or warn($!);
