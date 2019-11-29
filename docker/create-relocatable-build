@@ -31,8 +31,8 @@ cd /rakudo*
 mv install rakudo-$RAKUDO_VERSION
 mkdir -p /staging
 if [ "$BITS" == 64 ]; then
-    $VARSTRING=${BIT}bit
-    else $VARSTRING=${BIT}bit-nojit
+    VARSTRING=${BITS}bit
+    else VARSTRING=${BITS}bit-nojit
 fi
 tar -czf /staging/rakudo-$RAKUDO_VERSION-linux-${VARSTRING}.tar.gz rakudo-$RAKUDO_VERSION
 
