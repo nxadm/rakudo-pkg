@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos6.6
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ARG RAKUDO_VERSION
