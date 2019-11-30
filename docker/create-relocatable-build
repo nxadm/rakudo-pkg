@@ -37,6 +37,13 @@ if [ "$BITS" == 64 ]; then
     VARSTRING=${BITS}bit
     else VARSTRING=${BITS}bit-nojit
 fi
-tar -czf /staging/rakudo-$RAKUDO_VERSION-linux-${VARSTRING}.tar.gz rakudo-$RAKUDO_VERSION
+TARGZ="rakudo-$RAKUDO_VERSION-linux-${VARSTRING}.tar.gz"
+tar -czf /staging/$TARGZ rakudo-$RAKUDO_VERSION
+
+# Checksum it
+cd /staging
+sha1sum $TARGZ > "${TARGZ}.sha1"
+echo "Package checksum:"
+cat "${TARGZ}.sha1"
 
 exit 0
