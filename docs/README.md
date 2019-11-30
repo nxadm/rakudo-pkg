@@ -115,88 +115,21 @@ $ sudo zypper install rakudo-pkg
 In case you don't have `lsb-release` installed, you can put the openSUSE
 version (e.g. 42.3) instead of the `lsb_release -rs` command.
 
-## Direct Downloads
+### Alpine
 
-**Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
+There is no Alpine repo at the moment. The apk packages can be downloaded from
+the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
+
+## Direct Downloads
 
 Most modern computer have a *64-bit* Operating System, so regular users should
 use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
 images on some cloud providers. **32-bit Rakudo is not JIT enabled (upstream)
 and as a result a lot slower.**
 
-
-At the moment the following packages are provided (see the full listing
-including older versions in the [releases tab](https://github.com/nxadm/rakudo-pkg/releases)):
-
-- Alpine 3.10, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.10&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.10&arch=x86_64)).
-- Alpine 3.9, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.9&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.9&arch=x86_64)).
-- Alpine 3.8, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.8&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.8&arch=x86_64)).
-- Alpine 3.7, 64-bit:
-[apk](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=alpine&version=3.7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=alpine&version=3.7&arch=x86_64)).
-- CentOS 8, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=8&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=8&arch=x86_64)).
-- CentOS 7, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=centos&version=7&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=centos&version=7&arch=x86_64)).
-- Debian 10, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=10&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=10&arch=amd64)).
-- Debian 9, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=9&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=9&arch=amd64)).
-- Debian 8, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=debian&version=8&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=debian&version=8&arch=amd64)).
-- Fedora 31, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=31&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=31&arch=x86_64)).
-- Fedora 30, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=30&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=30&arch=x86_64)).
-- Fedora 29, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=fedora&version=29&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=fedora&version=29&arch=x86_64)).
-- openSUSE 15.1, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.1&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.1&arch=x86_64)).
-- openSUSE 15.0, 64-bit:
-[rpm](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=opensuse&version=15.0&arch=x86_64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=opensuse&version=15.0&arch=x86_64)).
-- Ubuntu 19.10, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.10&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.10&arch=amd64)).
-- Ubuntu 19.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=amd64)).
-- Ubuntu 18.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=amd64)).
-- Ubuntu 16.04, 64-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=amd64)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=amd64)).
-- Ubuntu 19.10, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.10&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.10&arch=i386)).
-- Ubuntu 19.04, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=19.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=19.04&arch=i386)).
-- Ubuntu 18.04, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=18.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=18.04&arch=i386)).
-- Ubuntu 16.04, 32-bit:
-[deb](https://nxadm.github.io/rakudo-pkg/latest-release.html?os=ubuntu&version=16.04&arch=i386)
-([checksum](https://nxadm.github.io/rakudo-pkg/latest-release-checksum.html?os=ubuntu&version=16.04&arch=i386)).
-
-You can install these package with the regular package manager of your
-distribution:
+See the [releases tab](https://github.com/nxadm/rakudo-pkg/releases) for the
+latest packages. You can install the downloaded packages with the regular
+package manager of your distribution:
 
 - Alpine:
 ```
