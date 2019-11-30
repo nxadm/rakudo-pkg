@@ -260,7 +260,7 @@ $ bin/create-baseimg.p6 18.04
 You need to supply the necessary environment variables to Docker:
 
 ```bash
-$ docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_URL -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e REVISION:$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
+$ docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_VERSION -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e ZEF_VERSION=$ZEF_VERSION -e REVISION=$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
 ```
 
 ## Other Rakudo Distributions
