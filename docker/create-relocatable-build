@@ -1,8 +1,9 @@
 #!/bin/bash -e
 
 RAKUDO_VERSION=$1
-ZEF_VERSION=$2
-BITS=$3
+RAKUDO_REVISION=$2
+ZEF_VERSION=$3
+BITS=$4
 
 # Build Rakudo
 curl -sSL -o rakudo.tar.gz \
@@ -37,7 +38,7 @@ if [ "$BITS" == 64 ]; then
     VARSTRING=${BITS}bit
     else VARSTRING=${BITS}bit-nojit
 fi
-TARGZ="rakudo-pkg-$RAKUDO_VERSION-linux-${VARSTRING}.tar.gz"
+TARGZ="rakudo-pkg-${RAKUDO_VERSION}-${RAKUDO_REVISION}-linux-${VARSTRING}.tar.gz"
 tar -czf /staging/$TARGZ rakudo-$RAKUDO_VERSION
 
 # Checksum it
