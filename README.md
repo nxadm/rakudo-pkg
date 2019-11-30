@@ -122,7 +122,7 @@ the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
 
 ## Direct Downloads
 
-Most modern computer have a *64-bit* Operating System, so regular users should
+Most modern computers have a *64-bit* Operating System, so regular users should
 use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
 images on some cloud providers. **32-bit Rakudo is not JIT enabled (upstream)
 and as a result a lot slower.**
