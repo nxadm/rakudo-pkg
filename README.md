@@ -132,6 +132,7 @@ latest packages. You can install the downloaded packages with the regular
 package manager of your distribution:
 
 - Alpine:
+
 ```
 $ sudo apk add --allow-untrusted *.apk
 ```
