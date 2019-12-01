@@ -49,7 +49,7 @@ machines.
 ## Relocatable Builds
 
 Relocatable builds can be uncompressed and used right away, e.g. in your home
-directory. `rakudo-pkg` releases can be downloaded from the
+directory. `rakudo-pkg` "\*.tar.gz" releases can be downloaded from the
 [the Github tab](https://github.com/nxadm/rakudo-pkg/releases) and, as a
 backup from
 [the Bintray repo](https://dl.bintray.com/nxadm/rakudo-pkg-relocatable/).
