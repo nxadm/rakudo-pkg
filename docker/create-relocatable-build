@@ -29,7 +29,7 @@ cp /add-rakudo-to-path .
 cd /rakudo*
 mv install rakudo-$RAKUDO_VERSION
 mkdir -p /staging
-TARGZ="rakudo-${RAKUDO_VERSION}-${RAKUDO_REVISION}-linux-${ARCH}.tar.gz"
+TARGZ="rakudo-moarvm-${RAKUDO_VERSION}-${RAKUDO_REVISION}-linux-${ARCH}.tar.gz"
 tar -czf /staging/$TARGZ rakudo-$RAKUDO_VERSION
 
 # Checksum it
