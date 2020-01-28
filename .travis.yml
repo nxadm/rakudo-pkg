@@ -12,7 +12,6 @@ env:
   matrix:
     - TAG=linux-relocatable-64bit ARCH=x86_64 RELOCATABLE=1
     - TAG=linux-relocatable-32bit ARCH=x86 RELOCATABLE=1
-    - TAG="alpine-x86_64-3.7" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.7"
     - TAG="alpine-x86_64-3.8" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.8"
     - TAG="alpine-x86_64-3.9" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.9"
     - TAG="alpine-x86_64-3.10" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.10"
@@ -21,18 +20,14 @@ env:
     - TAG="debian-amd64-8" REPO=deb CODENAME=jessie ARCH=amd64 OS=Debian RELEASE=8
     - TAG="debian-amd64-9" REPO=deb CODENAME=stretch,cindy ARCH=amd64 OS=Debian RELEASE=9
     - TAG="debian-amd64-10" REPO=deb CODENAME=buster ARCH=amd64 OS=Debian RELEASE=10
-    - TAG="fedora-x86_64-29" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=29
     - TAG="fedora-x86_64-30" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=30
     - TAG="fedora-x86_64-31" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=31
-    - TAG="opensuse-x86_64-15.0" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.0"
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=amd64 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-amd64-19.04" REPO=deb CODENAME=disco ARCH=amd64 OS=Ubuntu RELEASE="19.04"
     - TAG="ubuntu-amd64-19.10" REPO=deb CODENAME=eoan ARCH=amd64 OS=Ubuntu RELEASE="19.10"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu" RELEASE="16.04"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=i386 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-i386-19.04" REPO=deb CODENAME=disco ARCH=i386 OS=Ubuntu RELEASE="19.04"
     - TAG="ubuntu-i386-19.10" REPO=deb CODENAME=eoan ARCH=i386 OS=Ubuntu RELEASE="19.10"
 sudo: required
 services:
