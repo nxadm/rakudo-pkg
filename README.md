@@ -277,10 +277,10 @@ Raku and Rakudo are evolving very fast, getting better and faster. So, often
 you'll need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribution themselves:
+- Alpine 3.10:   2019.07.1
 - Alpine 3.10:   -
 - Alpine 3.9:    -
 - Alpine 3.8:    -
-- Alpine 3.7:    -
 - CentOS 8:      -
 - CentOS 7:      -
 - Debian 10:     2018.05
@@ -288,11 +288,8 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 - Fedora 31:     2019.03
 - Fedora 30:     2019.03
-- Fedora 29:     2018.05
 - openSUSE 15.1: 2019.03
-- openSUSE 15.0: -
 - Ubuntu 19.10:  2018.12
-- Ubuntu 19.04:  2018.12
 - Ubuntu 18.04:  2018.03
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
 
