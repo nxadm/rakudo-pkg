@@ -12,10 +12,10 @@ make install
 git clone https://github.com/ugexe/zef.git 
 cd zef
 git checkout tags/$ZEF_VERSION
-/rakudo-*/install/bin/raku -I. bin/zef install .
+/rakudo/install/bin/raku -I. bin/zef install .
 
 # Create links and add scripts
-cd /rakudo*/install/bin
+cd /rakudo/install/bin
 rm raku raku-debug
 ln -s rakudo raku
 ln -s rakudo-debug raku-debug
@@ -25,7 +25,7 @@ cp /fix-windows10 .
 cp /add-rakudo-to-path .
 
 # Package it in /mnt
-cd /rakudo*
+cd /rakudo
 mv install rakudo-$RAKUDO_VERSION
 mkdir -p /staging
 TARGZ="rakudo-moarvm-${RAKUDO_VERSION}-${RAKUDO_REVISION}-linux-${ARCH}.tar.gz"
