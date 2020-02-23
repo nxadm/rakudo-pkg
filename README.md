@@ -277,6 +277,7 @@ Raku and Rakudo are evolving very fast, getting better and faster. So, often
 you'll need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribution themselves:
+- Alpine 3.11:   2019.07.1
 - Alpine 3.10:   2019.07.1
 - Alpine 3.10:   -
 - Alpine 3.9:    -
