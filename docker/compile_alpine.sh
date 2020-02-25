@@ -2,21 +2,23 @@
 git clone https://github.com/MoarVM/MoarVM.git moarvm
 cd moarvm
 git checkout tags/2020.02
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' ./Configure.pl
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make install
+perl -pi -e 's/(my \@cflags;)/$1\npush \@cflags, "-DDL_USE_GLIBC_ITER_PHDR";/' Configure.pl
+./Configure.pl
+make
+make install
 git clone https://github.com/perl6/nqp.git
 cd nqp
 git checkout tags/2020.02
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' ./Configure.pl --backends=moar
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make test
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make install
+./Configure.pl --backends=moar
+make
+make test
+make install
 git clone https://github.com/rakudo/rakudo.git
 cd rakudo
 git checkout tags/2020.02
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' ./Configure.pl --backends=moar
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make
-CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' make install
+./Configure.pl --backends=moar
+make
+make test
+make install
 
 exit 0
