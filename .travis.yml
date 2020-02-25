@@ -4,7 +4,7 @@ env:
     - ZEF_VERSION="v0.8.3"
     - RAKUDO_VERSION="2020.02"
     - NQP_VERSION="2020.02"
-    - MOARVM_VERSION="2020.01.1"
+    - MOARVM_VERSION="2020.02"
     - REVISION="01"
     - MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
     - LOCAL_BUILD="1"
