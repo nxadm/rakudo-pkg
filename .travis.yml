@@ -15,6 +15,7 @@ env:
     - TAG="alpine-x86_64-3.8" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.8" 
     - TAG="alpine-x86_64-3.9" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.9"
     - TAG="alpine-x86_64-3.10" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.10"
+    - TAG="alpine-x86_64-3.11" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.11"
     - TAG="centos-x86_64-7" REPO=rpm ARCH=x86_64" OS=CentOS RELEASE=7
     - TAG="centos-x86_64-8" REPO=rpm ARCH=x86_64" OS=CentOS RELEASE=8
     - TAG="debian-amd64-8" REPO=deb CODENAME=jessie ARCH=amd64 OS=Debian RELEASE=8
