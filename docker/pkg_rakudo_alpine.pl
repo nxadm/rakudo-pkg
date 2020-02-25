@@ -93,7 +93,7 @@ sub build {
     }
     system('bash', '-c', $configure) == 0 or return 0;
     # make
-    system('bash', 'c', "export CFLAGS=$ENV{'CFLAGS'}; make")     == 0 or return 0;
+    system('bash', '-c', "export CFLAGS=$ENV{'CFLAGS'}; make")     == 0 or return 0;
     # make test
     if (!$skip_tests) {
         system('bash', '-c', "export CFLAGS=${'CFLAGS'}; make test") == 0 or return 0;
