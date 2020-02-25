@@ -85,7 +85,7 @@ sub build {
     system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
     chdir($soft) == 0 or return 0;
     # Configure
-    my $configure  = "CFLAGS=$CFLAGS perl ./Configure.pl --prefix=$install_root";
+    my $configure  = "CFLAGS=$ENV{'CFLAGS'} perl ./Configure.pl --prefix=$install_root";
     my $skip_tests = 1;
     if ($soft ne 'moarvm') {
         push(@configure, '--backends=moar') if ($soft ne 'moarvm');
