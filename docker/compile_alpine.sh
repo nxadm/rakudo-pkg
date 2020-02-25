@@ -3,6 +3,7 @@ git clone https://github.com/MoarVM/MoarVM.git moarvm
 cd moarvm
 git checkout tags/2020.02
 perl -pi -e 's/(my \@cflags;)/$1\npush \@cflags, "-DDL_USE_GLIBC_ITER_PHDR";/' Configure.pl
+grep '@cflags' Configure.pl
 ./Configure.pl
 make
 make install
