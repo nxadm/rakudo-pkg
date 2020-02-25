@@ -85,7 +85,7 @@ sub build {
     system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
     chdir($soft) == 0 or return 0;
     # Configure
-    my $configure = "CFLAGS=$ENV{'CFLAGS'} perl ./Configure.pl --prefix=$install_root";
+    my $configure = "export CFLAGS=$ENV{'CFLAGS'}; perl ./Configure.pl --prefix=$install_root";
     my $skip_tests = 1;
     if ($soft ne 'moarvm') {
         $configure =~ '--backends=moar' if ($soft ne 'moarvm');
@@ -93,13 +93,13 @@ sub build {
     }
     system('bash', '-c', $configure) == 0 or return 0;
     # make
-    system("CFLAGS=$ENV{'CFLAGS'} make")     == 0 or return 0;
+    system('bash', 'c', "export CFLAGS=$ENV{'CFLAGS'}; make")     == 0 or return 0;
     # make test
     if (!$skip_tests) {
-        system('bash', '-c', "CFLAGS=${'CFLAGS'} make test") == 0 or return 0;
+        system('bash', '-c', "export CFLAGS=${'CFLAGS'}; make test") == 0 or return 0;
     }
     # make install
-    system('bash', '-c', "CFLAGS=$ENV{'CFLAGS'} make install") == 0 or return 0;
+    system('bash', '-c', "export CFLAGS=$ENV{'CFLAGS'}; make install") == 0 or return 0;
     # Clean up
     chdir('/') or die($!);
     remove_tree($soft) or warn($!);
