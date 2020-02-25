@@ -88,7 +88,7 @@ sub build {
     my $configure  = "CFLAGS=$ENV{'CFLAGS'} perl ./Configure.pl --prefix=$install_root";
     my $skip_tests = 1;
     if ($soft ne 'moarvm') {
-        push(@configure, '--backends=moar') if ($soft ne 'moarvm');
+        $configure =~ '--backends=moar' if ($soft ne 'moarvm');
         $skip_tests = 0;
     }
     system($configure) == 0 or return 0;
