@@ -6,7 +6,6 @@ ENV LANG='C.UTF-8' \
     pkgs='bash build-base ca-certificates git libffi linux-headers openssl perl perl-utils ruby zlib gzip tar git' \
     pkg_tmp='libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata' \
     to_patch='/usr/lib/ruby/gems/2.**/gems/fpm-*/lib/fpm/package/apk.rb'
-ENV CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR'    
 
 RUN set -xv ; \
     apk update && apk upgrade && \
