@@ -87,7 +87,7 @@ sub build {
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
     if ( $os eq 'Alpine' && $soft eq 'moarvm' ) {
-      unshift @configure, 'CFLAGS="-fPIC -DDL_USE_GLIBC_ITER_PHDR"':
+      unshift @configure, 'CFLAGS="-fPIC -DDL_USE_GLIBC_ITER_PHDR"';
     }
     my $skip_tests = 1;
     if ($soft ne 'moarvm') {
