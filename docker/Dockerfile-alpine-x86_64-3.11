@@ -6,6 +6,7 @@ ENV LANG='C.UTF-8' \
     pkgs='bash build-base ca-certificates git libffi linux-headers openssl perl perl-utils ruby zlib gzip tar git' \
     pkg_tmp='libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata' \
     to_patch='/usr/lib/ruby/gems/2.**/gems/fpm-*/lib/fpm/package/apk.rb'
+ENV CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR'    
 
 RUN set -xv ; \
     apk update && apk upgrade && \
@@ -24,11 +25,10 @@ RUN set -xv ; \
     apk del ${pkg_tmp} && \
     rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
 
-COPY pkg_rakudo.pl /
+COPY pkg_rakudo_alpine.pl /pkg_rakudo_alpine.pl
 COPY install-zef-as-user /
 COPY fix-windows10 /
 COPY add-rakudo-to-path /
 COPY rakudo-pkg.sh /etc/profile.d/
 
-#ENTRYPOINT [ "/pkg_rakudo.pl" ]
-ENTRYPOINT CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR' /pkg_rakudo.pl
+ENTRYPOINT [ "/pkg_rakudo.pl" ]
