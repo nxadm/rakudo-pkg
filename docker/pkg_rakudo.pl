@@ -92,8 +92,12 @@ sub build {
       $skip_tests = 0;
     }
 
-    system(@configure) == 0 or return 0;
-    system('make')     == 0 or return 0;
+    if ( $os eq 'Alpine' && $soft eq 'moarvm' ) {
+      system( 'CFLAGS="-fPIC -DDL_USE_GLIBC_ITER_PHDR" perl Configure.pl && make' ) == 0 or return 0;
+    } else {
+      system(@configure) == 0 or return 0;
+      system('make')     == 0 or return 0;
+    }
 
     # make test
     if (!$skip_tests) {
