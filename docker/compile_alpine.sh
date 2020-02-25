@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/bin/bash -e
 git clone https://github.com/MoarVM/MoarVM.git moarvm
 cd moarvm
 git checkout tags/2020.02
