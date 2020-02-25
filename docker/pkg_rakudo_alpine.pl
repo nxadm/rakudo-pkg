@@ -93,13 +93,13 @@ sub build {
     }
     system($configure) == 0 or return 0;
     # make
-    system("CFLAGS=$CFLAGS make")     == 0 or return 0;
+    system("CFLAGS=$ENV{'CFLAGS'} make")     == 0 or return 0;
     # make test
     if (!$skip_tests) {
-        system("CFLAGS=$CFLAGS make test") == 0 or return 0;
+        system("CFLAGS=${'CFLAGS'} make test") == 0 or return 0;
     }
     # make install
-    system("CFLAGS=$CFLAGS make install") == 0 or return 0;
+    system("CFLAGS=$ENV{'CFLAGS'} make install") == 0 or return 0;
     # Clean up
     chdir('/') or die($!);
     remove_tree($soft) or warn($!);
