@@ -86,7 +86,7 @@ sub build {
     chdir($soft) == 0 or return 0;
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
-    if ( $os eq 'Alpine' ) {
+    if ( $os eq 'Alpine' && $soft eq 'moarvm' ) {
       unshift @configure, 'CFLAGS="-fPIC -DDL_USE_GLIBC_ITER_PHDR"':
     }
     my $skip_tests = 1;
