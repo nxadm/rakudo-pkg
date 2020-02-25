@@ -91,15 +91,15 @@ sub build {
         $configure =~ '--backends=moar' if ($soft ne 'moarvm');
         $skip_tests = 0;
     }
-    system('sh', $configure) == 0 or return 0;
+    system('bash', '-c', $configure) == 0 or return 0;
     # make
     system("CFLAGS=$ENV{'CFLAGS'} make")     == 0 or return 0;
     # make test
     if (!$skip_tests) {
-        system('sh', "CFLAGS=${'CFLAGS'} make test") == 0 or return 0;
+        system('bash', '-c', "CFLAGS=${'CFLAGS'} make test") == 0 or return 0;
     }
     # make install
-    system('sh', "CFLAGS=$ENV{'CFLAGS'} make install") == 0 or return 0;
+    system('bash', '-c', "CFLAGS=$ENV{'CFLAGS'} make install") == 0 or return 0;
     # Clean up
     chdir('/') or die($!);
     remove_tree($soft) or warn($!);
