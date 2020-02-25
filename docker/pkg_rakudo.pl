@@ -91,6 +91,9 @@ sub build {
         push(@configure, '--backends=moar') if ($soft ne 'moarvm');
         $skip_tests = 0;
     }
+    if ($os eq 'Alpine') {
+        $ENV{'CFLAGS'} ='-fPIC -DDL_USE_GLIBC_ITER_PHDR'
+    }
     system(@configure) == 0 or return 0;
     system('make')     == 0 or return 0;
     # make test
