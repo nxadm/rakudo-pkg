@@ -90,14 +90,15 @@ sub build {
     if ($soft ne 'moarvm') {
         push(@configure, '--backends=moar');
         $skip_tests = 0;
-    }
-    system(@configure) == 0 or return 0;
+      }
     if ($soft eq 'moarvm' && $os eq 'Alpine' ) {
-      system('CFLAGS="-DDL_USE_GLIBC_ITER_PHDR" make')  == 0 or return 0;
+      system('CFLAGS="-DDL_USE_GLIBC_ITER_PHDR" '.join(" ", @configure) );
     } else {
-      system('make')     == 0 or return 0;
+      system(@configure) == 0 or return 0;
     }
-    
+
+    system('make')     == 0 or return 0;
+
     # make test
     if (!$skip_tests) {
         system('make', 'test') == 0 or return 0;
