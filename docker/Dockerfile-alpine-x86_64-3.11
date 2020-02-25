@@ -25,6 +25,7 @@ RUN set -xv ; \
     rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo_alpine.pl /
+COPY compile_alpine.sh /
 COPY install-zef-as-user /
 COPY fix-windows10 /
 COPY add-rakudo-to-path /

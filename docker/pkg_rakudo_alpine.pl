@@ -77,33 +77,9 @@ exit 0;
 
 ### Functions ###
 sub build {
-    my $soft = shift;
-    mkdir $soft or die($!);
-    # Download and unpack
-    system('git', 'clone', $repos{$soft}, $soft) == 0 or return 0;
-    chdir($soft) or die($!);
-    system('git', 'checkout', "tags/" . $versions{$soft}) == 0 or return 0;
-    chdir($soft) == 0 or return 0;
-    # Configure
-    my $cflags = "CFLAGS='-fPIC -DDL_USE_GLIBC_ITER_PHDR'";
-    my $configure = "export $cflags; ./Configure.pl --prefix=$install_root";
-    my $skip_tests = 1;
-    if ($soft ne 'moarvm') {
-        $configure .= '--backends=moar' if ($soft ne 'moarvm');
-        $skip_tests = 0;
-    }
-    system('bash', '-c', $configure) == 0 or return 0;
-    # make
-    system('bash', '-c', "export $cflags; make")     == 0 or return 0;
-    # make test
-    if (!$skip_tests) {
-        system('bash', '-c', "export $cflags; make test") == 0 or return 0;
-    }
-    # make install
-    system('bash', '-c', "export $cflags; make install") == 0 or return 0;
+    system('/compile_alpine.sh') == 0 or return 0;
     # Clean up
     chdir('/') or die($!);
-    remove_tree($soft) or warn($!);
     return 1;
 }
 
