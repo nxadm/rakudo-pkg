@@ -3,7 +3,7 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='C.UTF-8' \
     TZ='Europe/Brussels' \
-    pkgs='bash build-base ca-certificates git libffi linux-headers openssl perl perl-utils ruby zlib gzip tar git' \
+    pkgs='build-base ca-certificates git libffi linux-headers openssl perl perl-utils ruby zlib gzip tar git' \
     pkg_tmp='libffi-dev ruby-dev ruby-irb ruby-rdoc tzdata' \
     to_patch='/usr/lib/ruby/gems/2.**/gems/fpm-*/lib/fpm/package/apk.rb'
 
@@ -24,11 +24,10 @@ RUN set -xv ; \
     apk del ${pkg_tmp} && \
     rm -rf /tmp/* /var/tmp/* /MoarVM* /nqp* /rakudo*
 
-COPY pkg_rakudo_alpine.pl /
-COPY compile_alpine.sh /
+COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
 COPY fix-windows10 /
 COPY add-rakudo-to-path /
 COPY rakudo-pkg.sh /etc/profile.d/
 
-ENTRYPOINT [ "/pkg_rakudo_alpine.pl" ]
+ENTRYPOINT [ "/pkg_rakudo.pl" ]

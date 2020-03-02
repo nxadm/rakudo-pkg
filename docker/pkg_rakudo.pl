@@ -92,7 +92,6 @@ sub build {
         $skip_tests = 0;
     }
     system(@configure) == 0 or return 0;
-    # make
     system('make')     == 0 or return 0;
     # make test
     if (!$skip_tests) {
