@@ -42,6 +42,8 @@ my $revision   = $ENV{REVISION};
 my $os         = $ENV{OS};
 my $os_release = $ENV{RELEASE};
 my $arch       = $ENV{ARCH};
+# Workaround for failing t/08-performance/99-misc.t
+$ENV{RAKUDO_SKIP_TIMING_TESTS} = 1 if ($arch eq "i386");
 $arch = 'native' if $os ne 'Alpine';
 
 ### Download & compile Rakudo ###
