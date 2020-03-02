@@ -8,6 +8,7 @@ DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby' \
 pkgs_tmp='ruby-dev'
+ENV RAKUDO_SKIP_TIMING_TESTS=1
 
 RUN set -xv ; \
 apt-get -qq update && \
