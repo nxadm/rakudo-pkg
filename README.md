@@ -215,7 +215,7 @@ specify `perl6` since this will download and build it from source. Note
 that rakudo-pkg does not exist for Precise Pangolin, so use trusty(default)
 or newer.
 
-A valid `.travis.yml` would include:
+A valid `.travis.yml` would be:
 
 ```
 language: generic
@@ -229,6 +229,8 @@ addons:
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?search=0x379CE192D401AB61&op=get'
     packages:
       - rakudo-pkg
+install:
+  - zef install .
 ```
 
 After this line, you should do `zef install . && zef test .` or whatever else you need to test your package. In case you need an specific version, older
