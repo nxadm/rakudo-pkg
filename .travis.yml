@@ -27,6 +27,7 @@ env:
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=amd64 OS=Ubuntu RELEASE="18.04"
     - TAG="ubuntu-amd64-19.10" REPO=deb CODENAME=eoan ARCH=amd64 OS=Ubuntu RELEASE="19.10"
+    - TAG="ubuntu-amd64-20.04" REPO=deb CODENAME=focal ARCH=amd64 OS=Ubuntu RELEASE="20.04"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu RELEASE="16.04"
     - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina ARCH=i386 OS=Ubuntu RELEASE="18.04"
     - TAG="ubuntu-i386-19.10" REPO=deb CODENAME=eoan ARCH=i386 OS=Ubuntu RELEASE="19.10"
