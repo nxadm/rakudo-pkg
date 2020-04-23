@@ -3,7 +3,7 @@
 # Add raku to your PATH.
 # https://github.com/nxadm/rakudo-pkg
 
-HOMEBIN="~/.perl6/bin"
+HOMEBIN="~/.raku/bin"
 BINDIR="$(dirname $0)"
 cd "$BINDIR/.."
 SITEBINDIR="$(pwd)/share/perl6/site/bin"

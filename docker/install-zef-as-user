@@ -5,6 +5,6 @@ if [ -f /opt/rakudo-pkg/bin/zef ]; then
     else zef --install-to=home install zef
 fi     
 
-echo "Don't forget to add '~/.perl6/bin' to your PATH,"
+echo "Don't forget to add '~/.raku/bin' to your PATH,"
 echo "e.g. by adding this to .profile:"
-echo "export PATH=~/.perl6/bin:PATH"
+echo "export PATH=~/.raku/bin:PATH"
