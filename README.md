@@ -170,7 +170,7 @@ files start with a '.' and are hidden by convention on graphical file browsers:
 `.bash_profile` or the corresponding environment init script for your shell:
 
 ```bash
-PATH=~/.perl6/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH
+PATH=~/.raku/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH
 export PATH
 ```
 
@@ -178,7 +178,7 @@ export PATH
 distribution:
 
 ```zsh
-path=(~/.perl6/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])
+path=(~/.raku/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])
 ```
 
 ## Zef Module Manager as a Regular User
@@ -187,8 +187,8 @@ The installation supplies a working *global* Zef installation
 (`/opt/rakudo-pkg/bin/zef`). However, Rakudo takes a different
 approach to many other languages (including Perl 5): modules are by default
 installed the home directory of the user. A script is supplied to install
-zef as a user. Zef will be installed to `~/.perl6/bin/zef` and modules will
-reside in `~/.perl6`:
+zef as a user. Zef will be installed to `~/.raku/bin/zef` and modules will
+reside in `~/.raku`:
 
 ```bash
 /opt/rakudo-pkg/bin/install-zef-as-user
@@ -279,8 +279,8 @@ Raku and Rakudo are evolving very fast, getting better and faster. So, often
 you'll need a recent release to use these features.
 
 This is the state of Rakudo packaged by the distribution themselves:
-- Alpine 3.11:   2019.07.1
-- Alpine 3.10:   2019.07.1
+- Alpine 3.11:   -
+- Alpine 3.10:   -
 - Alpine 3.10:   -
 - Alpine 3.9:    -
 - Alpine 3.8:    -
@@ -289,9 +289,11 @@ This is the state of Rakudo packaged by the distribution themselves:
 - Debian 10:     2018.05
 - Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
 - Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
+- Fedora 32:     2020.02
 - Fedora 31:     2019.03
 - Fedora 30:     2019.03
 - openSUSE 15.1: 2019.03
+- Ubuntu 20.04:  2019.11
 - Ubuntu 19.10:  2018.12
 - Ubuntu 18.04:  2018.03
 - Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
