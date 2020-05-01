@@ -77,6 +77,12 @@ $ echo "deb https://dl.bintray.com/nxadm/rakudo-pkg-debs `lsb_release -cs` main"
 $ sudo apt-get update && sudo apt-get install rakudo-pkg
 ```
 
+You may also have to install additional packages in order to execute
+the above commands. Some reported as additionally needed include:
++ `apt-transport-https`
++ `dirmngr`
++ `lsb-release`
+
 If you don't have `lsb_release` installed, you can use the OS codename (e.g.,
 stretch, bionic, etc.) instead of the `lsb_release -cs` command.
 
@@ -312,4 +318,3 @@ the Rakudo compiler and the third party modules.
 
 Issues (bugs and ideas) and PRs are always welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md).
-
