@@ -1,0 +1,23 @@
+FROM nxadm/debian-i386:10
+LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
+
+ENV LANG='C.UTF-8'
+ENV DEBIAN_FRONTEND='noninteractive'
+ENV TZ='Europe/Brussels'
+ENV pkgs='build-essential git lsb-release ruby ruby-dev'
+ENV pkgs_tmp='ruby-dev'
+
+RUN apt-get update && apt-get -qq dist-upgrade -y
+RUN apt-get install -y ${pkgs} ${pkgs_tmp}
+RUN gem install --no-doc --no-ri fpm && ln -s /usr/local/bin/fpm /usr/bin/
+RUN apt-get remove -y --purge ${pkgs_tmp}
+RUN apt-get -qq autoremove -y && apt-get -qq clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+
+COPY pkg_rakudo.pl /
+COPY install-zef-as-user /
+COPY fix-windows10 /
+COPY add-rakudo-to-path /
+COPY rakudo-pkg.sh /etc/profile.d/
+
+ENTRYPOINT [ "/pkg_rakudo.pl" ]
