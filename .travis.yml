@@ -2,7 +2,7 @@ language: generic
 env:
   global:
     - ZEF_VERSION="v0.8.4"
-    - RAKUDO_VERSION="2020.05"
+    - RAKUDO_VERSION="2020.05.1"
     - NQP_VERSION="2020.05"
     - MOARVM_VERSION="2020.05"
     - REVISION="01"
