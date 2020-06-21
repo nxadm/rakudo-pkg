@@ -28,5 +28,6 @@ COPY install-zef-as-user /
 COPY fix-windows10 /
 COPY add-rakudo-to-path /
 COPY rakudo-pkg.sh /etc/profile.d/
+COPY interp.c /
 
 ENTRYPOINT [ "/pkg_rakudo.pl" ]

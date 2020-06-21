@@ -88,6 +88,11 @@ sub build {
     if ($soft eq 'rakudo' && $ENV{ARCH} eq "i386") {
         unlink "t/08-performance/99-misc.t"
     }
+    # Build failure centos 7
+    if ($os eq 'CentOS' && &os_release eq '7' && $soft eq 'moarvm') {
+        copy('/interp.c', 'src/core/interp.c') == 0 or return 0;
+    }
+
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
     my $skip_tests = 1;
