@@ -1,10 +1,10 @@
 language: generic
 env:
   global:
-    - ZEF_VERSION="v0.8.4"
-    - RAKUDO_VERSION="2020.05.1"
-    - NQP_VERSION="2020.05"
-    - MOARVM_VERSION="2020.05"
+    - ZEF_VERSION="v0.8.5"
+    - RAKUDO_VERSION="2020.06"
+    - NQP_VERSION="2020.06"
+    - MOARVM_VERSION="2020.06"
     - REVISION="01"
     - MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
     - LOCAL_BUILD="1"
@@ -12,17 +12,16 @@ env:
   matrix:
     - TAG=linux-relocatable-64bit ARCH=x86_64 RELOCATABLE=1
     - TAG=linux-relocatable-32bit ARCH=x86 RELOCATABLE=1
-    - TAG="alpine-x86_64-3.8" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.8"
     - TAG="alpine-x86_64-3.9" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.9"
     - TAG="alpine-x86_64-3.10" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.10"
     - TAG="alpine-x86_64-3.11" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.11"
+    - TAG="alpine-x86_64-3.12" REPO=apk ARCH=x86_64 OS=Alpine RELEASE="3.12"
     - TAG="centos-x86_64-7" REPO=rpm ARCH=x86_64 OS=CentOS RELEASE=7
     - TAG="centos-x86_64-8" REPO=rpm ARCH=x86_64 OS=CentOS RELEASE=8
     - TAG="debian-amd64-8" REPO=deb CODENAME=jessie ARCH=amd64 OS=Debian RELEASE=8
     - TAG="debian-amd64-9" REPO=deb CODENAME=stretch,cindy ARCH=amd64 OS=Debian RELEASE=9
     - TAG="debian-amd64-10" REPO=deb CODENAME=buster ARCH=amd64 OS=Debian RELEASE=10
     - TAG="debian-i386-10" REPO=deb CODENAME=buster ARCH=i386 OS=Debian RELEASE=10
-    - TAG="fedora-x86_64-30" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=30
     - TAG="fedora-x86_64-31" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=31
     - TAG="fedora-x86_64-32" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
