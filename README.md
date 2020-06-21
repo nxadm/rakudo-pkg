@@ -55,8 +55,7 @@ backup from
 [the Bintray repo](https://dl.bintray.com/nxadm/rakudo-pkg-relocatable/).
 
 The relocable builds work on distributions with a glibc at the same
-level or newer than Ubuntu 14.04 (released in April 2014, supported until
-2022, glibc 2.19).
+level or newer than Ubuntu 16.04 (released in April 2016).
 
 ## OS Repositories
 
