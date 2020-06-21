@@ -89,7 +89,7 @@ sub build {
         unlink "t/08-performance/99-misc.t"
     }
     # Build failure centos 7
-    if ($os eq 'CentOS' && &os_release eq '7' && $soft eq 'moarvm') {
+    if ($os eq 'CentOS' && $os_release eq '7' && $soft eq 'moarvm') {
         copy('/interp.c', 'src/core/interp.c') == 0 or return 0;
     }
 
