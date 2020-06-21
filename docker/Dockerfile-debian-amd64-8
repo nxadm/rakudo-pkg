@@ -4,18 +4,20 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
-pkgs='build-essential git lsb-release ruby ruby-dev' \
-pkgs_tmp='ruby-dev'
+pkgs='build-essential git lsb-release' \
+ruby_install_uri="https://github.com/postmodern/ruby-install.git" \
+PATH="/opt/ruby/bin:/usr/local/bin:${PATH}
 
 RUN set -xv ; \
 apt-get -qq update && \
 apt-get -qq dist-upgrade -y && \
 # pkgs for compiling and pkg creation
-apt-get -qq install -y ${pkgs} ${pkgs_tmp} && \
-gem install --no-doc --no-ri fpm && \
+apt-get -qq install -y ${pkgs} && \
+git clone $ruby_install_uri && \
+/ruby-install/bin/ruby-install --install-dir /opt/ruby ruby && \
+gem install --no-doc fpm && \
 ln -s /usr/local/bin/fpm /usr/bin/ && \
 # Cleanup
-apt-get remove -y --purge ${pkgs_tmp} && \
 apt-get -qq autoremove -y && apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 

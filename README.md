@@ -54,10 +54,9 @@ directory. `rakudo-pkg` "\*.tar.gz" releases can be downloaded from the
 backup from
 [the Bintray repo](https://dl.bintray.com/nxadm/rakudo-pkg-relocatable/).
 
-The relocable builds work on 64-bit distributions with a glibc at the same
-level or newer than than Centos 6 (2.12). 32-bit relocable builds works from
-the release of Ubuntu 16.04 onwards (2.23).
-
+The relocable builds work on distributions with a glibc at the same
+level or newer than Ubuntu 14.04 (released in April 2014, supported until
+2022, glibc 2.19).
 
 ## OS Repositories
 
