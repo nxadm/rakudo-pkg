@@ -5,7 +5,7 @@ ENV LANG='en_US.UTF-8' \
 pkgs='git perl-autodie perl-Digest-SHA redhat-lsb-core perl-IPC-Cmd' \
 pkggroup='Development Tools' \
 ruby_install_uri="https://github.com/postmodern/ruby-install.git" \
-PATH="/opt/ruby/bin:/usr/local/bin:${PATH}
+PATH="/opt/ruby/bin:/usr/local/bin:${PATH}"
 
 RUN set -xv ; \
 sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \

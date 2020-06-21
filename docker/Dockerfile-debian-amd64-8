@@ -6,7 +6,7 @@ DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release' \
 ruby_install_uri="https://github.com/postmodern/ruby-install.git" \
-PATH="/opt/ruby/bin:/usr/local/bin:${PATH}
+PATH="/opt/ruby/bin:/usr/local/bin:${PATH}"
 
 RUN set -xv ; \
 apt-get -qq update && \
