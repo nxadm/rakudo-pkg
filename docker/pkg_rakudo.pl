@@ -88,9 +88,14 @@ sub build {
     if ($soft eq 'rakudo' && $ENV{ARCH} eq "i386") {
         unlink "t/08-performance/99-misc.t"
     }
-    # Build failure centos 7
-    if ($os eq 'CentOS' && $os_release eq '7' && $soft eq 'moarvm') {
-        copy('/interp.c', 'src/core/interp.c') == 0 or return 0;
+
+    # Build failure older gcc
+
+    if ($soft eq 'moarvm') {
+        if ($os eq 'CentOS' && $os_release eq '7') ||
+           ($os eq 'Debian' && $os_release eq '&') {
+            copy('/interp.c', 'src/core/interp.c') or return 0;
+        }
     }
 
     # Configure
