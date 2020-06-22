@@ -95,7 +95,6 @@ sub build {
            ($os eq 'Debian' && $os_release eq '8')) {
             say "Patching moarvm for older gcc";
             system('/patch_oldgcc.sh') == 0 or return 0;
-            system('grep "std=gnu99" build/setup.pm');
         }
     }
 
