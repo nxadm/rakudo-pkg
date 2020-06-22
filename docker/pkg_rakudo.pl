@@ -92,8 +92,8 @@ sub build {
     # Build failure older gcc
 
     if ($soft eq 'moarvm') {
-        if ($os eq 'CentOS' && $os_release eq '7') ||
-           ($os eq 'Debian' && $os_release eq '&') {
+        if (($os eq 'CentOS' && $os_release eq '7') ||
+           ($os eq 'Debian' && $os_release eq '8')) {
             copy('/interp.c', 'src/core/interp.c') or return 0;
         }
     }
