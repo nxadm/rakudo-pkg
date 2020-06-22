@@ -94,7 +94,7 @@ sub build {
         if (($os eq 'CentOS' && $os_release eq '7') ||
            ($os eq 'Debian' && $os_release eq '8')) {
             say "Patching moarvm for older gcc";
-            system('perl -pi -e "s/\b(ccmiscflags\w+=>\w+\'-Wextra\b/ccmiscflags  => \'-std=gnu99 -Wextra/" build/setup.pm') == 0 or return 0;
+            system('perl -pi -e "s/\bccmiscflags\w+=>\w+\'-Wextra\b/ccmiscflags  => \'-std=gnu99 -Wextra/" build/setup.pm') == 0 or return 0;
             system('grep "std=gnu99" build/setup.pm') == 0 or return 0;
         }
     }
