@@ -94,7 +94,9 @@ sub build {
     if ($soft eq 'moarvm') {
         if (($os eq 'CentOS' && $os_release eq '7') ||
            ($os eq 'Debian' && $os_release eq '8')) {
+            say "Patching moarvm for older gcc";
             copy('/interp.c', 'src/core/interp.c') or return 0;
+            system('ls -la /interp.c src/core/interp.c');
         }
     }
 
