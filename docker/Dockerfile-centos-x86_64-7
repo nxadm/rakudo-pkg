@@ -17,7 +17,7 @@ yum -q groupinstall -y "${pkggroup}" && \
 git clone $ruby_install_uri && \
 /ruby-install/bin/ruby-install --install-dir /opt/ruby ruby && \
 gem install --no-doc fpm && \
-ln -s /usr/local/bin/fpm /usr/bin/ && \
+ln -s /opt/ruby/bin/fpm /usr/bin/ && \
 # Cleanup
 yum -q clean all && \
 rm -rf /usr/lib/locale/locale-archive /usr/share/locale/* /ruby-install && \

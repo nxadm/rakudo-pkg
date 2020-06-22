@@ -16,7 +16,7 @@ apt-get -qq install -y ${pkgs} && \
 git clone $ruby_install_uri && \
 /ruby-install/bin/ruby-install --install-dir /opt/ruby ruby && \
 gem install --no-doc fpm && \
-ln -s /usr/local/bin/fpm /usr/bin/ && \
+ln -s /opt/ruby/bin/fpm /usr/bin/ && \
 # Cleanup
 apt-get -qq autoremove -y && apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
