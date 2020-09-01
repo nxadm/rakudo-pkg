@@ -100,17 +100,17 @@ sub build {
 
     # Configure
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
-    my $skip_tests = 1;
+    #my $skip_tests = 1;
     if ($soft ne 'moarvm') {
         push(@configure, '--backends=moar') if ($soft ne 'moarvm');
-        $skip_tests = 0;
+        #$skip_tests = 0;
     }
     system(@configure) == 0 or return 0;
     system('make')     == 0 or return 0;
     # make test
-    if (!$skip_tests) {
-        system('make', 'test') == 0 or return 0;
-    }
+    #if (!$skip_tests) {
+    system('make', 'test') == 0 or return 0;
+    #}
     # make install
     system('make', 'install') == 0 or return 0;
     # Clean up
