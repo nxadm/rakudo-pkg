@@ -8,10 +8,10 @@ sub MAIN($release, :$id = 'nxadm' ) {
     my $file-url = $base-url ~ $release ~
         '/release/ubuntu-base-' ~ $release ~ '-base-i386.tar.gz';
     my $cmd = 'curl ' ~ $file-url ~
-        '| gunzip | docker import - ' ~ $id ~ '/ubuntu-i386:' ~ $release;
+        '| gunzip | podman import - ' ~ $id ~ '/ubuntu-i386:' ~ $release;
     my $exit-code = shell $cmd;
     if $exit-code == 0 {
-        say 'Docker image imported (run "docker images").';
+        say 'Docker image imported (run "podman images").';
     } else {
         note 'Failure creating the base image.';
         exit 1;

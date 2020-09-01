@@ -3,11 +3,11 @@ FROM nxadm/ubuntu-i386:16.04
 # http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04-core-i386.tar.gz
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
-ENV LANG='C.UTF-8' \
-DEBIAN_FRONTEND='noninteractive' \
-TZ='Europe/Brussels' \
-pkgs='build-essential git lsb-release ruby' \
-pkgs_tmp='ruby-dev'
+ENV LANG='C.UTF-8'
+ENV DEBIAN_FRONTEND='noninteractive'
+ENV TZ='Europe/Brussels'
+ENV pkgs='build-essential git lsb-release ruby'
+ENV pkgs_tmp='ruby-dev'
 
 RUN set -xv ; \
 apt-get -qq update && \

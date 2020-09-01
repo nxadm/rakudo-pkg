@@ -1,11 +1,11 @@
 FROM ubuntu:xenial
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
-ENV LANG='C.UTF-8' \
-DEBIAN_FRONTEND='noninteractive' \
-TZ='Europe/Brussels' \
-pkgs='build-essential git lsb-release ruby' \
-pkgs_tmp='ruby-dev'
+ENV LANG='C.UTF-8'
+ENV DEBIAN_FRONTEND='noninteractive'
+ENV TZ='Europe/Brussels'
+ENV pkgs='build-essential git lsb-release ruby'
+ENV pkgs_tmp='ruby-dev'
 
 RUN set -xv ; \
 apt-get -qq update && \
