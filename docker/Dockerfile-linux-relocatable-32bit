@@ -7,7 +7,7 @@ ENV LANG='C.UTF-8'
 ENV DEBIAN_FRONTEND='noninteractive'
 ENV TZ='Europe/Brussels'
 #ENV pkgs='makedev ca-certificates curl git perl gcc gzip make tar'
-ENV pkgs='build-essential git lsb-releasei perl gzip tar'
+ENV pkgs='build-essential git lsb-release perl gzip tar'
 
 COPY create-relocatable-build /
 COPY install-zef-as-user /
