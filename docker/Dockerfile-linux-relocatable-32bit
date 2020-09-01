@@ -1,4 +1,4 @@
-FROM nxadm/ubuntu-i386:16.04
+FROM nxadm/ubuntu-i386:xenial
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ARG RAKUDO_VERSION
