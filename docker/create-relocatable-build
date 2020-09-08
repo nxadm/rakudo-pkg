@@ -21,7 +21,7 @@ for soft in MOARVM NQP RAKUDO; do
     if [ $soft != "MOARVM" ]; then
         CONFIGURE_ARGSi+=" --backends=moar"
     fi 
-    CONFIGURE_ARGS
+    $CONFIGURE_ARGS
     make
     make test
     make install
