@@ -11,7 +11,7 @@ for soft in MOARVM NQP RAKUDO; do
     version=${soft}_VERSION
    
     mkdir -p $soft
-    git clone ${!repo}
+    git clone ${!repo} $soft
     cd $soft
     git checkout tags/${!version}
     CONFIGURE_ARGS= "perl ./Configure.pl --prefix=$INSTALL_ROOT"
