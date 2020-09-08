@@ -14,13 +14,14 @@ for soft in MOARVM NQP RAKUDO; do
     git clone ${!repo} $soft
     cd $soft
     git checkout tags/${!version}
-    CONFIGURE_ARGS= "perl ./Configure.pl --prefix=$INSTALL_ROOT"
+    CONFIGURE_ARGS="perl ./Configure.pl --prefix=$INSTALL_ROOT"
     if [ $soft == "RAKUDO" ]; then
         rm -f t/08-performance/99-misc.t
     fi
     if [ $soft != "MOARVM" ]; then
         CONFIGURE_ARGSi+=" --backends=moar"
     fi 
+    CONFIGURE_ARGS
     make
     make test
     make install
