@@ -7,9 +7,12 @@ RAKUDO_REPO="https://github.com/rakudo/rakudo.git"
 ZEF_REPO="https://github.com/ugexe/zef.git"
 
 for soft in MOARVM NQP RAKUDO; do
+    repo=${soft}_REPO
+    version=${soft}_VERSION
+   
     mkdir -p $soft
-    git clone $${soft}_REPO
-    git checkout tags/$${soft}_VERSION
+    git clone ${!repo}
+    git checkout tags/${!version}
     CONFIGURE_ARGS= "perl ./Configure.pl --prefix=$INSTALL_ROOT"
     if [ $soft == "RAKUDO" ]; then
         rm -f t/08-performance/99-misc.t
