@@ -1,23 +1,37 @@
 #!/bin/bash -e
 
-# Build Rakudo
-git clone https://github.com/rakudo/rakudo.git
-cd rakudo
-git checkout tags/$RAKUDO_VERSION
-# Workaround for failing t/08-performance/99-misc.t
-rm -f t/08-performance/99-misc.t
-perl Configure.pl --gen-moar --gen-nqp --backends=moar --relocatable
-make test
-make install
+INSTALL_ROOT="/opt/rakudo-pkg"
+MOARVM_REPO="https://github.com/MoarVM/MoarVM.git"
+NQP_REPO="https://github.com/perl6/nqp.git"
+RAKUDO_REPO="https://github.com/rakudo/rakudo.git"
+ZEF_REPO="https://github.com/ugexe/zef.git"
+
+for soft in MOARVM NQP RAKUDO; do
+    mkdir -p $soft
+    git clone $${soft}_REPO
+    git checkout tags/$${soft}_VERSION
+    CONFIGURE_ARGS= "perl ./Configure.pl --prefix=$INSTALL_ROOT"
+    if [ $soft == "RAKUDO" ]; then
+        rm -f t/08-performance/99-misc.t
+    fi
+    if [ $soft != "MOARVM" ]; then
+        CONFIGURE_ARGSi+=" --backends=moar"
+    fi 
+    make
+    make test
+    make install
+    cd ..
+done
 
 # Build Zef
-git clone https://github.com/ugexe/zef.git 
-cd zef
+mkdir -p ZEF
+git clone ZEF_REPO 
+cd ZEF
 git checkout tags/$ZEF_VERSION
-/rakudo/install/bin/raku -I. bin/zef install .
+$INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
 
 # Create links and add scripts
-cd /rakudo/install/bin
+cd $INSTALL_ROOT/bin
 rm raku raku-debug
 ln -s rakudo raku
 ln -s rakudo-debug raku-debug
@@ -27,11 +41,11 @@ cp /fix-windows10 .
 cp /add-rakudo-to-path .
 
 # Package it in /mnt
-cd /rakudo
-mv install rakudo-$RAKUDO_VERSION
+cd /
+mv $INSTALL_ROOT rakudo-pkg-$RAKUDO_VERSION
 mkdir -p /staging
-TARGZ="rakudo-moarvm-${RAKUDO_VERSION}-${REVISION}-linux-${ARCH}.tar.gz"
-tar -czf /staging/$TARGZ rakudo-$RAKUDO_VERSION
+TARGZ="rakudo-pkg-mooarvm-${RAKUDO_VERSION}-${REVISION}-linux-${ARCH}.tar.gz"
+tar -czf /staging/$TARGZ rakudo-pkg-$RAKUDO_VERSION
 
 # Checksum it
 cd /staging
