@@ -12,6 +12,7 @@ for soft in MOARVM NQP RAKUDO; do
    
     mkdir -p $soft
     git clone ${!repo}
+    cd $soft
     git checkout tags/${!version}
     CONFIGURE_ARGS= "perl ./Configure.pl --prefix=$INSTALL_ROOT"
     if [ $soft == "RAKUDO" ]; then
