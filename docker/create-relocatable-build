@@ -30,7 +30,7 @@ done
 
 # Build Zef
 mkdir -p ZEF
-git clone ZEF_REPO 
+git clone $ZEF_REPO ZEF
 cd ZEF
 git checkout tags/$ZEF_VERSION
 $INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
