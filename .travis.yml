@@ -2,9 +2,9 @@ language: generic
 env:
   global:
     - ZEF_VERSION="v0.8.5"
-    - RAKUDO_VERSION="2020.08.2"
-    - NQP_VERSION="2020.08.2"
-    - MOARVM_VERSION="2020.08"
+    - RAKUDO_VERSION="2020.09"
+    - NQP_VERSION="2020.09"
+    - MOARVM_VERSION="2020.09"
     - REVISION="01"
     - MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
     - LOCAL_BUILD="1"
