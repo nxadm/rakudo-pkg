@@ -1,7 +1,7 @@
 language: generic
 env:
   global:
-    - ZEF_VERSION="v0.8.5"
+    - ZEF_VERSION="v0.9.1"
     - RAKUDO_VERSION="2020.09"
     - NQP_VERSION="2020.09"
     - MOARVM_VERSION="2020.09"
@@ -26,11 +26,12 @@ env:
     - TAG="fedora-x86_64-32" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
     - TAG="opensuse-x86_64-15.2" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.2"
-    - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=amd64 OS=Ubuntu RELEASE="16.04"
-    - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina,tricia ARCH=amd64 OS=Ubuntu RELEASE="18.04"
-    - TAG="ubuntu-amd64-20.04" REPO=deb CODENAME=focal ARCH=amd64 OS=Ubuntu RELEASE="20.04"
+    - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia,loki ARCH=amd64 OS=Ubuntu RELEASE="16.04"
+    - TAG="ubuntu-amd64-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina,tricia,hera,juno ARCH=amd64 OS=Ubuntu RELEASE="18.04"
+    - TAG="ubuntu-amd64-20.04" REPO=deb CODENAME=focal,ulyana,odin ARCH=amd64 OS=Ubuntu RELEASE="20.04"
+    - TAG="ubuntu-amd64-20.10" REPO=deb CODENAME=groovy ARCH=amd64 OS=Ubuntu RELEASE="20.10"
     - TAG="ubuntu-i386-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia ARCH=i386 OS=Ubuntu RELEASE="16.04"
-    - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina,tricia ARCH=i386 OS=Ubuntu RELEASE="18.04"
+    - TAG="ubuntu-i386-18.04" REPO=deb CODENAME=bionic,tara,tessa,tina,tricia,hera,juno,loki ARCH=i386 OS=Ubuntu RELEASE="18.04"
 sudo: required
 services:
   - docker
