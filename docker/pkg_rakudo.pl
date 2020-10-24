@@ -109,8 +109,6 @@ sub build {
     }
     system(@configure) == 0 or return 0;
     say "$soft: run make...";
-    use Cwd qw(cwd);
-    say "debug: " . cwd;
     system('make') == 0 or return 0;
     # make test
     #if (!$skip_tests) {
