@@ -5,7 +5,7 @@ ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby ruby-backports ruby-cabin ruby-childprocess ruby-clamp ruby-dotenv ruby-ffi ruby-insist ruby-io-like ruby-json ruby-mustache ruby-stud' \
-pkgs_tmp='ruby-dev wegt'
+pkgs_tmp='ruby-dev wget'
 
 RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # Packages for compiling and pkg creation
