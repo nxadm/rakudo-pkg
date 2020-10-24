@@ -78,6 +78,7 @@ exit 0;
 ### Functions ###
 sub build {
     my $soft = shift;
+    say "$soft: downloading...";
     mkdir $soft or die($!);
     # Download and unpack
     system('git', 'clone', $repos{$soft}, $soft) == 0 or return 0;
@@ -99,6 +100,7 @@ sub build {
     }
 
     # Configure
+    say "$soft: run configure...";
     my @configure  = ('perl', './Configure.pl', "--prefix=$install_root");
     #my $skip_tests = 1;
     if ($soft ne 'moarvm') {
@@ -106,14 +108,18 @@ sub build {
         #$skip_tests = 0;
     }
     system(@configure) == 0 or return 0;
-    system('make')     == 0 or return 0;
+    say "$soft: run make...";
+    system('make') == 0 or return 0;
     # make test
     #if (!$skip_tests) {
+    say "$soft: run make test...";
     system('make', 'test') == 0 or return 0;
     #}
     # make install
+    say "$soft: run make install...";
     system('make', 'install') == 0 or return 0;
     # Clean up
+    say "$soft: cleaning up...";
     chdir('/') or die($!);
     remove_tree($soft) or warn($!);
     return 1;
