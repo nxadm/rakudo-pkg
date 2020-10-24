@@ -5,19 +5,17 @@ ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby ruby-backports ruby-cabin ruby-childprocess ruby-clamp ruby-dotenv ruby-ffi ruby-insist ruby-io-like ruby-json ruby-mustache ruby-stud' \
-pkgs_tmp='ruby-dev'
+pkgs_tmp='ruby-dev wegt'
 
-RUN set -xv ; \
-apt-get -qq update && \
-apt-get -qq dist-upgrade -y && \
+RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # Packages for compiling and pkg creation
-apt-get -qq install -y ${pkgs} ${pkgs_tmp} && \
-gem install --no-doc fpm && \
-ln -s /usr/local/bin/fpm /usr/bin/ && \
+RUN apt-get -qq install -y ${pkgs} ${pkgs_tmp}
+RUN gem install --no-doc fpm && ln -s /usr/local/bin/fpm /usr/bin/ 
+# Bug with coreutils and docker
+RUN wget http://se.archive.ubuntu.com/ubuntu/pool/main/c/coreutils/coreutils_8.30-3ubuntu2_amd64.deb && dpkg -i *.deb && rm -rf *.deb
 # Cleanup
-apt-get remove -y --purge ${pkgs_tmp} && \
-apt-get -qq autoremove -y && apt-get -qq clean && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+RUN apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
 
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
