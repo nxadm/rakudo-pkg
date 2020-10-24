@@ -5,7 +5,7 @@ ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
 pkgs='build-essential git lsb-release ruby' \
-pkgs_tmp='ruby-dev'
+pkgs_tmp='ruby-dev ruby-ffi'
 
 RUN set -xv ; \
 apt-get -qq update && \
