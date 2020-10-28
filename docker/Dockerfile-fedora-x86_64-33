@@ -13,8 +13,11 @@ RUN dnf -q install -y ${pkgs} ${pkgs_tmp}
 RUN dnf -q groupinstall -y "${pkggroup}"
 RUN gem install --no-doc fpm
 RUN ln -s /usr/local/bin/fpm /usr/bin/
+
 # Bug with coreutils and docker
+RUN wget https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/Packages/c/coreutils-common-8.32-3.fc32.1.x86_64.rpm && dnf install -y *.rpm && rm -rf *.rpm
 RUN wget https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/Packages/c/coreutils-8.32-3.fc32.1.x86_64.rpm && dnf install -y *.rpm && rm -rf *.rpm
+
 # Cleanup
 RUN dnf -q remove -y ${pkgs_tmp} && dnf -q clean all
 
