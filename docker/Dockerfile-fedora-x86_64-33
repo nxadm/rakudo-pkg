@@ -1,10 +1,10 @@
 FROM fedora:33
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
-ENV LANG='en_US.UTF-8' \
-    pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel' \
-    pkggroup='Development Tools' \
-    pkgs_tmp='libffi-devel ruby-develi wget'
+ENV LANG='en_US.UTF-8'
+ENV pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel'
+ENV pkggroup='Development Tools' 
+ENV pkgs_tmp='libffi-devel ruby-devel wget'
 
 RUN dnf -q -y upgrade
 RUN ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime
