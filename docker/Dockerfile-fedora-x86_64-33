@@ -4,18 +4,19 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='en_US.UTF-8' \
     pkgs='git perl-core redhat-lsb-core redhat-rpm-config rpm-build ruby rubygems ruby-devel' \
     pkggroup='Development Tools' \
-    pkgs_tmp='libffi-devel ruby-devel'
+    pkgs_tmp='libffi-devel ruby-develi wget'
 
-RUN set -xv ; \
-    dnf -q -y upgrade && \
-    ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
-    # Packages for compiling and pkg creation
-    dnf -q install -y ${pkgs} ${pkgs_tmp} && \
-    dnf -q groupinstall -y "${pkggroup}" && \
-    gem install --no-doc fpm && \
-    ln -s /usr/local/bin/fpm /usr/bin/ && \
-    # Cleanup
-    dnf -q remove -y ${pkgs_tmp} && dnf -q clean all
+RUN dnf -q -y upgrade
+RUN ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+# Packages for compiling and pkg creation
+RUN dnf -q install -y ${pkgs} ${pkgs_tmp}
+RUN dnf -q groupinstall -y "${pkggroup}"
+RUN gem install --no-doc fpm
+RUN ln -s /usr/local/bin/fpm /usr/bin/
+# Bug with coreutils and docker
+RUN wget https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/Packages/c/coreutils-8.32-3.fc32.1.x86_64.rpm && dnf install -y *.rpm && rm -rf *.rpm
+# Cleanup
+RUN dnf -q remove -y ${pkgs_tmp} && dnf -q clean all
 
 COPY pkg_rakudo.pl /
 COPY install-zef-as-user /
