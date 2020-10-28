@@ -5,7 +5,7 @@ env:
     - RAKUDO_VERSION="2020.10"
     - NQP_VERSION="2020.10"
     - MOARVM_VERSION="2020.10"
-    - REVISION="01"
+    - REVISION="02"
     - MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
     - LOCAL_BUILD="1"
     - secure: "Oa9VgAUAQLiuO2YKGL7LtRDgg3rTfxvsTmkWZpdQbanA0uE1GT+pp2mHwUArvuUBMeCCoftzgNqXjLea+3uTJZfaiojdkxMwxq1/0LO2PqQNQw0HOAK31E8u+aoGhBBmmCW6UgzPxLQUm12FwJvSEOZlhW9Py2sNL/2p1GAM2D9BkA5+0rJZKR9/jhD+z031dXiQctdsJxfZx8KXBEN50P5mKCz2s6jQSlSxBpX4bI82j0mdrjXb1d0SDZVFXQyBXw+kbiCagaxvA1qTQ3kvrtUGHNytfZ7R91A5B4qiKZD8s2BNjZI9nqNLpHqi/IxFBzReSCLEAl8qe3nrgTshyD2rM7TSFWq0wP4Ht+UpbWRJMonYS8o850jFgC7/Zcq+QnRDMHCZIYXe+s1Nnb4oIk5mb49Oq7AeGBOXFfh6F6GK4QVDTHOBK9YX9/3JkwLgppMoK6KqCY9G2jiAAZHlQzfupYkoFXJbxSUx01qSAzPRljShQCOV/qO1pasDMueWBj5bQldzuHFf3hbQVqPIRM3RvG+eiN6+8/hgtUbfnSEmNdIDynQCHKH4Qvx4WGVl7/VEJc9QM1zzjVX16NNLcd0GmFrC/ODAwX53Sp3tHQrD9XJCa19gofptueNQBP9uDT6s539fr0ArEYgGSL1jCCCwblPiZruIiiRpZjTb0wc="
@@ -24,6 +24,7 @@ env:
     - TAG="debian-i386-10" REPO=deb CODENAME=buster ARCH=i386 OS=Debian RELEASE=10
     - TAG="fedora-x86_64-31" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=31
     - TAG="fedora-x86_64-32" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
+    - TAG="fedora-x86_64-33" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
     - TAG="opensuse-x86_64-15.2" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.2"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia,loki ARCH=amd64 OS=Ubuntu RELEASE="16.04"
