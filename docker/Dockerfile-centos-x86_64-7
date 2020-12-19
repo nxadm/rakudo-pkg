@@ -2,7 +2,7 @@ FROM centos:centos7
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='en_US.UTF-8' \
-pkgs='git perl-autodie perl-Digest-SHA redhat-lsb-core perl-IPC-Cmd' \
+pkgs='git openssl-devel perl-autodie perl-Digest-SHA perl-IPC-Cmd redhat-lsb-core ' \
 pkggroup='Development Tools' \
 ruby_install_uri="https://github.com/postmodern/ruby-install.git" \
 PATH="/opt/ruby/bin:/usr/local/bin:${PATH}"

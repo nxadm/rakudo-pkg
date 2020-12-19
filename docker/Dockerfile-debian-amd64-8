@@ -4,7 +4,7 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='C.UTF-8' \
 DEBIAN_FRONTEND='noninteractive' \
 TZ='Europe/Brussels' \
-pkgs='curl build-essential git lsb-release' \
+pkgs='curl build-essential git lsb-release libssl-dev' \
 ruby_install_uri="https://github.com/postmodern/ruby-install.git" \
 PATH="/opt/ruby/bin:/usr/local/bin:${PATH}"
 
