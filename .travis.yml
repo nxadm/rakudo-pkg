@@ -24,7 +24,7 @@ env:
     - TAG="debian-i386-10" REPO=deb CODENAME=buster ARCH=i386 OS=Debian RELEASE=10
     - TAG="fedora-x86_64-31" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=31
     - TAG="fedora-x86_64-32" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
-    - TAG="fedora-x86_64-33" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=32
+    - TAG="fedora-x86_64-33" REPO=rpm ARCH=x86_64 OS=Fedora RELEASE=33
     - TAG="opensuse-x86_64-15.1" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.1"
     - TAG="opensuse-x86_64-15.2" REPO=rpm ARCH=x86_64 OS=openSUSE RELEASE="15.2"
     - TAG="ubuntu-amd64-16.04" REPO=deb CODENAME=xenial,sarah,serena,sonya,sylvia,loki ARCH=amd64 OS=Ubuntu RELEASE="16.04"
