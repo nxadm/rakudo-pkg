@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:focal-20201008
 LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 
 ENV LANG='C.UTF-8' \
@@ -8,12 +8,12 @@ pkgs='build-essential git lsb-release ruby' \
 pkgs_tmp='ruby-dev wget'
 
 RUN set -xv ; \
+# binutils bug
+apt-mark hold binutils && \
 apt-get -qq update && \
 apt-get -qq dist-upgrade -y && \
 # Packages for compiling and pkg creation
 apt-get -qq install -y ${pkgs} ${pkgs_tmp} && \
-# binutils bug
-apt-get install --reinstall binutils && \
 gem install --no-doc fpm && \
 ln -s /usr/local/bin/fpm /usr/bin/ && \
 # Cleanup
