@@ -9,7 +9,8 @@ pkgs_tmp='ruby-dev wget'
 
 RUN set -xv ; \
 # binutils bug
-apt-mark hold binutils && \
+apt-mark hold \
+binutils binutils-common binutils-x86-64-linux-gnu libbinutils && \
 apt-get -qq update && \
 apt-get -qq dist-upgrade -y && \
 # Packages for compiling and pkg creation
