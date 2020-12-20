@@ -4,8 +4,8 @@ LABEL maintainer="Claudio Ramirez <pub.claudio@gmail.com>"
 ENV LANG='C.UTF-8'
 ENV DEBIAN_FRONTEND='noninteractive'
 ENV TZ='Europe/Brussels'
-ENV pkgs='build-essential git lsb-release ruby'
-ENV pkgs_tmp='ruby-dev ruby-ffi wget'
+ENV pkgs='build-essential git lsb-release ruby ruby-ffi'
+ENV pkgs_tmp='ruby-dev wget'
 
 RUN set -xv ; \
 apt-get -qq update && \
