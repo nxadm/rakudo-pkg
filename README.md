@@ -310,4 +310,3 @@ the Rakudo compiler and the third party modules.
 
 Issues (bugs and ideas) and PRs are always welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md).
-
