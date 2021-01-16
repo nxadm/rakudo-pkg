@@ -18,4 +18,4 @@ RUN apt-get update && apt-get -y dist-upgrade && \
 apt-get -y autoremove && apt-get clean
 RUN apt-get -y install ${pkgs}
 
-ENTRYPOINT /create-relocatable-build $RAKUDO_VERSION $ZEF_VERSION 32
+ENTRYPOINT /create-relocatable-build $RAKUDO_VERSION $ZEF_VERSION 64
