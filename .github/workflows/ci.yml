@@ -1,0 +1,14 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  package:
+    strategy:
+      matrix:
+        os: [alpine:3.9 alpine:3.10 alpine:3.11]
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    env:
+      AUTHOR_TESTING: 1
+    steps:
+    = name: Run in container
+      run: uname -a
