@@ -1,7 +1,7 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  checkout:
+  data:
     env:
       NFPM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
     runs-on: ubuntu-latest
@@ -20,6 +20,7 @@ jobs:
           name: checkout
           path: ${{ github.workspace }}
   package:
+    needs: data
     env:
       NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
       ZEF_VERSION: v0.11.2
