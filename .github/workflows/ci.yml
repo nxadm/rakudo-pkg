@@ -13,7 +13,6 @@ jobs:
         with:
           name: checkout
           path: .
-			 
   package:
     env:
       NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
