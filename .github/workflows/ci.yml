@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   data:
     env:
-      NFPM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
+      NFPM_RELEASE: 2.2.3
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -11,9 +11,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get nfpm
-        uses: wei/curl@master
-        with:
-          args: $NFPM_RELEASE
+        run: |
+          curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
+          tar xfz nfpm.tar.gz
+          rm -rf nrpm.tar.gz
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -57,6 +58,4 @@ jobs:
       - name: Run in container
         run: |
           cat /etc/*release
-          curl -v
-
 
