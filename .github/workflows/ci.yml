@@ -8,7 +8,7 @@ jobs:
       NQP_VERSION: 2020.12
       MOARVM_VERSION: 2020.12
       REVISION: 01
-      MAINTAINER: Claudio Ramirez <pub.claudio@gmail.com>
+      MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
     strategy:
       matrix:
         image: [alpine:3.9, alpine:3.10, alpine:3.11]
