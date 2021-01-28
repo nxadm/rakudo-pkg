@@ -3,6 +3,7 @@ on: [push, pull_request]
 jobs:
   package:
     env:
+      NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
       ZEF_VERSION: v0.11.2
       RAKUDO_VERSION: 2020.12
       NQP_VERSION: 2020.12
@@ -28,15 +29,15 @@ jobs:
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10",
         ]
     runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 #    - name: Checkout code
 #      uses: actions/checkout@v2
 #      with:
 #        fetch-depth: 0
     - name: Run in container
-      container: ${{ matrix.image }}
-      run: pwd && ls -la && cat /etc/*release
+      run: |
+        cat /etc/*release
+        curl -v
+
+
