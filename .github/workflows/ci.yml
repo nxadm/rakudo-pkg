@@ -13,7 +13,7 @@ jobs:
       - name: Get nfpm
         uses: wei/curl@master
         with:
-          args: $FPM_RELEASE
+          args: $NFPM_RELEASE
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
