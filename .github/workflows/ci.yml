@@ -2,17 +2,23 @@ name: ci
 on: [push, pull_request]
 jobs:
   checkout:
+    env:
+      NFPM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Get nfpm
+        uses: wei/curl@master
+          with:
+            args: $FPM_RELEASE
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: checkout
-          path: .
+          path: *.tar.gz
   package:
     env:
       NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
