@@ -4,6 +4,10 @@ jobs:
   data:
     env:
       NFPM_RELEASE: 2.2.3
+      MOARVM_REPO: https://github.com/MoarVM/MoarVM.git"
+      NQP_REPO: https://github.com/perl6/nqp.git"
+      RAKUDO_REPO: https://github.com/rakudo/rakudo.git"
+      ZEF_REPO: https://github.com/ugexe/zef.git"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,6 +19,17 @@ jobs:
           curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
           tar xfz nfpm.tar.gz
           rm -rf nrpm.tar.gz
+      - name: Rekudo from git
+        run: |
+          for soft in MOARVM NQP RAKUDO ZEF; do
+            repo=${soft}_REPO
+            version=${soft}_VERSION
+            mkdir -p $soft
+            git clone ${!repo} $soft
+            cd $soft
+            git checkout tags/${!version}
+          done  
+
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -23,13 +38,13 @@ jobs:
   package:
     needs: data
     env:
-      NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
       ZEF_VERSION: v0.11.2
       RAKUDO_VERSION: 2020.12
       NQP_VERSION: 2020.12
       MOARVM_VERSION: 2020.12
       REVISION: 01
       MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
+      INSTALL_ROOT: /opt/rakudo-pkg
     strategy:
       matrix:
         image: [
