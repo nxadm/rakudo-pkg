@@ -28,11 +28,16 @@ jobs:
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10",
         ]
     runs-on: ubuntu-latest
-    container: ${{ matrix.image }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    container: ${{ matrix.image }}
+#    steps:
+#    - name: Checkout code
+#      uses: actions/checkout@v2
+#      with:
+#        fetch-depth: 0
     - name: Run in container
       run: pwd && ls -la && cat /etc/*release
