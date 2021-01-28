@@ -58,5 +58,6 @@ jobs:
       - name: Run in container
         run: |
           cat /etc/*release
+          chmod +x nfpm
           ./nfpm -v
 
