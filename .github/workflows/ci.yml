@@ -4,9 +4,9 @@ jobs:
   package:
     strategy:
       matrix:
-        os: ["alpine:3.9", "alpine:3.10", "alpine:3.11"]
+        image: ["alpine:3.9", "alpine:3.10", "alpine:3.11"]
     runs-on: ubuntu-latest
-    container: ${{ matrix.container }}
+    container: ${{ matrix.image }}
     env:
       AUTHOR_TESTING: 1
     steps:
