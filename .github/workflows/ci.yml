@@ -61,6 +61,5 @@ jobs:
       - name: Run in container
         run: |
           cat /etc/*release
-          chmod +x nfpm
-          ./nfpm -v
+          for i in nfpm moarvm nqp rakudo zef; do tar xvzf $i.tar.gz; done
 
