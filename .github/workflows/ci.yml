@@ -61,6 +61,7 @@ jobs:
       - name: Run in container
         run: |
           cat /etc/*release
-          chmod +x ./build_env.sh
+          chmod +x build_env.sh
+          ./build_env.sh
           for i in nfpm moarvm nqp rakudo zef; do tar xvzf $i.tar.gz; done
 
