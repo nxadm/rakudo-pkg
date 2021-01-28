@@ -25,9 +25,9 @@ jobs:
             repo=${soft}_REPO
             version=${soft}_VERSION
             mkdir -p $soft
-            git clone ${!repo} $soft
+            git clone ${repo} $soft
             cd $soft
-            git checkout tags/${!version}
+            git checkout tags/${version}
           done  
 
       - name: Archive artifacts
