@@ -35,12 +35,9 @@ jobs:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13",
           "alpine:edge",
-          "centos:6", "centos:7", "centos:8",
-          "registry.access.redhat.com/rhel6",
+          "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
-          "debian:9.2@sha256:\
-4599b85efe839220e3c00b5d380910fbe968ffe933a9155a6f013fb416ffa1f1",          
           "debian:9-slim", "debian:10-slim",
           "debian:testing-slim", "debian:unstable-slim",
           "debian:experimental", 
