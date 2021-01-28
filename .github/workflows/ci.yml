@@ -18,7 +18,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: checkout
-          path: *.tar.gz
+          path: ${{ github.workspace }}
   package:
     env:
       NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
