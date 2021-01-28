@@ -8,10 +8,6 @@ jobs:
       RAKUDO_VERSION: 2020.12
       NQP_VERSION: 2020.12
       MOARVM_VERSION: 2020.12
-      MOARVM_REPO: https://github.com/MoarVM/MoarVM.git"
-      NQP_REPO: https://github.com/perl6/nqp.git"
-      RAKUDO_REPO: https://github.com/rakudo/rakudo.git"
-      ZEF_REPO: https://github.com/ugexe/zef.git"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
