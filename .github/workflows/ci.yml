@@ -18,11 +18,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Get nfpm
+      - name: Get nfpm and Rakudo
         run: |
           curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_VERSION/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
-      - name: Get Rakudo
-        run: |
           curl -sSL -o moarvm.tar.gz https://github.com/MoarVM/MoarVM/releases/download/$MOARVM_VERSION/MoarVM-${MOARVM_VERSION}.tar.gz
           curl -sSL -o nqp.tar.gz https://github.com/Raku/nqp/releases/download/$NQP_VERSION/nqp-${NQP_VERSION}.tar.gz
           curl -sSl -o rakudo.tar.gz https://github.com/rakudo/rakudo/releases/download/$RAKUDO_VERSION/rakudo-${RAKUDO_VERSION}.tar.gz
