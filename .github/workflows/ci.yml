@@ -2,17 +2,18 @@ name: ci
 on: [push, pull_request]
 jobs:
   checkout:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Archive artifacts
-      uses: actions/upload-artifact@v2
-      with:
-       name: checkout
-       path: .
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+         name: checkout
+         path: .
+			 
   package:
     env:
       NFRM_RELEASE: https://github.com/goreleaser/nfpm/releases/download/v2.2.3/nfpm_2.2.3_Linux_arm64.tar.gz
