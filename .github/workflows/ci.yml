@@ -21,7 +21,7 @@ jobs:
           "debian:9.2@sha256:3ef30aac6c45de2289291398a19f92733143fd4de42d6be02f67f2e07755e5eb",
           "debian:9-slim", "debian:10-slim",
           "debian:testing-slim", "debian:unstable-slim",
-          "debian:experimental-slim", 
+          "debian:experimental", 
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
