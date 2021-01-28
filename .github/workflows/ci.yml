@@ -11,4 +11,4 @@ jobs:
       AUTHOR_TESTING: 1
     steps:
     - name: Run in container
-      run: uname -a
+      run: cat /etc/*release
