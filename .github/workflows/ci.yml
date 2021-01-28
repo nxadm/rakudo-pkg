@@ -14,7 +14,9 @@ jobs:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13",
           "centos:6", "centos:7", "centos:8",
-          "registry.access.redhat.com/rhel6"
+          "registry.access.redhat.com/rhel6",
+          "registry.access.redhat.com/ubi7-minimal",
+          "registry.access.redhat.com/ubi8-minimal",
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
