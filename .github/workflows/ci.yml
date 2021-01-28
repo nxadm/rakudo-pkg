@@ -2,13 +2,18 @@ name: ci
 on: [push, pull_request]
 jobs:
   package:
+    env:
+      ZEF_VERSION: v0.11.2
+      RAKUDO_VERSION: 2020.12
+      NQP_VERSION: 2020.12
+      MOARVM_VERSION: 2020.12
+      REVISION: 01
+      MAINTAINER: Claudio Ramirez <pub.claudio@gmail.com>
     strategy:
       matrix:
-        image: ["alpine:3.9", "alpine:3.10", "alpine:3.11"]
+        image: [alpine:3.9, alpine:3.10, alpine:3.11]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
-    env:
-      AUTHOR_TESTING: 1
     steps:
     - name: Run in container
       run: cat /etc/*release
