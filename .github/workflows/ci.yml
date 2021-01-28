@@ -10,5 +10,5 @@ jobs:
     env:
       AUTHOR_TESTING: 1
     steps:
-    = name: Run in container
+    - name: Run in container
       run: uname -a
