@@ -1,4 +1,5 @@
 #!/bin/sh
+set -xv
 
 RELEASE=`cat /etc/*release`
 
