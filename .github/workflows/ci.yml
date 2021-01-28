@@ -12,8 +12,7 @@ jobs:
     strategy:
       matrix:
         image: [
-          "alpine:3.9", "alpine:3.10", "alpine:3.11", "alpine:3.12",
-          "alpine:3.13"
+          "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13"
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
