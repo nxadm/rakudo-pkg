@@ -13,8 +13,8 @@ jobs:
       matrix:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13",
-          "centos:7", "centos:8",
-          "rhel6"
+          "centos:6", "centos:7", "centos:8",
+          "registry.access.redhat.com/rhel6"
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
