@@ -3,7 +3,11 @@ on: [push, pull_request]
 jobs:
   data:
     env:
-      NFPM_RELEASE: 2.2.3
+      NFPM_VERSION: 2.2.3
+      ZEF_VERSION: 0.11.2
+      RAKUDO_VERSION: 2020.12
+      NQP_VERSION: 2020.12
+      MOARVM_VERSION: 2020.12
       MOARVM_REPO: https://github.com/MoarVM/MoarVM.git"
       NQP_REPO: https://github.com/perl6/nqp.git"
       RAKUDO_REPO: https://github.com/rakudo/rakudo.git"
@@ -16,20 +20,13 @@ jobs:
           fetch-depth: 0
       - name: Get nfpm
         run: |
-          curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
-          tar xfz nfpm.tar.gz
-          rm -rf nrpm.tar.gz
-      - name: Rekudo from git
+          curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_VERSION/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
+      - name: Get Rakudo
         run: |
-          for soft in MOARVM NQP RAKUDO ZEF; do
-            repo=${soft}_REPO
-            version=${soft}_VERSION
-            mkdir -p $soft
-            git clone ${repo} $soft
-            cd $soft
-            git checkout tags/${version}
-          done  
-
+          curl -sSL -o moarvm.tar.gz https://github.com/MoarVM/MoarVM/releases/download/$MOARVM_VERSION/MoarVM-${MOARVM_VERSION}.tar.gz
+          curl -sSL -o nqp.tar.gz https://github.com/Raku/nqp/releases/download/$NQP_VERSION/nqp-${NQP_VERSION}.tar.gz
+          curl -sSl -o rakudo.tar.gz https://github.com/rakudo/rakudo/releases/download/$RAKUDO_VERSION/rakudo-${RAKUDO_VERSION}.tar.gz
+          curl -sSL -o zef.tag.gz https://github.com/ugexe/zef/archive/v${ZEF_VERSION}.tar.gz
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
