@@ -11,8 +11,8 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-         name: checkout
-         path: .
+          name: checkout
+          path: .
 			 
   package:
     env:
