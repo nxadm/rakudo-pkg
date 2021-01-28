@@ -12,8 +12,8 @@ jobs:
           fetch-depth: 0
       - name: Get nfpm
         uses: wei/curl@master
-          with:
-            args: $FPM_RELEASE
+        with:
+          args: $FPM_RELEASE
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
