@@ -13,7 +13,7 @@ for i in moarvm nqp rakudo; do
     fi 
 
     cd $i
-    find ,
+    find .
     $CONFIGURE
     make
     make test
