@@ -51,12 +51,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: checkout
-      - name: Run in container
+      - name: Create build environment 
         run: |
-          cat /etc/*release
           chmod +x *.sh
-          . ./versions.sh && env
           ./build_env.sh
+      - name: Check environment variables
+        run: |
+          . ./versions.sh
           env
-          ls -la
 

@@ -6,3 +6,5 @@ if [ `grep alpine /etc/os-release | wc -l` > 0 ]; then
     export OS=alpine
     export OS_VERSION=`grep "PRETTY_NAME=" /etc/os-release | cut -dv -f2`
 fi
+
+cat versions.sh >> /etc/profile
