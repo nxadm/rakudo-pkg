@@ -6,7 +6,7 @@ for i in moarvm nqp rakudo; do
     mkdir $i
     tar xzf $i.tar.gz -C $i --strip-components=1
     CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT"
-    if [ $i != "MOARVM" ]; then
+    if [ $i != "moarvm" ]; then
         CONFIGURE=$CONFIGURE" --backends=moar"
     fi 
 
