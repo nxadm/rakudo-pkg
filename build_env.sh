@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-OS=`grep ^ID= /etc/os-release | cut -d= f2`
+OS=`grep ^ID= /etc/os-release | cut -d= -f2`
 
 set_os_vars() {
     OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
@@ -17,6 +17,13 @@ case "$OS" in
 	    apk add build-base perl perl-utils gzip tar
     ;;
     centos)
+    pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core ruby'  \
+    pkggroup='Development Tools' \
+    yum -q -y upgrade && \
+    ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
+    # Packages for compiling and pkg creation
+    yum -q install -y ${pkgs} ${pkgs_tmp} && \
+    yum -q groupinstall -y "${pkggroup}" && \
     ;;
     debian)
         apt-get update
