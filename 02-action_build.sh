@@ -29,10 +29,12 @@ mkdir zef
 tar xzf zef.tar.gz -C zef --strip-components=1
 cd zef
 $INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
+ln -s $INSTALL_ROOT/share/perl6/core/bin/zef $INSTALL_ROOT/bin/zef
 zef --version
 
 ls -la $INSTALL_ROOT/bin
 
+find $INSTALL_ROOT
 
 # Create links and add scripts
 #cd $INSTALL_ROOT/bin
