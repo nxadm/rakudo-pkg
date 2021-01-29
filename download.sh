@@ -9,7 +9,7 @@ if [ `echo $NFPM_VERSION | grep '^@'` ]; then
     https://github.com/goreleaser/nfpm/tarball/$COMMIT
     else
         curl -sSL -o nfpm.tar.gz \
-https://github.com/goreleaser/nfpm/releases/download/v$NFPM_VERSION/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
+https://github.com/goreleaser/nfpm/releases/download/v$NFPM_VERSION/nfpm_${NFPM_VERSION}_Linux_x86_64.tar.gz
 fi
 
 if [ `echo $MOARVM_VERSION | grep '^@'` ]; then
