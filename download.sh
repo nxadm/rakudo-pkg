@@ -1,6 +1,8 @@
 #!/bin/sh -e 
 set -xv
 
+. versions.sh
+
 if [ `echo $NFPM_VERSION | grep '^@'` ]; then
     COMMIT=`echo $NFPM_VERSION | cut -c2-`
     curl -sSL -o nfpm.tar.gz \

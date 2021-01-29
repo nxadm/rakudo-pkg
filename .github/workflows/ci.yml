@@ -10,7 +10,6 @@ jobs:
           fetch-depth: 0
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
         run: |
-          . versions.sh
           ./download.sh
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
