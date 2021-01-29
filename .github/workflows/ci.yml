@@ -38,7 +38,7 @@ jobs:
        #   "opensuse/leap:15.2", "opensuse/tumbleweed",
        #   "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
        #   "ubuntu:20.10", "ubuntu:devel",
-          "fedora:31", "fedora:32",
+       "fedora:32",
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
@@ -57,9 +57,9 @@ jobs:
         run: |
           set -xv
           ./actions/02-build.sh
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.image }}
-          path: /opt/rakudo-pkg
-
+#      - name: Archive artifacts
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: ${{ matrix.image }}
+#          path: /opt/rakudo-pkg
+#
