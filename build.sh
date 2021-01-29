@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-. versions.sh
+. ./versions.sh
 
 # Build rakudo
 for i in moarvm nqp rakudo; do
