@@ -21,7 +21,7 @@ case "$OS" in
     alpine)
         apk update
         apk upgrade
-	    apk add build-base git gzip perl perl-utils tar
+	    apk add bash build-base git gzip perl perl-utils tar
         ;;
     centos)
         yum -q -y upgrade
@@ -36,7 +36,7 @@ case "$OS" in
     fedora)
         dnf -q -y upgrade
         dnf -q -y groupinstall 'Development Tools'
-        dnf -q -y install bash git perl-core
+        dnf -q -y install git perl-core
         ;;
     opensuse)
        zypper refresh
