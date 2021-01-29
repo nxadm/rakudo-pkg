@@ -60,5 +60,5 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: /opt/rakudo-pkg
+          name: ${{ matrix.image }}
           path: /opt/rakudo-pkg
