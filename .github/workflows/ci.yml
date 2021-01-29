@@ -1,7 +1,7 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  data:
+  get-sources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,8 +18,8 @@ jobs:
             actions/*
             include/*
             *.tar.gz
-  package:
-    needs: data
+  build:
+    needs: get-sources
     env:
       MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
       INSTALL_ROOT: /opt/rakudo-pkg
