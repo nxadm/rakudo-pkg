@@ -38,7 +38,7 @@ jobs:
        #   "opensuse/leap:15.2", "opensuse/tumbleweed",
        #   "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
        #   "ubuntu:20.10", "ubuntu:devel",
-       "ubuntu:20.04"
+       'debian:9-slim'
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
