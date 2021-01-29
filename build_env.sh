@@ -42,7 +42,7 @@ case "$OS" in
         ;;
     rhel)
         microdnf update
-        microdnf install gcc gzip make perl-core tar
+        microdnf install gcc gzip hostname make perl-core tar
         ;;
     ubuntu)
         apt-get update
