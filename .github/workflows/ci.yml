@@ -9,7 +9,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
-        run: ./download.sh
+        run: ./action_download.sh
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -50,8 +50,8 @@ jobs:
           IMAGE: ${{ matrix.image }}
         run: |
           chmod +x *.sh
-          ./setup_env.sh
+          ./action_setup_env.sh
       - name: Build
         run: |
           set -xv
-          ./build.sh
+          ./action_build.sh
