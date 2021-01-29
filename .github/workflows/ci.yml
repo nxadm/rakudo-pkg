@@ -26,9 +26,11 @@ jobs:
       CONFIG_SHELL: /bin/bash
     strategy:
       matrix:
+      #broken fedora:rawhide, alpine:edge
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
-          "alpine:3.13", "alpine:edge",
+          #"alpine:3.13", "alpine:edge",
+          "alpine:3.13",
           "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
