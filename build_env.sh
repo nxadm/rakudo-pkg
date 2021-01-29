@@ -18,7 +18,7 @@ if [ `grep ^ID=ubuntu /etc/os-release` ]; then
 fi
 
 if [ "$OS" = "debian" ] || [ "$OS" = "ubuntu" ]; then
-    OS_VERSION=`grep ^VERSION_ID= /etc/os-release | cut -d= -f2`
+    OS_VERSION=`grep ^VERSION_ID= /etc/os-release | cut -d= -f2` | cut -d\" -f2`
     OS_CODENAME=`grep ^VERSION_CODENAME= /etc/os-release | cut -d= -f2`
     apt-get update
     apt-get -u dist-upgrade -y -qq
@@ -26,10 +26,10 @@ if [ "$OS" = "debian" ] || [ "$OS" = "ubuntu" ]; then
 fi
 
 
-echo "export OS=$OS" >> versions.sh 
-echo "export OS_VERSION=$OS_VERSION" >> versions.sh
+echo export OS=$OS >> versions.sh 
+echo export OS_VERSION=$OS_VERSION >> versions.sh
 if [ ! -z $OS_CODENAME ]; then
-    echo "export OS_CODENAME=$OS_CODENAME" >> versions.sh
+    echo export OS_CODENAME=$OS_CODENAME >> versions.sh
 fi
 cat versions.sh >> /etc/profile
 
