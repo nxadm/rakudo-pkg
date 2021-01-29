@@ -2,24 +2,24 @@
 set -xv
 
 if [ `grep ^ID=alpine /etc/os-release` ]; then
-    OS=alpine
-    OS_VERSION=`grep "PRETTY_NAME=" /etc/os-release | cut -dv -f2`
+    export OS=alpine
+    export OS_VERSION=`grep "PRETTY_NAME=" /etc/os-release | cut -dv -f2`
     apk update
     apk upgrade
 	apk add build-base perl perl-utils gzip tar
 fi
 
 if [ `grep ^ID=debian /etc/os-release` ]; then
-    OS=debian
+    export OS=debian
 fi
 
 if [ `grep ^ID=ubuntu /etc/os-release` ]; then
-    OS=ubuntu
+    export OS=ubuntu
 fi
 
 if [ $OS == "debian" ] || [ $OS == "ubuntu" ]; then
-    OS_VERSION=`grep "VERSION_ID=" /etc/os-release | cut -d= -f2`
-    OS_CODENAME=`grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2`
+    export OS_VERSION=`grep "VERSION_ID=" /etc/os-release | cut -d= -f2`
+    export OS_CODENAME=`grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2`
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential
