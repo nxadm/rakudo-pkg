@@ -15,32 +15,32 @@ case "$OS" in
         apk update
         apk upgrade
 	    apk add build-base perl perl-utils gzip tar
-    ;;
+        ;;
     centos)
-    yum -q -y upgrade
-    yum -q -y groupinstall 'Development Tools'
-    yum -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
-    ;;
+        yum -q -y upgrade
+        yum -q -y groupinstall 'Development Tools'
+        yum -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
+        ;;
     debian)
         apt-get update
         apt-get -u dist-upgrade -y -qq
         apt-get install -y build-essential
-    ;;
+        ;;
     fedora)
-    ;;
+        ;;
     opensuse)
-    ;;
+        ;;
     rhel)
-    ;;
+        ;;
     ubuntu)
         apt-get update
         apt-get -u dist-upgrade -y -qq
         apt-get install -y build-essential
-    ;;
+        ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
         exit 1
-    ;;
+        ;;
 esac    
 
 set_os_vars
