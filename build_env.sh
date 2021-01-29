@@ -56,5 +56,5 @@ case "$OS" in
 esac    
 
 set_os_vars
-cat versions.sh >> /etc/profile
+mv versions.sh /etc/profile.d/rakudo-pkg.sh
 
