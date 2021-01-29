@@ -9,8 +9,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
-        run: |
-          ./download.sh
+        run: ./download.sh
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -55,5 +54,4 @@ jobs:
       - name: Build
         run: |
           set -xv
-          . /etc/profile.d/rakudo-pkg.sh
           ./build.sh
