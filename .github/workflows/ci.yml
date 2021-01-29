@@ -56,7 +56,5 @@ jobs:
           chmod +x *.sh
           ./build_env.sh
       - name: Check environment variables
-        run: |
-          . ./versions.sh
-          env | grep OS
+        run: env | grep OS
 
