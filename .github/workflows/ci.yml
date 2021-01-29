@@ -55,7 +55,7 @@ jobs:
         run: |
           cat /etc/*release
           chmod +x *.sh
-          . ./versions.sh
+          . ./versions.sh && env
           ./build_env.sh
           env
           ls -la
