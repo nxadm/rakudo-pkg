@@ -56,7 +56,9 @@ jobs:
           chmod +x *.sh
           ./build_env.sh
       - name: Check environment variables
+        env:
+          IMAGE: ${{ matrix.image }}
         run: |
           set -xv
           . /etc/profile
-          env  | grep OS
+          env  | grep 'OS\|IMAGE'
