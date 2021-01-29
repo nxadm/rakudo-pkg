@@ -2,6 +2,7 @@
 set -xv
 
 . ./versions.sh
+PATH=$PATH:$INSTALL_ROOT/bin
 
 # Build rakudo
 for i in moarvm nqp rakudo; do
@@ -19,13 +20,17 @@ for i in moarvm nqp rakudo; do
     make test
     make install
     cd ..
-done    
+done
+
+raku -v
 
 # Install zef
 mkdir zef
 tar xzf zef.tar.gz -C zef --strip-components=1
 cd zef
 $INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
+zef --version
+
 ls -la $INSTALL_ROOT/bin
 
 
