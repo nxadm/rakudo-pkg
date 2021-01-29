@@ -57,5 +57,6 @@ jobs:
           ./build_env.sh
       - name: Check environment variables
         run: |
+          set -xv
           . /etc/profile
           env  | grep OS

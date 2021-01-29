@@ -6,6 +6,10 @@ OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
 set_os_vars() {
     OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
     OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+    if [ -z $OS_CODENAME" ]; then
+        OS_CODENAME=$OS_VERSION"
+    fi
+
     echo export OS=$OS >> versions.sh 
     echo export OS_VERSION=$OS_VERSION >> versions.sh
     echo export OS_CODENAME=$OS_CODENAME >> versions.sh
