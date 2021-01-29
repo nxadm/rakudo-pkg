@@ -7,7 +7,7 @@ set_os_vars() {
     OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
     OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
     if [ -z "$OS_CODENAME" ]; then
-        OS_CODENAME=$OS_VERSION"
+        OS_CODENAME=$OS_VERSION
     fi
 
     echo export OS=$OS >> versions.sh 
