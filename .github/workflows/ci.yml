@@ -56,9 +56,10 @@ jobs:
           IMAGE: ${{ matrix.image }}
         run: |
           chmod +x *.sh
-          ./build_env.sh
+          ./setup_env.sh
       - name: Check environment variables
         run: |
           set -xv
           . /etc/profile.d/rakudo-pkg.sh
-          env  | grep 'OS\|IMAGE'
+          env | grep 'OS\|IMAGE'
+          sha512 /etc/passwd
