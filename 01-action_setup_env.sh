@@ -21,7 +21,7 @@ case "$OS" in
     alpine)
         apk update
         apk upgrade
-	    apk add bash build-base git gzip perl perl-utils tar
+	    apk add bash build-base gzip perl perl-utils tar
         ;;
     centos)
         yum -q -y upgrade
@@ -31,21 +31,21 @@ case "$OS" in
     debian)
         apt-get update
         apt-get -u dist-upgrade -y -qq
-        apt-get install -y build-essential git
+        apt-get install -y build-essential
         ;;
     fedora)
         dnf -q -y upgrade
         dnf -q -y groupinstall 'Development Tools'
-        dnf -q -y install git perl-core
+        dnf -q -y install perl-core
         ;;
     opensuse)
        zypper refresh
        zypper update -y
-       zypper install -y gcc git gzip make perl tar
+       zypper install -y gcc gzip make perl tar
         ;;
     rhel)
         microdnf update
-        microdnf install gcc git gzip hostname make perl-core tar
+        microdnf install gcc gzip hostname make perl-core tar
         ;;
     ubuntu)
         apt-get update
