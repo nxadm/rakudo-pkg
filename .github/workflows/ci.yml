@@ -46,7 +46,7 @@ jobs:
       - name: Download checkout
         uses: actions/download-artifact@v2
         with:
-          name: data
+          name: sources
       - name: Create build environment 
         env:
           IMAGE: ${{ matrix.image }}
@@ -60,5 +60,5 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: rakudo
+          name: /opt/rakudo-pkg
           path: /opt/rakudo-pkg
