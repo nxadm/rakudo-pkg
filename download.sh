@@ -15,7 +15,7 @@ if [ `echo $MOARVM_VERSION | grep '^@'` ]; then
     curl -sSL -o moarvm.tar.gz \
     https://github.com/MoarVM/MoarVM/tarball/$COMMIT
     else
-        curl -sSL -o nfpm.tar.gz \
+        curl -sSL -o moarvm.tar.gz \
 https://github.com/MoarVM/MoarVM/releases/download/$MOARVM_VERSION/MoarVM-${MOARVM_VERSION}.tar.gz
 fi
 
@@ -24,7 +24,7 @@ if [ `echo $NQP_VERSION | grep '^@'` ]; then
     curl -sSL -o nqp.tar.gz \
     https://github.com/Raku/nqp/tarball/$COMMIT
     else
-        curl -sSL -o nfpm.tar.gz \
+        curl -sSL -o nqp.tar.gz \
 https://github.com/Raku/nqp/releases/download/$NQP_VERSION/nqp-${NQP_VERSION}.tar.gz
 fi
 
@@ -33,7 +33,7 @@ if [ `echo $RAKUDO_VERSION | grep '^@'` ]; then
     curl -sSL -o rakudo.tar.gz \
     https://github.com/rakudo/rakudo/tarball/$COMMIT
     else
-        curl -sSL -o nfpm.tar.gz \
+        curl -sSL -o rakudo.tar.gz \
 https://github.com/rakudo/rakudo/releases/download/$RAKUDO_VERSION/rakudo-${RAKUDO_VERSION}.tar.gz
 fi
 
@@ -42,6 +42,8 @@ if [ `echo $ZEF_VERSION | grep '^@'` ]; then
     curl -sSL -o zef.tar.gz \
     https://github.com/ugexe/zef/tarball/$COMMIT
     else
-        curl -sSL -o nfpm.tar.gz \
+        curl -sSL -o zef.tar.gz \
 https://github.com/ugexe/zef/archive/v${ZEF_VERSION}.tar.gz
 fi
+
+ls -lah *.tar.gz
