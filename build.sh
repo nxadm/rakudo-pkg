@@ -1,4 +1,5 @@
 #!/bin/sh -e
+set -xv
 
 # Build rakudo
 for i in moarvm nqp rakudo; do
@@ -22,8 +23,10 @@ mkdir zef
 tar xzf zef.tar.gz -C zef --strip-components=1
 cd zef
 $INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
+ls -la $INSTALL_ROOT/bin
 
-## Create links and add scripts
+
+# Create links and add scripts
 #cd $INSTALL_ROOT/bin
 #rm raku raku-debug
 #ln -s rakudo raku
