@@ -36,7 +36,7 @@ case "$OS" in
     fedora)
         dnf -q -y upgrade
         dnf -q -y groupinstall 'Development Tools'
-        dnf -q -y install git perl-core
+        dnf -q -y install bash git perl-core
         ;;
     opensuse)
        zypper refresh
