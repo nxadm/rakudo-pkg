@@ -23,6 +23,7 @@ jobs:
     env:
       MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
       INSTALL_ROOT: /opt/rakudo-pkg
+      CONFIG_SHELL: /bin/bash
     strategy:
       matrix:
         image: [
