@@ -60,5 +60,5 @@ jobs:
           IMAGE: ${{ matrix.image }}
         run: |
           set -xv
-          . /etc/profile
+          . /etc/profile.d/rakudo-pkg.sh
           env  | grep 'OS\|IMAGE'
