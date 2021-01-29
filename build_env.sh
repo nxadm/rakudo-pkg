@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2`
+OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
 
 set_os_vars() {
     OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
@@ -37,6 +37,9 @@ case "$OS" in
        zypper install -y --replacefiles gcc make 
         ;;
     rhel)
+        microdnf -q -y upgrade
+        microdnf -q -y groupinstall 'Development Tools'
+        microdnf -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
         ;;
     ubuntu)
         apt-get update
