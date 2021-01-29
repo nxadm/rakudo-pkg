@@ -1,4 +1,6 @@
 #!/bin/sh -e
+# Prepare the images to compile and package Rakudo
+# https://github.com/nxadm/rakudo-pkg
 set -xv
 
 OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
@@ -16,7 +18,7 @@ set_os_vars() {
 
     # Handle Debian testing/unstable/experimental by make them codenames
     if [ "$OS_VERSION" = "bullseye" ]; then
-        OS_CODENAME=`echo $IMAGE | cut -d: -f2 | cut -d- f1`
+        OS_CODENAME=`echo $IMAGE | cut -d: -f2 | cut -d- -f1`
     fi   
 
     # Ubuntu devel
@@ -71,4 +73,3 @@ esac
 
 set_os_vars
 mv versions.sh /etc/profile.d/rakudo-pkg.sh
-
