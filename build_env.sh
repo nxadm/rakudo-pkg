@@ -32,6 +32,9 @@ case "$OS" in
         dnf -q -y install perl-core
         ;;
     opensuse)
+       zypper refresh
+       zypper update -y
+       zypper install -y --replacefiles gcc make 
         ;;
     rhel)
         ;;
