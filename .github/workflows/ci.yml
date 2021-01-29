@@ -25,7 +25,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: checkout
-          path: ${{ github.workspace }}
+          #path: ${{ github.workspace }}
+          path: |
+            *.tar.gz
+            *.sh
   package:
     needs: data
     env:
