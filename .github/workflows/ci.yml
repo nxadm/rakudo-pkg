@@ -62,4 +62,4 @@ jobs:
           set -xv
           . /etc/profile.d/rakudo-pkg.sh
           env | grep 'OS\|IMAGE'
-          sha512 /etc/passwd
+          sha512sum /etc/passwd
