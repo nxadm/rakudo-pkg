@@ -46,4 +46,4 @@ if [ `echo $ZEF_VERSION | grep '^@'` ]; then
 https://github.com/ugexe/zef/archive/v${ZEF_VERSION}.tar.gz
 fi
 
-ls -lah *.tar.gz
+ls -laH *.tar.gz
