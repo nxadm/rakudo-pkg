@@ -27,6 +27,9 @@ case "$OS" in
         apt-get install -y build-essential
         ;;
     fedora)
+        dnf -q -y upgrade
+        dnf -q -y groupinstall 'Development Tools'
+        dnf -q -y install perl-core
         ;;
     opensuse)
         ;;
