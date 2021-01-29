@@ -17,13 +17,9 @@ case "$OS" in
 	    apk add build-base perl perl-utils gzip tar
     ;;
     centos)
-    pkgs='git perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd redhat-lsb-core ruby'  \
-    pkggroup='Development Tools' \
-    yum -q -y upgrade && \
-    ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
-    # Packages for compiling and pkg creation
-    yum -q install -y ${pkgs} ${pkgs_tmp} && \
-    yum -q groupinstall -y "${pkggroup}" && \
+    yum -q -y upgrade
+    yum -q -y groupinstall 'Development Tools'
+    yum -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
     ;;
     debian)
         apt-get update
