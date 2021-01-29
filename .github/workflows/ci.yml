@@ -58,4 +58,4 @@ jobs:
       - name: Check environment variables
         run: |
           . /etc/profile
-          env 
+          env  | grep OS
