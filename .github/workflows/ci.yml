@@ -57,7 +57,7 @@ jobs:
         run: |
           chmod +x *.sh
           ./setup_env.sh
-      - name: Check environment variables
+      - name: Build
         run: |
           set -xv
           . /etc/profile.d/rakudo-pkg.sh
