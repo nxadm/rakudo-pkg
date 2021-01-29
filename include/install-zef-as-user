@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -f /opt/rakudo-pkg/bin/zef ]; then
+    /opt/rakudo-pkg/bin/zef --install-to=home install zef
+    else zef --install-to=home install zef
+fi
+
+echo "Don't forget to add '~/.raku/bin' to your PATH,"
+echo "e.g. by adding this to .profile:"
+echo "export PATH=~/.raku/bin:\$PATH"

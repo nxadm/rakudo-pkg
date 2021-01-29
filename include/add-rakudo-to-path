@@ -1,0 +1,43 @@
+#!/bin/bash -e
+
+# Add raku to your PATH.
+# https://github.com/nxadm/rakudo-pkg
+
+HOMEBIN="~/.raku/bin"
+BINDIR="$(dirname $0)"
+cd "$BINDIR/.."
+SITEBINDIR="$(pwd)/share/perl6/site/bin"
+BOURNE="PATH=$HOMEBIN:$BINDIR:$SITEBINDIR:$PATH; export PATH"
+ZSH="path=($HOMEBIN $BINDIR $SITEBINDIR \$path[@])"
+
+function add_to_path {
+    CMD=$1
+    FILE=$2
+    if [ -z "`grep "$CMD" "$FILE"`" ]; then
+        echo "$CMD" >> "$FILE"
+        source $FILE
+        echo
+        echo "Added rakudo to PATH. You can activate the changes by typing:"
+        echo "source $FILE"
+        echo 
+        else echo "PATH already in \"$FILE\". Skipped."
+    fi
+}
+
+if [ -f "$HOME/.profile" ]; then
+    add_to_path "$BOURNE" "$HOME/.profile"
+    elif [ -f "$HOME/.bash_profile" ]; then
+        add_to_path "$BOURNE" "$HOME/.bash_profile"
+    elif [ -f "$HOME/.zshprofile" ]; then
+        add_to_path "$ZSH" "$HOME/.zshprofile"
+    elif [ -f "$HOME/.zshenv" ]; then
+        add_to_path "$ZSH" "$HOME/.zshenv"
+    else
+        echo "Distribution not supported by this script."
+        echo "Add these path manually to your PATH:"
+        echo "$HOMEBIN"
+        echo "$BINDIR"
+        echo "$SITEBINDIR"
+fi
+
+exit 0

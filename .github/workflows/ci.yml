@@ -9,15 +9,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
-        run: ./00-action_download.sh
+        run: ./actions/00-download.sh
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: checkout
           #path: ${{ github.workspace }}
           path: |
+            actions/*
+            include/*
             *.tar.gz
-            *.sh
   package:
     needs: data
     env:
@@ -38,7 +39,7 @@ jobs:
        #   "opensuse/leap:15.2", "opensuse/tumbleweed",
        #   "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
        #   "ubuntu:20.10", "ubuntu:devel",
-       "centos:7"
+       "alpine:3.10"
         ]
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
@@ -51,9 +52,9 @@ jobs:
         env:
           IMAGE: ${{ matrix.image }}
         run: |
-          chmod +x *.sh
-          ./01-action_setup_env.sh
+          chmod +x actions/*
+          ./actions/01-setup_env.sh
       - name: Build
         run: |
           set -xv
-          ./02-action_build.sh
+          ./actions/02-build.sh
