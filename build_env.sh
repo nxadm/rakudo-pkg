@@ -9,20 +9,19 @@ set_os_vars() {
     OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
 
 
-    # Strip revision
+    # Strip revision for RHEL
     if [ "$OS" = "rhel" ]; then
-            OS_VERSION=`echo $OS_VERSION | cut -d. -f1`
-            ;;
+        OS_VERSION=`echo $OS_VERSION | cut -d. -f1`
     fi   
 
-    # Handle debian testing/unstable/experimental
+    # Handle Debian testing/unstable/experimental by make them codenames
     if [ "$OS_VERSION" = "bullseye" ]; then
         OS_CODENAME=`echo $IMAGE | cut -d: -f2 | cut -d- f1`
     fi   
 
-    # Put a backup value for ubuntu
-    if [ -z "$OS_CODENAME" ]; then
-        OS_CODENAME=$OS_VERSION
+    # Ubuntu devel
+    if [ "$OS_VERSION" = "branch" ]; then
+        OS_VERSION="devel"
     fi
 
     echo export OS=$OS >> versions.sh 
