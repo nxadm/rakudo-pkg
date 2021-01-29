@@ -3,15 +3,18 @@ set -xv
 
 set_os_vars() {
     OS=$1
-    OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print } ' /etc/os-release`
-    OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print } ' /etc/os-release`
+    OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
+    OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+    echo export OS=$OS >> versions.sh 
+    echo export OS_VERSION=$OS_VERSION >> versions.sh
+    echo export OS_CODENAME=$OS_CODENAME >> versions.sh
 }
 
 if [ `grep ^ID=alpine /etc/os-release` ]; then
     apk update
     apk upgrade
 	apk add build-base perl perl-utils gzip tar
-    set_os_vars(alpine)
+    set_os_vars alpine
 fi
 
 if [ `grep ^ID=debian /etc/os-release` ]; then
@@ -31,8 +34,5 @@ if [ "$OS" = "debian" ] || [ "$OS" = "ubuntu" ]; then
 fi
 
 
-echo export OS=$OS >> versions.sh 
-echo export OS_VERSION=$OS_VERSION >> versions.sh
-echo export OS_CODENAME=$OS_CODENAME >> versions.sh
 cat versions.sh >> /etc/profile
 
