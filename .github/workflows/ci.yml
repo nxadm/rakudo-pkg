@@ -57,6 +57,7 @@ jobs:
           ./build_env.sh
       - name: Check environment variables
         run: |
+          . /etc/profile
           env 
           echo "======"
           cat /etc/profile
