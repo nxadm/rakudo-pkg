@@ -2,12 +2,6 @@ name: ci
 on: [push, pull_request]
 jobs:
   data:
-    env:
-      NFPM_VERSION: 2.2.3
-      ZEF_VERSION: 0.11.2
-      RAKUDO_VERSION: 2020.12
-      NQP_VERSION: 2020.12
-      MOARVM_VERSION: 2020.12
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,11 +10,12 @@ jobs:
           fetch-depth: 0
       - name: Get nfpm and Rakudo
         run: |
+          . ./actions.sh
           curl -sSL https://github.com/goreleaser/nfpm/releases/download/v$NFPM_VERSION/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz -o nfpm.tar.gz
           curl -sSL -o moarvm.tar.gz https://github.com/MoarVM/MoarVM/releases/download/$MOARVM_VERSION/MoarVM-${MOARVM_VERSION}.tar.gz
           curl -sSL -o nqp.tar.gz https://github.com/Raku/nqp/releases/download/$NQP_VERSION/nqp-${NQP_VERSION}.tar.gz
           curl -sSl -o rakudo.tar.gz https://github.com/rakudo/rakudo/releases/download/$RAKUDO_VERSION/rakudo-${RAKUDO_VERSION}.tar.gz
-          curl -sSL -o zef.tag.gz https://github.com/ugexe/zef/archive/v${ZEF_VERSION}.tar.gz
+          curl -sSL -o zef.tar.gz https://github.com/ugexe/zef/archive/v${ZEF_VERSION}.tar.gz
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -32,11 +27,6 @@ jobs:
   package:
     needs: data
     env:
-      ZEF_VERSION: v0.11.2
-      RAKUDO_VERSION: 2020.12
-      NQP_VERSION: 2020.12
-      MOARVM_VERSION: 2020.12
-      REVISION: 01
       MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
       INSTALL_ROOT: /opt/rakudo-pkg
     strategy:
@@ -64,7 +54,8 @@ jobs:
       - name: Run in container
         run: |
           cat /etc/*release
-          chmod +x build_env.sh
+          chmod +x *.sh
+          . ./actions.sh
           ./build_env.sh
           env
           ls -la
