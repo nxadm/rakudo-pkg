@@ -4,8 +4,23 @@ set -xv
 OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
 
 set_os_vars() {
-    OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' /etc/os-release`
+    OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' \
+/etc/os-release | tr [:upper:] [:lower:]`
     OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+
+
+    # Strip revision
+    if [ "$OS" = "rhel" ]; then
+            OS_VERSION=`echo $OS_VERSION | cut -d. -f1`
+            ;;
+    fi   
+
+    # Handle debian testing/unstable/experimental
+    if [ "$OS_VERSION" = "bullseye" ]; then
+        OS_CODENAME=`echo $IMAGE | cut -d: -f2 | cut -d- f1`
+    fi   
+
+    # Put a backup value for ubuntu
     if [ -z "$OS_CODENAME" ]; then
         OS_CODENAME=$OS_VERSION
     fi
