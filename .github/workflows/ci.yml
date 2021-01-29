@@ -13,8 +13,7 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: checkout
-          #path: ${{ github.workspace }}
+          name: sources
           path: |
             actions/*
             include/*
@@ -46,7 +45,7 @@ jobs:
       - name: Download checkout
         uses: actions/download-artifact@v2
         with:
-          name: checkout
+          name: data
       - name: Create build environment 
         env:
           IMAGE: ${{ matrix.image }}
@@ -57,3 +56,8 @@ jobs:
         run: |
           set -xv
           ./actions/02-build.sh
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: rakudo
+          path: /opt/rakudo-pkg
