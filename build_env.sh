@@ -6,25 +6,11 @@ set -xv
 OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
 
 set_os_vars() {
-    OS_VERSION=`perl -lwn -e 'if (/PRETTY_NAME/) { s/^.+\sv*([\w\d.]+)\b.+/$1/; print }' \
-/etc/os-release | tr [:upper:] [:lower:]`
-    OS_CODENAME=`perl -lwn -e 'if (/VERSION_CODENAME/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
-
-
-    # Strip revision for RHEL
-    if [ "$OS" = "rhel" ]; then
-        OS_VERSION=`echo $OS_VERSION | cut -d. -f1`
+    OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
+    OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+    if [ -z "$OS_CODENAME" ]; then
+        OS_CODENAME=$OS_VERSION
     fi   
-
-    # Handle Debian testing/unstable/experimental by make them codenames
-    if [ "$OS_VERSION" = "bullseye" ]; then
-        OS_CODENAME=`echo $IMAGE | cut -d: -f2 | cut -d- -f1`
-    fi   
-
-    # Ubuntu devel
-    if [ "$OS_VERSION" = "branch" ]; then
-        OS_VERSION="devel"
-    fi
 
     echo export OS=$OS >> versions.sh 
     echo export OS_VERSION=$OS_VERSION >> versions.sh
