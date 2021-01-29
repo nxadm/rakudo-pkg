@@ -14,12 +14,12 @@ case "$OS" in
     alpine)
         apk update
         apk upgrade
-	    apk add build-base perl perl-utils gzip tar
+	    apk add build-base gzip perl perl-utils tar
         ;;
     centos)
         yum -q -y upgrade
         yum -q -y groupinstall 'Development Tools'
-        yum -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
+        yum -q -y install perl-core
         ;;
     debian)
         apt-get update
@@ -34,12 +34,11 @@ case "$OS" in
     opensuse)
        zypper refresh
        zypper update -y
-       zypper install -y --replacefiles gcc make 
+       zypper install -y gcc gzip make perl tar
         ;;
     rhel)
-        microdnf -q -y upgrade
-        microdnf -q -y groupinstall 'Development Tools'
-        microdnf -q -y install perl perl-autodie perl-Digest-SHA perl-ExtUtils-Command perl-IPC-Cmd
+        microdnf update
+        microdnf install gcc gzip make perl-core tar
         ;;
     ubuntu)
         apt-get update
