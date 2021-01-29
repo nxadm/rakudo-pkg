@@ -52,12 +52,12 @@ jobs:
         with:
           name: checkout
       - name: Create build environment 
+        env:
+          IMAGE: ${{ matrix.image }}
         run: |
           chmod +x *.sh
           ./build_env.sh
       - name: Check environment variables
-        env:
-          IMAGE: ${{ matrix.image }}
         run: |
           set -xv
           . /etc/profile.d/rakudo-pkg.sh

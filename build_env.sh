@@ -16,6 +16,7 @@ set_os_vars() {
     echo export OS_VERSION=$OS_VERSION >> versions.sh
     echo export OS_CODENAME=$OS_CODENAME >> versions.sh
 }
+
 case "$OS" in 
     alpine)
         apk update
