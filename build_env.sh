@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-if [ `grep ID=alpine /etc/os-release | wc -l` > 0 ]; then
+if [ `grep ^ID=alpine /etc/os-release` ]; then
     OS=alpine
     OS_VERSION=`grep "PRETTY_NAME=" /etc/os-release | cut -dv -f2`
     apk update
@@ -9,11 +9,11 @@ if [ `grep ID=alpine /etc/os-release | wc -l` > 0 ]; then
 	apk add build-base perl perl-utils gzip tar
 fi
 
-if [ `grep ID=debian /etc/os-release | wc -l` > 0 ]; then
+if [ `grep ^ID=debian /etc/os-release` ]; then
     OS=debian
 fi
 
-if [ `grep ID=ubuntu /etc/os-release | wc -l` > 0 ]; then
+if [ `grep ^ID=ubuntu /etc/os-release` ]; then
     OS=ubuntu
 fi
 
