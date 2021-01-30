@@ -16,24 +16,31 @@ mv config/nfpm.yaml_tmp config/nfpm.yaml
 case "$OS" in 
     alpine)
 		PACKAGER=apk
+        INSTALL_CMD='apk add --allow-untrusted *.apk'
         ;;
     centos)
 		PACKAGER=rpm
+        INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     debian)
 		PACKAGER=deb
+        INSTALL_CMD='dpkg -i *.deb'
         ;;
     fedora)
 		PACKAGER=rpm
+        INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     opensuse)
 		PACKAGER=rpm
+        INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     rhel)
 		PACKAGER=rpm
+        INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     ubuntu)
 		PACKAGER=deb
+        INSTALL_CMD='dpkg -i *.deb'
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
@@ -43,3 +50,10 @@ esac
 
 nfpm -f config/nfpm.yaml --packager $PACKAGER /tmp/.font-unix
 ls -la /tmp
+
+# Test the package
+rm -rf /opt/rakudo-pkg
+$INSTALL_CMD
+. /etc/profile.d/rakudo-pkg.sh
+raku -v
+zef --version
