@@ -23,7 +23,7 @@ case "$OS" in
     alpine)
         apk update
         apk upgrade
-	    apk add bash build-base gettext gzip perl perl-utils tar zstd-dev
+        apk add bash build-base gettext gzip perl perl-utils tar zstd-dev
         set_os_vars x86_64
         ;;
     centos)

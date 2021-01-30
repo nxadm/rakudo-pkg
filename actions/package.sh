@@ -8,7 +8,6 @@ tar xzf nfpm.tar.gz nfpm
 mv nfpm /usr/bin
 
 # Fill the config
-envsubst 
 envsubst < config/nfpm.yaml > config/nfpm.yaml_tmp
 mv config/nfpm.yaml_tmp config/nfpm.yaml
 cat config/nfpm.yaml
@@ -16,31 +15,31 @@ cat config/nfpm.yaml
 # Package
 case "$OS" in 
     alpine)
-		PACKAGER=apk
+        PACKAGER=apk
         INSTALL_CMD='apk add --allow-untrusted *.apk'
         ;;
     centos)
-		PACKAGER=rpm
+        PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     debian)
-		PACKAGER=deb
+        PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         ;;
     fedora)
-		PACKAGER=rpm
+        PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     opensuse)
-		PACKAGER=rpm
+        PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     rhel)
-		PACKAGER=rpm
+        PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         ;;
     ubuntu)
-		PACKAGER=deb
+        PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         ;;
     *)
