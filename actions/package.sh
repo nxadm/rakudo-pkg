@@ -18,37 +18,37 @@ case "$OS" in
     alpine)
         PACKAGER=apk
         INSTALL_CMD='apk add --no-cache --allow-untrusted *.apk'
-        PKG_NAME=rakudo-pkg-Alpine${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
+        PKG_NAME=rakudo-pkg-Alpine${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_x86_64.apk
         ;;
     centos)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-CentOS${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
+        PKG_NAME=rakudo-pkg-CentOS${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         ;;
     debian)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
-        PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
+        PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
         ;;
     fedora)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-Fedora${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
+        PKG_NAME=rakudo-pkg-Fedora${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         ;;
     opensuse)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
+        PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         ;;
     rhel)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-RHEL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
+        PKG_NAME=rakudo-pkg-RHEL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         ;;
     ubuntu)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
-        PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
+        PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
