@@ -194,8 +194,10 @@ is needed to install and test your package.
 
 ## Using rakudo-pkg for testing upstream Rakudo
 This repo does not only build and package Rakudo releases but works also for
-specific commits on all the included components. Just fork this repo, and
-change the [config/versions.sh](config/versions.sh) to what you want to test:
+specific commits on all the included components. Just fork this repo, enable
+the workflows in the Actions tab and change the
+[config/versions.sh](config/versions.sh) to whatever version or commit you want
+want to test:
 
 ```sh
 $ cat config/versions.sh
@@ -209,6 +211,9 @@ ZEF_VERSION=0.11.2
 PKG_REVISION=01
 NFPM_VERSION=2.2.3
 ```
+
+Don't forget to update your fork regularly, so you can test new releases of
+distributions.
 
 ## Contributing
 
