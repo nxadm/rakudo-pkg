@@ -34,7 +34,7 @@ section: default
 priority: extra
 
 # Maintaner.
-maintainer: $MAINTAINER
+maintainer: $PKG_MAINTAINER
 
 # Description.
 # Defaults to `no description given`.
