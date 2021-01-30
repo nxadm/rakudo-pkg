@@ -54,11 +54,6 @@ jobs:
           chmod +x actions/*
           ./actions/setup_env.sh
       - name: Build
-        run: |
-          ./actions/build.sh
-#      - name: Archive artifacts
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: ${{ matrix.image }}
-#          path: /opt/rakudo-pkg
-#
+        run: ./actions/build.sh
+      - name: Package
+        run: ./actions/package.sh

@@ -37,5 +37,3 @@ cd include
 for i in *; do
     cp $i $INSTALL_ROOT/bin
 done
-
-mv rakudo-pkg.sh /etc/profile.d/
