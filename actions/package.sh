@@ -49,7 +49,7 @@ case "$OS" in
 esac    
 
 mkdir /staging
-nfpm pkg -f config/nfpm.yaml --packager $PACKAGER /staging
+nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 PKG=`ls -1 *.$PACKAGER`
 sha512sum $PKG > $PKG.sha512sum
 ls -la /staging
