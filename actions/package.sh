@@ -2,6 +2,7 @@
 set -xv
 
 . config/versions.sh
+export ARCH MAINTAINER RAKUDO_VERSION RAKUDO_REVISION
 
 # Install nfpm
 tar xzf nfpm.tar.gz nfpm
