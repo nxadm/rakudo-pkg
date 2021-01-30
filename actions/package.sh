@@ -2,7 +2,7 @@
 set -xv
 
 . config/versions.sh
-export ARCH MAINTAINER RAKUDO_VERSION RAKUDO_REVISION
+export ARCH MAINTAINER RAKUDO_VERSION PKG_REVISION
 
 # Install nfpm
 tar xzf nfpm.tar.gz nfpm
@@ -18,7 +18,7 @@ cat config/nfpm.yaml
 case "$OS" in 
     alpine)
         PACKAGER=apk
-        INSTALL_CMD='apk add --allow-untrusted *.apk'
+        INSTALL_CMD='apk add --no-cache --allow-untrusted *.apk'
         ;;
     centos)
         PACKAGER=rpm
