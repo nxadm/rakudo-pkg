@@ -30,3 +30,12 @@ cd zef
 $INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
 ln -s $INSTALL_ROOT/share/perl6/core/bin/zef $INSTALL_ROOT/bin/zef
 zef --version
+cd ..
+
+# Add extra scripts
+cd include
+for i in *; do
+    cp $i $INSTALL_ROOT/bin
+done
+
+mv rakudo-pkg.sh /etc/profile.d/
