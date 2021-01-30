@@ -75,10 +75,6 @@ jobs:
     needs: build-and-package
     runs-on: ubuntu-latest
     steps:
-      - name: TEST
-        run: |
-          echo "Chekcing workspace"
-          ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
       - name: Download packages
         uses: actions/download-artifact@v2
         with:
