@@ -24,7 +24,7 @@ jobs:
     env:
       INSTALL_ROOT: /opt/rakudo-pkg
       CONFIG_SHELL: /bin/bash
-      DEBIAN_FRONTENDi: noninteractive
+      DEBIAN_FRONTEND: noninteractive
     strategy:
       matrix:
         image: [
