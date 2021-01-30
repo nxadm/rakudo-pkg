@@ -4,10 +4,18 @@ jobs:
   get-sources:
     runs-on: ubuntu-latest
     steps:
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
         run: ./actions/download.sh
       - name: Archive artifacts
@@ -48,10 +56,18 @@ jobs:
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
     steps:
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE
       - name: Download checkout
         uses: actions/download-artifact@v2
         with:
           name: sources
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE
       - name: Create build environment 
         env:
           IMAGE: ${{ matrix.image }}
@@ -73,11 +89,15 @@ jobs:
     needs: build-and-package
     runs-on: ubuntu-latest
     steps:
-      - name: Test workdir
-        run: ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
       - name: Download packages
         uses: actions/download-artifact@v2
         with:
           name: packages
-      - name: Test package location
-        run: ls -la packages
+      - name: TEST
+        run: |
+          echo "Chekcing workspace"
+          ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
