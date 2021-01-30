@@ -59,7 +59,7 @@ esac
 mkdir -p /staging $GITHUB_WORKSPACE/packages
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 cd /staging
-mv *.PACKAGER $PKG_NAME
+mv *.$PACKAGER $PKG_NAME
 sha512sum $PKG_NAME > $PKG_NAME.sha512sum
 echo "Package sha512sum:"
 cat $PKG_NAME.sha512sum
