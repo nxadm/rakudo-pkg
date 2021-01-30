@@ -28,8 +28,13 @@ jobs:
     strategy:
       matrix:
         image: [
-          # BROKEN builds: fedora:rawhide, alpine:edge
-          "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13",
+          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # 
+          # BROKEN nfpm build: alpine:3.13
+          # https://github.com/goreleaser/nfpm/issues/288
+          "alpine:3.10", "alpine:3.11", "alpine:3.12",
           "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
@@ -59,3 +64,8 @@ jobs:
       - name: Package
         run: |
           ./actions/package.sh
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: staging/*
