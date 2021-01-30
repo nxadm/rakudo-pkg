@@ -8,6 +8,7 @@ tar xzf nfpm.tar.gz nfpm
 mv nfpm /usr/bin
 
 # Fill the config
+cat config/nfpm.yaml 
 envsubst < config/nfpm.yaml > config/nfpm.yaml_tmp
 mv config/nfpm.yaml_tmp config/nfpm.yaml
 cat config/nfpm.yaml
