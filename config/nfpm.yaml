@@ -9,7 +9,7 @@ arch: $ARCH
 platform: linux
 
 # Version. (required)
-version: $VERSION
+version: $RAKUDO_VERSION
 
 # Version Epoch.
 # Default is extracted from `version` if it is semver compatible.
@@ -25,7 +25,7 @@ version: $VERSION
 #version_metadata: git
 
 # Version Release.
-release: $RELEASE
+release: $RAKUDO_REVISION
 
 # Section.
 section: default
@@ -34,17 +34,17 @@ section: default
 priority: extra
 
 # Maintaner.
-maintainer: Claudio Ramirez <pub.claudio@gmail.com>
+maintainer: $MAINTAINER
 
 # Description.
 # Defaults to `no description given`.
-description: Rakudo runtime (Raku)
+description: Rakudo runtime for the Raku programming language
 
 # Vendor.
 vendor: rakudo-pkg
 
 # Package's homepage.
-homepage: https://github.con/nxadm/rakudo-pkg
+homepage: https://raku.org/
 
 # License.
 license: Artistic License 2.0
