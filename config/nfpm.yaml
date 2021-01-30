@@ -92,8 +92,8 @@ contents:
 #    type: config
 
     # Simple symlink
-  - src: /etc/profile.d/rakudo-pkg.sh
-    dst: /opt/rakudo-pkg/bin/rakudo-pkg_path.sh
+  - src: /opt/rakudo-pkg/bin/rakudo-pkg_path.sh
+    dst: /etc/profile.d/rakudo-pkg.sh
     type: "symlink"
 
 #    # Corresponds to %config(noreplace) if the packager is rpm, otherwise it is just a config file
