@@ -45,7 +45,10 @@ case "$OS" in
         ;;
     rhel)
         microdnf update
-        microdnf install gcc gzip libzstd make perl-core tar
+        microdnf install gcc gzip make perl-core tar
+        if [ $OS_VERSION = "8" ]; then
+            microdnf install libzstd
+        fi
         ;;
     ubuntu)
         apt-get update
