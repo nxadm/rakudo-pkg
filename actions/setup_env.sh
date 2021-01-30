@@ -12,9 +12,9 @@ set_os_vars() {
         OS_CODENAME=$OS_VERSION
     fi   
 
-    echo export OS=$OS >> versions.sh 
-    echo export OS_VERSION=$OS_VERSION >> versions.sh
-    echo export OS_CODENAME=$OS_CODENAME >> versions.sh
+    echo export OS=$OS >> config/versions.sh 
+    echo export OS_VERSION=$OS_VERSION >> config/versions.sh
+    echo export OS_CODENAME=$OS_CODENAME >> config/versions.sh
 }
 
 case "$OS" in 

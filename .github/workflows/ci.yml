@@ -17,6 +17,7 @@ jobs:
           path: |
             actions/*
             include/*
+            config/*
             *.tar.gz
   build:
     needs: get-sources
