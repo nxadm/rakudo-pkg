@@ -9,13 +9,13 @@ tar xzf nfpm.tar.gz nfpm
 mv nfpm /usr/bin
 
 # Fill the config
-cat config/nfpm.yaml 
+cat config/nfpm.yaml
 envsubst < config/nfpm.yaml > config/nfpm.yaml_tmp
 mv config/nfpm.yaml_tmp config/nfpm.yaml
 cat config/nfpm.yaml
 
 # Package
-case "$OS" in 
+case "$OS" in
     alpine)
         PACKAGER=apk
         INSTALL_CMD='apk add --no-cache --allow-untrusted *.apk'
@@ -48,7 +48,7 @@ case "$OS" in
         echo "Sorry, distro not found. Send a PR. :)"
         exit 1
         ;;
-esac    
+esac
 
 mkdir /staging
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/

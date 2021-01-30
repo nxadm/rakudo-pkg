@@ -25,7 +25,7 @@ version: $RAKUDO_VERSION
 #version_metadata: git
 
 # Version Release.
-release: $RAKUDO_REVISION
+release: $PKG_REVISION
 
 # Section.
 section: default
