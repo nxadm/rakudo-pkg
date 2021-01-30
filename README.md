@@ -9,9 +9,8 @@
 * [Set the PATH](#set-the-path)
 * [Zef Module Manager as a Regular User](#zef-module-manager-as-a-regular-user)
 * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
-* [Using rakudo-pkg on Travis](#using-rakudo-pkg-on-travis)
-* [Building Your Own Packages](#building-your-own-packages)
-* [Other Rakudo Distributions](#other-rakudo-distributions)
+* [Using rakudo-pkg for module CI](#using-rakudo-pkg-for-module-CI)
+* [Using rakudo-pkg for testing upstream Rakudo](#using-rakudo-pkg-for-testing-upstream-rakudo)
 * [Contributing](#contributing)
 
 ## Introduction
@@ -127,43 +126,32 @@ $ sudo rpm -Uvh *.rpm
 
 ## Set the PATH
 
-The path is set by setting a rakudo-pkg.sh profile file in /etc/profile.d. If
-raku/perl6 is in your path (type `raku -v`) you can stop reading this section
-and enjoy raku.
+The path is set by setting a rakudo-pkg.sh profile file in `/etc/profile.d` and
+will be active once you log in again. Source the package if you want to
+activate the changes in your running session;
 
-Alternatively, a script is supplied to do this automatically for you. Run it
-as your regular user:
+```
+. /etc/profile.d/rakudo-pkg.sh
+```
+
+Alternatively, a script is supplied to do this automatically for you in the
+user profile. Run it as your regular user:
 
 ```bash
 $ /opt/rakudo-pkg/bin/add-rakudo-to-path
 ```
 
-If you prefer, you can change the PATH manually. Be aware that environment
-files start with a '.' and are hidden by convention on graphical file browsers:
-
-- For bourne derivated shells (like bash), add this to your `.profile`,
-`.bash_profile` or the corresponding environment init script for your shell:
-
-```bash
-PATH=~/.raku/bin:/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH
-export PATH
-```
-
-- For zsh, add this to ~/.zshenv or ~/.zprofile, depending on your
-distribution:
-
-```zsh
-path=(~/.raku/bin /opt/rakudo-pkg/bin /opt/rakudo-pkg/share/perl6/site/bin $path[@])
-```
+See the PATH in the short script if you prefer to set the PATH manually.
 
 ## Zef Module Manager as a Regular User
 
 The installation supplies a working *global* Zef installation
-(`/opt/rakudo-pkg/bin/zef`). However, Rakudo takes a different
-approach to many other languages (including Perl 5): modules are by default
-installed the home directory of the user. A script is supplied to install
-zef as a user. Zef will be installed to `~/.raku/bin/zef` and modules will
-reside in `~/.raku`:
+(`/opt/rakudo-pkg/bin/zef`). However, Rakudo takes a different approach than
+many other languages (including Perl): modules are by default installed in the
+home directory of the user.
+
+A script is supplied to install zef as a user. Zef will be installed to
+`~/.raku/bin/zef` and modules will reside in `~/.raku`:
 
 ```bash
 /opt/rakudo-pkg/bin/install-zef-as-user
@@ -180,108 +168,47 @@ functionalities that Windows does not implement yet:
 $ /opt/rakudo-pkg/bin/fix-windows10
 ```
 
-## Using rakudo-pkg on Travis
+## Using rakudo-pkg for CI
 
 You can use rakudo-pkg to speed-up the continuous integration of your Raku
-modules on [Travis](https://travis-ci.org) and other CI systems. Since this
-package is going to be downloaded in the install phase, you don't
-need to specify a language (by default, it will install Ruby). *Don't*
-specify `perl6` since this will download and build it from source. Note
-that rakudo-pkg does not exist for Precise Pangolin, so use trusty(default)
-or newer.
+modules on Github Actions and other CI systems.
 
-A valid `.travis.yml` would be:
+An example step using the action
+[add-deb-repo](https://github.com/marketplace/actions/add-debian-repository):
 
 ```
-language: generic
-env:
-  global:
-    - export PATH="/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
-addons:
-  apt:
-    sources:
-      - sourceline: 'deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main'
-        key_url: 'http://keyserver.ubuntu.com/pks/lookup?search=0x379CE192D401AB61&op=get'
-    packages:
-      - rakudo-pkg
-install:
-  - zef install .
+- name: install rakudo-pkg
+  env:
+  PATH: "/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
+  uses: myci-actions/add-deb-repo@4
+  with:
+    # Beware: soon bionic will be replace by focal on Github Actions
+    repo: deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main
+    repo-name: rakudo-pkg
+    keys: 0x379CE192D401AB61
+    key-server: keyserver.ubuntu.com
 ```
 
-After this line, you should do `zef install . && zef test .` or whatever else you need to test your package. In case you need an specific version, older
-versions are kept in the repository.
+After this step you should run `zef install . && zef test .` or whatever else
+is needed to install and test your package.
 
-## Building your Own Packages
+## Using rakudo-pkg for testing upstream Rakudo
+This repo does not only build and package Rakudo releases but works also for
+specific commits on all the included components. Just fork this repo, and
+change the [config/versions.sh](config/versions.sh) to what you want to test:
 
-If you prefer to build your own packages instead of the ones offered in the
-[releases tab](https://github.com/nxadm/rakudo-pkg/releases), you can use the
-images from the [DockerHub](https://hub.docker.com/r/nxadm/rakudo-pkg). The
-image name is `nxadm/rakudo-pkg` while where every
-[image tag](https://hub.docker.com/r/nxadm/rakudo-pkg/tags/) corresponds with
-an specific OS-Release-Architecture combination. Alternatively, you can build
-them with the Dockerfiles in the `docker` directory.
-
-### Ubuntu 32-bit base images
-
-Ubuntu does not release 32-bit base images. An script is supplied to build
-them from official sources.
-
-```bash
-$ bin/create-baseimg.p6
-$ bin/create-baseimg.p6 <Ubuntu release>
-$ bin/create-baseimg.p6 18.04
+```sh
+$ cat config/versions.sh
+# The versions set in this file are used to download, build and package rakudo.
+# By prepending a commit with "@", you can build specific commit of each
+# component, e.g. RAKUDO_VERSION=@0c8d238a8c8dd2a22c5c23530fdc198be60ed63d
+RAKUDO_VERSION=2020.12
+NQP_VERSION=2020.12
+MOARVM_VERSION=2020.12
+ZEF_VERSION=0.11.2
+PKG_REVISION=01
+NFPM_VERSION=2.2.3
 ```
-
-### Create a Package:
-
-You need to supply the necessary environment variables to Docker:
-
-```bash
-$ docker run -ti --rm -v /var/tmp:/staging -e RAKUDO_VERSION=$RAKUDO_VERSION -e NQP_VERSION=$NQP_VERSION -e MOARVM_VERSION=$MOARVM_VERSION -e ZEF_VERSION=$ZEF_VERSION -e REVISION=$REVISION -e OS=$OS -e RELEASE=$RELEASE -e ARCH=$ARCH -e MAINTAINER=$MAINTAINER nxadm/rakudo-pkg:$TAG
-```
-
-## Other Rakudo Distributions
-
-### What about packages provided by Operating Systems?
-
-Our packages do not interfere with the packages included in Linux
-distributions and can be installed at the same time. Distribution packages
-that integrate with the Operating System are often a good choice. That said,
-Raku (previously Perl 6) reached language stability very recently. Packages
-that date from sources before December 2015 should be considered beta (Rakudo
-is a lot slower and some features where removed or added in the language).
-Raku and Rakudo are evolving very fast, getting better and faster. So, often
-you'll need a recent release to use these features.
-
-This is the state of Rakudo packaged by the distribution themselves:
-- Alpine 3.11:   -
-- Alpine 3.10:   -
-- Alpine 3.10:   -
-- Alpine 3.9:    -
-- Alpine 3.8:    -
-- CentOS 8:      -
-- CentOS 7:      -
-- Debian 10:     2018.05
-- Debian 9:      2016.12 (avoid, predates [the breaking IO changes](http://rakudo.org/2017/04/02/upgrade-information-for-changes-due-to-io-grant-work/))
-- Debian 8:      2014.07 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-- Fedora 32:     2020.02
-- Fedora 31:     2019.03
-- Fedora 30:     2019.03
-- openSUSE 15.1: 2019.03
-- Ubuntu 20.04:  2019.11
-- Ubuntu 19.10:  2018.12
-- Ubuntu 18.04:  2018.03
-- Ubuntu 16.04:  2015.11 (avoid, predates [the Christmas release](https://perl6advent.wordpress.com/2015/12/25/christmas-is-here/))
-
-### What about Rakudo Star?
-
-[Rakudo Star for Linux](https://github.com/rakudo/star) is certainly a
-distribution for end-users worth exploring. It has a very different use case
-in mind than `rakudo-pkg`, however. While we concentrate on releasing
-minimalistic, self-contained packages for every Rakudo release (monthly),
-Rakudo Star releases quarterly and it includes a wide selection of third party
-modules. On Linux, it does not provide binaries. Instead it locally compiles
-the Rakudo compiler and the third party modules.
 
 ## Contributing
 
