@@ -18,30 +18,37 @@ case "$OS" in
     alpine)
         PACKAGER=apk
         INSTALL_CMD='apk add --no-cache --allow-untrusted *.apk'
+        PKG_NAME=rakudo-pkg-Alpine${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
         ;;
     centos)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
+        PKG_NAME=rakudo-pkg-CentOS${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
         ;;
     debian)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
+        PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
         ;;
     fedora)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
+        PKG_NAME=rakudo-pkg-Fedora${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
         ;;
     opensuse)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
+        PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
         ;;
     rhel)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
+        PKG_NAME=rakudo-pkg-RHEL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.${ARCH}.apk
         ;;
     ubuntu)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
+        PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.apk
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
@@ -49,21 +56,32 @@ case "$OS" in
         ;;
 esac
 
-mkdir /staging
+mkdir -p /staging $GITHUB_WORKSPACE/packages
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 cd /staging
-PKG=`ls -1 *.$PACKAGER`
-sha512sum $PKG > $PKG.sha512sum
-echo "Packarghe sha512sum:"
-cat $PKG.sha512sum
+mv *.PACKAGER $PKG_NAME
+sha512sum $PKG_NAME > $PKG_NAME.sha512sum
+echo "Package sha512sum:"
+cat $PKG_NAME.sha512sum
 
 # Test the package
-rm -rf /opt/rakudo-pkg
+mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
 $INSTALL_CMD
 . /etc/profile.d/rakudo-pkg.sh
 raku -v
 zef --version
 
 # Move to workspace
-mkdir -p $GITHUB_WORKSPACE/packages
 mv /staging/* $GITHUB_WORKSPACE/packages/
+
+# tar the relocable build oldest distro
+if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
+    TARGZ=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.tar.gz
+    cd /
+    tar cvzf /staging/$TARGZ rakudo-pkg-${RAKUDO_VERSION}
+    cd /staging
+    sha512sum $TARGZ > $TARGZ.sha512sum
+    echo "Package sha512sum:"
+    cat $TARGZ.sha512sum
+    mv /staging/* $GITHUB_WORKSPACE/packages/
+fi
