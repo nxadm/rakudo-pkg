@@ -82,4 +82,4 @@ jobs:
       - name: TEST
         run: |
           echo "Chekcing workspace"
-          ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
+          ls -la $GITHUB_WORKSPACE
