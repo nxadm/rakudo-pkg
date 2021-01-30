@@ -17,12 +17,11 @@
 ## Introduction
 
 `rakudo-pkg` offers native packages (OS packages and relocatable builds) of
-[Rakudo compiler for Raku](https://raku.org/) (previously known as Perl 6)
-that closely follow upstream development. Most of the time, the packages will
-be released on the same day as the Rakudo sources. At the moment, packages are
-provided for Alpine, CentOS, Debian, Fedora, openSUSE and Ubuntu. The
-relocatable builds (unpack and use) should works universally on all recent
-Linux distributions.
+the [Rakudo compiler for Raku](https://raku.org/). The packages track the
+upstream releases closely. Most of the time, the packages will be released on
+the same day as the Rakudo sources. At the moment, packages are provided for
+Alpine, CentOS, Debian, Fedora, openSUSE, RHEL and Ubuntu. The relocatable
+builds (`tar xvzf` and use) work universally on all recent Linux distributions.
 
 Feel free to [contribute](#contributing) or
 [request new packages](https://github.com/nxadm/rakudo-pkg/issues).
