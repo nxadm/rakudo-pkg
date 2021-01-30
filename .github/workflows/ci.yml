@@ -68,4 +68,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: packages
-          path: staging/*
+          path: ${{ github.workspace }}/packages/

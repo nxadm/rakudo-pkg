@@ -9,10 +9,8 @@ tar xzf nfpm.tar.gz nfpm
 mv nfpm /usr/bin
 
 # Fill the config
-cat config/nfpm.yaml
 envsubst < config/nfpm.yaml > config/nfpm.yaml_tmp
 mv config/nfpm.yaml_tmp config/nfpm.yaml
-cat config/nfpm.yaml
 
 # Package
 case "$OS" in
@@ -57,7 +55,6 @@ PKG=`ls -1 *.$PACKAGER`
 sha512sum $PKG > $PKG.sha512sum
 echo "Packarghe sha512sum:"
 cat $PKG.sha512sum
-ls -la
 
 # Test the package
 rm -rf /opt/rakudo-pkg
@@ -65,3 +62,7 @@ $INSTALL_CMD
 . /etc/profile.d/rakudo-pkg.sh
 raku -v
 zef --version
+
+# Move to workspace
+mkdir -p $GITHUB_WORKSPACE/packages
+mv /staging/* $GITHUB_WORKSPACE/packages/
