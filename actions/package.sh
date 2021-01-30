@@ -11,6 +11,7 @@ mv nfpm /usr/bin
 envsubst 
 envsubst < config/nfpm.yaml > config/nfpm.yaml_tmp
 mv config/nfpm.yaml_tmp config/nfpm.yaml
+cat config/nfpm.yaml
 
 # Package
 case "$OS" in 
