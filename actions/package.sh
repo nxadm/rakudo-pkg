@@ -50,9 +50,12 @@ esac
 
 mkdir /staging
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
+cd /staging
 PKG=`ls -1 *.$PACKAGER`
 sha512sum $PKG > $PKG.sha512sum
-ls -la /staging
+echo "Packarghe sha512sum:"
+cat $PKG.sha512sum
+ls -la
 
 # Test the package
 rm -rf /opt/rakudo-pkg
