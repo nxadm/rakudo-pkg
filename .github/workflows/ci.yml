@@ -22,9 +22,9 @@ jobs:
   build-and-package:
     needs: get-sources
     env:
-      MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
       INSTALL_ROOT: /opt/rakudo-pkg
       CONFIG_SHELL: /bin/bash
+      DEBIAN_FRONTENDi: noninteractive
     strategy:
       matrix:
         image: [
