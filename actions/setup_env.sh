@@ -45,7 +45,7 @@ case "$OS" in
         ;;
     rhel)
         microdnf update
-        microdnf install gcc gzip libzstd-devel make perl-core tar
+        microdnf install gcc gzip libzstd make perl-core tar
         ;;
     ubuntu)
         apt-get update
