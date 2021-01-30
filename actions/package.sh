@@ -48,7 +48,7 @@ case "$OS" in
         ;;
 esac    
 
-nfpm -f config/nfpm.yaml --packager $PACKAGER /tmp/.font-unix
+nfpm pkg -f config/nfpm.yaml --packager $PACKAGER /tmp/.font-unix
 ls -la /tmp
 
 # Test the package

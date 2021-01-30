@@ -17,52 +17,34 @@
 ## Introduction
 
 `rakudo-pkg` offers native packages (OS packages and relocatable builds) of
-the [Rakudo compiler for Raku](https://raku.org/). The packages track the
+the [Rakudo compiler for Raku](https://raku.org/) and the
+[zef nodule installer](https://github.com/ugexe/zef). The packages track the
 upstream releases closely. Most of the time, the packages will be released on
 the same day as the Rakudo sources. At the moment, packages are provided for
 Alpine, CentOS, Debian, Fedora, openSUSE, RHEL and Ubuntu. The relocatable
 builds (`tar xvzf` and use) work universally on all recent Linux distributions.
 
-Feel free to [contribute](#contributing) or
-[request new packages](https://github.com/nxadm/rakudo-pkg/issues).
-
-`rakudo-pkg` aims to provide small self-contained (no dependencies, no files
-outside `/opt/rakudo-pkg`), pre-compiled native OS packages that can be used
-on user's computers, servers and --very importantly-- containers. Therefor,
-only the Rakudo compiler and the
-[Zef package manager](https://github.com/ugexe/zef) are provided. Third
-party modules can be easily installed if desired.
-
-From a security point of view, we like to create the builds in the open: the
-packages are created, checksummed and automatically uploaded from the code in
-this repository by [Travis CI](https://travis-ci.org/nxadm/rakudo-pkg) to
+From a security point of view, the packages are created, checksummed and
+automatically uploaded from the code in this repository by
+[Github Actions](https://github.com/nxadm/rakudo-pkg/actions) to
 [Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
 [Bintray Repositories](https://bintray.com/nxadm/).
-
-For those users, or rather System Administrators, that prefer to build their
-own Rakudo packages, `rakudo-pkg` can be used as a build framework. Because
-Docker containers are used when creating native Linux packages, any platform
-running Docker can be used as a host, including Linux, MacOS and Windows
-machines.
 
 ## Relocatable Builds
 
 Relocatable builds can be uncompressed and used right away, e.g. in your home
 directory. `rakudo-pkg` "\*.tar.gz" releases can be downloaded from the
-[the Github tab](https://github.com/nxadm/rakudo-pkg/releases) and, as a
-backup from
-[the Bintray repo](https://dl.bintray.com/nxadm/rakudo-pkg-relocatable/).
+[the Github tab](https://github.com/nxadm/rakudo-pkg/releases).
 
 The relocable builds work on distributions with a glibc at the same
 level or newer than Ubuntu 16.04 (released in April 2016).
 
 ## OS Repositories
 
-The easiest way to install the Rakudo on Debian, CentOS, Fedora, openSUSE and
-Ubuntu (and their derivatives) is by using the `rakudo-pkg`
-repositories. For Alpine, see [Direct Downloads](#direct-downloads).
-
-**Optionally you can [install zef as a user](#zef-module-manager-as-a-regular-user).**
+The easiest way to install the Rakudo on Debian, CentOS, Fedora, openSUSE, RHEL
+and Ubuntu (and their derivatives) is by using the `rakudo-pkg`
+repositories. For Alpine and manual downloads, see
+[Direct Downloads](#direct-downloads).
 
 ### Debian, Ubuntu, LMDE and Mint
 
@@ -77,9 +59,9 @@ $ sudo apt-get update && sudo apt-get install rakudo-pkg
 If you don't have `lsb_release` installed, you can use the OS codename (e.g.,
 stretch, bionic, etc.) instead of the `lsb_release -cs` command.
 
-### Centos and Fedora
+### Centos, Fedora and RHEL
 
-To use the repos on CentOS, Fedora and openSUSE, you need to a repofile:
+To use the repos on CentOS, Fedora and RHEL, you need to a repofile:
 
 ```
 $ echo -e "[rakudo-pkg]\nname=rakudo-pkg\nbaseurl=https://dl.bintray.com/nxadm/rakudo-pkg-rpms/`lsb_release -is`/`lsb_release -rs| cut -d. -f1`/x86_64\ngpgcheck=0\nenabled=1" | sudo tee -a /etc/yum.repos.d/rakudo-pkg.repo
@@ -89,12 +71,12 @@ If you don't have `redhat-lsb-core` installed, you can use the OS name (e.g.,
 CentOS, Fedora) instead of the `lsb_release -is` command and release (e.g. 7,
 26, 27, 28) instead of the one with `-rs`.
 
-Install the package on CentOS:
+Install the package on CentOS 7:
 ```
 $ sudo yum install rakudo-pkg
 ```
 
-Install the package on Fedora:
+Install the package on recent CentOS, Fedora and RHEL:
 ```
 $ sudo dnf install rakudo-pkg
 ```
@@ -110,7 +92,7 @@ $ sudo zypper install rakudo-pkg
 ```
 
 In case you don't have `lsb-release` installed, you can put the openSUSE
-version (e.g. 42.3) instead of the `lsb_release -rs` command.
+version (e.g. 15.2) instead of the `lsb_release -rs` command.
 
 ### Alpine
 
@@ -119,14 +101,10 @@ the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
 
 ## Direct Downloads
 
-Most modern computers have a *64-bit* Operating System, so regular users should
-use 64-bit packages. The 32-bit are supplied for specific usages, like 32-bit
-images on some cloud providers. **32-bit Rakudo is not JIT enabled (upstream)
-and as a result a lot slower.**
-
-See the [releases tab](https://github.com/nxadm/rakudo-pkg/releases) for the
-latest packages. You can install the downloaded packages with the regular
-package manager of your distribution:
+You can install the downloaded packages from the
+[releases tab](https://github.com/nxadm/rakudo-pkg/releases) by using the
+regular package installer of your distribution:
+ackage manager of your distribution:
 
 
 - Alpine:
@@ -141,7 +119,7 @@ $ sudo apk add --allow-untrusted *.apk
 $ sudo dpkg -i *.deb
 ```
 
-- CentOS, Fedora and openSUSE:
+- CentOS, Fedora, openSUSE and RHEL:
 
 ```
 $ sudo rpm -Uvh *.rpm
