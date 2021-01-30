@@ -48,8 +48,11 @@ case "$OS" in
         ;;
 esac    
 
-nfpm pkg -f config/nfpm.yaml --packager $PACKAGER /tmp/.font-unix
-ls -la /tmp
+mkdir /staging
+nfpm pkg -f config/nfpm.yaml --packager $PACKAGER /staging
+PKG=`ls -1 *.$PACKAGER`
+sha512sum $PKG > $PKG.sha512sum
+ls -la /staging
 
 # Test the package
 rm -rf /opt/rakudo-pkg
