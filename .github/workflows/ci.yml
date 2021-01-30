@@ -53,12 +53,9 @@ jobs:
         run: |
           chmod +x actions/*
           ./actions/setup_env.sh
-          cat config/versions.sh
       - name: Build
         run: |
-          cat config/versions.sh
           ./actions/build.sh
       - name: Package
         run: |
-          cat config/versions.sh
           ./actions/package.sh
