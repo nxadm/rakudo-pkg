@@ -9,7 +9,7 @@
 * [Set the PATH](#set-the-path)
 * [Zef Module Manager as a Regular User](#zef-module-manager-as-a-regular-user)
 * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
-* [Using rakudo-pkg for module CI](#using-rakudo-pkg-for-module-CI)
+* [Using rakudo-pkg in a module CI](#using-rakudo-pkg-in-a-module-CI)
 * [Using rakudo-pkg for testing upstream Rakudo](#using-rakudo-pkg-for-testing-upstream-rakudo)
 * [Contributing](#contributing)
 
@@ -168,7 +168,7 @@ functionalities that Windows does not implement yet:
 $ /opt/rakudo-pkg/bin/fix-windows10
 ```
 
-## Using rakudo-pkg for CI
+## Using rakudo-pkg in a module CI
 
 You can use rakudo-pkg to speed-up the continuous integration of your Raku
 modules on Github Actions and other CI systems.
