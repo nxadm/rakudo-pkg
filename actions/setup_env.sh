@@ -36,6 +36,7 @@ case "$OS" in
         apt-get update
         apt-get -u dist-upgrade -y -qq
         apt-get install -y build-essential gettext libzstd-dev
+        set_os_vars amd64
         ;;
     fedora)
         dnf -q -y upgrade
