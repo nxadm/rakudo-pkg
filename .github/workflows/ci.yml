@@ -19,7 +19,7 @@ jobs:
             include/*
             config/*
             *.tar.gz
-  build:
+  build-and-package:
     needs: get-sources
     env:
       MAINTAINER: "Claudio Ramirez <pub.claudio@gmail.com>"
@@ -69,3 +69,15 @@ jobs:
         with:
           name: packages
           path: ${{ github.workspace }}/packages/
+  upload:
+    needs: build-and-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test workdir
+        run: ls -la $GITHUB_WORKSPACE $GITHUB_WORKSPACE/packages
+      - name: Download packages
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+      - name: Test package location
+        run: ls -la packages
