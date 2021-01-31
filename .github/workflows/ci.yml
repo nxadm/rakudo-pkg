@@ -69,9 +69,9 @@ jobs:
         with:
           name: packages
           path: ${{ github.workspace }}/packages/
-  # Forks don't need upload the packages, just have the artifacts available
-  upload:
-    if: github.repository_owner == 'nxadm'
+  release:
+    # Forks don't need to release packages, just have the artifacts available
+    if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
     needs: build-and-package
     runs-on: ubuntu-latest
     steps:
@@ -79,7 +79,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: packages
-      - name: TEST
-        run: |
-          echo "Chekcing workspace"
-          ls -la $GITHUB_WORKSPACE
+      - name: Upload to Github Releases
+        uses: ncipollo/release-action@v1
+          with:
+            artifact: "packages/*"
+            token: ${{ secrets.GITHUB_TOKEN }}
+            draft: true
