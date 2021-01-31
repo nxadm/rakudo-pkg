@@ -97,6 +97,6 @@ if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
     mv /staging/* $GITHUB_WORKSPACE/packages/
 fi
 
-# Write upload URL
-echo $PKG_URL > $PKG_NAME.url
+# Write the upload URL for publishing the packages
+echo "$PKG_URL" > $GITHUB_WORKSPACE/packages/$PKG_NAME.url
 
