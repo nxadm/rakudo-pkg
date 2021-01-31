@@ -7,4 +7,4 @@ MOARVM_VERSION=2020.12
 ZEF_VERSION=0.11.2
 PKG_REVISION=01
 # Setting MOARVM_DEBUG enables debug in MoarVM and keeps coredumps as artefacts
-DEBUG_BUILD=1
+MOARVM_DEBUG=1
