@@ -4,10 +4,13 @@ jobs:
   get-sources:
     runs-on: ubuntu-latest
     steps:
+      - name: TEST2
+        run: ulimit -a
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+        run: ls -la /var/crash
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
         run: ./actions/download.sh
       - name: Archive artifacts
@@ -48,8 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
     steps:
-      - name: TEST2
-        run: ls -la /var/crash; true
       - name: Download checkout
         uses: actions/download-artifact@v2
         with:
