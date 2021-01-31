@@ -32,7 +32,7 @@ case "$OS" in
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
+        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
         ;;
     fedora)
         PACKAGER=rpm
@@ -40,12 +40,13 @@ case "$OS" in
         PKG_NAME=rakudo-pkg-Fedora${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         PKG_URL=\
 "https://api.bintray.com/content/nxadm/rakudo-pkg-rpms2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/Fedora/$OS_VERSION/x86_64/$PKG_NAME;publish=1"
-
         ;;
     opensuse)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
+        PKG_URL=\
+"https://api.bintray.com/content/nxadm/rakudo-pkg-rpms2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/openSUSE/$OS_VERSION/x86_64/$PKG_NAME;publish=1"
         ;;
     rhel)
         PACKAGER=rpm
@@ -58,7 +59,7 @@ case "$OS" in
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
+        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
