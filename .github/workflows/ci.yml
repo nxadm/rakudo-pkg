@@ -31,7 +31,7 @@ jobs:
           # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
           # https://github.com/MoarVM/MoarVM/issues/1424
           # https://github.com/MoarVM/MoarVM/issues/1424
-          # 
+          #
           # BROKEN nfpm build: alpine:3.13
           # https://github.com/goreleaser/nfpm/issues/288
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
@@ -39,7 +39,7 @@ jobs:
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
           "debian:9-slim", "debian:10-slim", "debian:testing-slim",
-          "debian:unstable-slim", "debian:experimental", 
+          "debian:unstable-slim", "debian:experimental",
           "fedora:32", "fedora:33",
           "opensuse/leap:15.2", "opensuse/tumbleweed",
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
@@ -52,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sources
-      - name: Create build environment 
+      - name: Create build environment
         env:
           IMAGE: ${{ matrix.image }}
         run: |
@@ -85,5 +85,5 @@ jobs:
         with:
           artifacts: "packages/*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          draft: true 
-          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)." 
+          draft: true
+          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."

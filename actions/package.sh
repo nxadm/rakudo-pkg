@@ -60,7 +60,7 @@ mkdir -p /staging $GITHUB_WORKSPACE/packages
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 cd /staging
 mv *.$PACKAGER $PKG_NAME
-sha512sum $PKG_NAME > $PKG_NAME.sha512sum
+sha512sum $PKG_NAME > $PKG_NAME.sha512
 echo "Package sha512:"
 cat $PKG_NAME.sha512
 
