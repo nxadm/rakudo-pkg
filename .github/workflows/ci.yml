@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: TEST2
         run: |
-          sleep unlimited &
+          sleep infinity &
           pkill -SIGSEGV sleep
           find / -name "core*"
       - name: Checkout repository
