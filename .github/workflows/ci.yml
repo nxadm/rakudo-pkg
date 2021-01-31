@@ -14,6 +14,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sources
+          retention-days: 1
           path: |
             actions/*
             include/*
@@ -83,6 +84,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: packages
+          retention-days: 1
           path: ${{ github.workspace }}/packages/
   release-to-github:
     # Forks don't need to release packages, just have the artifacts available
