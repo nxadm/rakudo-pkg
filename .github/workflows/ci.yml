@@ -7,7 +7,7 @@ jobs:
       - name: TEST2
         run: |
           sleep infinity &
-          kill -s SIGSEGV $!
+          kill -3 $!
           ps awwx
           find ${{ github.workspace }} /var/crash /tmp
       - name: Checkout repository
