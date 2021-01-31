@@ -197,7 +197,7 @@ is needed to install and test your package.
 This repo does not only build and package Rakudo releases but works also for
 specific commits on all the included components. Just fork this repo, enable
 the workflows in the Actions tab and change the
-[config/versions.sh](config/versions.sh) to whatever version or commit you want
+[config/setup.sh](config/setup.sh) to whatever version or commit you want
 want to test. You can also set MOARVM\_DEBUG to enable debug in MoarVM and
 keep coredumps as artefacts. A sample.sh setup file:
 

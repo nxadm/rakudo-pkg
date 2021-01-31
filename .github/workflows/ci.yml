@@ -28,12 +28,6 @@ jobs:
     strategy:
       matrix:
         image: [
-          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
-          # https://github.com/MoarVM/MoarVM/issues/1424
-          # https://github.com/MoarVM/MoarVM/issues/1424
-          #
-          # BROKEN nfpm build: alpine:3.13
-          # https://github.com/goreleaser/nfpm/issues/288
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
           "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
@@ -45,6 +39,20 @@ jobs:
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
           "ubuntu:20.10", "ubuntu:devel",
         ]
+        experimental: [false]
+        include:
+          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # BROKEN nfpm build: alpine:3.13
+          # https://github.com/goreleaser/nfpm/issues/288
+        - image: alpine:3.13
+          experimental: true
+        - image: alpine:edge
+          experimental: true
+        - image: fedora:rawhide
+          experimental: true
+    continue-on-error: ${{ matrix.experimental }}      
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
