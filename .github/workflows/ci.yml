@@ -8,7 +8,7 @@ jobs:
         run: |
           sleep infinity &
           pkill -SIGSEGV sleep
-          find / -name "core*"
+          find /
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
