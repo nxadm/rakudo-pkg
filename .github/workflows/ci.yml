@@ -10,6 +10,8 @@ jobs:
           fetch-depth: 0
       - name: TEST
         run: cat /proc/sys/kernel/core_pattern
+      - name: TEST2
+        run: ls -la /var/crash
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
         run: ./actions/download.sh
       - name: Archive artifacts
@@ -50,6 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     container: ${{ matrix.image }}
     steps:
+      - name: TEST2
+        run: ls -la /var/crash
       - name: Download checkout
         uses: actions/download-artifact@v2
         with:
