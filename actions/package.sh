@@ -19,21 +19,28 @@ case "$OS" in
         PACKAGER=apk
         INSTALL_CMD='apk add --no-cache --allow-untrusted *.apk'
         PKG_NAME=rakudo-pkg-Alpine${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_x86_64.apk
+        PKG_URL=FOO
         ;;
     centos)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         PKG_NAME=rakudo-pkg-CentOS${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
+        PKG_URL=\
+"https://api.bintray.com/content/nxadm/rakudo-pkg-rpms2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/CentOS/$OS_VERSION/x86_64/$PKG_NAME;publish=1"
         ;;
     debian)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
+        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
         ;;
     fedora)
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         PKG_NAME=rakudo-pkg-Fedora${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
+        PKG_URL=\
+"https://api.bintray.com/content/nxadm/rakudo-pkg-rpms2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/Fedora/$OS_VERSION/x86_64/$PKG_NAME;publish=1"
+
         ;;
     opensuse)
         PACKAGER=rpm
@@ -44,11 +51,14 @@ case "$OS" in
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         PKG_NAME=rakudo-pkg-RHEL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
+        PKG_URL=\
+"https://api.bintray.com/content/nxadm/rakudo-pkg-rpms2/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/RHEL/$OS_VERSION/x86_64/$PKG_NAME;publish=1"
         ;;
     ubuntu)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
+        PKG_URL="https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/${RAKUDO_VERSION}-${PKG_REVISION}/pool/main/r/rakudo-pkg/$PKG_NAME;deb_distribution=$OS_CODENAME;deb_component=main;deb_architecture=amd64;publish=1"
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
@@ -85,3 +95,7 @@ if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
     cat $TARGZ.sha512sum
     mv /staging/* $GITHUB_WORKSPACE/packages/
 fi
+
+# Write upload URL
+echo $PKG_URL > $PKG_NAME.url
+
