@@ -85,4 +85,5 @@ jobs:
         with:
           artifacts: "packages/*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          draft: true
+          draft: true 
+          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)." 

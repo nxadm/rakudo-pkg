@@ -61,8 +61,8 @@ nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 cd /staging
 mv *.$PACKAGER $PKG_NAME
 sha512sum $PKG_NAME > $PKG_NAME.sha512sum
-echo "Package sha512sum:"
-cat $PKG_NAME.sha512sum
+echo "Package sha512:"
+cat $PKG_NAME.sha512
 
 # Test the package
 mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
