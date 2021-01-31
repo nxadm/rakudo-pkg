@@ -6,8 +6,9 @@ jobs:
     steps:
       - name: TEST2
         run: |
-          cat core > /proc/sys/kernel/core_pattern
-          ulimit -c unlimited
+          sleep unlimited &
+          pkill -SIGSEGV sleep
+          find / -name "core*"
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
