@@ -26,7 +26,7 @@ jobs:
       INSTALL_ROOT: /opt/rakudo-pkg
       CONFIG_SHELL: /bin/bash
       DEBIAN_FRONTEND: noninteractive
-    strategy: 
+    strategy:
       fail-fast: false
       matrix:
         image: [
@@ -61,7 +61,7 @@ jobs:
       volumes:
               - /var/crash:/var/crash
     steps:
-      - name: Download checkout
+      - name: Retrieve sources
         uses: actions/download-artifact@v2
         with:
           name: sources
@@ -72,8 +72,12 @@ jobs:
           chmod +x actions/*
           ./actions/setup_env.sh
       - name: Build
-        run: ./actions/build.sh
+        run: |
+          ./actions/build.sh
+          . config/setup.sh
+          if [ ! -z "$MOARVM_DEBUG" ]; then "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
       - name: Archive coredumps
+        if: env.MOARVM_DEBUG == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
