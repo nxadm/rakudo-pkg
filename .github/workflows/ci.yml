@@ -79,9 +79,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: packages
+          path: packages
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
         with:
-          artifact: "packages/*"
+          artifacts: "packages/*"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
