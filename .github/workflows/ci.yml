@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: TEST2
-        run: ulimit -a
+        run: |
+          cat core > /proc/sys/kernel/core_pattern
+          ulimit -c unlimited
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
