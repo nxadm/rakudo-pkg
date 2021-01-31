@@ -7,8 +7,9 @@ jobs:
       - name: TEST2
         run: |
           sleep infinity &
+          ps awwx
           pkill -SIGSEGV sleep
-          find /
+          find ${{ github.workspace }} /var/crash /tmp
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
