@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-. config/versions.sh
+. config/setup.sh
 PATH=$PATH:$INSTALL_ROOT/bin
 
 # Build rakudo
@@ -11,6 +11,8 @@ for i in moarvm nqp rakudo; do
     CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
     if [ $i != "moarvm" ]; then
         CONFIGURE=$CONFIGURE" --backends=moar"
+        elif [ ! -z "$MOARVM_DEBUG"]; then
+            CONFIGURE=$CONFIGURE" --debug --optimize=0"
     fi 
 
     cd $i

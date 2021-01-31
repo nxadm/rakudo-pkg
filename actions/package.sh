@@ -1,8 +1,8 @@
 #!/bin/sh -e
 set -xv
 
-. config/versions.sh
 . config/pkginfo.sh
+. config/versions.sh
 export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION
 
 # Install nfpm

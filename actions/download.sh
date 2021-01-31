@@ -1,7 +1,8 @@
 #!/bin/sh -e 
 set -xv
 
-. config/versions.sh
+. config/pkginfo.sh
+. config/setup.sh
 
 if [ `echo $NFPM_VERSION | grep '^@'` ]; then
     COMMIT=`echo $NFPM_VERSION | cut -c2-`

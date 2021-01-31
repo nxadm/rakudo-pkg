@@ -193,14 +193,16 @@ After this step you should run `zef install . && zef test .` or whatever else
 is needed to install and test your package.
 
 ## Using rakudo-pkg for testing upstream Rakudo
+
 This repo does not only build and package Rakudo releases but works also for
 specific commits on all the included components. Just fork this repo, enable
 the workflows in the Actions tab and change the
 [config/versions.sh](config/versions.sh) to whatever version or commit you want
-want to test:
+want to test. You can also set MOARVM\_DEBUG to enable debug in MoarVM and
+keep coredumps as artefacts. A sample.sh setup file:
 
 ```sh
-$ cat config/versions.sh
+$ cat config/setup.sh
 # The versions set in this file are used to download, build and package rakudo.
 # By prepending a commit with "@", you can build specific commit of each
 # component, e.g. RAKUDO_VERSION=@0c8d238a8c8dd2a22c5c23530fdc198be60ed63d
@@ -209,7 +211,8 @@ NQP_VERSION=2020.12
 MOARVM_VERSION=2020.12
 ZEF_VERSION=0.11.2
 PKG_REVISION=01
-NFPM_VERSION=2.2.3
+# Setting MOARVM_DEBUG enables debug in MoarVM and keeps coredumps as artefacts
+#DEBUG_BUILD=1
 ```
 
 Don't forget to update your fork regularly, so you can test new releases of

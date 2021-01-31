@@ -13,10 +13,10 @@ set_os_vars() {
         OS_CODENAME=$OS_VERSION
     fi   
 
-    echo ARCH=$ARCH >> config/versions.sh 
-    echo OS=$OS >> config/versions.sh 
-    echo OS_VERSION=$OS_VERSION >> config/versions.sh
-    echo OS_CODENAME=$OS_CODENAME >> config/versions.sh
+    echo ARCH=$ARCH >> config/setup.sh 
+    echo OS=$OS >> config/setup.sh 
+    echo OS_VERSION=$OS_VERSION >> config/setup.sh
+    echo OS_CODENAME=$OS_CODENAME >> config/setup.sh
 }
 
 case "$OS" in 
