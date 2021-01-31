@@ -10,7 +10,7 @@ jobs:
           echo "sleep infinity" >>test.sh
           chmod +x test.sh
           ./test.sh &
-          kill -3 `cat test.pid`
+          kill -s SIGSEGV `cat test.pid`
           ps awwx
           find ${{ github.workspace }} /var/crash /tmp 2>/dev/null
       - name: Checkout repository
