@@ -10,7 +10,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-        run: ls -la /var/crash
       - name: Download nfpm, MoarVM, nqp, Rakudo and zef
         run: ./actions/download.sh
       - name: Archive artifacts
