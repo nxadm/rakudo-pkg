@@ -6,10 +6,13 @@ jobs:
     steps:
       - name: TEST2
         run: |
-          sleep infinity &
-          kill -3 $!
+          echo 'echo $$>test.pid'>test.sh
+          echo "sleep infinity" >>test.sh
+          chmod +x test.sh
+          test.sh
+          kill -3 `cat test.pid`
           ps awwx
-          find ${{ github.workspace }} /var/crash /tmp
+          find ${{ github.workspace }} /var/crash /tmp 2>/dev/null
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
