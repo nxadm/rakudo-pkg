@@ -4,15 +4,6 @@ jobs:
   get-sources:
     runs-on: ubuntu-latest
     steps:
-      - name: TEST2
-        run: |
-          echo 'echo $$>test.pid'>test.sh
-          echo "sleep infinity" >>test.sh
-          chmod +x test.sh
-          ./test.sh &
-          kill -s SIGSEGV `cat test.pid`
-          ps awwx
-          find ${{ github.workspace }} /var/crash /tmp 2>/dev/null
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -55,7 +46,10 @@ jobs:
           "ubuntu:20.10", "ubuntu:devel",
         ]
     runs-on: ubuntu-latest
-    container: ${{ matrix.image }}
+    container:
+      image: ${{ matrix.image }}
+      volumes:
+              - /var/crash:/var/crash
     steps:
       - name: Download checkout
         uses: actions/download-artifact@v2
@@ -69,9 +63,14 @@ jobs:
           ./actions/setup_env.sh
       - name: Build
         run: ./actions/build.sh
+      - name: Archive coredumps
+        uses: actions/upload-artifact@v2
+        with:
+          name: coredumps
+          path: /var/crash
       - name: Package
         run: ./actions/package.sh
-      - name: Archive artifacts
+      - name: Archive packages
         uses: actions/upload-artifact@v2
         with:
           name: packages
