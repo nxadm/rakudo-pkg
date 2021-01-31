@@ -25,7 +25,8 @@ jobs:
       INSTALL_ROOT: /opt/rakudo-pkg
       CONFIG_SHELL: /bin/bash
       DEBIAN_FRONTEND: noninteractive
-    strategy:
+    strategy: 
+      fail-fast: false
       matrix:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
@@ -52,7 +53,7 @@ jobs:
           experimental: true
         - image: fedora:rawhide
           experimental: true
-    continue-on-error: ${{ matrix.experimental }}      
+    continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
