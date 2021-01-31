@@ -81,7 +81,7 @@ jobs:
           name: packages
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
-          with:
-            artifact: "packages/*"
-            token: ${{ secrets.GITHUB_TOKEN }}
-            draft: true
+        with:
+          artifact: "packages/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
