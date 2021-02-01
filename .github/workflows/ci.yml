@@ -70,13 +70,10 @@ jobs:
           IMAGE: ${{ matrix.image }}
         run: |
           chmod +x actions/*
-          ./actions/setup_env.sh
-      - name: Build
-        run: |
-          ./actions/build.sh
-          . config/setup.sh
-          cat config/setup.sh
+          . actions/setup_env.sh
           set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
+      - name: Build
+        run: ./actions/build.sh
       - name: Archive coredumps
         if: ${{ env.MOARVM_DEBUG }} == 'true'
         uses: actions/upload-artifact@v2
