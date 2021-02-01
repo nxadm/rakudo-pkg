@@ -75,9 +75,10 @@ jobs:
         run: |
           ./actions/build.sh
           . config/setup.sh
-          if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
+          cat config/setup.sh
+          set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
       - name: Archive coredumps
-        if: env.MOARVM_DEBUG == 'true'
+        if: ${{ env.MOARVM_DEBUG }} == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
