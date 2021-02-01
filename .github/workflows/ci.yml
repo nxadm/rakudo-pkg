@@ -75,7 +75,7 @@ jobs:
       - name: Build
         run: ./actions/build.sh
       - name: Archive coredumps
-        if: fails()
+        if: failure()
         #if: ${{ env.MOARVM_DEBUG }} == 'true'
         uses: actions/upload-artifact@v2
         with:
