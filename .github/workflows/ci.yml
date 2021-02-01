@@ -79,6 +79,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
+          retention-days: 1
           path: |
             /var/crash
             ${{ github.workspace }}/*core*
