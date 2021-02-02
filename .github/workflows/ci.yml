@@ -56,7 +56,7 @@ jobs:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
-    - name: Configure core dumps
+      - name: Configure core dumps
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
