@@ -26,6 +26,7 @@ jobs:
       INSTALL_ROOT: /opt/rakudo-pkg
       CONFIG_SHELL: /bin/bash
       DEBIAN_FRONTEND: noninteractive
+      HARNESS_VERBOSE: 1
     strategy:
       fail-fast: false
       matrix:
