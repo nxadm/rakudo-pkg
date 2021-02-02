@@ -57,28 +57,28 @@ jobs:
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
       - name: DEBUG_BUILD switch
-        run: if [ ! -z "$DEBUG_BUILD" ]; then echo 'DEBUG_BUILD=true'>>$GITHUB_ENV; fi
+        run: echo `grep ^DEBUG_BUILD config/setup.sh`>>$GITHUB_ENV
       - name: Configure core dumps
-        if: env.DEBUG_BUILD == 'true'
+        if: env.DEBUG_BUILD == '1'
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
           echo "/${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
       - name: Retrieve sources
-        if: env.DEBUG_BUILD == 'true'
+        if: env.DEBUG_BUILD == 1
         uses: actions/download-artifact@v2
         with:
           name: sources
       - name: Create build environment
-        if: env.DEBUG_BUILD == 'true'
+        if: env.DEBUG_BUILD == '1'
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
       - name: Build
-        if: env.DEBUG_BUILD == 'true'
+        if: env.DEBUG_BUILD == '1'
         run: ./actions/build.sh
       - name: Archive coredumps
-        if: env.DEBUG_BUILD == 'true' && failure()
+        if: env.DEBUG_BUILD == '1' && failure()
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
@@ -120,25 +120,25 @@ jobs:
       image: ${{ matrix.image }}
     steps:
       - name: DEBUG_BUILD switch
-        run: if [ ! -z "$DEBUG_BUILD" ]; then echo 'DEBUG_BUILD=true'>>$GITHUB_ENV; fi
+        run: echo `grep ^DEBUG_BUILD config/setup.sh`>>$GITHUB_ENV
       - name: Retrieve sources
-        if: env.DEBUG_BUILD != 'true'
+        if: env.DEBUG_BUILD != '1'
         uses: actions/download-artifact@v2
         with:
           name: sources
       - name: Create build environment
-        if: env.DEBUG_BUILD != 'true'
+        if: env.DEBUG_BUILD != '1'
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
       - name: Build
-        if: env.DEBUG_BUILD != 'true'
+        if: env.DEBUG_BUILD != '1'
         run: ./actions/build.sh
       - name: Package
         if: env.DEBUG_BUILD != 'true'
         run: ./actions/package.sh
       - name: Archive packages
-        if: env.DEBUG_BUILD != 'true'
+        if: env.DEBUG_BUILD != '1'
         uses: actions/upload-artifact@v2
         with:
           name: packages
