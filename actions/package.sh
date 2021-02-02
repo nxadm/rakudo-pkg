@@ -1,7 +1,10 @@
 #!/bin/sh -e
 set -xv
 
-. config/pkginfo.sh
+if [ ! -z "$DEBUG_BUILD" ]; then
+    exit 0
+fi    
+
 . config/setup.sh
 export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION
 
@@ -99,4 +102,3 @@ fi
 
 # Write the upload URL for publishing the packages
 echo "$PKG_URL" > $GITHUB_WORKSPACE/packages/$PKG_NAME.url
-

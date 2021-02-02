@@ -1,8 +1,16 @@
 #!/bin/sh -e
 set -xv
 
+CONFIG_SHELL=/bin/bash
+INSTALL_ROOT=/opt/rakudo-pkg
+export CONFIG_SHELL INSTALL_ROOT
+
 . config/setup.sh
 PATH=$PATH:$INSTALL_ROOT/bin
+
+if [ ! -z "$DEBUG_BUILD" ]; then
+    echo "DEBUG_BUILD=true" >> $GITHUB_ENV
+fi
 
 # Build rakudo
 for i in moarvm nqp rakudo; do
@@ -11,8 +19,9 @@ for i in moarvm nqp rakudo; do
     CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
     if [ $i != "moarvm" ]; then
         CONFIGURE=$CONFIGURE" --backends=moar"
-        elif [ ! -z "$MOARVM_DEBUG"]; then
+        elif [ ! -z "$DEBUG_BUILD"]; then
             CONFIGURE=$CONFIGURE" --debug --optimize=0"
+            export HARNESS_VERBOSE=1
     fi 
 
     cd $i

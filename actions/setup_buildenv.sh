@@ -17,6 +17,7 @@ set_os_vars() {
     echo OS=$OS >> config/setup.sh 
     echo OS_VERSION=$OS_VERSION >> config/setup.sh
     echo OS_CODENAME=$OS_CODENAME >> config/setup.sh
+    cat config/pkginfo.sh >> config/setup.sh
 }
 
 case "$OS" in 
@@ -33,6 +34,7 @@ case "$OS" in
         set_os_vars x86_64
         ;;
     debian)
+        export DEBIAN_FRONTEND=noninteractive
         apt-get update
         apt-get -u dist-upgrade -y -qq
         apt-get install -y build-essential gettext libzstd-dev
@@ -59,6 +61,7 @@ case "$OS" in
         set_os_vars x86_64
         ;;
     ubuntu)
+        export DEBIAN_FRONTEND=noninteractive
         apt-get update
         apt-get -u dist-upgrade -y -qq
         apt-get install -y build-essential gettext git libzstd-dev

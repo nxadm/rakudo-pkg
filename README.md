@@ -211,12 +211,18 @@ NQP_VERSION=2020.12
 MOARVM_VERSION=2020.12
 ZEF_VERSION=0.11.2
 PKG_REVISION=01
-# Setting MOARVM_DEBUG enables debug in MoarVM and keeps coredumps as artefacts
-#DEBUG_BUILD=1
+# Setting DEBUG_BUILD enables debug in MoarVM, keeps coredumps as artefacts and
+# run tests in verbose mode.
+DEBUG_BUILD=1
 ```
 
 Don't forget to update your fork regularly, so you can test new releases of
-distributions.
+distributions:
+
+```
+git remote add upstream https://github.com/nxadm/rakudo-pkg.git
+git pull upstream master
+```
 
 ## Contributing
 

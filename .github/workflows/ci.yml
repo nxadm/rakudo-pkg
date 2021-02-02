@@ -8,41 +8,166 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-    #  - name: Download nfpm, MoarVM, nqp, Rakudo and zef
-    #    run: ./actions/download.sh
-    #  - name: Archive artifacts
-    #    uses: actions/upload-artifact@v2
-    #    with:
-    #      name: sources
-    #      retention-days: 1
-    #      path: |
-    #        actions/*
-    #        include/*
-    #        config/*
-    #        *.tar.gz
-      - name: Pass DEBUG_BUILD to env
-        run: |
-          . config/setup.sh
-          set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
-  check:
+      - name: Download nfpm, MoarVM, nqp, Rakudo and zef
+        run: ./actions/download.sh
+      - name: Archive artifas
+        uses: actions/upload-artifact@v2
+        with:
+          name: sources
+          retention-days: 1
+          path: |
+            actions/*
+            include/*
+            config/*
+            *.tar.gz
+  debugbuild:
     needs: get-sources
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [
+          "alpine:3.10", "alpine:3.11", "alpine:3.12",
+          "centos:7", "centos:8",
+          "registry.access.redhat.com/ubi7-minimal",
+          "registry.access.redhat.com/ubi8-minimal",
+          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
+          "debian:unstable-slim", "debian:experimental",
+          "fedora:32", "fedora:33",
+          "opensuse/leap:15.2", "opensuse/tumbleweed",
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
+          "ubuntu:20.10", "ubuntu:devel",
+        ]
+        experimental: [false]
+        include:
+          # BROKEN MoarVM builds: alpine:edge, fedora:rawhide 
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # https://github.com/MoarVM/MoarVM/issues/1425
+          # BROKEN nfpm packahe for alpine:3.13 (changes to apk-tools)
+          # https://github.com/goreleaser/nfpm/issues/288
+        - image: alpine:3.13
+          experimental: true
+        - image: alpine:edge
+          experimental: true
+        - image: fedora:rawhide
+          experimental: true
+    continue-on-error: ${{ matrix.experimental }}
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.image }}
+      options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
+    steps:
+    - name: Configure core dumps
+        run: |
+          ulimit -c unlimited
+          mkdir -p ${{ github.workspace }}/cores
+          echo "/${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Create build environment
+        run: |
+          chmod +x actions/*
+          . actions/setup_buildenv.sh
+      - name: Build
+        run: ./actions/build.sh
+      - name: Archive coredumps
+        if: failure() && env.DEBUG_BUILD == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: coredumps
+          retention-days: 1
+          path: |
+            /var/crash
+            ${{ github.workspace }}/*core*
+  build-and-package:
+    needs: get-sources
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [
+          "alpine:3.10", "alpine:3.11", "alpine:3.12",
+          "centos:7", "centos:8",
+          "registry.access.redhat.com/ubi7-minimal",
+          "registry.access.redhat.com/ubi8-minimal",
+          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
+          "debian:unstable-slim", "debian:experimental",
+          "fedora:32", "fedora:33",
+          "opensuse/leap:15.2", "opensuse/tumbleweed",
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
+          "ubuntu:20.10", "ubuntu:devel",
+        ]
+        experimental: [false]
+        include:
+          # BROKEN MoarVM builds: alpine:edge, fedora:rawhide 
+          # https://github.com/MoarVM/MoarVM/issues/1424
+          # https://github.com/MoarVM/MoarVM/issues/1425
+          # BROKEN nfpm packahe for alpine:3.13 (changes to apk-tools)
+          # https://github.com/goreleaser/nfpm/issues/288
+        - image: alpine:3.13
+          experimental: true
+        - image: alpine:edge
+          experimental: true
+        - image: fedora:rawhide
+          experimental: true
+    continue-on-error: ${{ matrix.experimental }}
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.image }}
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Create build environment
+        run: |
+          chmod +x actions/*
+          . actions/setup_buildenv.sh
+      - name: Build
+        run: ./actions/build.sh
+      - name: Package
+        run: ./actions/package.sh
+      - name: Archive packages
+        if: env.DEBUG_BUILD != 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          retention-days: 1
+          path: ${{ github.workspace }}/packages/
+  release-to-github:
+    # Forks don't need to release packages, just have the artifacts available
+    if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
+    needs: build-and-package
     runs-on: ubuntu-latest
     steps:
-      - name: Check if DEBUG_BUILD is set
-        run: |
-          set -xv
-          echo "$MOARVM_DEBUG"
-#  build-and-package:
-#    needs: get-sources
+      - name: Download packages
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: packages
+      - name: TEST
+        run: ls -la packages/
+      - name: Upload to Github Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
+#  release-to-bintray:
+#    needs: release-to-github
 #    env:
-#      INSTALL_ROOT: /opt/rakudo-pkg
-#      CONFIG_SHELL: /bin/bash
-#      DEBIAN_FRONTEND: noninteractive
-#      HARNESS_VERBOSE: 1
+#      URL_DEB: https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/
+#      URL_RPM: https://api.bintray.com/content/nxadm/rakudo-pkg-rpms/rakudo-pkg/
 #    strategy:
-#      fail-fast: false
 #      matrix:
 #        image: [
+#          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
+#          # https://github.com/MoarVM/MoarVM/issues/1424
+#          # https://github.com/MoarVM/MoarVM/issues/1424
+#          #
+#          # BROKEN nfpm build: alpine:3.13
+#          # https://github.com/goreleaser/nfpm/issues/288
 #          "alpine:3.10", "alpine:3.11", "alpine:3.12",
 #          "centos:7", "centos:8",
 #          "registry.access.redhat.com/ubi7-minimal",
@@ -54,27 +179,10 @@ jobs:
 #          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
 #          "ubuntu:20.10", "ubuntu:devel",
 #        ]
-#        experimental: [false]
-#        include:
-#          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
-#          # https://github.com/MoarVM/MoarVM/issues/1424
-#          # https://github.com/MoarVM/MoarVM/issues/1424
-#          # BROKEN nfpm build: alpine:3.13
-#          # https://github.com/goreleaser/nfpm/issues/288
-#        - image: alpine:3.13
-#          experimental: true
-#        - image: alpine:edge
-#          experimental: true
-#        - image: fedora:rawhide
-#          experimental: true
-#    continue-on-error: ${{ matrix.experimental }}
 #    runs-on: ubuntu-latest
-#    container:
-#      image: ${{ matrix.image }}
-#      volumes:
-#              - /var/crash:/var/crash
+#    container: ${{ matrix.image }}
 #    steps:
-#      - name: Retrieve sources
+#      - name: Download checkout
 #        uses: actions/download-artifact@v2
 #        with:
 #          name: sources
@@ -83,83 +191,5 @@ jobs:
 #          IMAGE: ${{ matrix.image }}
 #        run: |
 #          chmod +x actions/*
-#          . actions/setup_env.sh
-#          set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
-#      - name: Build
-#        run: ./actions/build.sh
-#      - name: Archive coredumps
-#        if: failure()
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: coredumps
-#          retention-days: 1
-#          path: |
-#            /var/crash
-#            ${{ github.workspace }}/*core*
-#      - name: Package
-#        run: ./actions/package.sh
-#      - name: Archive packages
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: packages
-#          retention-days: 1
-#          path: ${{ github.workspace }}/packages/
-#  release-to-github:
-#    # Forks don't need to release packages, just have the artifacts available
-#    if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
-#    needs: build-and-package
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Download packages
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: packages
-#          path: packages
-#      - name: TEST
-#        run: ls -la packages/
-#      - name: Upload to Github Releases
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm"
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          draft: true
-#          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
-##  release-to-bintray:
-##    needs: release-to-github
-##    env:
-##      URL_DEB: https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/
-##      URL_RPM: https://api.bintray.com/content/nxadm/rakudo-pkg-rpms/rakudo-pkg/
-##    strategy:
-##      matrix:
-##        image: [
-##          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
-##          # https://github.com/MoarVM/MoarVM/issues/1424
-##          # https://github.com/MoarVM/MoarVM/issues/1424
-##          #
-##          # BROKEN nfpm build: alpine:3.13
-##          # https://github.com/goreleaser/nfpm/issues/288
-##          "alpine:3.10", "alpine:3.11", "alpine:3.12",
-##          "centos:7", "centos:8",
-##          "registry.access.redhat.com/ubi7-minimal",
-##          "registry.access.redhat.com/ubi8-minimal",
-##          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
-##          "debian:unstable-slim", "debian:experimental",
-##          "fedora:32", "fedora:33",
-##          "opensuse/leap:15.2", "opensuse/tumbleweed",
-##          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
-##          "ubuntu:20.10", "ubuntu:devel",
-##        ]
-##    runs-on: ubuntu-latest
-##    container: ${{ matrix.image }}
-##    steps:
-##      - name: Download checkout
-##        uses: actions/download-artifact@v2
-##        with:
-##          name: sources
-##      - name: Create build environment
-##        env:
-##          IMAGE: ${{ matrix.image }}
-##        run: |
-##          chmod +x actions/*
-##          ./actions/setup_env.sh
-#
+#          ./actions/setup_env.sh
+

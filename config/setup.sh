@@ -6,5 +6,6 @@ NQP_VERSION=2020.12
 MOARVM_VERSION=2020.12
 ZEF_VERSION=0.11.2
 PKG_REVISION=01
-# Setting MOARVM_DEBUG enables debug in MoarVM and keeps coredumps as artefacts
-MOARVM_DEBUG=1
+# Setting DEBUG_BUILD enables debug in MoarVM, keeps coredumps as artefacts and
+# run tests in verbose mode.
+DEBUG_BUILD=1
