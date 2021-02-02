@@ -22,7 +22,7 @@ jobs:
     #        *.tar.gz
       - name: Pass DEBUG_BUILD to env
         run: |
-          . actions/setup_env.sh
+          . config/setup.sh
           set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
   check:
     needs: get-sources
