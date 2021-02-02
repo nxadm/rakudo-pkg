@@ -20,14 +20,15 @@ jobs:
             include/*
             config/*
             *.tar.gz
-      - name: Check if DEBUG_BUILD is set
+      - name: Pass DEBUG_BUILD to env
         run: |
           . actions/setup_env.sh
           set -xv; if [ ! -z "$MOARVM_DEBUG" ]; then echo "MOARVM_DEBUG=true" >> $GITHUB_ENV; fi
-   check:
-     needs: get-sources
-     runs-on: ubuntu-latest
-     steps:
+  check:
+    needs: get-sources
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if DEBUG_BUILD is set
         run: |
           set -xv
           echo "$MOARVM_DEBUG"
