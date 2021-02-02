@@ -56,30 +56,37 @@ jobs:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
+      - name: DEBUG_BUILD switch
+        run: |
+          if [ ! -z "$DEBUG_BUILD" ];then \
+            echo "DEBUG_BUILD=true" >>$GITHUB_ENV \
+          fi
       - name: Configure core dumps
+        if: env.DEBUG_BUILD == 'true'
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
           echo "/${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
       - name: Retrieve sources
+        if: env.DEBUG_BUILD == 'true'
         uses: actions/download-artifact@v2
         with:
           name: sources
       - name: Create build environment
+        if: env.DEBUG_BUILD == 'true'
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
       - name: Build
+        if: env.DEBUG_BUILD == 'true'
         run: ./actions/build.sh
       - name: Archive coredumps
-        if: failure() && env.DEBUG_BUILD == 'true'
+        if: env.DEBUG_BUILD == 'true' && failure()
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
           retention-days: 1
-          path: |
-            /var/crash
-            ${{ github.workspace }}/*core*
+          path: ${{ github.workspace }}/cores/*
   build-and-package:
     needs: get-sources
     strategy:
@@ -115,17 +122,26 @@ jobs:
     container:
       image: ${{ matrix.image }}
     steps:
+      - name: DEBUG_BUILD switch
+        run: |
+          if [ ! -z "$DEBUG_BUILD" ];then \
+            echo "DEBUG_BUILD=true" >>$GITHUB_ENV \
+          fi
       - name: Retrieve sources
+        if: env.DEBUG_BUILD != 'true'
         uses: actions/download-artifact@v2
         with:
           name: sources
       - name: Create build environment
+        if: env.DEBUG_BUILD != 'true'
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
       - name: Build
+        if: env.DEBUG_BUILD != 'true'
         run: ./actions/build.sh
       - name: Package
+        if: env.DEBUG_BUILD != 'true'
         run: ./actions/package.sh
       - name: Archive packages
         if: env.DEBUG_BUILD != 'true'
