@@ -4,22 +4,22 @@ jobs:
   get-sources:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Download nfpm, MoarVM, nqp, Rakudo and zef
-        run: ./actions/download.sh
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: sources
-          retention-days: 1
-          path: |
-            actions/*
-            include/*
-            config/*
-            *.tar.gz
+    #  - name: Checkout repository
+    #    uses: actions/checkout@v2
+    #    with:
+    #      fetch-depth: 0
+    #  - name: Download nfpm, MoarVM, nqp, Rakudo and zef
+    #    run: ./actions/download.sh
+    #  - name: Archive artifacts
+    #    uses: actions/upload-artifact@v2
+    #    with:
+    #      name: sources
+    #      retention-days: 1
+    #      path: |
+    #        actions/*
+    #        include/*
+    #        config/*
+    #        *.tar.gz
       - name: Pass DEBUG_BUILD to env
         run: |
           . actions/setup_env.sh
