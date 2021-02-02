@@ -8,10 +8,6 @@ export CONFIG_SHELL INSTALL_ROOT
 . config/setup.sh
 PATH=$PATH:$INSTALL_ROOT/bin
 
-if [ ! -z "$DEBUG_BUILD" ]; then
-    echo "DEBUG_BUILD=true" >> $GITHUB_ENV
-fi
-
 # Build rakudo
 for i in moarvm nqp rakudo; do
     mkdir $i
