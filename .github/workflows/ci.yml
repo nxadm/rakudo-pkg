@@ -57,10 +57,7 @@ jobs:
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     steps:
       - name: DEBUG_BUILD switch
-        run: |
-          if [ ! -z "$DEBUG_BUILD" ];then \
-            echo "DEBUG_BUILD=true" >>$GITHUB_ENV \
-          fi
+        run: if [ ! -z "$DEBUG_BUILD" ]; then echo 'DEBUG_BUILD=true'>>$GITHUB_ENV; fi
       - name: Configure core dumps
         if: env.DEBUG_BUILD == 'true'
         run: |
@@ -123,10 +120,7 @@ jobs:
       image: ${{ matrix.image }}
     steps:
       - name: DEBUG_BUILD switch
-        run: |
-          if [ ! -z "$DEBUG_BUILD" ];then \
-            echo "DEBUG_BUILD=true" >>$GITHUB_ENV \
-          fi
+        run: if [ ! -z "$DEBUG_BUILD" ]; then echo 'DEBUG_BUILD=true'>>$GITHUB_ENV; fi
       - name: Retrieve sources
         if: env.DEBUG_BUILD != 'true'
         uses: actions/download-artifact@v2
