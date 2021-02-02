@@ -143,7 +143,7 @@ jobs:
         if: env.DEBUG_BUILD != '1'
         run: ./actions/build.sh
       - name: Package
-        if: env.DEBUG_BUILD != 'true'
+        if: env.DEBUG_BUILD != '1'
         run: ./actions/package.sh
       - name: Archive packages
         if: env.DEBUG_BUILD != '1'
