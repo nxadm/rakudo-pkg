@@ -67,7 +67,7 @@ jobs:
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
-          echo "/${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
+          echo "${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
       - name: Retrieve sources
         if: env.DEBUG_BUILD == 1
         uses: actions/download-artifact@v2
@@ -81,8 +81,12 @@ jobs:
       - name: Build
         if: env.DEBUG_BUILD == '1'
         run: ./actions/build.sh
-      - name: Archive coredumps
+      - name: Look for core dumps
         if: env.DEBUG_BUILD == '1' && failure()
+        run: find / -name "core*" 2>/dev/null
+      - name: Archive coredumps
+        #if: env.DEBUG_BUILD == '1' && failure()
+        if: env.DEBUG_BUILD == '1'
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
