@@ -1,5 +1,5 @@
-name: devbuild
-on: 
+name: 'devbuild'
+on:
   workflow_dispatch:
     inputs:
       rakudo-version:
@@ -19,7 +19,7 @@ on:
         required: false
         default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar'
       moarvm-version:
-        description: 'MoarVM version'     
+        description: 'MoarVM version'
         required: false
         default: '2020.12'
       moarvm-configure:
