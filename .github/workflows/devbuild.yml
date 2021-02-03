@@ -72,7 +72,7 @@ jobs:
     container:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
-		env:
+    env:
 		  HARNESS_VERBOSE: 1
     steps:
       - name: Retrieve sources
