@@ -9,7 +9,7 @@ on:
       rakudo-configure:
         description: 'Rakudo configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar'
+        default: 'perl ./Configure.pl --relocatable --backends=moar'
       nqp-version:
         description: 'NQP version'
         required: false
@@ -17,7 +17,7 @@ on:
       nqp-configure:
         description: 'NQP configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar'
+        default: 'perl ./Configure.pl --relocatable --backends=moar'
       moarvm-version:
         description: 'MoarVM version'
         required: false
@@ -25,7 +25,7 @@ on:
       moarvm-configure:
         description: 'MoarVM configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar --debug --optimize=0'
+        default: 'perl ./Configure.pl --relocatable --backends=moar --debug --optimize=0'
       zef-version:
         description: 'zef version'
         required: false
