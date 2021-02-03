@@ -9,39 +9,36 @@ https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_
 fi
 
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
-cd moarvm 
 if [ $MOARVM_VERSION != "HEAD" ]; then
+    cd moarvm 
     git checkout $MOARVM_VERSION
+    cd ..
 fi    
-find moarvm -name .git -exec rm -rf {} \;
-cd ..
-tar czf moarvm.tar.gz moarvm
 
 git clone --recurse-submodules https://github.com/Raku/nqp.git
-cd nqp 
 if [ $NQP_VERSION != "HEAD" ]; then
+    cd nqp 
     git checkout $NQP_VERSION
+    cd ..
 fi
-find nqp -name .git -exec rm -rf {} \;
-cd ..
-tar czf nqp.tar.gz nqp
 
 git clone --recurse-submodules https://github.com/rakudo/rakudo.git
-cd rakudo
 if [ $RAKUDO_VERSION != "HEAD" ]; then
+    cd rakudo
     git checkout $RAKUDO_VERSION
+    cd ..
 fi
-find rakudo -name .git -exec rm -rf {} \;
-cd ..
-tar czf rakudo.tar.gz rakudo
 
 git clone --recurse-submodules https://github.com/ugexe/zef.git zef
-cd zef
 if [ $ZEF_VERSION != "HEAD" ]; then
+    cd zef
     git checkout $ZEF_VERSION
+    cd ..
 fi
-find zef -name .git -exec rm -rf {} \;
-cd ..
-tar czf zef.tar.gz zef
+
+for i in moarvm nqp rakudo zef; do
+    find $i -name ".git" -exec rm -rf {} \;
+    tar czf $i.tar.gz $i
+done
 
 ls -laH *.tar.gz
