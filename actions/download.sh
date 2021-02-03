@@ -5,7 +5,8 @@ if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
     curl -sSL -o nfpm.tar.gz \
-https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
+#https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
+https://github.com/nxadm/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
 fi
 
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
