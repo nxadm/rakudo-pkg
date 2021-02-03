@@ -24,37 +24,37 @@ case "$OS" in
     alpine)
         apk update
         apk upgrade
-        apk add bash build-base gettext gzip perl perl-utils tar zstd-dev
+        apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
         set_os_vars x86_64
         ;;
     centos)
         yum -q -y upgrade
         yum -q -y groupinstall 'Development Tools'
-        yum -q -y install libzstd-devel perl-core
+        yum -q -y install git libzstd-devel perl-core
         set_os_vars x86_64
         ;;
     debian)
         export DEBIAN_FRONTEND=noninteractive
         apt-get update
         apt-get -u dist-upgrade -y -qq
-        apt-get install -y build-essential gettext libzstd-dev
+        apt-get install -y build-essential git gettext libzstd-dev
         set_os_vars amd64
         ;;
     fedora)
         dnf -q -y upgrade
         dnf -q -y groupinstall 'Development Tools'
-        dnf -q -y install gettext libzstd-devel perl-core
+        dnf -q -y install gettext git libzstd-devel perl-core
         set_os_vars x86_64
         ;;
     opensuse)
         zypper refresh
         zypper update -y
-        zypper install -y gcc gettext gzip make libzstd-devel perl tar
+        zypper install -y gcc gettext git gzip make libzstd-devel perl tar
         set_os_vars x86_64
         ;;
     rhel)
         microdnf update
-        microdnf install gettext gcc gzip make perl-core tar
+        microdnf install gettext gcc git gzip make perl-core tar
         if [ $OS_VERSION = "8" ]; then
             microdnf install libzstd
         fi
@@ -64,7 +64,7 @@ case "$OS" in
         export DEBIAN_FRONTEND=noninteractive
         apt-get update
         apt-get -u dist-upgrade -y -qq
-        apt-get install -y build-essential gettext git libzstd-dev
+        apt-get install -y build-essential git gettext git libzstd-dev
         set_os_vars amd64
         ;;
     *)
