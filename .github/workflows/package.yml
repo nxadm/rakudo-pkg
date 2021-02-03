@@ -10,7 +10,7 @@ jobs:
           fetch-depth: 0
       - name: Download tools and sources
         run: ./actions/download.sh
-      - name: Archive artifas
+      - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: sources
