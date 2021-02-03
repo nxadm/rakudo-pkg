@@ -36,6 +36,7 @@ if [ $ZEF_VERSION != "HEAD" ]; then
     cd ..
 fi
 
+ls -laH *.tar.gz
 for i in moarvm nqp rakudo zef; do
     find $i -name ".git" -exec rm -rf {} \;
     tar czf $i.tar.gz $i
