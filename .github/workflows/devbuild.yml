@@ -99,3 +99,4 @@ jobs:
           name: coredumps
           retention-days: 1
           path: ${{ github.workspace }}/cores/*
+
