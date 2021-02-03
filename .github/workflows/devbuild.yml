@@ -78,6 +78,7 @@ jobs:
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     env:
       HARNESS_VERBOSE: 1
+      IMAGE: ${{ matrix.image }}
     steps:
       - name: Retrieve sources
         uses: actions/download-artifact@v2
@@ -87,18 +88,22 @@ jobs:
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
-          echo "${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
+          echo "${{ github.workspace }}/cores/core.%e" > /proc/sys/kernel/core_pattern
       - name: Create build environment
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
+          echo "TAG=$OS-$OS_VERSION" >> $GITHUB_ENV
       - name: Build
         run: ./actions/build.sh
-      - name: Look for core dumps
+      - name: Rename core dumps
         if: failure()
-        run: find / -type f -name "core.*" -exec ls -la {} \; 2>/dev/null
+        run: |
+          cd cores
+          CORE=`ls -1 core.*`
+          if [ ! -z "$CORE" ]; then mv $CORE $CORE-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV
       - name: Archive coredumps
-        if: success()
+        if: env.CORE == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
