@@ -29,7 +29,7 @@ on:
       zef-version:
         description: zef version
         required: false
-        default: HEA'
+        default: HEAD
       search-replace:
         description: Search and replace command (e.g. editing sources)
         required: false

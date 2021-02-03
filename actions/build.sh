@@ -19,8 +19,8 @@ fi
 
 if [ ! -z $EXTRA_ENV ]; then
     OIFS="$IFS"
-    IFS=r;:
-    for $i in $EXTRA_ENV; do
+    IFS=";"
+    for i in $EXTRA_ENV; do
         export $i
     done
     IFS="$OIFS"
