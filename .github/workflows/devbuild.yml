@@ -53,7 +53,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download sources
-        run: ./actions/download.sh
+        run: |
+          ./actions/download.sh ${{ github.workspace }}
+          mv ${{ github.workspace }}.tar.gz .
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:

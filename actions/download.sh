@@ -1,6 +1,8 @@
 #!/bin/sh -e
 set -xv
 
+cd $1
+
 if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
