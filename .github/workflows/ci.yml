@@ -20,78 +20,6 @@ jobs:
             include/*
             config/*
             *.tar.gz
-  debugbuild:
-    needs: get-sources
-    strategy:
-      fail-fast: false
-      matrix:
-        image: [
-          "alpine:3.10", "alpine:3.11", "alpine:3.12",
-          "centos:7", "centos:8",
-          "registry.access.redhat.com/ubi7-minimal",
-          "registry.access.redhat.com/ubi8-minimal",
-          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
-          "debian:unstable-slim", "debian:experimental",
-          "fedora:32", "fedora:33",
-          "opensuse/leap:15.2", "opensuse/tumbleweed",
-          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
-          "ubuntu:20.10", "ubuntu:devel",
-        ]
-        experimental: [false]
-        include:
-          # BROKEN MoarVM builds: alpine:edge, fedora:rawhide 
-          # https://github.com/MoarVM/MoarVM/issues/1424
-          # https://github.com/MoarVM/MoarVM/issues/1425
-          # BROKEN nfpm packahe for alpine:3.13 (changes to apk-tools)
-          # https://github.com/goreleaser/nfpm/issues/288
-        - image: alpine:3.13
-          experimental: true
-        - image: alpine:edge
-          experimental: true
-        - image: fedora:rawhide
-          experimental: true
-    continue-on-error: ${{ matrix.experimental }}
-    runs-on: ubuntu-latest
-    container:
-      image: ${{ matrix.image }}
-      options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
-    steps:
-      - name: Retrieve sources
-        uses: actions/download-artifact@v2
-        with:
-          name: sources
-      - name: DEBUG_BUILD switch
-        run: echo `grep ^DEBUG_BUILD config/setup.sh`>>$GITHUB_ENV
-      - name: Configure core dumps
-        if: env.DEBUG_BUILD == '1'
-        run: |
-          ulimit -c unlimited
-          mkdir -p ${{ github.workspace }}/cores
-          echo "${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
-      - name: Retrieve sources
-        if: env.DEBUG_BUILD == 1
-        uses: actions/download-artifact@v2
-        with:
-          name: sources
-      - name: Create build environment
-        if: env.DEBUG_BUILD == '1'
-        run: |
-          chmod +x actions/*
-          . actions/setup_buildenv.sh
-      - name: Build
-        if: env.DEBUG_BUILD == '1'
-        run: ./actions/build.sh
-      - name: Look for core dumps
-        if: env.DEBUG_BUILD == '1' && failure()
-        run: find / -type f -name "core*" -exec ls -la {} \; 2>/dev/null
-      - name: Archive coredumps
-        #if: env.DEBUG_BUILD == '1' && failure()
-        if: env.DEBUG_BUILD == '1'
-        uses: actions/upload-artifact@v2
-        with:
-          name: coredumps
-          retention-days: 1
-          path: ${{ github.workspace }}/cores/*
   build-and-package:
     needs: get-sources
     strategy:
@@ -131,26 +59,19 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sources
-      - name: DEBUG_BUILD switch
-        run: echo `grep ^DEBUG_BUILD config/setup.sh`>>$GITHUB_ENV
       - name: Retrieve sources
-        if: env.DEBUG_BUILD != '1'
         uses: actions/download-artifact@v2
         with:
           name: sources
       - name: Create build environment
-        if: env.DEBUG_BUILD != '1'
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
       - name: Build
-        if: env.DEBUG_BUILD != '1'
         run: ./actions/build.sh
       - name: Package
-        if: env.DEBUG_BUILD != '1'
         run: ./actions/package.sh
       - name: Archive packages
-        if: env.DEBUG_BUILD != '1'
         uses: actions/upload-artifact@v2
         with:
           name: packages
