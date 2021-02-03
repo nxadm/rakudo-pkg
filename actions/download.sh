@@ -8,9 +8,46 @@ if [ -z "$DEBUG_BUILD" ]; then
 https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
 fi
 
+mkdir moarvm nqp rakudo zef
 
-curl -sSL -o moarvm.tar.gz https://github.com/MoarVM/MoarVM/tarball/$MOARVM_VERSION
-curl -sSL -o nqp.tar.gz https://github.com/Raku/nqp/tarball/$NQP_VERSION
-curl -sSL -o rakudo.tar.gz https://github.com/rakudo/rakudo/tarball/$RAKUDO_VERSION
-curl -sSL -o rakudo.tar.gz https://github.com/ugexe/zef/tarball/$ZEF_VERSION
+git clone --recurse-submodles https://github.com/MoarVM/MoarVM.git moarvm
+cd moarvm 
+if [ $MOARVM_VERSION != "HEAD" ]; then
+    git checkout $MOARVM_VERSION
+    cd ..
+fi    
+rm -rf moarvm/.git
+cd ..
+tar cvzf moarvm.tar.gz moarvm
+
+git clone --recurse-submodles https://github.com/Raku/nqp.git nqp
+cd nqp 
+if [ $NQP_VERSION != "HEAD" ]; then
+    git checkout $NQP_VERSION
+    cd ..
+fi    
+rm -rf moarvm/.git
+cd ..
+tar cvzf nqp.tar.gz nqp
+
+git clone --recurse-submodles https://github.com/rakudo/rakudo.git rakudo
+cd rakudo
+if [ $RAKUDO_VERSION != "HEAD" ]; then
+    git checkout $RAKUDO_VERSION
+    cd ..
+fi    
+rm -rf rakudo/.git
+cd ..
+tar cvzf rakudo.tar.gz rakudo
+
+git clone --recurse-submodles https://github.com/ugexe/zef.git zef
+cd zef
+if [ $ZEF_VERSION != "HEAD" ]; then
+    git checkout $ZEF_VERSION
+    cd ..
+fi    
+rm -rf zef/.git
+cd ..
+tar cvzf zef.tar.gz zef
+
 ls -laH *.tar.gz
