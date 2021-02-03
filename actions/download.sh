@@ -10,7 +10,7 @@ fi
 
 mkdir moarvm nqp rakudo zef
 
-git clone --recurse-submodles https://github.com/MoarVM/MoarVM.git moarvm
+git clone --recurse-submodules https://github.com/MoarVM/MoarVM.git moarvm
 cd moarvm 
 if [ $MOARVM_VERSION != "HEAD" ]; then
     git checkout $MOARVM_VERSION
@@ -20,7 +20,7 @@ rm -rf moarvm/.git
 cd ..
 tar cvzf moarvm.tar.gz moarvm
 
-git clone --recurse-submodles https://github.com/Raku/nqp.git nqp
+git clone --recurse-submodules https://github.com/Raku/nqp.git nqp
 cd nqp 
 if [ $NQP_VERSION != "HEAD" ]; then
     git checkout $NQP_VERSION
@@ -30,7 +30,7 @@ rm -rf moarvm/.git
 cd ..
 tar cvzf nqp.tar.gz nqp
 
-git clone --recurse-submodles https://github.com/rakudo/rakudo.git rakudo
+git clone --recurse-submodules https://github.com/rakudo/rakudo.git rakudo
 cd rakudo
 if [ $RAKUDO_VERSION != "HEAD" ]; then
     git checkout $RAKUDO_VERSION
@@ -40,7 +40,7 @@ rm -rf rakudo/.git
 cd ..
 tar cvzf rakudo.tar.gz rakudo
 
-git clone --recurse-submodles https://github.com/ugexe/zef.git zef
+git clone --recurse-submodules https://github.com/ugexe/zef.git zef
 cd zef
 if [ $ZEF_VERSION != "HEAD" ]; then
     git checkout $ZEF_VERSION
