@@ -5,7 +5,7 @@ on:
       rakudo-version:
         description: 'Rakudo version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       rakudo-configure:
         description: 'Rakudo configure command'
         required: false
@@ -13,7 +13,7 @@ on:
       nqp-version:
         description: 'NQP version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       nqp-configure:
         description: 'NQP configure command'
         required: false
@@ -21,7 +21,7 @@ on:
       moarvm-version:
         description: 'MoarVM version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       moarvm-configure:
         description: 'MoarVM configure command'
         required: false
@@ -29,7 +29,7 @@ on:
       zef-version:
         description: 'zef version'
         required: false
-        default: '0.11.2'
+        default: 'HEAD'
       search-replace:
         description: 'Search and replace command'
         required: false
