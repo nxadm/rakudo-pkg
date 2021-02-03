@@ -36,6 +36,7 @@ if [ $ZEF_VERSION != "HEAD" ]; then
     cd ..
 fi
 
+pwd
 ls -laH
 for i in moarvm nqp rakudo zef; do
     find $i -name ".git" -exec rm -rf {} \;
