@@ -3,19 +3,19 @@ on:
   workflow_dispatch:
     inputs:
       moarvm-version:
-        description: MoarVM version
+        description: MoarVM version (HEAD, $tag, $commit)
         required: false
         default: HEAD
       moarvm-configure:
-        description: MoarVM configure command (HEAD, $tag, $commit)
+        description: MoarVM configure command
         required: false
         default: perl ./Configure.pl --debug --optimize=0 --relocatable --prefix=/opt/rakudo-pkg
       nqp-version:
-        description: NQP version
+        description: NQP version (HEAD, $tag, $commit)
         required: false
         default: HEAD
       nqp-configure:
-        description: NQP configure command (HEAD, $tag, $commit)
+        description: NQP configure command
         required: false
         default: perl ./Configure.pl --relocatable --backends=moar --prefix=/opt/rakudo-pkg
       rakudo-version:
