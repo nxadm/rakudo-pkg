@@ -30,6 +30,10 @@ on:
         description: 'zef version'
         required: false
         default: '0.11.2'
+      search-replace:
+        description: 'Search and replace command'
+        required: false
+        default: perl -pi -e 's///' /dev/null
 jobs:
   get-sources:
     runs-on: ubuntu-latest
