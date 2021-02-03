@@ -5,31 +5,31 @@ on:
       rakudo-version:
         description: 'Rakudo version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       rakudo-configure:
         description: 'Rakudo configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar'
+        default: 'perl ./Configure.pl --relocatable --backends=moar'
       nqp-version:
         description: 'NQP version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       nqp-configure:
         description: 'NQP configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar'
+        default: 'perl ./Configure.pl --relocatable --backends=moar'
       moarvm-version:
         description: 'MoarVM version'
         required: false
-        default: '2020.12'
+        default: 'HEAD'
       moarvm-configure:
         description: 'MoarVM configure command'
         required: false
-        default: 'perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar --debug --optimize=0'
+        default: 'perl ./Configure.pl --relocatable --backends=moar --debug --optimize=0'
       zef-version:
         description: 'zef version'
         required: false
-        default: '0.11.2'
+        default: 'HEAD'
       search-replace:
         description: 'Search and replace command'
         required: false
@@ -37,6 +37,12 @@ on:
 jobs:
   get-sources:
     runs-on: ubuntu-latest
+    env:
+      DEVBUILD: 1
+      RAKUDO_VERSION: ${{ github.event.inputs.rakudo-version }}
+      NQP_VERSION: ${{ github.event.inputs.nqp-version }}
+      MOARVM_VERSION: ${{ github.event.inputs.moarvm-version }}
+      ZEF_VERSION: ${{ github.event.inputs.zef-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -77,7 +83,13 @@ jobs:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
     env:
+      DEVBUILD: 1
       HARNESS_VERBOSE: 1
+      IMAGE: ${{ matrix.image }}
+      RAKUDO_CONFIGURE: ${{ github.event.inputs.rakudo-configure }}
+      NQP_CONFIGURE: ${{ github.event.inputs.nqp-configure }}
+      MOARVM_CONFIGURE: ${{ github.event.inputs.moarvm-configure }}
+      SEARCH_REPLACE: ${{ github.event.inputs.search-replace }}
     steps:
       - name: Retrieve sources
         uses: actions/download-artifact@v2
@@ -87,18 +99,22 @@ jobs:
         run: |
           ulimit -c unlimited
           mkdir -p ${{ github.workspace }}/cores
-          echo "${{ github.workspace }}/cores/core.%e.%h.%t" > /proc/sys/kernel/core_pattern
+          echo "${{ github.workspace }}/cores/core.%e" > /proc/sys/kernel/core_pattern
       - name: Create build environment
         run: |
           chmod +x actions/*
           . actions/setup_buildenv.sh
+          echo "TAG=$OS-$OS_VERSION" >> $GITHUB_ENV
       - name: Build
         run: ./actions/build.sh
-      - name: Look for core dumps
+      - name: Rename core dumps
         if: failure()
-        run: find / -type f -name "core.*" -exec ls -la {} \; 2>/dev/null
+        run: |
+          cd cores
+          CORE=`ls -1 core.*`
+          if [ ! -z "$CORE" ]; then mv $CORE $CORE-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV
       - name: Archive coredumps
-        if: success()
+        if: env.CORE == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
