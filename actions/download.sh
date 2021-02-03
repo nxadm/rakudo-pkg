@@ -14,7 +14,6 @@ git clone --recurse-submodules https://github.com/MoarVM/MoarVM.git moarvm
 cd moarvm 
 if [ $MOARVM_VERSION != "HEAD" ]; then
     git checkout $MOARVM_VERSION
-    cd ..
 fi    
 rm -rf moarvm/.git
 cd ..
@@ -24,7 +23,6 @@ git clone --recurse-submodules https://github.com/Raku/nqp.git nqp
 cd nqp 
 if [ $NQP_VERSION != "HEAD" ]; then
     git checkout $NQP_VERSION
-    cd ..
 fi    
 rm -rf moarvm/.git
 cd ..
@@ -34,7 +32,6 @@ git clone --recurse-submodules https://github.com/rakudo/rakudo.git rakudo
 cd rakudo
 if [ $RAKUDO_VERSION != "HEAD" ]; then
     git checkout $RAKUDO_VERSION
-    cd ..
 fi    
 rm -rf rakudo/.git
 cd ..
@@ -44,7 +41,6 @@ git clone --recurse-submodules https://github.com/ugexe/zef.git zef
 cd zef
 if [ $ZEF_VERSION != "HEAD" ]; then
     git checkout $ZEF_VERSION
-    cd ..
 fi    
 rm -rf zef/.git
 cd ..
