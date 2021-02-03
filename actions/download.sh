@@ -15,7 +15,7 @@ if [ $MOARVM_VERSION != "HEAD" ]; then
     cd ..
 fi    
 
-git clone --recurse-submodules https://github.com/Raku/nqp.git
+git clone --recurse-submodules https://github.com/raku/nqp.git
 if [ $NQP_VERSION != "HEAD" ]; then
     cd nqp 
     git checkout $NQP_VERSION
@@ -36,7 +36,7 @@ if [ $ZEF_VERSION != "HEAD" ]; then
     cd ..
 fi
 
-ls -laH *.tar.gz
+ls -laH
 for i in moarvm nqp rakudo zef; do
     find $i -name ".git" -exec rm -rf {} \;
     tar czf $i.tar.gz $i
