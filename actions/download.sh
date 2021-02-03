@@ -1,8 +1,6 @@
 #!/bin/sh -e
 set -xv
 
-cd $1
-
 if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
@@ -38,10 +36,8 @@ if [ $ZEF_VERSION != "HEAD" ]; then
     cd ..
 fi
 
-find . -name ".git" -exec rm -rf {} \;
-
 for i in moarvm nqp rakudo zef; do
-    tar czf $i.tar.gz $i
+    tar czf $i.tar.gz --exclude-vcs 
 done
 
 ls -laH *.tar.gz
