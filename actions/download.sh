@@ -1,6 +1,7 @@
 #!/bin/sh -e
 set -xv
 
+DIR=`pwd`
 if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
@@ -36,7 +37,7 @@ if [ $ZEF_VERSION != "HEAD" ]; then
     cd ..
 fi
 
-pwd
+cd $DIR
 ls -laH
 for i in moarvm nqp rakudo zef; do
     find $i -name ".git" -exec rm -rf {} \;
