@@ -9,7 +9,7 @@ on:
       moarvm-configure:
         description: MoarVM configure command (HEAD, $tag, $commit)
         required: false
-        default: perl ./Configure.pl --relocatable --backends=moar --debug --optimize=0 --prefix=/opt/rakudo-pkg
+        default: perl ./Configure.pl --debug --optimize=0 --relocatable --prefix=/opt/rakudo-pkg
       nqp-version:
         description: NQP version
         required: false
