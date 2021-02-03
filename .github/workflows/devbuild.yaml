@@ -1,4 +1,4 @@
-name: builddev
+name: devbuild
 on: 
   workflow_dispatch:
     inputs:
