@@ -39,7 +39,7 @@ fi
 
 cd $DIR
 ls -laH
-for i in moarvm nqp rakudo zef; do
+for i in $DIR/moarvm nqp rakudo zef; do
     find $i -name ".git" -exec rm -rf {} \;
     tar czf $i.tar.gz $i
 done
