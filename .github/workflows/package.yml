@@ -1,4 +1,4 @@
-name: ci
+name: package
 on: [push, pull_request]
 jobs:
   get-sources:
