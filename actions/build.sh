@@ -6,13 +6,24 @@ INSTALL_ROOT=/opt/rakudo-pkg
 PATH=$PATH:$INSTALL_ROOT/bin
 export CONFIG_SHELL INSTALL_ROOT
 
-if [ -z "$DEBUG_BUILD" ]; then
+if [ -z "$DEVBUILD" ]; then
     . config/setup.sh
     MOARVM_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
     NQP_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
     RAKUDO_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
-    elif [ ! -z $SEARCH_REPLACE ]; then
-        $SEARCH_REPLACE
+fi
+
+if [ ! -z $SEARCH_REPLACE ]; then
+    $SEARCH_REPLACE
+fi
+
+if [ ! -z $EXTRA_ENV ]; then
+    OIFS="$IFS"
+    IFS=r;:
+    for $i in $EXTRA_ENV; do
+        export $i
+    done
+    IFS="$OIFS"
 fi
 
 # Build rakudo

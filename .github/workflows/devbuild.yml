@@ -2,55 +2,59 @@ name: devbuild
 on:
   workflow_dispatch:
     inputs:
-      rakudo-version:
-        description: 'Rakudo version'
-        required: false
-        default: 'HEAD'
-      rakudo-configure:
-        description: 'Rakudo configure command'
-        required: false
-        default: 'perl ./Configure.pl --relocatable --backends=moar'
-      nqp-version:
-        description: 'NQP version'
-        required: false
-        default: 'HEAD'
-      nqp-configure:
-        description: 'NQP configure command'
-        required: false
-        default: 'perl ./Configure.pl --relocatable --backends=moar'
       moarvm-version:
-        description: 'MoarVM version'
+        description: MoarVM version
         required: false
-        default: 'HEAD'
+        default: HEAD
       moarvm-configure:
-        description: 'MoarVM configure command'
+        description: MoarVM configure command (HEAD, $tag, $commit)
         required: false
-        default: 'perl ./Configure.pl --relocatable --backends=moar --debug --optimize=0'
+        default: perl ./Configure.pl --relocatable --backends=moar --debug --optimize=0 --prefix=/opt/rakudo-pkg
+      nqp-version:
+        description: NQP version
+        required: false
+        default: HEAD
+      nqp-configure:
+        description: NQP configure command (HEAD, $tag, $commit)
+        required: false
+        default: perl ./Configure.pl --relocatable --backends=moar --prefix=/opt/rakudo-pkg
+      rakudo-version:
+        description: Rakudo version (HEAD, $tag, $commit)
+        required: false
+        default: HEAD
+      rakudo-configure:
+        description: Rakudo configure command
+        required: false
+        default: perl ./Configure.pl --relocatable --backends=moar --prefix=/opt/rakudo-pkg
       zef-version:
-        description: 'zef version'
+        description: zef version
         required: false
-        default: 'HEAD'
+        default: HEA'
       search-replace:
-        description: 'Search and replace command'
+        description: Search and replace command (e.g. editing sources)
         required: false
         default: perl -pi -e 's///' /dev/null
+      extra-env:
+        description: Extra environment variables
+        required: false
+        default: KEY1=foo;KEY2=bar
 jobs:
   get-sources:
     runs-on: ubuntu-latest
     env:
       DEVBUILD: 1
-      RAKUDO_VERSION: ${{ github.event.inputs.rakudo-version }}
-      NQP_VERSION: ${{ github.event.inputs.nqp-version }}
       MOARVM_VERSION: ${{ github.event.inputs.moarvm-version }}
+      NQP_VERSION: ${{ github.event.inputs.nqp-version }}
+      RAKUDO_VERSION: ${{ github.event.inputs.rakudo-version }}
       ZEF_VERSION: ${{ github.event.inputs.zef-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Download nfpm, MoarVM, nqp, Rakudo and zef
+      - name: Download sources
         run: ./actions/download.sh
-      - name: Archive artifas
+      - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: sources
@@ -90,6 +94,7 @@ jobs:
       NQP_CONFIGURE: ${{ github.event.inputs.nqp-configure }}
       MOARVM_CONFIGURE: ${{ github.event.inputs.moarvm-configure }}
       SEARCH_REPLACE: ${{ github.event.inputs.search-replace }}
+      EXTRA_ENV: ${{ github.event.inputs.extra-env }}
     steps:
       - name: Retrieve sources
         uses: actions/download-artifact@v2

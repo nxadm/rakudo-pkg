@@ -1,10 +1,6 @@
 #!/bin/sh -e
 set -xv
 
-if [ ! -z "$DEBUG_BUILD" ]; then
-    exit 0
-fi    
-
 . config/setup.sh
 export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION
 

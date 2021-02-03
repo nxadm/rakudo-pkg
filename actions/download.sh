@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -xv
 
-if [ -z "$DEBUG_BUILD" ]; then
+if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
     curl -sSL -o nfpm.tar.gz \
@@ -17,7 +17,7 @@ if [ $MOARVM_VERSION != "HEAD" ]; then
 fi    
 rm -rf moarvm/.git
 cd ..
-tar cvzf moarvm.tar.gz moarvm
+tar czf moarvm.tar.gz moarvm
 
 git clone --recurse-submodules https://github.com/Raku/nqp.git nqp
 cd nqp 
@@ -26,7 +26,7 @@ if [ $NQP_VERSION != "HEAD" ]; then
 fi    
 rm -rf moarvm/.git
 cd ..
-tar cvzf nqp.tar.gz nqp
+tar czf nqp.tar.gz nqp
 
 git clone --recurse-submodules https://github.com/rakudo/rakudo.git rakudo
 cd rakudo
@@ -35,7 +35,7 @@ if [ $RAKUDO_VERSION != "HEAD" ]; then
 fi    
 rm -rf rakudo/.git
 cd ..
-tar cvzf rakudo.tar.gz rakudo
+tar czf rakudo.tar.gz rakudo
 
 git clone --recurse-submodules https://github.com/ugexe/zef.git zef
 cd zef
@@ -44,6 +44,6 @@ if [ $ZEF_VERSION != "HEAD" ]; then
 fi    
 rm -rf zef/.git
 cd ..
-tar cvzf zef.tar.gz zef
+tar czf zef.tar.gz zef
 
 ls -laH *.tar.gz
