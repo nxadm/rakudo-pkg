@@ -61,7 +61,7 @@ jobs:
       matrix:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
-          "alpline:3.13", "alpine:edge",
+          "alpine:3.13", "alpine:edge",
           "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
@@ -96,8 +96,9 @@ jobs:
         run: ./actions/build.sh
       - name: Look for core dumps
         if: failure()
-        run: find / -type f -name "core*" -exec ls -la {} \; 2>/dev/null
+        run: find / -type f -name "core.*" -exec ls -la {} \; 2>/dev/null
       - name: Archive coredumps
+        if: success()
         uses: actions/upload-artifact@v2
         with:
           name: coredumps
