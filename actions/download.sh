@@ -37,7 +37,7 @@ if [ $ZEF_VERSION != "HEAD" ]; then
 fi
 
 for i in moarvm nqp rakudo zef; do
-    tar czvf --exclude-vcs $i.tar.gz $i 
+    tar czvf $i.tar.gz --exclude-vcs $i 
 done
 
 ls -laH *.tar.gz
