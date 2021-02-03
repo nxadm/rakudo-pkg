@@ -8,16 +8,16 @@ export CONFIG_SHELL INSTALL_ROOT
 
 if [ -z "$DEVBUILD" ]; then
     . config/setup.sh
-    MOARVM_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
-    NQP_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
-    RAKUDO_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
+    MOARVM_CONFIGURE="perl ./Configure.pl --relocatable --prefix=$INSTALL_ROOT"
+    NQP_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
+    RAKUDO_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
 fi
 
-if [ ! -z $SEARCH_REPLACE ]; then
+if [ ! -z "$SEARCH_REPLACE" ]; then
     $SEARCH_REPLACE
 fi
 
-if [ ! -z $EXTRA_ENV ]; then
+if [ ! -z "$EXTRA_ENV" ]; then
     OIFS="$IFS"
     IFS=";"
     for i in $EXTRA_ENV; do
