@@ -36,6 +36,7 @@ jobs:
           #"opensuse/leap:15.2", "opensuse/tumbleweed",
           #"ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
           #"ubuntu:20.10", "ubuntu:devel",
+          "alpine:edge", "fedora:rawhide",
         ]
         experimental: [false]
         include:
@@ -47,10 +48,10 @@ jobs:
           # https://github.com/goreleaser/nfpm/issues/288
         - image: alpine:3.13
           experimental: true
-        - image: alpine:edge
-          experimental: true
-        - image: fedora:rawhide
-          experimental: true
+        #- image: alpine:edge
+        #  experimental: true
+        #- image: fedora:rawhide
+        #  experimental: true
     continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-latest
     container:
