@@ -3,23 +3,34 @@ set -xv
 
 CONFIG_SHELL=/bin/bash
 INSTALL_ROOT=/opt/rakudo-pkg
+PATH=$PATH:$INSTALL_ROOT/bin
 export CONFIG_SHELL INSTALL_ROOT
 
-. config/setup.sh
-PATH=$PATH:$INSTALL_ROOT/bin
+if [ -z "$DEBUG_BUILD" ]; then
+    . config/setup.sh
+    MOARVM_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
+    NQP_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
+    RAKUDO_CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable --backends=moar"
+    elif [ ! -z $SEARCH_REPLACE ]; then
+        $SEARCH_REPLACE
+fi
 
 # Build rakudo
 for i in moarvm nqp rakudo; do
+    case $i in
+    moarvm)
+        CONFIGURE=$MOARVM_CONFIGURE
+        ;;
+    nqp)
+        CONFIGURE=$NQP_CONFIGURE
+        ;;
+    rakudo)
+        CONFIGURE=$RAKUDO_CONFIGURE
+        ;;
+    esac
+
     mkdir $i
     tar xzf $i.tar.gz -C $i --strip-components=1
-    CONFIGURE="perl ./Configure.pl --prefix=$INSTALL_ROOT --relocatable"
-    if [ $i != "moarvm" ]; then
-        CONFIGURE=$CONFIGURE" --backends=moar"
-        elif [ ! -z "$DEBUG_BUILD"]; then
-            CONFIGURE=$CONFIGURE" --debug --optimize=0"
-            export HARNESS_VERBOSE=1
-    fi 
-
     cd $i
     $CONFIGURE
     make
