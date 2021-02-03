@@ -83,7 +83,7 @@ jobs:
         run: ./actions/build.sh
       - name: Look for core dumps
         if: env.DEBUG_BUILD == '1' && failure()
-        run: find / -name "core*" 2>/dev/null
+        run: find / -type f -name "core*" -exec ls -la {} \; 2>/dev/null
       - name: Archive coredumps
         #if: env.DEBUG_BUILD == '1' && failure()
         if: env.DEBUG_BUILD == '1'
