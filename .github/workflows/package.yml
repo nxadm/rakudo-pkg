@@ -55,6 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
+    env:
+      IMAGE: ${{ matrix.image }}
     steps:
       - name: Retrieve sources
         uses: actions/download-artifact@v2
