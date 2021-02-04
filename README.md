@@ -22,13 +22,12 @@ Alpine, CentOS, Debian, Fedora, openSUSE, RHEL, Ubuntu and their derivatives.
 Additionally, the relocatable builds work universally on all recent Linux
 distributions and need no installation (just `tar xvzf *.tar.gz` and use).
 
-From a security point of view, the packages are created, check-summed and
-automatically uploaded from the code in this repository by
+The packages are created, check-summed and automatically uploaded from the
+code in this repository by
 [Github Actions](https://github.com/nxadm/rakudo-pkg/actions) to
 [Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
-[CloudSmith](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/).
-
-The GPG key used to sign the packages can be found [here](rakudo-pkg.asc).
+[CloudSmith](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/). The GPG
+key used to sign the packages can be found [here](rakudo-pkg.asc).
 
 ## Relocatable Builds and direct downloads
 - See the [relocatable packages documentation](docs/relocatable.md).
