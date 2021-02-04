@@ -104,8 +104,9 @@ jobs:
       - name: Configure core dumps
         run: |
           ulimit -c unlimited
+          echo "CORE_DIR=${{ github.workspace }}/cores" >> $GITHUB_ENV
           mkdir -p ${{ github.workspace }}/cores
-          echo "${{ github.workspace }}/cores/core.%e" > /proc/sys/kernel/core_pattern
+          echo "${{ env.CORE_DIR }}/core.%e" > /proc/sys/kernel/core_pattern
       - name: Create build environment
         run: |
           chmod +x actions/*
@@ -117,8 +118,7 @@ jobs:
         if: failure()
         run: |
           cd ${{ github.workspace }}/cores
-          CORE=`ls -1 core.*`
-          if [ ! -z "$CORE" ]; then mv $CORE $CORE-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; fi
+          for i in {{ env.COREDIR }}/core.*; do mv $i $i-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; fi
       - name: Archive coredumps
         if: env.CORE == 'true'
         uses: actions/upload-artifact@v2
