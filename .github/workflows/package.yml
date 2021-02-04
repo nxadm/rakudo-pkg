@@ -61,7 +61,7 @@ jobs:
       - name: Create build environment
         run: |
           chmod +x actions/*
-          . actions/setup_buildenv.sh
+          . actions/buildenv.sh
       - name: Build
         run: ./actions/build.sh
       - name: Package
@@ -90,42 +90,23 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
-#  release-to-bintray:
-#    needs: release-to-github
-#    env:
-#      URL_DEB: https://api.bintray.com/content/nxadm/rakudo-pkg-debs/rakudo-pkg/
-#      URL_RPM: https://api.bintray.com/content/nxadm/rakudo-pkg-rpms/rakudo-pkg/
-#    strategy:
-#      matrix:
-#        image: [
-#          # BROKEN MoarVM builds: fedora:rawhide, alpine:edge
-#          # https://github.com/MoarVM/MoarVM/issues/1424
-#          # https://github.com/MoarVM/MoarVM/issues/1424
-#          #
-#          # BROKEN nfpm build: alpine:3.13
-#          # https://github.com/goreleaser/nfpm/issues/288
-#          "alpine:3.10", "alpine:3.11", "alpine:3.12",
-#          "centos:7", "centos:8",
-#          "registry.access.redhat.com/ubi7-minimal",
-#          "registry.access.redhat.com/ubi8-minimal",
-#          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
-#          "debian:unstable-slim", "debian:experimental",
-#          "fedora:32", "fedora:33",
-#          "opensuse/leap:15.2", "opensuse/tumbleweed",
-#          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
-#          "ubuntu:20.10", "ubuntu:devel",
-#        ]
-#    runs-on: ubuntu-20.04
-#    container: ${{ matrix.image }}
-#    steps:
-#      - name: Download checkout
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: sources
-#      - name: Create build environment
-#        env:
-#          IMAGE: ${{ matrix.image }}
-#        run: |
-#          chmod +x actions/*
-#          ./actions/setup_env.sh
-
+  release-to-repos:
+    needs: release-to-github
+    runs-on: ubuntu-20.04
+    env:
+      CLOUDSMITH_REPOSITORY: nxadm-pkgs/rakudo-pkg
+      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Download packages
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: packages
+      - name: Upload to repository
+        run: |
+          chmod +x actions/*
+          actions/upload.sh packages

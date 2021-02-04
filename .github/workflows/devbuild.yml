@@ -110,7 +110,7 @@ jobs:
       - name: Create build environment
         run: |
           chmod +x actions/*
-          . actions/setup_buildenv.sh
+          . actions/buildenv.sh
           echo "TAG=$OS-$OS_VERSION" >> $GITHUB_ENV
       - name: Build
         run: ./actions/build.sh
