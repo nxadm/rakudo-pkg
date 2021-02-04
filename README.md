@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Relocatable Builds](#relocatable-builds)
+* [Relocatable Builds and Direct Downlooads](#relocatable-builds-and-direct-downloads)
 * [OS Repositories](#os-repositories)
 * [Direct Downloads](#direct-downloads)
 * [Set the PATH](#set-the-path)
@@ -14,29 +14,26 @@
 * [Contributing](#contributing)
 
 ## Introduction
-
-`rakudo-pkg` offers native packages (OS packages and relocatable builds) of
+`rakudo-pkg` offers native Linux 64-bit packages and binaries of
 the [Rakudo compiler for Raku](https://raku.org/) and the
 [zef nodule installer](https://github.com/ugexe/zef). The packages track the
 upstream releases closely. Most of the time, the packages will be released on
 the same day as the Rakudo sources. At the moment, packages are provided for
-Alpine, CentOS, Debian, Fedora, openSUSE, RHEL and Ubuntu. The relocatable
-builds (`tar xvzf` and use) work universally on all recent Linux distributions.
+Alpine, CentOS, Debian, Fedora, openSUSE, RHEL, Ubuntu and their derivatives.
+Additionally, the relocatable builds work universally on all recent Linux
+distributions and need no installation (just `tar xvzf *.tar.gz` and use).
 
-From a security point of view, the packages are created, checksummed and
+From a security point of view, the packages are created, check-summed and
 automatically uploaded from the code in this repository by
 [Github Actions](https://github.com/nxadm/rakudo-pkg/actions) to
 [Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
-[Bintray Repositories](https://bintray.com/nxadm/).
+[CloudSmith](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/).
 
-## Relocatable Builds
+The GPG key used to sign the packages can be found [here](rakudo-pkg.asc).
 
-Relocatable builds can be uncompressed and used right away, e.g. in your home
-directory. `rakudo-pkg` "\*.tar.gz" releases can be downloaded from the
-[the Github tab](https://github.com/nxadm/rakudo-pkg/releases).
-
-The relocable builds work on distributions with a glibc at the same
-level or newer than Ubuntu 16.04 (released in April 2016).
+## Relocatable Builds and direct downloads
+See the [relocatable packages documentation](docs/relocatable.md).
+See the [direct downloads documentation](docs/direct-downloads.md).
 
 ## OS Repositories
 
@@ -98,31 +95,6 @@ version (e.g. 15.2) instead of the `lsb_release -rs` command.
 There is no Alpine repo at the moment. The apk packages can be downloaded from
 the [releases tab](https://github.com/nxadm/rakudo-pkg/releases).
 
-## Direct Downloads
-
-You can install the downloaded packages from the
-[releases tab](https://github.com/nxadm/rakudo-pkg/releases) by using the
-regular package installer of your distribution:
-ackage manager of your distribution:
-
-
-- Alpine:
-
-```
-$ sudo apk add --allow-untrusted *.apk
-```
-
-- Debian and Ubuntu:
-
-```
-$ sudo dpkg -i *.deb
-```
-
-- CentOS, Fedora, openSUSE and RHEL:
-
-```
-$ sudo rpm -Uvh *.rpm
-```
 
 ## Set the PATH
 
