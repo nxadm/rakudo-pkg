@@ -118,7 +118,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/cores
           CORE=`ls -1 core.*`
-          if [ ! -z "$CORE" ]; then mv $CORE $CORE-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV
+          if [ ! -z "$CORE" ]; then mv $CORE $CORE-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; fi
       - name: Archive coredumps
         if: env.CORE == 'true'
         uses: actions/upload-artifact@v2
