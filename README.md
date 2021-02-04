@@ -31,9 +31,8 @@ automatically uploaded from the code in this repository by
 The GPG key used to sign the packages can be found [here](rakudo-pkg.asc).
 
 ## Relocatable Builds and direct downloads
-See the [relocatable packages documentation](docs/relocatable.md).
-
-See the [direct downloads documentation](docs/direct-downloads.md).
+- See the [relocatable packages documentation](docs/relocatable.md).
+- See the [direct downloads documentation](docs/direct-downloads.md).
 
 ## OS Repositories
 
