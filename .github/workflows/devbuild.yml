@@ -40,7 +40,7 @@ on:
         default: KEY1=foo;KEY2=bar
 jobs:
   get-sources:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       DEVBUILD: 1
       MOARVM_VERSION: ${{ github.event.inputs.moarvm-version }}
@@ -83,7 +83,7 @@ jobs:
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
           "ubuntu:20.10", "ubuntu:devel",
         ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
