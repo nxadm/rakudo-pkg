@@ -5,7 +5,6 @@
 * [Introduction](#introduction)
 * [Relocatable Builds and Direct Downlooads](#relocatable-builds-and-direct-downloads)
 * [OS Repositories](#os-repositories)
-* [Direct Downloads](#direct-downloads)
 * [Set the PATH](#set-the-path)
 * [Zef Module Manager as a Regular User](#zef-module-manager-as-a-regular-user)
 * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
