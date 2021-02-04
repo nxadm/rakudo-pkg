@@ -196,5 +196,4 @@ is needed to install and test your package.
 See the [devbuild action documentation](docs/devbuild.md).
 
 ## Contributing
-Issues (bugs and ideas) and PRs are always welcome. See
-[CONTRIBUTING.md](CONTRIBUTING.md).
+Issues (bugs and ideas) and PRs are always welcome!
