@@ -27,7 +27,7 @@ jobs:
       matrix:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
-          "alpine:3.13", "alpine:edge",
+          #"alpine:3.13", "alpine:edge",
           "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
@@ -38,10 +38,12 @@ jobs:
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
           "ubuntu:20.10", "ubuntu:devel",
         ]
-        #experimental: [false]
-        #include:
-        # - image: alpine:3.13
-        #  experimental: true
+        experimental: [false]
+        include:
+         - image: alpine:3.13
+           experimental: true
+         - image: alpine:edge
+           experimental: true
     #continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-20.04
     container:
