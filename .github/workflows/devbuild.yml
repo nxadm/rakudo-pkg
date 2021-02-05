@@ -118,7 +118,7 @@ jobs:
         if: failure()
         run: |
           cd ${{ github.workspace }}/cores
-          for i in {{ env.COREDIR }}/core.*; do mv $i $i-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; fi
+          for i in {{ env.COREDIR }}/core.*; do mv $i $i-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; dome
       - name: Archive coredumps
         if: env.CORE == 'true'
         uses: actions/upload-artifact@v2
