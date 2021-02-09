@@ -1,3 +1,5 @@
 NFPM_RELEASE=2.2.3
 PKG_MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
 PKG_TARGZ="ubuntu16.04"
+FEDORA_RAWHIDE_VERSION=34
+DEBIAN_TESTING_CODENAME=bullseye
