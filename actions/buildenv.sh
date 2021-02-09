@@ -17,7 +17,9 @@ set_os_vars() {
   if [ "$IMAGE" = "debian:testing" ]; then
       OS_CODENAME=$DEBIAN_TESTING_CODENAME
   fi
-
+  if [ "$OS" = "rhel" ]; then
+      OS="el"
+  fi
   if [ -z "$OS_CODENAME" ]; then
     OS_CODENAME=$OS_VERSION
   fi
