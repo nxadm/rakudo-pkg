@@ -30,7 +30,7 @@ case "$OS" in
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_OS_CODENAME $PKG_NAME"
+        PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     fedora)
         PACKAGER=rpm
@@ -54,7 +54,7 @@ case "$OS" in
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_OS_CODENAME $PKG_NAME"
+        PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
