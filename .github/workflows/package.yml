@@ -26,7 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-           "ubuntu:20.04", "fedora:33",
+           "centos:7", "registry.access.redhat.com/ubi8-minimal", "fedora:rawhide",
+           "opensuse/leap:15.2", "opensuse/tumbleweed", "ubuntu:devel", "fedora:rawhide"
 #          "alpine:3.10", "alpine:3.11", "alpine:3.12",
 #          "alpine:3.13", "alpine:edge",
 #          "centos:7", "centos:8",
