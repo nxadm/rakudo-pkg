@@ -1,33 +1,27 @@
 # rakudo-pkg
 
+`rakudo-pkg` offers native Linux 64-bit packages of the
+[Rakudo compiler for Raku](https://raku.org/) and the
+[zef nodule installer](https://github.com/ugexe/zef). The packages track the
+upstream releases closely. Most of the time, the packages will be released on
+the same day as the Rakudo sources. At the moment, packages are provided for
+Alpine, EL (RHEL/CentOS/Amazon/Oracle Linux), Debian, Fedora, openSUSE,
+Ubuntu and their derivatives. Additionally, a relocatable build is also
+provided that work universally on all recent Linux distributions and need no
+installation or root privileges.
+
+
 ## Table of Contents
 
-* [Introduction](#introduction)
 * [Relocatable Builds and Direct Downlooads](#relocatable-builds-and-direct-downloads)
 * [OS Repositories](#os-repositories)
 * [Set the PATH](#set-the-path)
 * [Zef Module Manager as a Regular User](#zef-module-manager-as-a-regular-user)
 * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
-* [Using rakudo-pkg in a module CI](#using-rakudo-pkg-in-a-module-CI)
 * [Using rakudo-pkg for testing upstream Rakudo](#using-rakudo-pkg-for-testing-upstream-rakudo)
 * [Contributing](#contributing)
 
-## Introduction
-`rakudo-pkg` offers native Linux 64-bit packages and binaries of
-the [Rakudo compiler for Raku](https://raku.org/) and the
-[zef nodule installer](https://github.com/ugexe/zef). The packages track the
-upstream releases closely. Most of the time, the packages will be released on
-the same day as the Rakudo sources. At the moment, packages are provided for
-Alpine, CentOS, Debian, Fedora, openSUSE, RHEL, Ubuntu and their derivatives.
-Additionally, the relocatable builds work universally on all recent Linux
-distributions and need no installation (just `tar xvzf *.tar.gz` and use).
 
-The packages are created, check-summed and automatically uploaded from the
-code in this repository by
-[Github Actions](https://github.com/nxadm/rakudo-pkg/actions) to
-[Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
-[CloudSmith](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/). The GPG
-key used to sign the packages can be found [here](rakudo-pkg.asc).
 
 ## Relocatable Builds and direct downloads
 - See the [relocatable packages documentation](docs/relocatable.md).
@@ -138,32 +132,14 @@ functionalities that Windows does not implement yet:
 $ /opt/rakudo-pkg/bin/fix-windows10
 ```
 
-## Using rakudo-pkg in a module CI
-
-You can use rakudo-pkg to speed-up the continuous integration of your Raku
-modules on Github Actions and other CI systems.
-
-An example step using the action
-[add-deb-repo](https://github.com/marketplace/actions/add-debian-repository):
-
-```
-- name: install rakudo-pkg
-  env:
-  PATH: "/opt/rakudo-pkg/bin:/opt/rakudo-pkg/share/perl6/site/bin:$PATH"
-  uses: myci-actions/add-deb-repo@4
-  with:
-    # Beware: soon bionic will be replace by focal on Github Actions
-    repo: deb https://dl.bintray.com/nxadm/rakudo-pkg-debs $(lsb_release -cs) main
-    repo-name: rakudo-pkg
-    keys: 0x379CE192D401AB61
-    key-server: keyserver.ubuntu.com
-```
-
-After this step you should run `zef install . && zef test .` or whatever else
-is needed to install and test your package.
-
 ## Using rakudo-pkg for testing upstream Rakudo
 See the [devbuild action documentation](docs/devbuild.md).
 
-## Contributing
-Issues (bugs and ideas) and PRs are always welcome!
+--
+The packages are created, check-summed and automatically uploaded from the
+code in this repository by
+[Github Actions](https://github.com/nxadm/rakudo-pkg/actions) to
+[Github Releases](https://github.com/nxadm/rakudo-pkg/releases) and
+[CloudSmith](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/). The GPG
+key used to sign the packages can be found [here](rakudo-pkg.asc).
+

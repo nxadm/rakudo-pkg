@@ -55,10 +55,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sources
-      - name: Retrieve sources
-        uses: actions/download-artifact@v2
-        with:
-          name: sources
       - name: Create build environment
         run: |
           chmod +x actions/*

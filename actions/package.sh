@@ -2,7 +2,7 @@
 set -xv
 
 . config/setup.sh
-export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION
+export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION RUN_DEPS
 
 # Install nfpm
 tar xzf nfpm.tar.gz nfpm
