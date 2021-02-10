@@ -57,8 +57,8 @@ case "$OS" in
     if [ "$OS_VERSION" = "7" ]; then
       set_os_vars x86_64 ""
       else
-        microdnf zstd
-        set_os_vars x86_64 libzstd
+        microdnf install zstd
+        set_os_vars x86_64 zstd
     fi
     ;;
   fedora)
