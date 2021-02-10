@@ -40,7 +40,6 @@ case "$OS" in
     apk update
     apk upgrade
     apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
-    OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
     set_os_vars x86_64 $OS_VERSION zstd-libs
     ;;
   debian)
@@ -53,13 +52,7 @@ case "$OS" in
   el)
     microdnf update
     microdnf install gettext gcc git gzip make perl-core tar
-    OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
-    if [ "$OS_VERSION" = "7" ]; then
-      set_os_vars x86_64 ""
-      else
-        microdnf install zstd
-        set_os_vars x86_64 zstd
-    fi
+    set_os_vars x86_64 ""
     ;;
   fedora)
     dnf -q -y upgrade
