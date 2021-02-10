@@ -20,17 +20,17 @@ case "$OS" in
         PKG_NAME="rakudo-pkg-Alpine${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_x86_64.apk"
         PKG_CMD="cloudsmith push alpine $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
-    centos)
-        PACKAGER=rpm
-        INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-CentOS${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
-        PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
-        ;;
     debian)
         PACKAGER=deb
         INSTALL_CMD='dpkg -i *.deb'
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
         PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
+        ;;
+    el)
+        PACKAGER=rpm
+        INSTALL_CMD='rpm -Uvh *.rpm'
+        PKG_NAME=rakudo-pkg-EL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
+        PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
     fedora)
         PACKAGER=rpm
@@ -42,12 +42,6 @@ case "$OS" in
         PACKAGER=rpm
         INSTALL_CMD='rpm -Uvh *.rpm'
         PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
-        PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
-        ;;
-    rhel)
-        PACKAGER=rpm
-        INSTALL_CMD='rpm -Uvh *.rpm'
-        PKG_NAME=rakudo-pkg-RHEL${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
         PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
     ubuntu)

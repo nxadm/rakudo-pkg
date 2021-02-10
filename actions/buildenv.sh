@@ -5,6 +5,9 @@ set -xv
 
 . config/pkginfo.sh
 OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
+if [ "$OS" = "rhel" ]; then
+  OS="el"
+fi
 
 set_os_vars() {
   ARCH=$1
@@ -16,9 +19,6 @@ set_os_vars() {
   fi
   if [ "$IMAGE" = "debian:testing" ]; then
       OS_CODENAME=$DEBIAN_TESTING_CODENAME
-  fi
-  if [ "$OS" = "rhel" ]; then
-      OS="el"
   fi
   if [ -z "$OS_CODENAME" ]; then
     OS_CODENAME=$OS_VERSION
@@ -38,18 +38,20 @@ case "$OS" in
     apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
     set_os_vars x86_64
     ;;
-  centos)
-    yum -q -y upgrade
-    yum -q -y groupinstall 'Development Tools'
-    yum -q -y install git libzstd-devel perl-core
-    set_os_vars x86_64
-    ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext libzstd-dev
     set_os_vars amd64
+    ;;
+  el)
+    microdnf update
+    microdnf install gettext gcc git gzip make perl-core tar
+    if [ $OS_VERSION = "8" ]; then
+      microdnf install libzstd
+    fi
+    set_os_vars x86_64
     ;;
   fedora)
     dnf -q -y upgrade
@@ -63,14 +65,6 @@ case "$OS" in
     zypper install -y gcc gettext git gzip make libzstd-devel perl tar
     set_os_vars x86_64
     ;;
-  rhel)
-    microdnf update
-    microdnf install gettext gcc git gzip make perl-core tar
-    if [ $OS_VERSION = "8" ]; then
-      microdnf install libzstd
-    fi
-    set_os_vars x86_64
-    ;;
   ubuntu)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
@@ -82,4 +76,4 @@ case "$OS" in
     echo "Sorry, distro not found. Send a PR. :)"
     exit 1
     ;;
-esac  
+esac
