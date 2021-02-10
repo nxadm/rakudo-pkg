@@ -67,14 +67,21 @@ sha512sum $PKG_NAME > $PKG_NAME.sha512
 echo "Package sha512:"
 cat $PKG_NAME.sha512
 
+# Test the package
+mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
+$INSTALL_CMD
+. /etc/profile.d/rakudo-pkg.sh
+raku -v
+zef --version
+
 # Test the package, temporary workaround for faulty alpine pkg
-if [ "$IMAGE" != "alpine:3.13" ] && [ "$IMAGE" != "alpine:edge" ]; then
-  mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
-  $INSTALL_CMD
-  . /etc/profile.d/rakudo-pkg.sh
-  raku -v
-  zef --version
-fi
+#if [ "$IMAGE" != "alpine:3.13" ] && [ "$IMAGE" != "alpine:edge" ]; then
+#  mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
+#  $INSTALL_CMD
+#  . /etc/profile.d/rakudo-pkg.sh
+#  raku -v
+#  zef --version
+#fi
 
 # Move to workspace
 mv /staging/* $GITHUB_WORKSPACE/packages/
