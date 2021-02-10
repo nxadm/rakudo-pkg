@@ -28,7 +28,7 @@ set_os_vars() {
   echo ARCH=$ARCH >> config/setup.sh
   echo OS=$OS >> config/setup.sh
   if [ ! -z "$RUN_DEPS" ]; then
-    echo RUN_DEPS="- $RUN_DEPS" >> config/setup.sh
+    echo RUN_DEPS="\"- $RUN_DEPS\"" >> config/setup.sh
   fi
   echo OS_VERSION=$OS_VERSION >> config/setup.sh
   echo OS_CODENAME=$OS_CODENAME >> config/setup.sh
