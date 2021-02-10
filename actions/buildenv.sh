@@ -9,23 +9,21 @@ if [ "$OS" = "rhel" ]; then
   OS="el"
 fi
 
-OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
-OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
-
-if [ "$IMAGE" = "fedora:rawhide" ]; then
-  OS_VERSION=$FEDORA_RAWHIDE_VERSION
-fi
-if [ "$IMAGE" = "debian:testing" ]; then
-  OS_CODENAME=$DEBIAN_TESTING_CODENAME
-fi
-if [ -z "$OS_CODENAME" ]; then
-  OS_CODENAME=$OS_VERSION
-fi
-
-
 set_os_vars() {
   ARCH=$1
   RUN_DEPS=$2
+  OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+  OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
+
+  if [ "$IMAGE" = "fedora:rawhide" ]; then
+    OS_VERSION=$FEDORA_RAWHIDE_VERSION
+  fi
+  if [ "$IMAGE" = "debian:testing" ]; then
+    OS_CODENAME=$DEBIAN_TESTING_CODENAME
+  fi
+  if [ -z "$OS_CODENAME" ]; then
+    OS_CODENAME=$OS_VERSION
+  fi
 
   echo ARCH=$ARCH >> config/setup.sh
   echo OS=$OS >> config/setup.sh
@@ -42,7 +40,8 @@ case "$OS" in
     apk update
     apk upgrade
     apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
-    set_os_vars x86_64 zstd-libs
+    OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
+    set_os_vars x86_64 $OS_VERSION zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
@@ -53,11 +52,12 @@ case "$OS" in
     ;;
   el)
     microdnf update
-    if [ $OS_VERSION = "7" ]; then
-      microdnf install gettext gcc git gzip make perl-core tar
+    microdnf install gettext gcc git gzip make perl-core tar
+    OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
+    if [ "$OS_VERSION" = "7" ]; then
       set_os_vars x86_64 ""
       else
-        microdnf install gettext gcc git gzip libzstd make perl-core tar
+        microdnf libzstd
         set_os_vars x86_64 libzstd
     fi
     ;;
