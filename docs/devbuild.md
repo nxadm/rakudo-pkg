@@ -16,7 +16,7 @@ needed (e.g. a work-in-progress test setup).
 ![devbuild workflow](devbuild.png?raw=true "devbuild workflow")
 
 Tests are run in verbose mode. If the build process produces corefiles, 
-you'll find them as artifact below the run workflow.
+you'll find them as a zipped artifact below the run workflow.
 
 Don't forget to update your fork regularly, so new OS releases are added to the
 actions and/or functionality added to the flow:

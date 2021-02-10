@@ -14,7 +14,7 @@ sudo apk add --allow-untrusted *.apk
 sudo dpkg -i *.deb
 ```
 
-- CentOS, Fedora, openSUSE and RHEL:
+- EL (RHEL/CentOS/Amazon/Oracle Linux), Fedora and derivatives:
 ```
 sudo rpm -Uvh *.rpm
 ```
