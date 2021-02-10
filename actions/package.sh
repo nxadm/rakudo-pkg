@@ -67,7 +67,7 @@ sha512sum $PKG_NAME > $PKG_NAME.sha512
 echo "Package sha512:"
 cat $PKG_NAME.sha512
 
-# Test the package
+# Test the package, temporary workaround for faulty alpine pkg
 if [ "$IMAGE" != "alpine:3.13" ] && [ "$IMAGE" != "alpine:edge" ]; then
   mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
   $INSTALL_CMD

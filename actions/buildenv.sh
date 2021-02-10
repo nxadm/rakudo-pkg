@@ -18,7 +18,7 @@ set_os_vars() {
   if [ "$IMAGE" = "fedora:rawhide" ]; then
     OS_VERSION=$FEDORA_RAWHIDE_VERSION
   fi
-  if [ "$IMAGE" = "debian:testing" ]; then
+  if [ "$IMAGE" = "debian:testing-slim" ]; then
     OS_CODENAME=$DEBIAN_TESTING_CODENAME
   fi
   if [ -z "$OS_CODENAME" ]; then
