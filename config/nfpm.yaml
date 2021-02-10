@@ -173,13 +173,13 @@ contents:
 overrides:
   deb:
     depends:
-$RUN_DEP
+$RUN_DEPS
   rpm:
     depends:
 $RUN_DEPS
   apk:
     depends:
-$RUN_DEP
+$RUN_DEPS
 
 # Custom configuration applied only to the RPM packager.
 #rpm:

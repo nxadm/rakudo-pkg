@@ -40,7 +40,7 @@ case "$OS" in
     apk update
     apk upgrade
     apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
-    set_os_vars x86_64 $OS_VERSION zstd-libs
+    set_os_vars x86_64 zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
