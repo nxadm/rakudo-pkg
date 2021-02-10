@@ -23,7 +23,7 @@ case "$OS" in
     debian)
         PACKAGER=deb
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        INSTALL_CMD="apt-get update; apt install ./$PKG_NAME"
+        INSTALL_CMD="apt-get update; apt install -y ./$PKG_NAME"
         PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     el)
@@ -47,7 +47,7 @@ case "$OS" in
     ubuntu)
         PACKAGER=deb
         PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        INSTALL_CMD="apt-get update; apt install ./$PKG_NAME"
+        INSTALL_CMD="apt-get update; apt install -y ./$PKG_NAME"
         PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     *)
