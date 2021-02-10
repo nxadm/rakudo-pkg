@@ -9,23 +9,25 @@ if [ "$OS" = "rhel" ]; then
   OS="el"
 fi
 
+OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
+OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
+
+if [ "$IMAGE" = "fedora:rawhide" ]; then
+  OS_VERSION=$FEDORA_RAWHIDE_VERSION
+fi
+if [ "$IMAGE" = "debian:testing" ]; then
+  OS_CODENAME=$DEBIAN_TESTING_CODENAME
+fi
+if [ -z "$OS_CODENAME" ]; then
+  OS_CODENAME=$OS_VERSION
+fi
+
+
 set_os_vars() {
   ARCH=$1
   RUN_DEPS=$2
-  OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
-  OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
 
-  if [ "$IMAGE" = "fedora:rawhide" ]; then
-      OS_VERSION=$FEDORA_RAWHIDE_VERSION
-  fi
-  if [ "$IMAGE" = "debian:testing" ]; then
-      OS_CODENAME=$DEBIAN_TESTING_CODENAME
-  fi
-  if [ -z "$OS_CODENAME" ]; then
-    OS_CODENAME=$OS_VERSION
-  fi
-
-  echo ARCH=$ARCH >> config/setup.sh 
+  echo ARCH=$ARCH >> config/setup.sh
   echo OS=$OS >> config/setup.sh
   if [ -z "$RUN_DEPS" ]; then
     echo RUN_DEPS="- $RUN_DEPS" >> config/setup.sh
