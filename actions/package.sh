@@ -63,6 +63,9 @@ case "$OS" in
 esac
 
 mkdir -p /staging $GITHUB_WORKSPACE/packages
+echo "DEBUG config/nfpm.yaml:"
+cat config/nfpm.yaml
+echo "DEBUG END"
 nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
 cd /staging
 mv *.$PACKAGER $PKG_NAME
