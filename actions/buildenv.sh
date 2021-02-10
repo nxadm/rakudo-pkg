@@ -11,6 +11,7 @@ fi
 
 set_os_vars() {
   ARCH=$1
+  RUN_DEPS=$2
   OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
   OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
 
@@ -25,7 +26,10 @@ set_os_vars() {
   fi
 
   echo ARCH=$ARCH >> config/setup.sh 
-  echo OS=$OS >> config/setup.sh 
+  echo OS=$OS >> config/setup.sh
+  if [ -z "$RUN_DEPS" ]; then
+    echo RUN_DEPS="- $RUN_DEPS" >> config/setup.sh
+  fi
   echo OS_VERSION=$OS_VERSION >> config/setup.sh
   echo OS_CODENAME=$OS_CODENAME >> config/setup.sh
   cat config/pkginfo.sh >> config/setup.sh
@@ -36,41 +40,43 @@ case "$OS" in
     apk update
     apk upgrade
     apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
-    set_os_vars x86_64
+    set_os_vars x86_64 zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext libzstd-dev
-    set_os_vars amd64
+    set_os_vars amd64 libzstd1
     ;;
   el)
     microdnf update
-    microdnf install gettext gcc git gzip make perl-core tar
-    if [ $OS_VERSION = "8" ]; then
-      microdnf install libzstd
+    if [ $OS_VERSION = "7" ]; then
+      microdnf install gettext gcc git gzip make perl-core tar
+      set_os_vars x86_64 ""
+      else
+        microdnf install gettext gcc git gzip libzstd make perl-core tar
+        set_os_vars x86_64 libzstd
     fi
-    set_os_vars x86_64
     ;;
   fedora)
     dnf -q -y upgrade
     dnf -q -y groupinstall 'Development Tools'
     dnf -q -y install gettext git libzstd-devel perl-core
-    set_os_vars x86_64
+    set_os_vars x86_64 libzstd
     ;;
   opensuse)
     zypper refresh
     zypper update -y
     zypper install -y gcc gettext git gzip make libzstd-devel perl tar
-    set_os_vars x86_64
+    set_os_vars x86_64 libzstd1
     ;;
   ubuntu)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext git libzstd-dev
-    set_os_vars amd64
+    set_os_vars amd64 libzstd1
     ;;
   *)
     echo "Sorry, distro not found. Send a PR. :)"
