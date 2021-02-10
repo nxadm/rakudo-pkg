@@ -5,7 +5,7 @@
 [zef nodule installer](https://github.com/ugexe/zef). The packages track the
 upstream releases closely. Most of the time, the packages will be released on
 the same day as the Rakudo sources. At the moment, packages are provided for
-Alpine, EL (RHEL/CentOS/Amazon/Oracle Linux), Debian, Fedora, openSUSE,
+Alpine, Debian, EL (RHEL/CentOS/Amazon/Oracle Linux), Fedora, openSUSE,
 Ubuntu and their derivatives. Additionally, a relocatable build is also
 provided that work universally on all recent Linux distributions and need no
 installation or root privileges.
