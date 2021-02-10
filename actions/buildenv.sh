@@ -57,7 +57,7 @@ case "$OS" in
     if [ "$OS_VERSION" = "7" ]; then
       set_os_vars x86_64 ""
       else
-        microdnf libzstd
+        microdnf zstd
         set_os_vars x86_64 libzstd
     fi
     ;;
