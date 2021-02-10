@@ -68,7 +68,7 @@ echo "Package sha512:"
 cat $PKG_NAME.sha512
 
 # Test the package
-if [ "$IMAGE" = "alpine:3.13" ] || [ "$IMAGE" = "alpine:edge" ]; then
+if [ "$IMAGE" != "alpine:3.13" ] || [ "$IMAGE" != "alpine:edge" ]; then
   mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
   $INSTALL_CMD
   . /etc/profile.d/rakudo-pkg.sh
@@ -82,7 +82,7 @@ mv /staging/* $GITHUB_WORKSPACE/packages/
 # tar the relocable build oldest distro
 if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
     TARGZ=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.tar.gz
-    cd /
+    cd /opt
     tar cvzf /staging/$TARGZ rakudo-pkg-${RAKUDO_VERSION}
     cd /staging
     sha512sum $TARGZ > $TARGZ.sha512sum
