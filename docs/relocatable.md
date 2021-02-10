@@ -10,5 +10,5 @@ level or newer than Ubuntu 16.04 (released in April 2016).
 ```
 tar xvzf *.tar.gz
 cd rakudo-pkg
-raku -v
+./raku -v
 ```

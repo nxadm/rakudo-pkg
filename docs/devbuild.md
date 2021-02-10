@@ -1,8 +1,8 @@
 # Using rakudo-pkg for testing upstream Rakudo
 
-This repo can be used to test the upstream MoarVM/NQP/Rakudo and zef releases
-and their combinations. In order to do this fork this repo, go to Actions and
-enable the `devbuild` action.
+This repo can be used to test the upstream MoarVM/NQP/Rakudo and zef releases.
+In order to do this fork this repo, go to Actions and enable the `devbuild`
+action.
 
 ![Enabled action](actions.png?raw=true "Actions")
 
