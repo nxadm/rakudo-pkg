@@ -23,7 +23,7 @@ case "$OS" in
     debian)
         PACKAGER=deb
         PKG_NAME=rakudo-pkg-Debian${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        INSTALL_CMD="apt-get update; apt install ./$PKG_CMD"
+        INSTALL_CMD="apt-get update; apt install ./$PKG_NAME"
         PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     el)
@@ -41,13 +41,13 @@ case "$OS" in
     opensuse)
         PACKAGER=rpm
         PKG_NAME=rakudo-pkg-openSUSE${OS_VERSION}-${RAKUDO_VERSION}-${PKG_REVISION}.x86_64.rpm
-        INSTALL_CMD="zypper install -y ./$PKG_NAME"
+        INSTALL_CMD="if [ ! -z "$INSTALL_DEPS" ]; then zypper install -y $INSTALL_DEPS; fi; rpm -Uvh *.rpm"
         PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
     ubuntu)
         PACKAGER=deb
         PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        INSTALL_CMD="apt-get update; apt install ./$PKG_CMD"
+        INSTALL_CMD="apt-get update; apt install ./$PKG_NAME"
         PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
         ;;
     *)
