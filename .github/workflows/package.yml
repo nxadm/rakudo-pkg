@@ -41,7 +41,7 @@ jobs:
             experimental: true
           - image: debian:testing-slim
             experimental: true
-          - image: ubuntu-devel
+          - image: ubuntu:devel
             experimental: true
     continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-20.04
