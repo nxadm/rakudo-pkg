@@ -1,0 +1,111 @@
+name: package
+on: [push, pull_request]
+jobs:
+  get-sources:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Download tools and sources
+        run: ./actions/download.sh
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: sources
+          retention-days: 1
+          path: |
+            actions/*
+            include/*
+            config/*
+            *.tar.gz
+  build-and-package:
+    needs: get-sources
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [
+          "alpine:3.10", "alpine:3.11", "alpine:3.12", "alpine:3.13",
+          "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
+          "debian:9-slim", "debian:10-slim",
+          "fedora:32", "fedora:33",
+          "opensuse/leap:15.2", "opensuse/tumbleweed",
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10",
+        ]
+        experimental: [false]
+        include:
+          - image: alpine:edge
+            experimental: true
+          - image: fedora:rawhide
+            experimental: true
+          - image: debian:testing-slim
+            experimental: true
+          - image: ubuntu-devel
+            experimental: true
+    continue-on-error: ${{ matrix.experimental }}
+    runs-on: ubuntu-20.04
+    container:
+      image: ${{ matrix.image }}
+      options: --security-opt seccomp=unconfined
+    env:
+      IMAGE: ${{ matrix.image }}
+      CLOUDSMITH_REPOSITORY: nxadm-pkgs/rakudo-pkg
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Create build environment
+        run: |
+          chmod +x actions/*
+          . actions/buildenv.sh
+      - name: Build
+        run: ./actions/build.sh
+      - name: Package
+        run: |
+          ./actions/package.sh
+          ls -lh $GITHUB_WORKSPACE/packages
+      - name: Archive packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          retention-days: 1
+          path: ${{ github.workspace }}/packages/
+  release-to-github:
+    # Forks don't need to release packages, just have the artifacts available
+    if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
+    needs: build-and-package
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download packages
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: packages
+      - name: Upload to Github Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
+  release-to-repos:
+    needs: release-to-github
+    runs-on: ubuntu-20.04
+    env:
+      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Download packages
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: packages
+      - name: Upload to repository
+        run: |
+          chmod +x actions/*
+          actions/upload.sh packages

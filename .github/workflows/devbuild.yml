@@ -1,0 +1,126 @@
+name: devbuild
+on:
+  workflow_dispatch:
+    inputs:
+      moarvm-version:
+        description: MoarVM version (HEAD, $tag, $commit)
+        required: false
+        default: HEAD
+      moarvm-configure:
+        description: MoarVM configure command
+        required: false
+        default: perl ./Configure.pl --debug --optimize=0 --relocatable --prefix=/opt/rakudo-pkg
+      nqp-version:
+        description: NQP version (HEAD, $tag, $commit)
+        required: false
+        default: HEAD
+      nqp-configure:
+        description: NQP configure command
+        required: false
+        default: perl ./Configure.pl --relocatable --backends=moar --prefix=/opt/rakudo-pkg
+      rakudo-version:
+        description: Rakudo version (HEAD, $tag, $commit)
+        required: false
+        default: HEAD
+      rakudo-configure:
+        description: Rakudo configure command
+        required: false
+        default: perl ./Configure.pl --relocatable --backends=moar --prefix=/opt/rakudo-pkg
+      zef-version:
+        description: zef version
+        required: false
+        default: HEAD
+      search-replace:
+        description: Search and replace command (e.g. editing sources)
+        required: false
+        default: perl -pi -e 's///' /dev/null
+      extra-env:
+        description: Extra environment variables
+        required: false
+        default: KEY1=foo;KEY2=bar
+jobs:
+  get-sources:
+    runs-on: ubuntu-20.04
+    env:
+      DEVBUILD: 1
+      MOARVM_VERSION: ${{ github.event.inputs.moarvm-version }}
+      NQP_VERSION: ${{ github.event.inputs.nqp-version }}
+      RAKUDO_VERSION: ${{ github.event.inputs.rakudo-version }}
+      ZEF_VERSION: ${{ github.event.inputs.zef-version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Download sources
+        run: |
+          ./actions/download.sh
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: sources
+          retention-days: 1
+          path: |
+            actions/*
+            include/*
+            config/*
+            *.tar.gz
+  debugbuild:
+    needs: get-sources
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [
+          "alpine:3.10", "alpine:3.11", "alpine:3.12",
+          "alpine:3.13", "alpine:edge",
+          "registry.access.redhat.com/ubi7-minimal",
+          "registry.access.redhat.com/ubi8-minimal",
+          "debian:9-slim", "debian:10-slim", "debian:testing-slim",
+          "fedora:32", "fedora:33", "fedora:rawhide",
+          "opensuse/leap:15.2", "opensuse/tumbleweed",
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
+          "ubuntu:20.10", "ubuntu:devel",
+        ]
+    runs-on: ubuntu-20.04
+    container:
+      image: ${{ matrix.image }}
+      options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
+    env:
+      DEVBUILD: 1
+      HARNESS_VERBOSE: 1
+      IMAGE: ${{ matrix.image }}
+      RAKUDO_CONFIGURE: ${{ github.event.inputs.rakudo-configure }}
+      NQP_CONFIGURE: ${{ github.event.inputs.nqp-configure }}
+      MOARVM_CONFIGURE: ${{ github.event.inputs.moarvm-configure }}
+      SEARCH_REPLACE: ${{ github.event.inputs.search-replace }}
+      EXTRA_ENV: ${{ github.event.inputs.extra-env }}
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Configure core dumps
+        run: |
+          ulimit -c unlimited
+          echo "CORE_DIR=${{ github.workspace }}/cores" >> $GITHUB_ENV
+          mkdir -p ${{ github.workspace }}/cores
+          echo "${{ env.CORE_DIR }}/core.%e" > /proc/sys/kernel/core_pattern
+      - name: Create build environment
+        run: |
+          chmod +x actions/*
+          . actions/buildenv.sh
+          echo "TAG=$OS-$OS_VERSION" >> $GITHUB_ENV
+      - name: Build
+        run: ./actions/build.sh
+      - name: Rename core dumps
+        if: failure()
+        run: |
+          cd ${{ github.workspace }}/cores
+          for i in {{ env.COREDIR }}/core.*; do mv $i $i-{{ env.TAG }}; echo "CORE=true" >> $GITHUB_ENV; dome
+      - name: Archive coredumps
+        if: env.CORE == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: coredumps
+          retention-days: 1
+          path: ${{ github.workspace }}/cores/*
