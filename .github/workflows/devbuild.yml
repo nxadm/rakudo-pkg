@@ -73,11 +73,9 @@ jobs:
         image: [
           "alpine:3.10", "alpine:3.11", "alpine:3.12",
           "alpine:3.13", "alpine:edge",
-          "centos:7", "centos:8",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
           "debian:9-slim", "debian:10-slim", "debian:testing-slim",
-          "debian:unstable-slim", "debian:experimental",
           "fedora:32", "fedora:33", "fedora:rawhide",
           "opensuse/leap:15.2", "opensuse/tumbleweed",
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
