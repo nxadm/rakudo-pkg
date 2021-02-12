@@ -85,7 +85,7 @@ if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
     cd /staging
     sha512sum $TARGZ > $TARGZ.sha512
     echo "Package sha512sum:"
-    cat $TARGZ.sha512sum
+    cat $TARGZ.sha512
     mv /staging/* $GITHUB_WORKSPACE/packages/
 fi
 
