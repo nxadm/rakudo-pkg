@@ -56,9 +56,7 @@ case "$OS" in
     set_os_vars x86_64 ""
     ;;
   fedora)
-    if [ "$IMAGE" != "fedora:rawhide" ]; then
-      dnf -q -y upgrade
-    fi  
+    dnf -q -y upgrade
     dnf -q -y groupinstall 'Development Tools'
     dnf -q -y install gettext git libzstd-devel perl-core
     set_os_vars x86_64 libzstd
