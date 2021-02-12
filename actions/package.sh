@@ -83,7 +83,7 @@ if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
     cd /opt
     tar cvzf /staging/$TARGZ rakudo-pkg
     cd /staging
-    sha512sum $TARGZ > $TARGZ.sha512sum
+    sha512sum $TARGZ > $TARGZ.sha512
     echo "Package sha512sum:"
     cat $TARGZ.sha512sum
     mv /staging/* $GITHUB_WORKSPACE/packages/
