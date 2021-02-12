@@ -86,7 +86,7 @@ jobs:
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm"
+          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm,packages/*.tar.gz"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
