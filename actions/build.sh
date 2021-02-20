@@ -63,6 +63,7 @@ cd ..
 
 # Add extra scripts
 cd include
+chmod +x *
 for i in *; do
     cp $i $INSTALL_ROOT/bin
 done
