@@ -1,4 +1,4 @@
-# Zef Module Manager as a Regular User
+# Install the Zef Module Manager
 
 Rakudo takes a different approach than many other languages (including Perl):
 modules are by default installed in the home directory of the user.
@@ -9,3 +9,4 @@ Accordingly, a script is supplied to install zef this way.
 ```
 
 Zef will be installed to `~/.raku/bin/zef` and modules will reside in `~/.raku`.
+These instructions are also applicable for the root user.
