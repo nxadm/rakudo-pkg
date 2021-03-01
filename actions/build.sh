@@ -52,16 +52,11 @@ done
 
 raku -v
 
-# Install zef
-mkdir zef
-tar xzf zef.tar.gz -C zef --strip-components=1
-cd zef
-$INSTALL_ROOT/bin/raku -I. bin/zef --install-to=core install .
-ln -s $INSTALL_ROOT/share/perl6/core/bin/zef $INSTALL_ROOT/bin/zef
-zef --version
-cd ..
+# Install zef source
+mkdir -p $INSTALL_ROOT/var/zef
+tar xzf zef.tar.gz -C $INSTALL_ROOT/var/zef --strip-components=1
 
-# Add extra scripts
+# Add extra scripts and directories
 cd include
 chmod +x *
 for i in *; do
