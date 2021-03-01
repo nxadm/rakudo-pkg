@@ -22,7 +22,7 @@ repositories (hosted at [CloudSmith](https://cloudsmith.io/)):
 - See the [relocatable packages documentation](docs/relocatable.md).
 - See the [direct downloads documentation](docs/direct-downloads.md).
 
-## Zef Module Manager as a Regular User
+## Zef Module Manager
 See the [zef documentation](docs/zef.md).
 
 ## Add rakudo to the PATH
