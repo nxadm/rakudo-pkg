@@ -56,6 +56,10 @@ raku -v
 mkdir -p $INSTALL_ROOT/var/zef
 tar xzf zef.tar.gz -C $INSTALL_ROOT/var/zef --strip-components=1
 
+# Workaround ugly rakudo/zef bug
+# https://github.com/nxadm/rakudo-pkg/issues/78
+mkdir -p $INSTALL_ROOT/share/perl6/site/short
+
 # Add extra scripts and directories
 cd include
 chmod +x *
