@@ -72,7 +72,8 @@ mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
 eval $INSTALL_CMD
 . /etc/profile.d/rakudo-pkg.sh
 raku -v
-zef --version
+/opt/rakudo-pkg/bin/install-zef-as-user
+~/.raku/bin/zef --version
 
 # Move to workspace
 mv /staging/* $GITHUB_WORKSPACE/packages/
