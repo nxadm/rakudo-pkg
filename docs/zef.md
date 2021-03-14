@@ -10,3 +10,11 @@ Accordingly, a script is supplied to install zef this way.
 
 Zef will be installed to `~/.raku/bin/zef` and modules will reside in `~/.raku`.
 These instructions are also applicable for the root user.
+
+If you update the package, running the script again will upgrade zef if a new version
+was available when the new package was released. Alternatively, you can upgrade zef
+through zef:
+
+```
+zef upgrade zef
+```
