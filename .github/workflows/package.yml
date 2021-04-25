@@ -31,7 +31,7 @@ jobs:
           "debian:9-slim", "debian:10-slim",
           "fedora:32", "fedora:33",
           "opensuse/leap:15.2", "opensuse/tumbleweed",
-          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10",
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10", "ubuntu:21.04"
         ]
         experimental: [false]
         include:

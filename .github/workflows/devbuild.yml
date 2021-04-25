@@ -79,7 +79,7 @@ jobs:
           "fedora:32", "fedora:33", "fedora:rawhide",
           "opensuse/leap:15.2", "opensuse/tumbleweed",
           "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04",
-          "ubuntu:20.10", "ubuntu:devel",
+          "ubuntu:20.10", "ubuntu:21.01", "ubuntu:devel",
         ]
     runs-on: ubuntu-20.04
     container:
