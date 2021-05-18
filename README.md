@@ -2,7 +2,7 @@
 
 `rakudo-pkg` offers native Linux 64-bit packages of the
 [Rakudo compiler/runtime for Raku](https://raku.org/) and the
-[zef nodule installer](https://github.com/ugexe/zef). The packages track the
+[zef module installer](https://github.com/ugexe/zef). The packages track the
 upstream releases closely. Most of the time, the packages will be released on
 the same day as the Rakudo sources. At the moment, packages are provided for
 Alpine, Debian, EL (RHEL/CentOS/Amazon/Oracle Linux), Fedora, openSUSE,
