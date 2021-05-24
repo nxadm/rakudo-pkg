@@ -58,10 +58,10 @@ case "$OS" in
        dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
        rm -rf *rpm
        dnf install -y gettext gcc git gzip make tar
-       break
+       else
+        microdnf update
+        microdnf install gettext gcc git gzip make perl-core tar
     fi
-    microdnf update
-    microdnf install gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
     ;;
   fedora)
