@@ -51,9 +51,14 @@ case "$OS" in
     set_os_vars amd64 libzstd1
     ;;
   el)
+    # ubi 6 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
+    if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
+       microdnf install curl dnf
+       curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
+       dnf install ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
+       rm -rf *rpm
+    fi
     microdnf update
-    # Woraround broken perl dep in ubi 8
-    microdnf module enable perl:5.30 || true
     microdnf install gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
     ;;
