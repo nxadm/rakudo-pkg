@@ -52,9 +52,8 @@ case "$OS" in
     ;;
   el)
     microdnf update
-    if [ "$OS_VERSION" == 8 ] ; then
-      microdnf module enable perl:5.30
-    fi    
+    # Woraround broken perl dep in ubi 8
+    microdnf module enable perl:5.30 || true
     microdnf install gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
     ;;
