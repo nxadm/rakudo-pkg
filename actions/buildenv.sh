@@ -55,7 +55,7 @@ case "$OS" in
     if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
        microdnf install curl dnf
        curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
-       dnf install ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
+       dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
        rm -rf *rpm
     fi
     microdnf update
