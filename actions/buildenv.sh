@@ -57,7 +57,7 @@ case "$OS" in
        curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
        dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
        rm -rf *rpm
-       dnf install -y gettext gcc git gzip make tar
+       dnf install -y gettext gcc git gzip make perl-core tar
        else
         microdnf update
         microdnf install gettext gcc git gzip make perl-core tar
