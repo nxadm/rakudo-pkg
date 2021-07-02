@@ -26,24 +26,23 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-        #  "alpine:3.11", "alpine:3.12", "alpine:3.13", "alpine:3.14",
-        #  "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
-        #  "debian:9-slim", "debian:10-slim",
-        #  "fedora:33", "fedora:34",
-        #  "opensuse/leap:15.2", "opensuse/leap:15.2", "opensuse/tumbleweed",
-        #  "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10", "ubuntu:21.04"
-        "fedora:34"
+          "alpine:3.11", "alpine:3.12", "alpine:3.13", "alpine:3.14",
+          "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
+          "debian:9-slim", "debian:10-slim",
+          "fedora:33", "fedora:34",
+          "opensuse/leap:15.2", "opensuse/leap:15.2", "opensuse/tumbleweed",
+          "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10", "ubuntu:21.04"
         ]
         experimental: [false]
-        #include:
-        #  - image: alpine:edge
-        #    experimental: true
-        #  - image: fedora:rawhide
-        #    experimental: true
-        #  - image: debian:testing-slim
-        #    experimental: true
-        #  - image: ubuntu:devel
-        #    experimental: true
+        include:
+          - image: alpine:edge
+            experimental: true
+          - image: fedora:rawhide
+            experimental: true
+          - image: debian:testing-slim
+            experimental: true
+          - image: ubuntu:devel
+            experimental: true
     continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-20.04
     container:
