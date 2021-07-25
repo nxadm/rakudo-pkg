@@ -78,8 +78,7 @@ jobs:
           "debian:9-slim", "debian:10-slim", "debian:testing-slim",
           "fedora:33", "fedora:34", "fedora:rawhide",
           "opensuse/leap:15.2", "opensuse/leap:15.3", "opensuse/tumbleweed",
-          "ubuntu:18.04", "ubuntu:20.04", "ubuntu:20.10",
-          "ubuntu:21.01", "ubuntu:devel",
+          "ubuntu:18.04", "ubuntu:20.04", "ubuntu:21.01", "ubuntu:devel",
         ]
     runs-on: ubuntu-20.04
     container:
