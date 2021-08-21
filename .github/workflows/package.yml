@@ -28,7 +28,7 @@ jobs:
         image: [
           "alpine:3.11", "alpine:3.12", "alpine:3.13", "alpine:3.14",
           "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
-          "debian:9-slim", "debian:10-slim",
+          "debian:9-slim", "debian:10-slim", "debian:11-slim",
           "fedora:33", "fedora:34",
           "opensuse/leap:15.2", "opensuse/leap:15.3", "opensuse/tumbleweed",
           "ubuntu:18.04", "ubuntu:20.04", "ubuntu:21.04"
