@@ -51,17 +51,19 @@ case "$OS" in
     set_os_vars amd64 libzstd1
     ;;
   el)
-    # ubi 6 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
-    if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
-       microdnf install curl dnf
-       curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
-       dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
-       rm -rf *rpm
-       dnf install -y gettext gcc git gzip make perl-core tar
-       else
-        microdnf update
-        microdnf install gettext gcc git gzip make perl-core tar
-    fi
+    microdnf update
+    microdnf install gettext gcc git gzip make perl-core tar
+    # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
+    #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
+    #   microdnf install curl dnf
+    #   curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
+    #   dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
+    #   rm -rf *rpm
+    #   dnf install -y gettext gcc git gzip make perl-core tar
+    #   else
+    #    microdnf update
+    #    microdnf install gettext gcc git gzip make perl-core tar
+    #fi
     set_os_vars x86_64 ""
     ;;
   fedora)
@@ -73,7 +75,7 @@ case "$OS" in
   opensuse)
     zypper refresh
     zypper update -y
-    zypper install -y gcc gettext git gzip make libzstd-devel perl tar
+    zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
     set_os_vars x86_64 libzstd1
     ;;
   ubuntu)
