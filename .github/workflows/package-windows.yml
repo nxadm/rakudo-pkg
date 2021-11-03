@@ -1,0 +1,62 @@
+name: package
+on: [push, pull_request]
+jobs:
+  get-sources:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Download tools and sources
+        run: ./actions/download.sh
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: sources
+          retention-days: 1
+          path: |
+            actions/*
+            include/*
+            config/*
+            *.tar.gz
+  build-and-package:
+    needs: get-sources
+    runs-on: windows-latest
+    steps:
+      - name: Retrieve sources
+        uses: actions/download-artifact@v2
+        with:
+          name: sources
+      - name: Create build environment
+        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+      - name: Build
+        run: pwsh -command ".\$GITHUB_WORKSPACE\build.ps1"
+#      - name: Package
+#        run: |
+#          ./actions/package.sh
+#          ls -lh $GITHUB_WORKSPACE/packages
+#      - name: Archive packages
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: packages
+#          retention-days: 1
+#          path: ${{ github.workspace }}/packages/
+#  release-to-github:
+#    # Forks don't need to release packages, just have the artifacts available
+#    if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
+#    needs: build-and-package
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - name: Download packages
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: packages
+#          path: packages
+#      - name: Upload to Github Releases
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "packages/*.sha512,packages/*.apk,packages/*.deb,packages/*.rpm,packages/*.tar.gz"
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          draft: true
+#          body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
