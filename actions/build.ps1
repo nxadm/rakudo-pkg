@@ -39,10 +39,10 @@ IF (  -NOT ((Get-Command "perl.exe" -ErrorAction SilentlyContinue).Path) ) { & c
 IF ( (-NOT ((Get-Command "heat.exe" -ErrorAction SilentlyContinue).Path)) -OR (-NOT ((Get-Command "candle.exe" -ErrorAction SilentlyContinue).Path)) ) { & choco install --yes --force --no-progress --limit-output --timeout 0 wixtoolset }
 IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).Path) ) ) { & choco install --yes --force --no-progress --limit-output --timeout 0 gpg4win-vanilla }
 
+Write-Host "Preparing environment variables..."
 Copy-Item -Path ..\config\setup.sh -Destination .\setup.ps1
 & perl -pi -e "s/^#.+\n//" .\setup.ps1
-& type .\setup.ps1
-& perl -pi -e "s/(.+?)=(.+)/Set-Variable -Name \1 -Value \2/" .\setup.ps1
-& type .\setup.ps1
-".\setup.ps1" | Invoke-Expression
+& perl -pi -e "s/(.+)/$env:\1;/" .\setup.ps1
+Write-Host "Setting environment variables..."
+cat .\setup.ps1 | Invoke-Expression
 & gci env:* | sort-object name
