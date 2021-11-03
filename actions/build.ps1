@@ -42,7 +42,7 @@ IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).
 Copy-Item -Path ..\config\setup.sh -Destination .\setup.ps1
 & perl -pi -e "s/^#.+\n//" .\setup.ps1
 & type .\setup.ps1
-& perl -pi -e "s/(.+?)=(.+)\n/Set-Variable -Name \1 -Value \2\r\n/" .\setup.ps1
+& perl -pi -e "s/(.+?)=(.+)/Set-Variable -Name \1 -Value \2/" .\setup.ps1
 & type .\setup.ps1
-. .\setup.ps1
+".\setup.ps1" | Invoke-Expression
 & gci env:* | sort-object name
