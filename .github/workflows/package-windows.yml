@@ -31,7 +31,7 @@ jobs:
       - name: Create build environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v3
       - name: Build
-        run: pwsh -command ".\$GITHUB_WORKSPACE\build.ps1"
+        run: pwsh -command ".\$GITHUB_WORKSPACE\actions\build.ps1"
 #      - name: Package
 #        run: |
 #          ./actions/package.sh
