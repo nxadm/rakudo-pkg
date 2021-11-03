@@ -42,7 +42,8 @@ IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).
 Write-Host "Preparing environment variables..."
 Copy-Item -Path ..\config\setup.sh -Destination .\setup.ps1
 & perl -pi -e "s/^#.+\n//" .\setup.ps1
-& perl -pi -e "s/(.+)/\$env:\1;/" .\setup.ps1
+& perl -pi -e "s/(.+)/\\$env:\1;/" .\setup.ps1
+cat .\setup.ps1
 Write-Host "Setting environment variables..."
 cat .\setup.ps1 | Invoke-Expression
 & gci env:* | sort-object name
