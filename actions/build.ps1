@@ -41,4 +41,4 @@ IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).
 
 & perl -pi -e 's/^(.+?)=(.+)$/Set-Variable -Name $1 -Value $2/' config\setup.sh
 & . config\setup.sh
-& set
+& gci env:* | sort-object name
