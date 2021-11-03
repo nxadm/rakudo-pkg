@@ -40,6 +40,6 @@ IF ( (-NOT ((Get-Command "heat.exe" -ErrorAction SilentlyContinue).Path)) -OR (-
 IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).Path) ) ) { & choco install --yes --force --no-progress --limit-output --timeout 0 gpg4win-vanilla }
 
 Copy-Item -Path ..\config\setup.sh -Destination .\setup.ps1
-& perl -pi -e 's/^(.+?)=(.+)$/Set-Variable -Name $1 -Value $2/' .\setup.ps1
+& perl -pi -e 's/^(.+?)=(.+)\n.+/Set-Variable -Name $1 -Value $2\r\n/' .\setup.ps1
 . .\setup.ps1
 & gci env:* | sort-object name
