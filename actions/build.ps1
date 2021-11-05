@@ -47,3 +47,4 @@ cat .\setup.ps1
 Write-Host "Setting environment variables..."
 cat .\setup.ps1 | Invoke-Expression
 & gci env:* | sort-object name
+Get-Variable
