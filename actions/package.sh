@@ -53,7 +53,7 @@ case "$OS" in
         else
             PACKAGER=deb
             PKG_NAME=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.tar.gz
-            INSTALL_CMD="tar xvzf ./$PKG_NAME"
+            INSTALL_CMD="tar xvzf /staging/$PKG_NAME"
             PKG_CMD="true"
         fi
         ;;

@@ -96,6 +96,17 @@ contents:
     dst: /etc/profile.d/rakudo-pkg.sh
     type: "symlink"
 
+    # Empty folders your package may need created. (overridable)
+
+  - dst: /opt/rakudo-pkg/share/perl6/site/short
+    type: dir
+    file_info:
+      mode: 0755
+  - dst: /opt/rakudo-pkg/share/perl6/vendor/short
+    type: dir
+    file_info:
+      mode: 0755
+
 #    # Corresponds to %config(noreplace) if the packager is rpm, otherwise it is just a config file
 #  - src: path/to/local/bar.conf
 #    dst: /etc/bar.conf
@@ -143,10 +154,6 @@ contents:
 #      group: notRoot
 
 
-# Empty folders your package may need created. (overridable)
-empty_folders:
-  - /opt/rakudo-pkg/share/perl6/site/short
-  - /opt/rakudo-pkg/share/perl6/vendor/short
 
 # Scripts to run at specific stages. (overridable)
 #scripts:
