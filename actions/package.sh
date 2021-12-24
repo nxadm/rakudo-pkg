@@ -45,10 +45,17 @@ case "$OS" in
         PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
     ubuntu)
-        PACKAGER=deb
-        PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
-        INSTALL_CMD="apt-get update; apt install -y ./$PKG_NAME"
-        PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
+        if [ "${OS}${OS_VERSION}" == "$PKG_TARGZ" ]; then
+            PACKAGER=targz
+            PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
+            INSTALL_CMD="apt-get update; apt install -y ./$PKG_NAME"
+            PKG_CMD="cloudsmith push deb $CLOUDSMITH_REPOSITORY/$OS/$OS_CODENAME $PKG_NAME"
+        else
+            PACKAGER=deb
+            PKG_NAME=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.tar.gz
+            INSTALL_CMD="tar xvzf ./$PKG_NAME"
+            PKG_CMD="true"
+        fi
         ;;
     *)
         echo "Sorry, distro not found. Send a PR. :)"
@@ -57,12 +64,20 @@ case "$OS" in
 esac
 
 mkdir -p /staging $GITHUB_WORKSPACE/packages
-echo "DEBUG config/nfpm.yaml:"
-cat config/nfpm.yaml
-echo "DEBUG END"
-nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
-cd /staging
-mv *.$PACKAGER $PKG_NAME
+
+if [ $PACKAGER == "targz" ]; then
+    cd /opt
+    tar cvzf /staging/$PKG_NAME rakudo-pkg
+else
+    echo "DEBUG config/nfpm.yaml:"
+    cat config/nfpm.yaml
+    echo "DEBUG END"
+    nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
+    cd /staging
+    mv *.$PACKAGER $PKG_NAME
+fi
+
+
 sha512sum $PKG_NAME > $PKG_NAME.sha512
 echo "Package sha512:"
 cat $PKG_NAME.sha512
@@ -77,18 +92,6 @@ raku -v
 
 # Move to workspace
 mv /staging/* $GITHUB_WORKSPACE/packages/
-
-# tar the relocable build oldest distro
-if [ "${OS}${OS_VERSION}" = $PKG_TARGZ ]; then
-    TARGZ=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${ARCH}.tar.gz
-    cd /opt
-    tar cvzf /staging/$TARGZ rakudo-pkg
-    cd /staging
-    sha512sum $TARGZ > $TARGZ.sha512sum
-    echo "Package sha512sum:"
-    cat $TARGZ.sha512sum
-    mv /staging/* $GITHUB_WORKSPACE/packages/
-fi
 
 # Write the upload URL for publishing the packages
 echo "$PKG_CMD" > $GITHUB_WORKSPACE/packages/$PKG_NAME.sh
