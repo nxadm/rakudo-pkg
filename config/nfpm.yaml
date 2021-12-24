@@ -144,9 +144,9 @@ contents:
 
 
 # Empty folders your package may need created. (overridable)
-#empty_folders:
-#  - /opt/rakudo-pkg/share/perl6/site/short
-#  - /opt/rakudo-pkg/share/perl6/vendor/short
+empty_folders:
+  - /opt/rakudo-pkg/share/perl6/site/short
+  - /opt/rakudo-pkg/share/perl6/vendor/short
 
 # Scripts to run at specific stages. (overridable)
 #scripts:

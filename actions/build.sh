@@ -52,6 +52,9 @@ done
 
 raku -v
 
+# Workaround for https://github.com/rakudo/rakudo/issues/1515
+mkdir -p $INSTALL_ROOT/share/perl6/site/short $INSTALL_ROOT/share/perl6/vendor/short
+
 # Install zef source
 mkdir -p $INSTALL_ROOT/var/zef
 tar xzf zef.tar.gz -C $INSTALL_ROOT/var/zef --strip-components=1
