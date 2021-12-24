@@ -65,7 +65,7 @@ esac
 
 mkdir -p /staging $GITHUB_WORKSPACE/packages
 
-if [ $PACKAGER == "targz" ]; then
+if [ "$PACKAGER" == "targz" ]; then
     cd /opt
     tar cvzf /staging/$PKG_NAME rakudo-pkg
 else
