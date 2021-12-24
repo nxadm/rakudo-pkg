@@ -68,6 +68,7 @@ mkdir -p /staging $GITHUB_WORKSPACE/packages
 if [ "$PACKAGER" = "targz" ]; then
     cd /opt
     tar cvzf /staging/$PKG_NAME rakudo-pkg
+    cd /staging
 else
     echo "DEBUG config/nfpm.yaml:"
     cat config/nfpm.yaml
