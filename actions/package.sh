@@ -45,7 +45,7 @@ case "$OS" in
         PKG_CMD="cloudsmith push rpm $CLOUDSMITH_REPOSITORY/$OS/$OS_VERSION $PKG_NAME"
         ;;
     ubuntu)
-        if [ "${OS}${OS_VERSION}" == "$PKG_TARGZ" ]; then
+        if [ "${OS}${OS_VERSION}" = "$PKG_TARGZ" ]; then
             PACKAGER=targz
             PKG_NAME=rakudo-pkg-Ubuntu${OS_VERSION}_${RAKUDO_VERSION}-${PKG_REVISION}_amd64.deb
             INSTALL_CMD="apt-get update; apt install -y ./$PKG_NAME"
@@ -65,7 +65,7 @@ esac
 
 mkdir -p /staging $GITHUB_WORKSPACE/packages
 
-if [ "$PACKAGER" == "targz" ]; then
+if [ "$PACKAGER" = "targz" ]; then
     cd /opt
     tar cvzf /staging/$PKG_NAME rakudo-pkg
 else
