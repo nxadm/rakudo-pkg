@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-          "alpine:3.12", "alpine:3.13", "alpine:3.14", "alpine:.15",
+          "alpine:3.12", "alpine:3.13", "alpine:3.14", "alpine:15",
           "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
           "debian:9-slim", "debian:10-slim", "debian:11-slim",
           "fedora:34", "fedora:35",
