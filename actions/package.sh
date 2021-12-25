@@ -86,7 +86,9 @@ cat $PKG_NAME.sha512
 # Test the package
 mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
 eval $INSTALL_CMD
-. /etc/profile.d/rakudo-pkg.sh
+if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
+    . /etc/profile.d/rakudo-pkg.sh
+fi
 raku -v
 /opt/rakudo-pkg/bin/install-zef
 ~/.raku/bin/zef --version
