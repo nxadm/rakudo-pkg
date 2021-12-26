@@ -92,7 +92,6 @@ if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
     /opt/rakudo-pkg/bin/install-zef
 else
    /staging/rakudo-pkg/bin/raku -v
-   /staging/rakudo-pkg/bin/install-zef
 fi
 ~/.raku/bin/zef --version
 rm -rf /staging/rakudo-pkg
