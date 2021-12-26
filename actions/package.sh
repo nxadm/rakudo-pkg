@@ -90,10 +90,10 @@ if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
     . /etc/profile.d/rakudo-pkg.sh
     raku -v
     /opt/rakudo-pkg/bin/install-zef
+    ~/.raku/bin/zef --version
 else
    /staging/rakudo-pkg/bin/raku -v
 fi
-~/.raku/bin/zef --version
 rm -rf /staging/rakudo-pkg
 
 # Move to workspace
