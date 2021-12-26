@@ -88,8 +88,10 @@ mv /opt/rakudo-pkg /rakudo-pkg-${RAKUDO_VERSION}
 eval $INSTALL_CMD
 if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
     . /etc/profile.d/rakudo-pkg.sh
+    raku -v
+else
+   /opt/rakudo-pkg/bin/raku -v
 fi
-raku -v
 /opt/rakudo-pkg/bin/install-zef
 ~/.raku/bin/zef --version
 
