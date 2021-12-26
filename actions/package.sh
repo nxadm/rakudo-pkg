@@ -89,11 +89,13 @@ eval $INSTALL_CMD
 if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
     . /etc/profile.d/rakudo-pkg.sh
     raku -v
+    /opt/rakudo-pkg/bin/install-zef
 else
-   /opt/rakudo-pkg/bin/raku -v
+   /staging/rakudo-pkg/bin/raku -v
+   /staging/rakudo-pkg/bin/install-zef
 fi
-/opt/rakudo-pkg/bin/install-zef
 ~/.raku/bin/zef --version
+rm -rf /staging/rakudo-pkg
 
 # Move to workspace
 mv /staging/* $GITHUB_WORKSPACE/packages/
