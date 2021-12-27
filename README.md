@@ -7,8 +7,8 @@ upstream releases closely. Most of the time, the packages will be released on
 the same day as the Rakudo sources. At the moment, packages are provided for
 Alpine, Debian, EL (RHEL/CentOS/Amazon/Oracle Linux), Fedora, openSUSE,
 Ubuntu and their derivatives. Additionally, a relocatable build is also
-provided that work universally on all recent Linux distributions and need no
-installation or root privileges.
+provided that works universally on all recent Linux distributions without the
+need of installation or root privileges.
 
 ## Downloads
 ### OS Repositories
