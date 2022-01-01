@@ -1,6 +1,6 @@
 ubuntu2004_task:
-  matrix:
-    arm_container:
+  arm_container:
+    matrix:
       - image: ubuntu:20.04
       - image: ubuntu:21.10
   timeout_in: 120m
