@@ -1,6 +1,9 @@
 retrieve-sources_task:
-  docker_builder:
-    download_script: ./actions/download.sh
+  container:
+    image: ubuntu:20.04
+  download_script: |
+    apt-get update && apt-get install --no-install-recommends -y curl
+    ./actions/download.sh
 
 build-and-package_task:
   depends_on:
