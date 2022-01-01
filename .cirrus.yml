@@ -1,4 +1,4 @@
-build-and-package:
+build-and-package_task:
   arm_container:
     matrix:
       - image: alpine:3.12
