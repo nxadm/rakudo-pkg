@@ -1,4 +1,11 @@
+retrieve-sources_task:
+  container:
+    image: ubuntu:20.04
+  download_script: ./actions/download.sh
+
 build-and-package_task:
+  depends_on:
+    - retrieve-sources
   arm_container:
     matrix:
       - image: alpine:3.12
