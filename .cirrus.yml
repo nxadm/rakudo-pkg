@@ -9,6 +9,7 @@ retrieve-sources_task:
     mv *tar.gz sources
   sources_cache:
     folder: sources
+    fingerprint_key: sources
 
 build-and-package_task:
   depends_on:
@@ -38,13 +39,9 @@ build-and-package_task:
       - image: ubuntu:21.10
       - image: ubuntu:devel
   timeout_in: 120m
-  sources_cache:
-    folder: sources
-  debug2_script: |
-    pwd
-    ls -la
-    find sources
-  cpsources_script: cp sources/* .
+  retrievesources_script: |
+    curl -s --data-binary @sources.tar.gz http://$CIRRUS_HTTP_CACHE_HOST/sources
+    tar xvzf sources.tar.gz
   buildenv_script: |
     chmod +x actions/*
     . actions/buildenv.sh
