@@ -38,10 +38,6 @@ build-and-package_task:
       - image: ubuntu:21.10
       - image: ubuntu:devel
   timeout_in: 120m
-  debug_script: |
-    pwd
-    ls -la
-    find sources
   sources_cache:
     folder: sources
   debug2_script: |
