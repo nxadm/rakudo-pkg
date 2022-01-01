@@ -1,5 +1,4 @@
-arm_container:
-  image: ubuntu:21.04
-
-check_task:
+test_task:
+  arm_container:
+    image: ubuntu:21.04
   test_script: uname -a
