@@ -1,7 +1,6 @@
 retrieve-sources_task:
-  container:
-    image: ubuntu:20.04
-  download_script: ./actions/download.sh
+  docker_builder:
+    download_script: ./actions/download.sh
 
 build-and-package_task:
   depends_on:
