@@ -3,6 +3,8 @@ retrieve-sources_task:
     image: ubuntu:20.04
   download_script: |
     apt-get update && apt-get install --no-install-recommends -y ca-certificates curl
+    export PATH=/usr/bin:$PATH
+    which curl
     ./actions/download.sh
 
 build-and-package_task:
