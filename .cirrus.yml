@@ -42,6 +42,13 @@ build-and-package_task:
     pwd
     ls -la
     find sources
+  sources_cache:
+    folder: sources
+  debug2_script: |
+    pwd
+    ls -la
+    find sources
+  cpsources_script: cp sources/* .
   buildenv_script: |
     chmod +x actions/*
     . actions/buildenv.sh
