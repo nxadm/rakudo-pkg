@@ -2,7 +2,7 @@ retrieve-sources_task:
   container:
     image: ubuntu:20.04
   download_script: |
-    apt-get update && apt-get install --no-install-recommends -y curl
+    apt-get update && apt-get install --no-install-recommends -y ca-certificates curl
     ./actions/download.sh
 
 build-and-package_task:
