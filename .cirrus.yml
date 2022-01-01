@@ -1,10 +1,7 @@
-ubuntu2104_task:
-  arm_container:
-    image: ubuntu:21.04
-  timeout_in: 120m
-  test_script: uname -a
-ubuntu2110_task:
-  arm_container:
-    image: ubuntu:21.10
+ubuntu2004_task:
+  matrix:
+    arm_container:
+      - image: ubuntu:20.04
+      - image: ubuntu:21.10
   timeout_in: 120m
   test_script: uname -a
