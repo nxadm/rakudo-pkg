@@ -24,4 +24,10 @@ build-and-package_task:
       - image: ubuntu:21.10
       - image: ubuntu:devel
   timeout_in: 120m
-  test_script: uname -a
+  buildenv_script: |
+    chmod +x actions/*
+    . actions/buildenv.sh
+  build_script: ./actions/build.sh
+  package_script: |
+    ./actions/package.sh
+    ls -lh packages  
