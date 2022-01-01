@@ -2,7 +2,7 @@ retrieve-sources_task:
   container:
     image: ubuntu:20.04
   download_script: |
-    apt-get update && apt-get install --no-install-recommends -y ca-certificates curl
+    apt-get update && apt-get install --no-install-recommends -y ca-certificates curl git
     export PATH=/usr/bin:$PATH
     which curl
     ./actions/download.sh
