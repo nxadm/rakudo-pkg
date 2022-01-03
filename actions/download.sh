@@ -1,7 +1,10 @@
 #!/bin/sh -e
 set -xv
 
+NFPM_URL=https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
+
 if [ ! -z "$CIRRUS_CI" ]; then
+  NFPM_URL=https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_arm64.tar.gz
   OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
   if [ "$OS" = "rhel" ]; then
     OS="el"
@@ -44,8 +47,7 @@ fi
 if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh
-    curl -sSL -o nfpm.tar.gz \
-https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
+    curl -sSL -o nfpm.tar.gz $NFPM_URL
 fi
 
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
