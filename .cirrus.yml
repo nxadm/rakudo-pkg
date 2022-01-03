@@ -1,6 +1,4 @@
 build-and-package_task:
-  depends_on:
-    - retrieve-sources
   arm_container:
     matrix:
       - image: alpine:3.12

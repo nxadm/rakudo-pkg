@@ -2,6 +2,11 @@
 set -xv
 
 if [ ! -z "$CIRRUS_CI" ]; then
+  OS=`grep ^ID= /etc/os-release | cut -d= -f2 | cut -d\" -f2| cut -d- -f1`
+  if [ "$OS" = "rhel" ]; then
+    OS="el"
+  fi
+
   case "$OS" in
     alpine)
       PKGS="ca-certificates git curl"
