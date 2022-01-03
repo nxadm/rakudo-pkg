@@ -41,7 +41,6 @@ case "$OS" in
     apk update
     apk upgrade
     PKGS="bash build-base gettext git gzip perl perl-utils tar zstd-dev"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     apk add $PKGS
     set_os_vars x86_64 zstd-libs
     ;;
@@ -50,14 +49,12 @@ case "$OS" in
     apt-get update
     apt-get -u dist-upgrade -y -qq
     PKGS="build-essential git gettext libzstd-dev"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     apt-get install -y $PKGS
     set_os_vars amd64 libzstd1
     ;;
   el)
     microdnf update
     PKGS="gettext gcc git gzip make perl-core tar"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     microdnf install $PKGS
     # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
     #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
@@ -76,7 +73,6 @@ case "$OS" in
     dnf -q -y upgrade
     dnf -q -y groupinstall 'Development Tools'
     PKGS="gettext git libzstd-devel perl-core"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     dnf -q -y install $PKGS
     set_os_vars x86_64 libzstd
     ;;
@@ -84,7 +80,6 @@ case "$OS" in
     zypper refresh
     zypper update -y
     PKGS="findutils gcc gettext git gzip make libzstd-devel perl tar"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     zypper install -y $PKGS
     set_os_vars x86_64 libzstd1
     ;;
@@ -93,7 +88,6 @@ case "$OS" in
     apt-get update
     apt-get -u dist-upgrade -y -qq
     PKGS="build-essential git gettext git libzstd-dev"
-    if [ ! -z "$CIRRUS_CI" ]; then PKGS="$PKGS curl"; fi
     apt-get install -y $PKGS
     set_os_vars amd64 libzstd1
     ;;
