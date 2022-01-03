@@ -40,19 +40,25 @@ case "$OS" in
   alpine)
     apk update
     apk upgrade
-    apk add bash build-base gettext git gzip perl perl-utils tar zstd-dev
+    PKGS="bash build-base gettext git gzip perl perl-utils tar zstd-dev"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    apk add $PKGS
     set_os_vars x86_64 zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
-    apt-get install -y build-essential git gettext libzstd-dev
+    PKGS="build-essential git gettext libzstd-dev"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    apt-get install -y $PKGS
     set_os_vars amd64 libzstd1
     ;;
   el)
     microdnf update
-    microdnf install gettext gcc git gzip make perl-core tar
+    PKGS="gettext gcc git gzip make perl-core tar"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    microdnf install $PKGS
     # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
     #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
     #   microdnf install curl dnf
@@ -69,20 +75,26 @@ case "$OS" in
   fedora)
     dnf -q -y upgrade
     dnf -q -y groupinstall 'Development Tools'
-    dnf -q -y install gettext git libzstd-devel perl-core
+    PKGS="gettext git libzstd-devel perl-core"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    dnf -q -y install $PKGS
     set_os_vars x86_64 libzstd
     ;;
   opensuse)
     zypper refresh
     zypper update -y
-    zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
+    PKGS="findutils gcc gettext git gzip make libzstd-devel perl tar"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    zypper install -y $PKGS
     set_os_vars x86_64 libzstd1
     ;;
   ubuntu)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
-    apt-get install -y build-essential git gettext git libzstd-dev
+    PKGS="build-essential git gettext git libzstd-dev"
+    if [ ! -z "$CIRRUS_CI" ]; then PKGS+=" curl"; fi
+    apt-get install -y $PKGS
     set_os_vars amd64 libzstd1
     ;;
   *)
