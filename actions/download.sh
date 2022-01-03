@@ -1,6 +1,41 @@
 #!/bin/sh -e
 set -xv
 
+if [ ! -z "$CIRRUS_CI" ]; then
+  case "$OS" in
+    alpine)
+      PKGS="ca-certificates git curl"
+      apk add $PKGS
+      ;;
+    debian)
+      export DEBIAN_FRONTEND=noninteractive
+      PKGS="ca-certificates git curl"
+      apt-get install -y $PKGS
+      ;;
+    el)
+      PKGS="ca-certificates git curl"
+      microdnf install $PKGS
+      ;;
+    fedora)
+      PKGS="ca-certificates git curl"
+      dnf -q -y install $PKGS
+      ;;
+    opensuse)
+      PKGS="gettext git libzstd-devel perl-core"
+      zypper install -y $PKGS
+      ;;
+    ubuntu)
+      export DEBIAN_FRONTEND=noninteractive
+      PKGS="ca-certificates git curl"
+      apt-get install -y $PKGS
+      ;;
+    *)
+      echo "Sorry, distro not found. Send a PR. :)"
+      exit 1
+      ;;
+  esac
+fi
+
 if [ -z "$DEVBUILD" ]; then
     . config/pkginfo.sh
     . config/setup.sh

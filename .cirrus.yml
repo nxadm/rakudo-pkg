@@ -42,12 +42,10 @@ build-and-package_task:
   buildenv_script: |
     chmod +x actions/*
     . actions/buildenv.sh
-  retrievesources_script: |
-    set -xv
-    ls -la
-    curl -v http://$CIRRUS_HTTP_CACHE_HOST/sources
-    ls -la
-    tar xvzf sources.tar.gz
+  download_script: |
+    echo $PATH
+    export PATH=/usr/bin:$PATH
+    ./actions/download.sh
   build_script: ./actions/build.sh
   package_script: |
     ./actions/package.sh
