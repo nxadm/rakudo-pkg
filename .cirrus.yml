@@ -43,7 +43,9 @@ build-and-package_task:
     chmod +x actions/*
     . actions/buildenv.sh
   retrievesources_script: |
+    ls -la
     curl -s --data-binary @sources.tar.gz http://$CIRRUS_HTTP_CACHE_HOST/sources
+    ls -la
     tar xvzf sources.tar.gz
   build_script: ./actions/build.sh
   package_script: |
