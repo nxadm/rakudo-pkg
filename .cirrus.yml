@@ -39,12 +39,12 @@ build-and-package_task:
       - image: ubuntu:21.10
       - image: ubuntu:devel
   timeout_in: 120m
-  retrievesources_script: |
-    curl -s --data-binary @sources.tar.gz http://$CIRRUS_HTTP_CACHE_HOST/sources
-    tar xvzf sources.tar.gz
   buildenv_script: |
     chmod +x actions/*
     . actions/buildenv.sh
+  retrievesources_script: |
+    curl -s --data-binary @sources.tar.gz http://$CIRRUS_HTTP_CACHE_HOST/sources
+    tar xvzf sources.tar.gz
   build_script: ./actions/build.sh
   package_script: |
     ./actions/package.sh
