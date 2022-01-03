@@ -1,16 +1,3 @@
-retrieve-sources_task:
-  container:
-    image: ubuntu:20.04
-  download_script: |
-    apt-get update && apt-get install --no-install-recommends -y ca-certificates curl git
-    export PATH=/usr/bin:$PATH
-    ./actions/download.sh
-    mkdir sources
-    mv *tar.gz sources
-  sources_cache:
-    folder: sources
-    fingerprint_key: sources
-
 build-and-package_task:
   depends_on:
     - retrieve-sources
