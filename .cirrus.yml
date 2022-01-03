@@ -45,7 +45,7 @@ build-and-package_task:
   retrievesources_script: |
     set -xv
     ls -la
-    curl -v --data-binary @sources.tar.gz http://$CIRRUS_HTTP_CACHE_HOST/sources
+    curl -v http://$CIRRUS_HTTP_CACHE_HOST/sources
     ls -la
     tar xvzf sources.tar.gz
   build_script: ./actions/build.sh
