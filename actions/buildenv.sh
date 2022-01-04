@@ -9,9 +9,13 @@ if [ "$OS" = "rhel" ]; then
   OS="el"
 fi
 
+ARCH=amd64
+if [ ! -z "$CIRRUS_CI" ]; then
+  ARCH=arm64
+fi
+
 set_os_vars() {
-  ARCH=$1
-  RUN_DEPS=$2
+  RUN_DEPS=$1
   OS_CODENAME=`perl -lwn -e 'if (/^VERSION_CODENAME=/) { s/^.+=(.+)/$1/; print }' /etc/os-release`
   OS_VERSION=`echo $IMAGE| perl -lwp -e 's/^.+[:\/](?:ubi)*([.\w+\d+]+).*/$1/'`
 
@@ -42,7 +46,7 @@ case "$OS" in
     apk upgrade
     PKGS="bash build-base gettext git gzip perl perl-utils tar zstd-dev"
     apk add $PKGS
-    set_os_vars x86_64 zstd-libs
+    set_os_vars zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
@@ -50,38 +54,27 @@ case "$OS" in
     apt-get -u dist-upgrade -y -qq
     PKGS="build-essential git gettext libzstd-dev"
     apt-get install -y $PKGS
-    set_os_vars amd64 libzstd1
+    set_os_vars libzstd1
     ;;
   el)
     microdnf update
     PKGS="gettext gcc git gzip make perl-core tar"
     microdnf install $PKGS
-    # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
-    #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
-    #   microdnf install curl dnf
-    #   curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
-    #   dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
-    #   rm -rf *rpm
-    #   dnf install -y gettext gcc git gzip make perl-core tar
-    #   else
-    #    microdnf update
-    #    microdnf install gettext gcc git gzip make perl-core tar
-    #fi
-    set_os_vars x86_64 ""
+    set_os_vars ""
     ;;
   fedora)
     dnf -q -y upgrade
     dnf -q -y groupinstall 'Development Tools'
     PKGS="gettext git libzstd-devel perl-core"
     dnf -q -y install $PKGS
-    set_os_vars x86_64 libzstd
+    set_os_vars libzstd
     ;;
   opensuse)
     zypper refresh
     zypper update -y
     PKGS="findutils gcc gettext git gzip make libzstd-devel perl tar"
     zypper install -y $PKGS
-    set_os_vars x86_64 libzstd1
+    set_os_vars libzstd1
     ;;
   ubuntu)
     export DEBIAN_FRONTEND=noninteractive
@@ -89,7 +82,7 @@ case "$OS" in
     apt-get -u dist-upgrade -y -qq
     PKGS="build-essential git gettext git libzstd-dev"
     apt-get install -y $PKGS
-    set_os_vars amd64 libzstd1
+    set_os_vars libzstd1
     ;;
   *)
     echo "Sorry, distro not found. Send a PR. :)"
