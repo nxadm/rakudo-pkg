@@ -34,4 +34,5 @@ build-and-package_task:
   build_script: ./actions/build.sh
   package_script: |
     ./actions/package.sh
-    ls -lh packages  
+    ls -la
+    ls -la /
