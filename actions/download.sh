@@ -26,7 +26,7 @@ if [ ! -z "$CIRRUS_CI" ]; then
       dnf -q -y install $PKGS
       ;;
     opensuse)
-      PKGS="gettext git libzstd-devel perl-core"
+      PKGS="ca-certificates curl"
       zypper install -y $PKGS
       ;;
     ubuntu)
