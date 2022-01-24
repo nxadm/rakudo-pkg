@@ -6,7 +6,6 @@ build-and-package_task:
       - image: alpine:3.14
       - image: alpine:3.15
       - image: alpine:edge
-      - image: registry.access.redhat.com/ubi7-minimal
       - image: registry.access.redhat.com/ubi8-minimal
       - image: debian:9-slim
       - image: debian:10-slim
