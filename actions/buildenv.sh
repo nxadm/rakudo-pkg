@@ -82,7 +82,7 @@ case "$OS" in
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
-    apt-get install -y build-essential git gettext git libzstd-dev
+    apt-get install -y build-essential git gettext libzstd-dev
     set_os_vars amd64 libzstd1
     ;;
   *)
