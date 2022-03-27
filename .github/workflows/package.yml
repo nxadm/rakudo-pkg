@@ -32,7 +32,7 @@ jobs:
           "fedora:34", "fedora:35",
           "opensuse/leap:15.2", # to be removed at 20220701
           "opensuse/leap:15.3", "opensuse/tumbleweed",
-          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:21.04", "ubuntu:21.10"
+          "ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "ubuntu:21.10"
         ]
         experimental: [false]
         include:
