@@ -74,7 +74,7 @@ jobs:
           "alpine:3.12", "alpine:3.13", "alpine:3.14", "alpine:3.15", "alpine:edge",
           "registry.access.redhat.com/ubi7-minimal", "registry.access.redhat.com/ubi8-minimal",
           "debian:9-slim", "debian:10-slim", "debian:10-slim", "debian:testing-slim",
-          "fedora:34", "fedora:35", "fedora:rawhide",
+          "fedora:34", "fedora:35", "fedora:36", "fedora:rawhide",
           "opensuse/leap:15.3", "opensuse/tumbleweed",
           "ubuntu:18.04", "ubuntu:20.04", "ubuntu:21.10", "ubuntu:22.04", "ubuntu:devel",
         ]
