@@ -51,7 +51,7 @@ case "$OS" in
     set_os_vars amd64 libzstd1
     ;;
   el)
-    microdnf update
+    microdnf update -y
     microdnf install -y gettext gcc git gzip make perl-core tar
     # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
     #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
