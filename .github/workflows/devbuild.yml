@@ -74,7 +74,7 @@ jobs:
           "alpine:3.13", "alpine:3.14", "alpine:3.15", "alpine:3.16", "alpine:edge",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
-          "registry.access.redhat.com/ubi9-minimal",
+          "registry.access.redhat.com/ubi9",
           "debian:9-slim", "debian:10-slim", "debian:11-slim", "debian:testing-slim",
           "fedora:35", "fedora:36", "fedora:rawhide",
           "opensuse/leap:15.3", "opensuse/tumbleweed",
