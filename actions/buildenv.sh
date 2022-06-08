@@ -52,7 +52,7 @@ case "$OS" in
     ;;
   el)
     microdnf update
-    microdnf install gettext gcc git gzip make perl-core tar
+    microdnf install -y gettext gcc git gzip make perl-core tar
     # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
     #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
     #   microdnf install curl dnf
