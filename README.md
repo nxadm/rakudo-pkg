@@ -16,7 +16,7 @@ The easiest way to install and update Rakudo is by using the `rakudo-pkg`
 repositories (hosted at [CloudSmith](https://cloudsmith.io/)):
 - [instructions for Alpine](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-alpine).
 - [instructions for Debian/Ubuntu and derivatives](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-deb).
-- [instructions for EL (RHEL/CentOS/Amazon/Oracle Linux) and derivatives] and openSUSE (https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-rpm).
+- [instructions for EL (RHEL/CentOS/Amazon/Oracle Linux) and derivatives and openSUSE](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-rpm).
 
 ### Relocatable Builds and direct downloads
 - See the [relocatable packages documentation](docs/relocatable.md).
