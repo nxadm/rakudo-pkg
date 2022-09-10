@@ -28,6 +28,11 @@ See the [zef documentation](docs/zef.md).
 ## Add rakudo to the PATH
 See the [PATH documentation](docs/path.md).
 
+## Clean up ###
+After removing the package, you can safely remove /opt/rakudo-pkg for leftover file (like module installations).
+The repo file (with the name matching nxadm-pkgs-rakudo-pkg-*) can be also removed if rakudo-pkg is no longer
+necessary in the future.
+
 ## Windows Subsystem for Linux (WSL)
 See the [WSL documentation](docs/wsl.md).
 
