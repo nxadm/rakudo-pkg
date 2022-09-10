@@ -70,7 +70,7 @@ case "$OS" in
     #    microdnf update
     #    microdnf install gettext gcc git gzip make perl-core tar
     #fi
-    set_os_vars x86_64 ""
+    set_os_vars ""
     ;;
   fedora)
     dnf -q -y upgrade
@@ -91,7 +91,7 @@ case "$OS" in
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext libzstd-dev
-    set_os_vars amd64 libzstd1
+    set_os_vars libzstd1
     ;;
   *)
     echo "Sorry, distro not found. Send a PR. :)"
