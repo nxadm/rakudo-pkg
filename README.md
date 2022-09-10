@@ -16,7 +16,7 @@ The easiest way to install and update Rakudo is by using the `rakudo-pkg`
 repositories (hosted at [CloudSmith](https://cloudsmith.io/)):
 - [instructions for Alpine](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-alpine).
 - [instructions for Debian/Ubuntu and derivatives](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-deb).
-- [instructions for EL (RHEL/CentOS/Amazon/Oracle Linux) and derivatives](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-rpm).
+- [instructions for EL (RHEL/CentOS/Amazon/Oracle Linux and derivatives) and openSUSE](https://cloudsmith.io/~nxadm-pkgs/repos/rakudo-pkg/setup/#formats-rpm).
 
 ### Relocatable Builds and direct downloads
 - See the [relocatable packages documentation](docs/relocatable.md).
@@ -27,6 +27,11 @@ See the [zef documentation](docs/zef.md).
 
 ## Add rakudo to the PATH
 See the [PATH documentation](docs/path.md).
+
+## Clean up ###
+After removing the package, you can safely remove /opt/rakudo-pkg for leftover file (like module installations).
+The repo file (with the name matching nxadm-pkgs-rakudo-pkg-*) can be also removed if rakudo-pkg is no longer
+necessary in the future.
 
 ## Windows Subsystem for Linux (WSL)
 See the [WSL documentation](docs/wsl.md).

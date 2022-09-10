@@ -1,0 +1,4 @@
+#!/opt/rakudo-pkg/bin/raku
+use lib '/opt/rakudo-pkg/share/perl6/site';
+
+use Zef::CLI;

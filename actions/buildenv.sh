@@ -57,10 +57,20 @@ case "$OS" in
     set_os_vars libzstd1
     ;;
   el)
-    microdnf update
-    PKGS="gettext gcc git gzip make perl-core tar"
-    microdnf install $PKGS
-    set_os_vars ""
+    microdnf update -y
+    microdnf install -y gettext gcc git gzip make perl-core tar
+    # ubi 8 bug: https://bugzilla.redhat.com/show_bug.cgi?id=1963049
+    #if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "8" ]; then
+    #   microdnf install curl dnf
+    #   curl -sSL https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/p/perl-libnetcfg-5.26.3-419.el8.noarch.rpm -O
+    #   dnf install -y ./perl-libnetcfg-5.26.3-419.el8.noarch.rpm
+    #   rm -rf *rpm
+    #   dnf install -y gettext gcc git gzip make perl-core tar
+    #   else
+    #    microdnf update
+    #    microdnf install gettext gcc git gzip make perl-core tar
+    #fi
+    set_os_vars x86_64 ""
     ;;
   fedora)
     dnf -q -y upgrade
@@ -80,9 +90,8 @@ case "$OS" in
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
-    PKGS="build-essential git gettext git libzstd-dev"
-    apt-get install -y $PKGS
-    set_os_vars libzstd1
+    apt-get install -y build-essential git gettext libzstd-dev
+    set_os_vars amd64 libzstd1
     ;;
   *)
     echo "Sorry, distro not found. Send a PR. :)"
