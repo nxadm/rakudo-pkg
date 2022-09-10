@@ -30,7 +30,7 @@ See the [PATH documentation](docs/path.md).
 
 ## Clean up ###
 After removing the package, you can safely remove /opt/rakudo-pkg for leftover file (like module installations).
-The repo file (with the name matching nxadm-pkgs-rakudo-pkg-*) can be also removed if rakudo-pkg is no longer
+The repo file (with the name matching nxadm-pkgs-rakudo-pkg-\*) can be also removed if rakudo-pkg is no longer
 necessary in the future.
 
 ## Windows Subsystem for Linux (WSL)
