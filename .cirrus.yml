@@ -36,4 +36,4 @@ build-and-package_task:
   package_script: |
     ./actions/package.sh
   pkg_artifacts:
-    path: "packages/*"
+    path: "$GITHUB_WORKSPACE/packages/*"
