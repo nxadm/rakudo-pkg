@@ -1,6 +1,10 @@
 #!/bin/sh
 
 cd /opt/rakudo-pkg/var/zef
+
+# Workaround for issue #91, usev6++
+raku -e 'use NativeCall'
+
 /opt/rakudo-pkg/bin/raku -I. bin/zef --install-to=home --force-install install .
 
 echo "Don't forget to add '~/.raku/bin' to your PATH,"
