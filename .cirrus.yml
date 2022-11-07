@@ -35,3 +35,5 @@ build-and-package_task:
   build_script: ./actions/build.sh
   package_script: |
     ./actions/package.sh
+  pkg_artifacts:
+    path: "packages/*"
