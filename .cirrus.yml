@@ -36,6 +36,7 @@ build-and-package_task:
     ./actions/download.sh
   build_script: ./actions/build.sh
   package_script: |
+    export CLOUDSMITH_REPOSITORY=nxadm-pkgs/rakudo-pkg
     ./actions/package.sh
   pkg_artifacts:
     path: "$GITHUB_WORKSPACE/packages/*"
