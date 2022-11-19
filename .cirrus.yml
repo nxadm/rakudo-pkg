@@ -27,13 +27,13 @@ build-and-package_task:
 #      - image: ubuntu:22.10
 #      - image: ubuntu:devel
   timeout_in: 120m
+  buildenv_script: |
+    chmod +x actions/*
+    . actions/buildenv.sh
   download_script: |
     echo $PATH
     export PATH=/usr/bin:$PATH
     ./actions/download.sh
-  buildenv_script: |
-    chmod +x actions/*
-    . actions/buildenv.sh
   build_script: ./actions/build.sh
   package_script: |
     ./actions/package.sh
