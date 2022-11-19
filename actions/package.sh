@@ -62,7 +62,7 @@ case "$OS" in
         if [ "${OS}${OS_VERSION}" = "$PKG_TARGZ" ]; then
             PACKAGER=targz
             PKG_NAME=rakudo-pkg-linux-relocable-${RAKUDO_VERSION}-${PKG_REVISION}_${DISTRO_ARCH}.tar.gz
-            INSTALL_CMD="tar xvzf /staging/$PKG_NAME"
+            INSTALL_CMD="tar xvzf $WORK_DIR/staging/$PKG_NAME"
             PKG_CMD="true"
         else
             PACKAGER=deb
