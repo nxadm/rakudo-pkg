@@ -1,29 +1,31 @@
 build-and-package_task:
   arm_container:
     matrix:
-      - image: alpine:3.13
-      - image: alpine:3.14
-      - image: alpine:3.15
+#      - image: alpine:3.13
+#      - image: alpine:3.14
+#      - image: alpine:3.15
       - image: alpine:3.16
-      - image: alpine:edge
-      - image: registry.access.redhat.com/ubi8-minimal
-      - image: registry.access.redhat.com/ubi9-minimal
-      - image: debian:9-slim
-      - image: debian:10-slim
-      - image: debian:11-slim
-      - image: debian:testing-slim
-      - image: fedora:35
-      - image: fedora:36
-      - image: fedora:rawhide
-      - image: opensuse/leap:15.3
-      - image: opensuse/leap:15.4
-      - image: opensuse/tumbleweed
-      - image: ubuntu:16.04
-      - image: ubuntu:18.04
-      - image: ubuntu:20.04
-      - image: ubuntu:22.04
-      - image: ubuntu:22.10
-      - image: ubuntu:devel
+#      - image: alpine:edge
+#      # there are no ubi7 arm64 images
+#      - image: registry.access.redhat.com/ubi8-minimal
+#      - image: registry.access.redhat.com/ubi9-minimal
+#      - image: debian:9-slim
+#      - image: debian:10-slim
+#      - image: debian:11-slim
+#      - image: debian:testing-slim
+#      - image: fedora:35
+#      - image: fedora:36
+#      - image: fedora:37
+#      - image: fedora:rawhide
+#      - image: opensuse/leap:15.3
+#      - image: opensuse/leap:15.4
+#      - image: opensuse/tumbleweed
+#      - image: ubuntu:16.04
+#      - image: ubuntu:18.04
+#      - image: ubuntu:20.04
+#      - image: ubuntu:22.04
+#      - image: ubuntu:22.10
+#      - image: ubuntu:devel
   timeout_in: 120m
   buildenv_script: |
     chmod +x actions/*

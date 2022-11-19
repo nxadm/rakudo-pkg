@@ -4,6 +4,11 @@ set -xv
 . config/setup.sh
 export ARCH PKG_MAINTAINER PKG_REVISION RAKUDO_VERSION RUN_DEPS
 
+WORK_DIR=$GITHUB_WORKSPACE
+if [ -z "$GITHUB_WORKSPACE"]; then
+    WORK_DIR=$CIRRUS_WORKING_DIR
+fi    
+
 # Install nfpm
 tar xzf nfpm.tar.gz nfpm
 mv nfpm /usr/bin
@@ -72,18 +77,19 @@ case "$OS" in
         ;;
 esac
 
-mkdir -p /staging $GITHUB_WORKSPACE/packages
+# $CIRRUS_WORKING_DIR is empty on github
+mkdir -p $WORK_DIR/staging $WORK_DIR/packages
 
 if [ "$PACKAGER" = "targz" ]; then
     cd /opt
-    tar cvzf /staging/$PKG_NAME rakudo-pkg
-    cd /staging
+    tar cvzf $WORK_DIR/staging/$PKG_NAME rakudo-pkg
+    cd $WORK_DIR/staging
 else
     echo "DEBUG config/nfpm.yaml:"
     cat config/nfpm.yaml
     echo "DEBUG END"
-    nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target /staging/
-    cd /staging
+    nfpm pkg -f config/nfpm.yaml --packager $PACKAGER --target $WORK_DIR/staging/
+    cd $WORK_DIR/staging
     mv *.$PACKAGER $PKG_NAME
 fi
 
@@ -101,12 +107,12 @@ if [ -f /etc/profile.d/rakudo-pkg.sh ]; then
     /opt/rakudo-pkg/bin/install-zef
     ~/.raku/bin/zef --version
 else
-   /staging/rakudo-pkg/bin/raku -v
+   $WORK_DIR/staging/rakudo-pkg/bin/raku -v
 fi
-rm -rf /staging/rakudo-pkg
+rm -rf $WORK_DIR/staging/rakudo-pkg
 
 # Move to workspace
-mv /staging/* $GITHUB_WORKSPACE/packages/
+mv $WORK_DIR/staging/* $WORK_DIR/packages/
 
 # Write the upload URL for publishing the packages
-echo "$PKG_CMD" > $GITHUB_WORKSPACE/packages/$PKG_NAME.sh
+echo "$PKG_CMD" > $WORK_DIR/packages/$PKG_NAME.sh
