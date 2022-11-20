@@ -18,7 +18,8 @@ if [ ! -z "$CIRRUS_CI" ]; then
       apt-get install -y $PKGS
       ;;
     el)
-      PKGS="ca-certificates git curl"
+      # culr-minimal is installed
+      PKGS="ca-certificates git"
       microdnf install $PKGS
       ;;
     fedora)
