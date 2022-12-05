@@ -71,7 +71,7 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-          "alpine:3.13", "alpine:3.14", "alpine:3.15", "alpine:3.16", "alpine:edge",
+          "alpine:3.14", "alpine:3.15", "alpine:3.16", "alpine:3.17", "alpine:edge",
           "registry.access.redhat.com/ubi7-minimal",
           "registry.access.redhat.com/ubi8-minimal",
           "registry.access.redhat.com/ubi9-minimal",
