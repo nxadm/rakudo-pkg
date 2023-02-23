@@ -46,7 +46,7 @@ for i in moarvm nqp rakudo; do
     # temporary workaround for old perls
     if [ -f "3rdparty/nqp-configure/lib/NQP/Config.pm" ]; then
         echo "patching NQP/Config.pm..."
-        perl -pi -e 's/my sub on_stderr/my \$on_stderr = sub/;s/my sub on_stdout/my \$on_stdout = sub/;s/\\&on_/\$on_/' 3rdparty/nqp-configure/lib/NQP/Config.pm
+        perl -pi -e 's/my (sub on_)/$1/' 3rdparty/nqp-configure/lib/NQP/Config.pm
     fi
     $CONFIGURE
     make
