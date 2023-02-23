@@ -44,12 +44,9 @@ for i in moarvm nqp rakudo; do
     tar xzf $i.tar.gz -C $i --strip-components=1
     cd $i
     # temporary workaround for old perls
-    if [ -f "3rdparty/nqp-configure/lib/NQP/Config.pm"]; then
-        perl -pi -e '\
-        s/my sub on_stderr/my \$on_stderr = sub/; \
-        s/my sub on_stdout/my \$on_stdout = sub/; \
-        s/\\&on_/\$on_/ \
-        ' 3rdparty/nqp-configure/lib/NQP/Config.pm
+    if [ -f "3rdparty/nqp-configure/lib/NQP/Config.pm" ]; then
+        echo "patching NQP/Config.pm..."
+        perl -pi -e 's/my sub on_stderr/my \$on_stderr = sub/;s/my sub on_stdout/my \$on_stdout = sub/;s/\\&on_/\$on_/' 3rdparty/nqp-configure/lib/NQP/Config.pm
     fi
     $CONFIGURE
     make
