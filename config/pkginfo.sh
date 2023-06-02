@@ -1,4 +1,4 @@
-NFPM_RELEASE=2.28.0
+NFPM_RELEASE=2.29.0
 PKG_MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
 PKG_TARGZ="ubuntu16.04"
 FEDORA_RAWHIDE_VERSION=39
