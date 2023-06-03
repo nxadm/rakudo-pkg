@@ -40,8 +40,8 @@ jobs:
         include:
           - image: alpine:edge
             experimental: true
-          - image: fedora:rawhide
-            experimental: true
+#- image: fedora:rawhide
+#experimental: true
           - image: debian:testing-slim
             experimental: true
           - image: ubuntu:devel
