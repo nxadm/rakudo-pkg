@@ -54,9 +54,14 @@ case "$OS" in
     microdnf update -y
     # el 7 does not have libatomic.h
     if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "7" ]; then
+	microdnf install -y yum-utils perl
+	yum-config-manager --add-repo=https://copr.fedoraproject.org/coprs/rhscl/centos-release-scl/repo/epel-7/rhscl-centos-release-scl-epel-7.repo
 	microdnf install centos-release-scl
-	microdnf install devtoolset-8
-	source /opt/rh/devtoolset-8/enable
+        cp /etc/yum.repos.d/CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-rh.repo
+	perl -pi -e 's/centos-sclo-sclo/centos-sclo-rh/; s@basearch/sclo@basearch/rh@g' CentOS-SCLo-rh.repo
+        yum-config-manager --enable centos-sclo-sclo --enable centos-sclo-rh
+	microdnf install devtoolset-7-gcc
+	source /opt/rh/devtoolset-7/enable
     fi
     microdnf install -y gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
