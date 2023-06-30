@@ -60,8 +60,8 @@ case "$OS" in
         cp /etc/yum.repos.d/CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-rh.repo
 	perl -pi -e 's/centos-sclo-sclo/centos-sclo-rh/; s@basearch/sclo@basearch/rh@g' /etc/yum.repos.d/CentOS-SCLo-rh.repo
         yum-config-manager --enable centos-sclo-sclo --enable centos-sclo-rh
-	microdnf install devtoolset-7-gcc
-	source /opt/rh/devtoolset-7/enable
+	microdnf install devtoolset-8-gcc
+	source /opt/rh/devtoolset-8/enable
     fi
     microdnf install -y gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
