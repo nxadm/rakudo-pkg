@@ -58,7 +58,7 @@ case "$OS" in
 	yum-config-manager --add-repo=https://copr.fedoraproject.org/coprs/rhscl/centos-release-scl/repo/epel-7/rhscl-centos-release-scl-epel-7.repo
 	microdnf install centos-release-scl
         cp /etc/yum.repos.d/CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-rh.repo
-	perl -pi -e 's/centos-sclo-sclo/centos-sclo-rh/; s@basearch/sclo@basearch/rh@g' CentOS-SCLo-rh.repo
+	perl -pi -e 's/centos-sclo-sclo/centos-sclo-rh/; s@basearch/sclo@basearch/rh@g' /etc/yum.repos.d/CentOS-SCLo-rh.repo
         yum-config-manager --enable centos-sclo-sclo --enable centos-sclo-rh
 	microdnf install devtoolset-7-gcc
 	source /opt/rh/devtoolset-7/enable
