@@ -6,6 +6,11 @@ INSTALL_ROOT=/opt/rakudo-pkg
 PATH=$PATH:$INSTALL_ROOT/bin
 export CONFIG_SHELL INSTALL_ROOT
 
+# Workaround for ubi 7
+if [ -f "/opt/rh/devtoolset-8/enable" ]; then
+    source /opt/rh/devtoolset-8/enable
+fi  
+
 if [ -z "$DEVBUILD" ]; then
     . config/setup.sh
     MOARVM_CONFIGURE="perl ./Configure.pl --relocatable --prefix=$INSTALL_ROOT"
