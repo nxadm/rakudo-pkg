@@ -52,17 +52,6 @@ case "$OS" in
     ;;
   el)
     microdnf update -y
-    # el 7 does not have libatomic.h
-    if [ `cat /etc/os-release | grep VERSION_ID= | cut -d\" -f2| cut -d. -f1` == "7" ]; then
-      microdnf install -y yum-utils perl
-      yum-config-manager --add-repo=https://copr.fedoraproject.org/coprs/rhscl/centos-release-scl/repo/epel-7/rhscl-centos-release-scl-epel-7.repo
-      microdnf install centos-release-scl
-      cp /etc/yum.repos.d/CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-rh.repo
-      perl -pi -e 's/centos-sclo-sclo/centos-sclo-rh/; s@basearch/sclo@basearch/rh@g' /etc/yum.repos.d/CentOS-SCLo-rh.repo
-      yum-config-manager --enable centos-sclo-sclo --enable centos-sclo-rh
-      microdnf install devtoolset-8-gcc
-      source /opt/rh/devtoolset-8/enable
-    fi
     microdnf install -y gettext gcc git gzip make perl-core tar
     set_os_vars x86_64 ""
     ;;
@@ -76,6 +65,9 @@ case "$OS" in
     zypper refresh
     zypper update -y
     zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
+    if [  `cat /etc/os-release | grep ^ID= | cut -d\" -f2| cut -d- -f2` == "tumbleweed" ]; then
+      zypper install -y envsubst
+    fi      
     set_os_vars x86_64 libzstd1
     ;;
   ubuntu)
