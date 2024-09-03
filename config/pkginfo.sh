@@ -1,4 +1,4 @@
-NFPM_RELEASE=2.38.0
+NFPM_RELEASE=2.39.0
 PKG_MAINTAINER="Claudio Ramirez <pub.claudio@gmail.com>"
 PKG_TARGZ="ubuntu20.04"
 FEDORA_RAWHIDE_VERSION=41
