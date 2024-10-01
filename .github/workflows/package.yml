@@ -2,10 +2,10 @@ name: package
 on: [push, pull_request]
 jobs:
   get-sources:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Download tools and sources
@@ -45,7 +45,7 @@ jobs:
           - image: ubuntu:devel
             experimental: true
     continue-on-error: ${{ matrix.experimental }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
       options: --security-opt seccomp=unconfined
@@ -77,13 +77,15 @@ jobs:
     # Forks don't need to release packages, just have the artifacts available
     if: github.repository_owner == 'nxadm' && startsWith(github.ref, 'refs/tags/v')
     needs: build-and-package
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
-          name: packages-*
           path: packages
+          pattern: packages-*
+          merge-multiple: true
+      - run: ls -R packages      
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
         with:
@@ -91,22 +93,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           body: "For apk/deb/rpm packages, you can use the rakudo-pkg [OS repositories](https://github.com/nxadm/rakudo-pkg#os-repositories)."
-  release-to-repos:
-    needs: release-to-github
-    runs-on: ubuntu-20.04
-    env:
-      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
-    steps:
-      - name: Retrieve sources
-        uses: actions/download-artifact@v4
-        with:
-          name: sources
-      - name: Download packages
-        uses: actions/download-artifact@v4
-        with:
-          name: packages-*
-          path: packages
-      - name: Upload to repository
-        run: |
-          chmod +x actions/*
-          actions/upload.sh packages
+            #  release-to-repos:
+            #    needs: release-to-github
+            #    runs-on: ubuntu-latest
+            #    env:
+            #      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+            #    steps:
+            #      - name: Retrieve sources
+            #        uses: actions/download-artifact@v4
+            #        with:
+            #          name: sources
+            #      - name: Download packages
+            #        uses: actions/download-artifact@v4
+            #        with:
+            #          name: packages-*
+            #          path: packages
+            #      - name: Upload to repository
+            #        run: |
+            #          chmod +x actions/*
+            #          actions/upload.sh packages
