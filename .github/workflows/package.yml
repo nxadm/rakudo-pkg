@@ -82,7 +82,7 @@ jobs:
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
-          name: packages-${{ strategy.job-index }}
+          name: packages-*
           path: packages
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
@@ -98,13 +98,13 @@ jobs:
       CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
     steps:
       - name: Retrieve sources
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: sources
       - name: Download packages
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
-          name: packages--${{ strategy.job-index }}
+          name: packages-*
           path: packages
       - name: Upload to repository
         run: |
