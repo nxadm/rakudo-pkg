@@ -56,7 +56,7 @@ jobs:
         run: |
           ./actions/download.sh
       - name: Archive artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: sources
           retention-days: 1
@@ -95,7 +95,7 @@ jobs:
       EXTRA_ENV: ${{ github.event.inputs.extra-env }}
     steps:
       - name: Retrieve sources
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: sources
       - name: Configure core dumps
@@ -118,7 +118,7 @@ jobs:
           for i in $COREDIR/core.*; do mv $i $i-$TAG; echo "CORE=true" >> $GITHUB_ENV; done
       - name: Archive coredumps
         if: env.CORE == 'true'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: coredumps
           retention-days: 1
