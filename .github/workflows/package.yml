@@ -70,7 +70,7 @@ jobs:
       - name: Archive packages
         uses: actions/upload-artifact@v4
         with:
-          name: packages
+          name: packages-${{ strategy.job-index }}
           retention-days: 1
           path: ${{ github.workspace }}/packages/
   release-to-github:
@@ -80,9 +80,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Download packages
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
-          name: packages
+          name: packages-${{ strategy.job-index }}
           path: packages
       - name: Upload to Github Releases
         uses: ncipollo/release-action@v1
