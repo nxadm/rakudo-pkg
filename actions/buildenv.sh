@@ -57,7 +57,10 @@ case "$OS" in
     ;;
   fedora)
     dnf -q -y upgrade
-    dnf -q -y groupinstall 'Development Tools'
+    if [ `cat /etc/os-release | grep VERSION_ID= | cut -d= -f2` == "40" ]; then
+      dnf -q -y groupinstall 'Development Tools'
+      else dnf -q -y group install 'Development Tools'
+    fi	      
     dnf -q -y install gettext git libzstd-devel perl-core
     set_os_vars x86_64 libzstd
     ;;
