@@ -59,7 +59,7 @@ case "$OS" in
     dnf -q -y upgrade
     if [ `cat /etc/os-release | grep VERSION_ID= | cut -d= -f2` == "40" ]; then
       dnf -q -y groupinstall 'Development Tools'
-      else dnf -q -y group install 'Development Tools'
+      else dnf -q -y install @development-tools
     fi	      
     dnf -q -y install gettext git libzstd-devel perl-core
     set_os_vars x86_64 libzstd
