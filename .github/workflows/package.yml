@@ -26,13 +26,13 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-          "alpine:3.17", "alpine:3.18", "alpine:3.19", "alpine:3.20",
+          "alpine:3.18", "alpine:3.19", "alpine:3.20", "alpine:3.21",
           "registry.access.redhat.com/ubi8-minimal",
           "registry.access.redhat.com/ubi9-minimal",
-          "debian:10-slim", "debian:11-slim", "debian:12-slim", 
-          "fedora:39", "fedora:40",
+          "debian:11-slim", "debian:12-slim", 
+          "fedora:40", "fedora:41",
           "opensuse/leap:15.5", "opensuse/leap:15.6", "opensuse/tumbleweed",
-        "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:24.10",
+          "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:24.10",
         ]
         experimental: [false]
         include:
