@@ -11,24 +11,21 @@ fi
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
 if [ $MOARVM_VERSION != "HEAD" ]; then
     cd moarvm 
-    git clean -f -d
-    git checkout $MOARVM_VERSION
+    git checkout --recurse-submodules $MOARVM_VERSION
     cd ..
 fi
 
 git clone --recurse-submodules https://github.com/raku/nqp.git
 if [ $NQP_VERSION != "HEAD" ]; then
     cd nqp 
-    git clean -f -d
-    git checkout $NQP_VERSION
+    git checkout --recurse-submodules $NQP_VERSION
     cd ..
 fi
 
 git clone --recurse-submodules https://github.com/rakudo/rakudo.git
 if [ $RAKUDO_VERSION != "HEAD" ]; then
     cd rakudo
-    git clean -f -d
-    git checkout $RAKUDO_VERSION
+    git checkout --recurse-submodules $RAKUDO_VERSION
     cd ..
 fi
 
