@@ -12,6 +12,7 @@ git clone --recurse-submodules https://github.com/moarvm/moarvm.git
 if [ $MOARVM_VERSION != "HEAD" ]; then
     cd moarvm 
     git checkout --recurse-submodules $MOARVM_VERSION
+    rm -rf 3rdparty/mimalloc*
     cd ..
 fi
 
