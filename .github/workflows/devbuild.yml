@@ -74,9 +74,9 @@ jobs:
           "alpine:3.18", "alpine:3.19", "alpine:3.20", "alpine:3.21", "alpine:edge",
           "registry.access.redhat.com/ubi8-minimal", "registry.access.redhat.com/ubi9-minimal",
           "debian:10-slim", "debian:11-slim", "debian:12-slim", "debian:testing-slim",
-          "fedora:40", "fedora:41", "fedora:rawhide",
-          "opensuse/leap:15.5", "opensuse/leap:15.6", "opensuse/tumbleweed",
-          "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:24.10", "ubuntu:devel",
+          "fedora:40", "fedora:41", "fedora:42", "fedora:rawhide",
+          "opensuse/leap:15.6", "opensuse/tumbleweed",
+          "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:24.10", "ubuntu:25.04", "ubuntu:devel",
         ]
     runs-on: ubuntu-20.04
     container:
