@@ -40,7 +40,7 @@ case "$OS" in
   alpine)
     apk update
     apk upgrade
-    apk add bash build-base gettext git gzip linux-headers perl perl-utils tar zstd-dev
+    apk add bash build-base gettext git gzip mimalloc2-dev perl perl-utils tar zstd-dev
     set_os_vars x86_64 zstd-libs
     ;;
   debian)
