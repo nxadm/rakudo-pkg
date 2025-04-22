@@ -11,6 +11,8 @@ fi
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
 if [ $MOARVM_VERSION != "HEAD" ]; then
     cd moarvm 
+    git revert 03e4fee65d1782f5aa7128d97169fb8601e4ac5b 
+    git submodule update 
     git checkout --recurse-submodules $MOARVM_VERSION
     cd ..
 fi
