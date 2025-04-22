@@ -14,7 +14,6 @@ if [ $MOARVM_VERSION != "HEAD" ]; then
     git config --global user.email "pub.claudio@gmail.com"
     git config --global user.name "Claudio Ramirez"
     git revert 03e4fee65d1782f5aa7128d97169fb8601e4ac5b 
-    git submodule update 
     git checkout --recurse-submodules $MOARVM_VERSION
     cd ..
 fi
