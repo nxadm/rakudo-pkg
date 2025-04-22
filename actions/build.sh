@@ -49,6 +49,12 @@ for i in moarvm nqp rakudo; do
     tar xzf $i.tar.gz -C $i --strip-components=1
     cd $i
 
+    # workaround mimalloc update breakage on alpine
+    if [ "$OS" == "alpine" ] && [ $i == moarvm ]; then
+    	git revert 03e4fee65d1782f5aa7128d97169fb8601e4ac5b
+	git submodule update
+    fi
+
     # temporary workaround for old perls
     if [ -f "3rdparty/nqp-configure/lib/NQP/Config.pm" ]; then
         echo "patching NQP/Config.pm..."
