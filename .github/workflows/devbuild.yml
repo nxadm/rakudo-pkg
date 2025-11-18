@@ -40,7 +40,7 @@ on:
         default: KEY1=foo;KEY2=bar
 jobs:
   get-sources:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       DEVBUILD: 1
       MOARVM_VERSION: ${{ github.event.inputs.moarvm-version }}
@@ -76,11 +76,11 @@ jobs:
           "registry.access.redhat.com/ubi9-minimal",
           "registry.access.redhat.com/ubi10-minimal",
           "debian:11-slim", "debian:12-slim", "debian:13-slim", "debian:testing-slim",
-          "fedora:40", "fedora:41", "fedora:42", "fedora:rawhide",
-          "opensuse/leap:15.6", "opensuse/tumbleweed",
-          "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:24.10", "ubuntu:25.04", "ubuntu:devel",
+          "fedora:41", "fedora:42", "fedora:43", "fedora:rawhide",
+          "opensuse/leap:15.6", "opensuse/leap:16.0", "opensuse/tumbleweed",
+          "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:25.04", "ubuntu:25.10", "ubuntu:devel",
         ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
       options: --privileged --ulimit core=-1 --security-opt seccomp=unconfined
