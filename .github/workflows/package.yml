@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         image: [
-          "alpine:3.19", "alpine:3.20", "alpine:3.21", "alpine:3.22", 
+          "alpine:3.19", "alpine:3.20", "alpine:3.21", "alpine:3.22", "alpine:3.23",
           "registry.access.redhat.com/ubi8-minimal",
           "registry.access.redhat.com/ubi9-minimal",
           "registry.access.redhat.com/ubi10-minimal",
