@@ -13,7 +13,7 @@ fi
 
 if [ -z "$DEVBUILD" ]; then
     . config/setup.sh
-    MOARVM_CONFIGURE="perl ./Configure.pl --relocatable --prefix=$INSTALL_ROOT"
+    MOARVM_CONFIGURE="perl ./Configure.pl --debug=3 --optimize=3 --relocatable --prefix=$INSTALL_ROOT"
     NQP_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
     RAKUDO_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
 fi
