@@ -71,6 +71,9 @@ jobs:
       IMAGE: ${{ matrix.image }}
       CLOUDSMITH_REPOSITORY: nxadm-pkgs/rakudo-pkg
     steps:
+      - name: Work around Alpine ARM64 incompatibility with GitHub Actions
+        if: matrix.runner == 'ubuntu-24.04-arm' && startsWith(matrix.image, 'alpine')
+        uses: laverdet/alpine-arm64@v1
       - name: Retrieve sources
         uses: actions/download-artifact@v4
         with:

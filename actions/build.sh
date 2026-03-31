@@ -11,12 +11,10 @@ if [ -f "/opt/rh/devtoolset-8/enable" ]; then
     source /opt/rh/devtoolset-8/enable
 fi  
 
-if [ -z "$DEVBUILD" ]; then
-    . config/setup.sh
-    MOARVM_CONFIGURE="perl ./Configure.pl --relocatable --prefix=$INSTALL_ROOT"
-    NQP_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
-    RAKUDO_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
-fi
+. config/setup.sh
+MOARVM_CONFIGURE="perl ./Configure.pl --relocatable --prefix=$INSTALL_ROOT"
+NQP_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
+RAKUDO_CONFIGURE="perl ./Configure.pl --relocatable --backends=moar --prefix=$INSTALL_ROOT"
 
 if [ ! -z "$SEARCH_REPLACE" ]; then
     $SEARCH_REPLACE

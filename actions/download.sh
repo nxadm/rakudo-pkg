@@ -1,12 +1,13 @@
 #!/bin/sh -e
 set -xv
 
-if [ -z "$DEVBUILD" ]; then
-    . config/pkginfo.sh
-    . config/setup.sh
-    curl -sSL -o nfpm.tar.gz \
+
+. config/pkginfo.sh
+. config/setup.sh
+curl -sSL -o nfpm_x86_64.tar.gz \
 https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_x86_64.tar.gz
-fi
+curl -sSL -o nfpm_aarch64.tar.gz \
+https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_RELEASE}_Linux_arm64.tar.gz
 
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
 if [ $MOARVM_VERSION != "HEAD" ]; then

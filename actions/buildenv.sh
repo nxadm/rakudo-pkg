@@ -9,6 +9,31 @@ if [ "$OS" = "rhel" ]; then
   OS="el"
 fi
 
+KERNEL_ARCH=`uname -m`
+
+# Map kernel arch to distro package arch
+# Usage: get_arch <format>
+#   deb: amd64 / arm64      (Debian, Ubuntu)
+#   rpm: x86_64 / aarch64   (Fedora, EL, openSUSE)
+#   apk: x86_64 / aarch64   (Alpine)
+get_arch() {
+  case "$1" in
+    deb)
+      case "$KERNEL_ARCH" in
+        x86_64)  echo "amd64"   ;;
+        aarch64) echo "arm64"   ;;
+        *)       echo "$KERNEL_ARCH" ;;
+      esac
+      ;;
+    rpm|apk)
+      echo "$KERNEL_ARCH"
+      ;;
+    *)
+      echo "$KERNEL_ARCH"
+      ;;
+  esac
+}
+
 set_os_vars() {
   ARCH=$1
   RUN_DEPS=$2
@@ -41,19 +66,19 @@ case "$OS" in
     apk update
     apk upgrade
     apk add bash build-base gettext git gzip mimalloc2-dev perl perl-utils tar zstd-dev
-    set_os_vars x86_64 zstd-libs
+    set_os_vars $(get_arch apk) zstd-libs
     ;;
   debian)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext libzstd-dev
-    set_os_vars amd64 libzstd1
+    set_os_vars $(get_arch deb) libzstd1
     ;;
   el)
     microdnf update -y
     microdnf install -y gettext gcc git gzip make perl-core tar
-    set_os_vars x86_64 ""
+    set_os_vars $(get_arch rpm) ""
     ;;
   fedora)
     dnf -q -y upgrade
@@ -62,7 +87,7 @@ case "$OS" in
       else dnf -q -y install @development-tools
     fi	      
     dnf -q -y install gettext git libzstd-devel perl-core
-    set_os_vars x86_64 libzstd
+    set_os_vars $(get_arch rpm) libzstd
     ;;
   opensuse)
     zypper refresh
@@ -71,14 +96,14 @@ case "$OS" in
     if [  `cat /etc/os-release | grep ^ID= | cut -d\" -f2| cut -d- -f2` == "tumbleweed" ]; then
       zypper install -y envsubst
     fi      
-    set_os_vars x86_64 libzstd1
+    set_os_vars $(get_arch rpm) libzstd1
     ;;
   ubuntu)
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get -u dist-upgrade -y -qq
     apt-get install -y build-essential git gettext libzstd-dev
-    set_os_vars amd64 libzstd1
+    set_os_vars $(get_arch deb) libzstd1
     ;;
   *)
     echo "Sorry, distro not found. Send a PR. :)"
