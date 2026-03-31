@@ -39,5 +39,3 @@ See the [WSL documentation](docs/wsl.md).
 ## Security
 See the [security documentation](docs/security.md).
 
-## Using rakudo-pkg for testing upstream Rakudo
-See the [devbuild action documentation](docs/devbuild.md).
