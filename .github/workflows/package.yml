@@ -35,18 +35,35 @@ jobs:
           "opensuse/leap:15.6", "opensuse/leap:16.0", "opensuse/tumbleweed",
           "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:25.04", "ubuntu:25.10",
         ]
+        runner: ["ubuntu-latest", "ubuntu-24.04-arm"]
         experimental: [false]
         include:
           - image: alpine:edge
+            runner: ubuntu-latest
+            experimental: true
+          - image: alpine:edge
+            runner: ubuntu-24.04-arm
             experimental: true
 #- image: fedora:rawhide
-#experimental: true
+#  runner: ubuntu-latest
+#  experimental: true
+#- image: fedora:rawhide
+#  runner: ubuntu-24.04-arm
+#  experimental: true
           - image: debian:testing-slim
+            runner: ubuntu-latest
+            experimental: true
+          - image: debian:testing-slim
+            runner: ubuntu-24.04-arm
             experimental: true
           - image: ubuntu:devel
+            runner: ubuntu-latest
+            experimental: true
+          - image: ubuntu:devel
+            runner: ubuntu-24.04-arm
             experimental: true
     continue-on-error: ${{ matrix.experimental }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
     container:
       image: ${{ matrix.image }}
       options: --security-opt seccomp=unconfined
@@ -71,7 +88,7 @@ jobs:
       - name: Archive packages
         uses: actions/upload-artifact@v4
         with:
-          name: packages-${{ strategy.job-index }}
+          name: packages-${{ matrix.runner }}-${{ strategy.job-index }}
           retention-days: 1
           path: ${{ github.workspace }}/packages/
   release-to-github:
