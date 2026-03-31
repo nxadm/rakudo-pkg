@@ -9,6 +9,11 @@ if [ "$OS" = "rhel" ]; then
   OS="el"
 fi
 
+# laverdet/alpine-arm64 modifies /etc/os-release; use $IMAGE as fallback
+if echo "$IMAGE" | grep -q '^alpine' && [ "$OS" != "alpine" ]; then
+  OS="alpine"
+fi
+
 KERNEL_ARCH=`uname -m`
 
 # Map kernel arch to distro package arch
