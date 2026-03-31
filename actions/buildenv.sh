@@ -55,6 +55,7 @@ set_os_vars() {
     OS_CODENAME=$OS_VERSION
   fi
 
+  echo KERNEL_ARCH=$KERNEL_ARCH >> config/setup.sh
   echo ARCH=$ARCH >> config/setup.sh
   echo OS=$OS >> config/setup.sh
   if [ ! -z "$RUN_DEPS" ]; then
