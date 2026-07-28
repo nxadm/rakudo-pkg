@@ -12,10 +12,10 @@ https://github.com/goreleaser/nfpm/releases/download/v$NFPM_RELEASE/nfpm_${NFPM_
 git clone --recurse-submodules https://github.com/moarvm/moarvm.git
 if [ $MOARVM_VERSION != "HEAD" ]; then
     cd moarvm 
-    #git config --global user.email "pub.claudio@gmail.com"
-    #git config --global user.name "Claudio Ramirez"
-    #git revert 03e4fee65d1782f5aa7128d97169fb8601e4ac5b 
-    git checkout --recurse-submodules $MOARVM_VERSION
+    #git checkout --recurse-submodules $MOARVM_VERSION
+    git checkout $MOARVM_VERSION
+    git submodule sync --recursive
+    git submodule update --init --recursive
     cd ..
 fi
 
