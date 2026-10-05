@@ -96,7 +96,8 @@ case "$OS" in
     set_os_vars $(get_arch rpm) libzstd
     ;;
   opensuse)
-    zypper refresh
+    zypper clean --all
+    zypper refresh -f
     zypper update -y
     zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
     if [  `cat /etc/os-release | grep ^ID= | cut -d\" -f2| cut -d- -f2` == "tumbleweed" ]; then
