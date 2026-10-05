@@ -99,8 +99,7 @@ case "$OS" in
     zypper clean --all
     zypper refresh -f
     #zypper update -y
-    #zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
-    zypper install -y --no-refresh findutils gcc gettext git gzip make libzstd-devel perl tar
+    zypper install -y findutils gcc gettext git gzip make libzstd-devel perl tar
     if [  `cat /etc/os-release | grep ^ID= | cut -d\" -f2| cut -d- -f2` == "tumbleweed" ]; then
       zypper install -y envsubst
     fi      
