@@ -30,7 +30,7 @@ jobs:
           "registry.access.redhat.com/ubi8-minimal",
           "registry.access.redhat.com/ubi9-minimal",
           "registry.access.redhat.com/ubi10-minimal",
-          "debian:11-slim", "debian:12-slim", "debian:13-slim",
+          "debian:12-slim", "debian:13-slim",
           "fedora:43", "fedora:44",
           "opensuse/leap:16.0", "opensuse/tumbleweed",
           "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:26.04",
