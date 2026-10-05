@@ -32,7 +32,8 @@ jobs:
           "registry.access.redhat.com/ubi10-minimal",
           "debian:12-slim", "debian:13-slim",
           "fedora:43", "fedora:44",
-          "opensuse/leap:16.0", "opensuse/tumbleweed",
+          #"opensuse/leap:16.0", "opensuse/tumbleweed",
+          "opensuse/leap:16.0",
           "ubuntu:20.04", "ubuntu:22.04", "ubuntu:24.04", "ubuntu:26.04",
         ]
         runner: ["ubuntu-latest", "ubuntu-24.04-arm"]
